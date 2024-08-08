@@ -13,8 +13,8 @@
         data() {
             return {
                 projects: [
-                    {name: 'Project Bayanihan', status: 'Pending'},
-                    {name: 'Project Irinuman', status: 'Pending'},
+                    {name: 'Project Recon', status: 'Pending'},
+                    {name: 'Project Roshan', status: 'Pending'},
                     {name: 'Project Drawing', status: 'Pending'},
                     {name: 'Project Sniper', status: 'Pending'},
                     {name: 'Project Vengeful', status: 'Pending'},
