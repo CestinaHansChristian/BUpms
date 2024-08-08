@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="status-col w-full md:w-1/2 grid md:h-full overflow-y-scroll shadow-md shadow-gray-400">
+        <div class="status-col w-full md:w-1/2 shadow-md  shadow-gray-400 p-1 rounded-md">
             <ClientProjectTracker></ClientProjectTracker>
         </div>
     </div>
