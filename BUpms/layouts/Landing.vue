@@ -29,7 +29,6 @@
                 </div>
             </div>
         </nav>
-        <h1>After login </h1>
         <slot></slot>
         <Footer></Footer>
     </div>
