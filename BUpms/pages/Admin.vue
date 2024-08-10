@@ -5,10 +5,12 @@
 </template>
 <script>
     export default {
+        name: 'AdminLayout',
         beforeMount() {
             definePageMeta({
                 layout: 'landing'
             })
-        }
+        },
+        
     }
 </script>

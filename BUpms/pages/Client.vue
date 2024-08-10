@@ -1,7 +1,7 @@
 <template>
-    <div class="md:flex grid">
-        <div class="actions-col w-full relative ">
-            <div class="actions-container grid grid-rows-2 h-full ">
+    <div class="md:flex grid ">
+        <div class="actions-col w-full relative">
+            <div class="actions-container grid md:gap-y-10 md:py-5 ">
                 <div class="actions-first-col flex m-5 space-x-5 ">
                     <ClientDocumentComponent class="buttons" ></ClientDocumentComponent>
                     <ClientTrackComponent class="buttons" ></ClientTrackComponent>
@@ -21,6 +21,7 @@
 <script>
 
     export default {
+        name:'ClientLayout',
         beforeMount() {
             definePageMeta({
                 layout: 'landing'

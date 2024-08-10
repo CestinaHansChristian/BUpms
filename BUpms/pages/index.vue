@@ -10,6 +10,11 @@
       </div>
     </div>
 </template>
+<script>
+  export default {
+    name: 'LoginLayout',
+  }
+</script>
 <style scooped>
     .bu-assets {
       pointer-events: none;

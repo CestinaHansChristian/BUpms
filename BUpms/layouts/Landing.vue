@@ -8,6 +8,7 @@
               <nuxt-link to="Officer">officer</nuxt-link>
             </header>
         </nav> -->
+        <div class="" id="modal"></div>
         <nav class="h-20 p-3 shadow-md flex sticky top-0 bg-slate-100 z-50">
             <div class="relative justify-between flex  w-full">
                 <img src="assets/BU_title.png" alt="" class="object-contain min-w-32">
@@ -29,6 +30,7 @@
                 </div>
             </div>
         </nav>
+        
         <slot></slot>
         <Footer></Footer>
     </div>
