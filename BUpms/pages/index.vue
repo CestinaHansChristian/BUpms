@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper md:flex">
-      <div class="sm:flex sm:w-screen grid">
+      <div class="sm:flex sm:w-screen grid w-full">
         <div class="sidebar-container sm:w-1/2 grid h-full">
           <LoginSideBarLogin></LoginSideBarLogin>
         </div>

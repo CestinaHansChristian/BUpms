@@ -16,7 +16,8 @@
         },
         methods: {
             uploaded_doc(event) {
-                console.log(event.target.files)
+                // send file to parent component
+                this.$emit('fileUploaded',event.target.files)
             }
         },
     }
