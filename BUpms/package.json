@@ -12,6 +12,8 @@
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.12.1",
     "nuxt": "^3.12.4",
+    "pocketbase": "^0.21.4",
     "vue": "latest"
-  }
+  },
+  "packageManager": "pnpm@9.0.6+sha1.648f6014eb363abb36618f2ba59282a9eeb3e879"
 }
