@@ -14,7 +14,7 @@
                 <img src="assets/BU_title.png" alt="" class="object-contain min-w-32">
                 <div class="header-2-wrapper flex place-self-center gap-x-5 px-3 min-w-32 ">
                     <div class="name-container flex place-items-center text-sky-500 font-semibold text-sm md:text-2xl ">
-                        Welcome, {{ $auth.isAuthenticated }}
+                        Welcome, User
                     </div>
                     <div @click="show_alert_notify" class="notification-container cursor-pointer relative ">
                         <IconsNotification></IconsNotification>

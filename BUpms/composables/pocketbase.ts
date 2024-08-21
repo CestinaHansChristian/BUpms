@@ -1,8 +1,7 @@
 import PocketBase from 'pocketbase'
 
+const pb = new PocketBase('https://bupms.pockethost.io')
+
 export const usePocketbase = () => {
-
-  const pb = new PocketBase('https://bupms.pockethost.io')
-
   return pb
 }

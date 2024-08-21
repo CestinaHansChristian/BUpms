@@ -3,8 +3,8 @@
         <div class="actions-col w-full relative">
             <div class="actions-container grid md:gap-y-10 md:py-5 ">
                 <div class="actions-first-col flex m-5 space-x-5 ">
-                    <ClientDocumentComponent class="buttons" ></ClientDocumentComponent>
-                    <ClientTrackComponent class="buttons" ></ClientTrackComponent>
+                    <ClientDocumentComponent class="buttons"></ClientDocumentComponent>
+                    <ClientTrackComponent class="buttons"></ClientTrackComponent>
                 </div>
                 <div class="actions-first-col flex m-5 space-x-5 grid-cols-3 ">
                     <ClientProfileComponent class="buttons"></ClientProfileComponent>
@@ -20,29 +20,31 @@
 </template>
 <script>
 
-    export default {
-        name:'ClientLayout',
-        beforeMount() {
-            definePageMeta({
-                layout: 'landing'
-            })
-        }
+export default {
+    name: 'ClientLayout',
+    beforeMount() {
+        definePageMeta({
+            layout: 'landing',
+            middleware: ['guard']
+        })
     }
+}
 </script>
 
 <style scoped>
-    .buttons:hover {
-        background-color: rgb(94, 152, 206);
-        color: white
-    }
-    /* width */
-    ::-webkit-scrollbar {
-        width: 10px;
-        }
-      
-      /* Handle */
-        ::-webkit-scrollbar-thumb {
-        background: #4ca5d8;
-        border-radius: 30px
-        }
+.buttons:hover {
+    background-color: rgb(94, 152, 206);
+    color: white
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #4ca5d8;
+    border-radius: 30px
+}
 </style>
