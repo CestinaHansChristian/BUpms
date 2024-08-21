@@ -1,6 +1,8 @@
 <template>
-    <div>
-        Officer
+    <div class="h-screen border-2 border-black">
+        <div class="wrapper">
+            
+        </div>
     </div>
 </template>
 <script>
