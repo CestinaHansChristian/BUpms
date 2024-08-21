@@ -9,7 +9,7 @@
             </header>
         </nav> -->
         <div id="modal"></div>
-        <nav class="h-20 p-3 shadow-md flex sticky top-0 bg-slate-100 z-50">
+        <nav class="h-20 p-3 shadow-md flex sticky top-0bg-slate-100 z-50">
             <div class="relative justify-between flex  w-full">
                 <img src="assets/BU_title.png" alt="" class="object-contain min-w-32">
                 <div class="header-2-wrapper flex place-self-center gap-x-5 px-3 min-w-32 ">
