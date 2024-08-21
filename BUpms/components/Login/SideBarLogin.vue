@@ -12,7 +12,7 @@
         </div>
         <div class="description-container text-white font-medium tracking-wider">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque dicta, numquam harum quis eos hic fuga
-          dignissimos eveniet quae placeat? {{ $auth.isAuthenticated }}
+          dignissimos eveniet quae placeat?
         </div>
       </div>
     </div>

@@ -1,17 +1,10 @@
-export default defineNuxtPlugin(nuxtApp => {
 
-    const pb = usePocketbase()
-
-    const authValue = pb.authStore.isValid
-
-    const auth = {
-        isAuthenticated: authValue,
-        user: authValue ? pb.authStore.model : null
-    }
+export default defineNuxtPlugin((nuxtApp) => {
+    const store = useMyAuthStoreStore()
 
     return {
         provide: {
-            auth: auth
+            auth: store.isLoggedIn
         }
     }
 })

@@ -10,10 +10,16 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  name: 'LoginLayout',
-}
+<script setup>
+
+const pb = usePocketbase();
+
+onMounted(() => {
+  if (pb.authStore.model) {
+    return navigateTo('/Client')
+  }
+})
+
 </script>
 <style scoped>
 .bu-assets {
