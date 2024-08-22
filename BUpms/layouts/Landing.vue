@@ -14,8 +14,9 @@
                 <img src="assets/BU_title.png" alt="" class="object-contain min-w-32">
                 <div class="header-2-wrapper flex place-self-center gap-x-5 px-3 min-w-32 ">
                     <div class="name-container flex place-items-center text-sky-500 font-semibold text-sm md:text-2xl ">
-                        Welcome, User
+                        Welcome, {{ user.username }}
                     </div>
+                    <button @click="logout">Logout</button>
                     <div @click="show_alert_notify" class="notification-container cursor-pointer relative ">
                         <IconsNotification></IconsNotification>
                         <div class="notification h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0"></div>
@@ -42,20 +43,27 @@
     background-color: skyblue;
 }
 </style>
-<script>
+<script setup>
 
-export default {
-    name: 'Landing',
-    data() {
-        return {
-            alertIsClicked: false,
-        }
-    },
-    methods: {
-        show_alert_notify() {
-            this.alertIsClicked = !this.alertIsClicked
-        }
-    },
+const pb = usePocketbase();
+const alertIsClicked = ref(false);
+const user = ref(pb.authStore.model);
 
-}
+const show_alert_notify = () => {
+    alertIsClicked.value = !alertIsClicked.value;
+};
+
+const logout = () => {
+    const pb = usePocketbase();
+    const router = useRouter();
+
+    pb.authStore.clear();
+    router.push('/');
+};
+
+defineExpose({
+    alertIsClicked,
+    show_alert_notify,
+    logout
+});
 </script>
