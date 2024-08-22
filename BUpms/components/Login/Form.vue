@@ -94,6 +94,9 @@ const loginFunc = async () => {
     }
     const { email, password } = data.data;
     const auth = await pb.collection('Users_tbl').authWithPassword(email, password)
+    if (auth) {
+      navigateTo(pb.authStore.model?.role === 'student' ? '/Client' : pb.authStore.model?.role === 'officer' ? '/Officer' : pb.authStore.model?.role === 'admin' ? '/Admin' : '/');
+    }
   } catch (e) {
     console.log(e);
   }

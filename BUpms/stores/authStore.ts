@@ -4,7 +4,11 @@ const pb = usePocketbase()
 
 export const useMyAuthStoreStore = defineStore('myAuthStoreStore', {
   state: () => ({
-    isLoggedIn: pb.authStore.model,
+    isLoggedIn: false
   }),
-  actions: {}
+  actions: {
+    setIsLoggedIn(value: boolean) {
+      this.isLoggedIn = value
+    }
+  }
 })
