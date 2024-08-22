@@ -1,16 +1,17 @@
 <script setup>
 
-    // paste data here
-    definePageMeta({
-        layout: 'landing'
-    })
-    
-    const whatOrg = ref('TUPAD')
-    const documentStatus = ref({
-        stageOne: true,
-        stageTwo: true,
-        stageThree: false,
-    })
+// paste data here
+definePageMeta({
+    layout: 'landing',
+    middleware: ['guard']
+})
+
+const whatOrg = ref('TUPAD')
+const documentStatus = ref({
+    stageOne: true,
+    stageTwo: true,
+    stageThree: false,
+})
 
 </script>
 <template>
