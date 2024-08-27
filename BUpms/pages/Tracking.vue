@@ -5,10 +5,11 @@
         layout: 'landing'
     })
     
+    // data from database paste here
     const whatOrg = ref('TUPAD')
     const documentStatus = ref({
-        stageOne: true,
-        stageTwo: true,
+        stageOne: false,
+        stageTwo: false,
         stageThree: false,
     })
 
