@@ -8,9 +8,9 @@
     // data from database paste here
     const whatOrg = ref('TUPAD')
     const documentStatus = ref({
-        stageOne: false,
-        stageTwo: false,
-        stageThree: false,
+        stageOne: true,
+        stageTwo: true,
+        stageThree: true,
     })
 
 </script>
