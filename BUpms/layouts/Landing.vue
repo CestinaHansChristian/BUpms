@@ -47,6 +47,8 @@
 
 const pb = usePocketbase();
 const alertIsClicked = ref(false);
+
+// Store user in session pinia
 const user = ref(pb.authStore.model);
 
 const show_alert_notify = () => {
