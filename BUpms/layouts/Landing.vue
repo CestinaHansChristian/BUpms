@@ -13,9 +13,12 @@
             <div class="relative justify-between flex  w-full">
                 <img src="assets/BU_title.png" alt="" class="object-contain min-w-32">
                 <div class="header-2-wrapper flex place-self-center gap-x-5 px-3 min-w-32 ">
-                    <div class="name-container flex place-items-center text-sky-500 font-semibold text-sm md:text-2xl ">
-                        Welcome, {{ user.username }}
-                    </div>
+                    <clientOnly>
+                        <div class="name-container flex place-items-center text-sky-500 font-semibold text-sm md:text-2xl ">
+                            Welcome,
+                            {{ ifLoggedIn.username }}
+                        </div>
+                    </clientOnly>
                     <button @click="logout">Logout</button>
                     <div @click="show_alert_notify" class="notification-container cursor-pointer relative ">
                         <IconsNotification></IconsNotification>
@@ -48,8 +51,14 @@
 const pb = usePocketbase();
 const alertIsClicked = ref(false);
 
-// Store user in session pinia
-const user = ref(pb.authStore.model);
+const user = reactive({
+    username: pb.authStore.model
+})
+
+// username display on top
+const ifLoggedIn = computed(()=> {
+    return pb.authStore.model ? user.username : 'Not registered'
+})
 
 const show_alert_notify = () => {
     alertIsClicked.value = !alertIsClicked.value;
