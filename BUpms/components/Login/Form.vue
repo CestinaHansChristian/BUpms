@@ -95,7 +95,13 @@ const loginFunc = async () => {
     const auth = await pb.collection('Users_tbl').authWithPassword(email, password)
     if (auth) {
       store.setUser(pb.authStore.model)
-      navigateTo(pb.authStore.model?.role === 'student' ? '/Client' : pb.authStore.model?.role === 'officer' ? '/Officer' : pb.authStore.model?.role === 'admin' ? '/Admin' : '/');
+
+      // store logged in user in cookies
+      // let cookies = useCookie('userId')
+      // cookies.value = {
+      //   value: pb.authStore.model.id
+      // }
+      navigateTo(pb.authStore.model?.role === 'student' ? '/client' : pb.authStore.model?.role === 'officer' ? '/officer' : pb.authStore.model?.role === 'admin' ? '/admin' : '/');
     }
   } catch (e) {
     console.log(e);
