@@ -11,8 +11,8 @@
     })
     const documentStatus = ref({
         stageOne: true,
-        stageTwo: true,
-        stageThree: true,
+        stageTwo: false,
+        stageThree: false,
     })
 
 </script>

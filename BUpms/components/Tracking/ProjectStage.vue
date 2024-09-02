@@ -142,9 +142,6 @@
                 <div v-if="isCleared === false" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
                     Project Not Approved
                 </div>
-                <div v-if="isCleared === false" class="project-stage-description absolute h-12 w-12 text-xs uppercase">
-                    Project Not Approved
-                </div>
             </div>
             <div class="absolute bg-sky-700 h-5 w-full rounded-2xl"></div>
         </div>
