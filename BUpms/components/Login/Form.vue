@@ -40,7 +40,6 @@
             </div>
           </button>
         </div>
-        {{ $auth }}
       </div>
     </div>
   </div>
@@ -94,6 +93,16 @@ const loginFunc = async () => {
     }
     const { email, password } = data.data;
     const auth = await pb.collection('Users_tbl').authWithPassword(email, password)
+    if (auth) {
+      store.setUser(pb.authStore.model)
+
+      // store logged in user in cookies
+      // let cookies = useCookie('userId')
+      // cookies.value = {
+      //   value: pb.authStore.model.id
+      // }
+      navigateTo(pb.authStore.model?.role === 'student' ? '/client' : pb.authStore.model?.role === 'officer' ? '/officer' : pb.authStore.model?.role === 'admin' ? '/admin' : '/');
+    }
   } catch (e) {
     console.log(e);
   }

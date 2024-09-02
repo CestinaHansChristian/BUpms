@@ -1,10 +1,19 @@
 import { defineStore } from 'pinia'
+import type { AuthModel } from 'pocketbase'
 
 const pb = usePocketbase()
 
 export const useMyAuthStoreStore = defineStore('myAuthStoreStore', {
   state: () => ({
-    isLoggedIn: pb.authStore.model,
+    isLoggedIn: false,
+    user: null as AuthModel | null
   }),
-  actions: {}
+  actions: {
+    setIsLoggedIn(value: boolean) {
+      this.isLoggedIn = value
+    },
+    setUser(user: AuthModel) {
+      this.user = user
+    }
+  }
 })
