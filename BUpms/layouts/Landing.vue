@@ -14,12 +14,9 @@
                 <img src="assets/BU_title.png" alt="" class="object-contain min-w-32">
                 <div class="header-2-wrapper flex place-self-center gap-x-5 px-3 min-w-32 ">
                     <clientOnly>
-                        <div @click="show_user_option" class="name-container grid place-items-center text-sky-500 font-semibold text-sm md:text-2xl tracking-widest border-2 border-black cursor-pointer">
+                        <div @click="show_user_option" class="name-container grid place-items-center text-sky-500 font-semibold text-sm md:text-2xl tracking-widest">
                             Welcome,
                             {{ ifLoggedIn.username }}
-                            <div v-if="userIsClicked" class="logout-btn z-10 relative border-2 border-black">
-                                
-                            </div>
                         </div>
                     </clientOnly>
                     <div @click="show_alert_notify" class="notification-container cursor-pointer relative ">
