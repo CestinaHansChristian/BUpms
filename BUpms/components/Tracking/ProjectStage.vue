@@ -59,7 +59,7 @@
                     Passed Stage One
                 </div>
                 <div v-if="projectStage.stageOne == false" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
-                    Under Review Stage One
+                    Pending on Review Stage One
                 </div>
             </div>
             <!-- second status stage two -->
@@ -86,7 +86,7 @@
                     Passed Stage Two
                 </div>
                 <div v-if="projectStage.stageTwo == false" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
-                    Under Review Stage Two
+                    Pending on Review Stage Two
                 </div>
             </div>
             <!-- third status stage three -->
@@ -113,7 +113,7 @@
                     Passed Stage Three
                 </div>
                 <div v-if="projectStage.stageThree == false" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
-                    Under Review Stage Three
+                    Pending on Review Stage Three
                 </div>
             </div>
             <!-- Project Final Status -->
@@ -140,7 +140,7 @@
                     Passed
                 </div>
                 <div v-if="isCleared === false" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
-                    Project Not Approved
+                    Pending
                 </div>
             </div>
             <div class="absolute bg-sky-700 h-5 w-full rounded-2xl"></div>

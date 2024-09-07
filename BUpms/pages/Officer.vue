@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen border-2 border-black">
         <div class="wrapper">
-            
+            screen
         </div>
     </div>
 </template>
@@ -9,8 +9,7 @@
 export default {
     beforeMount() {
         definePageMeta({
-            layout: 'landing',
-            middleware: ['guard']
+            layout: 'landing'
         })
     }
 }
