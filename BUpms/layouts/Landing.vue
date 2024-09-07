@@ -1,13 +1,5 @@
 <template>
     <div class="bg-slate-100">
-        <!-- <nav class="">
-            <header class="space-x-3">
-              <nuxt-link to="/">Home</nuxt-link>
-              <nuxt-link to="Client">client</nuxt-link>
-              <nuxt-link to="Admin">admin</nuxt-link>
-              <nuxt-link to="Officer">officer</nuxt-link>
-            </header>
-        </nav> -->
         <div id="modal"></div>
         <nav class="h-20 p-3 shadow-md flex sticky top-0 bg-slate-100 z-50">
             <div class="relative justify-between flex  w-full">
@@ -19,10 +11,10 @@
                             {{ ifLoggedIn.username }}
                         </div>
                     </clientOnly>
-                    <div @click="show_alert_notify" class="notification-container cursor-pointer relative ">
+                    <div :class="displayNotif" @click="show_alert_notify" class=" notification-container cursor-pointer relative ">
                         <IconsNotification></IconsNotification>
                         <div class="notification h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0"></div>
-                        <div v-if="alertIsClicked" class="notif_list fixed right-0 z-10">
+                        <div v-if="alertIsClicked" class="notif_list fixed right-0 z-10 pt-2">
                             <div class="list-container p-4 bg-slate-300 w-48 md:w-72 me-5 rounded-lg shadow-md shadow-gray-400 relative">
                                 <div class="notif-wrapper p-1 text-sm md:text-xl bg-slate-500 h-60 overflow-y-scroll space-y-2">
                                     <!-- one notif sample -->
@@ -59,9 +51,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div @click="logout" class="logout-btn absolute right-0 bg-red-300 px-3 rounded-md text-sky-500 hover:text-white">
-                                    logout
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -83,10 +72,32 @@
     const alertIsClicked = ref(false);
     const userIsClicked = ref(false)
 
+    // get current logged in user role
+    const isLoggedUserAdmin = reactive({
+        userRole: pb.authStore.model?.role
+    })
+
+    // do not remove 
     const user = reactive({
         username: pb.authStore.model
     })
 
+    // hide notif class
+    const isNotifHidden = reactive({
+        active: true,
+        'hidden': true
+    })
+
+    // display notif class
+    const isNotifShow = reactive({
+        active: true,
+        'block': true
+    })
+
+    // hides if role is admin
+    const displayNotif = computed(()=> {
+        return isLoggedUserAdmin.userRole === 'admin'  ? isNotifHidden :  isNotifShow
+    })
 
     // display user option window
     const show_user_option = () => {

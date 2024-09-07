@@ -8,7 +8,7 @@
     <div class="h-screen mx-2 lg:mx-5">
         <div class="heading-wrapper flex justify-between">
             <div class="return-btn-wrapper btn-wrapper text-xl text-red-400 font-bold tracking-wider uppercase py-3">
-                <nuxt-link to="/client" class=" md:text-3xl cursor-pointer md:delay-100 md:duration-100 hover:text-red-600">
+                <nuxt-link to="/client" class=" md:text-3xl cursor-pointer hover:text-red-600">
                     Go back
                 </nuxt-link>
             </div>
@@ -18,14 +18,13 @@
         </div>
         <div class="project-list-wrapper space-y-4 h-5/6 overflow-y-scroll py-2 p-2 bg-slate-300 rounded-lg">
             <!-- add project list here -->
-            <ClientProjectListTracking></ClientProjectListTracking>
-            <ClientProjectListTracking></ClientProjectListTracking>
-            <ClientProjectListTracking></ClientProjectListTracking>
-            <ClientProjectListTracking></ClientProjectListTracking>
-            <ClientProjectListTracking></ClientProjectListTracking>
-            <ClientProjectListTracking></ClientProjectListTracking>
-            <ClientProjectListTracking></ClientProjectListTracking>
-            <ClientProjectListTracking></ClientProjectListTracking>
+            <ProjectListTracking></ProjectListTracking>
+            <ProjectListTracking></ProjectListTracking>
+            <ProjectListTracking></ProjectListTracking>
+            <ProjectListTracking></ProjectListTracking>
+            <ProjectListTracking></ProjectListTracking>
+            <ProjectListTracking></ProjectListTracking>
+            <ProjectListTracking></ProjectListTracking>
         </div>
     </div>
 </template>
