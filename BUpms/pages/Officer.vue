@@ -1,8 +1,8 @@
 <script setup>
+    officerLanding()
     definePageMeta({
         layout: 'landing'
     })
-
     function logout() {
         console.log('close')
     }

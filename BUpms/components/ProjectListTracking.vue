@@ -36,11 +36,11 @@
                         </nuxt-link>
                     </div>
                     <div class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
-                        <div v-if="pb.authStore.model?.role === 'officer'" class="gap-x-5 flex">
+                        <div v-if="pb.authStore.model?.role === 'officer'" class="gap-x-5 flex md:place-items-center md:px-2">
                             <IconsArchieveBox></IconsArchieveBox>
                             Reject
                         </div>
-                        <div v-if="pb.authStore.model?.role === 'student'" class="gap-x-5 flex">
+                        <div v-if="pb.authStore.model?.role === 'student'" class="gap-x-5 flex md:place-items-center md:px-2">
                             <IconsArchieveBox></IconsArchieveBox>
                             Cancel
                         </div>
