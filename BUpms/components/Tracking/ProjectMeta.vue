@@ -19,7 +19,7 @@
     <div class="project-details-wrapper grid gap-y-4 md:gap-x-2 md:flex md:container md:mx-auto md:w-3/4 pb-3">
         <div class="project-details-wrapper place-items-center mx-1 space-y-3">
             <div class="project-details-heading font-medium text-xl p-1 text-blue-900 tracking-wide">
-                Project Details
+                Details
             </div>
             <div class="project-details-content space-y-1">
                 <div class="border-2 border-gray-300 shadow-inner shadow-gray-400 rounded-tl-xl rounded-tr-xl">

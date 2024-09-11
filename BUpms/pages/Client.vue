@@ -3,13 +3,13 @@
         <div class="actions-col w-full relative">
             <div class="actions-container grid md:gap-y-10 md:py-5 ">
                 <div class="actions-first-col flex m-5 space-x-5 ">
-                    <ClientDocumentComponent class="buttons"></ClientDocumentComponent>
-                    <ClientTrackComponent class="buttons"></ClientTrackComponent>
+                    <ClientDocumentComp class="buttons"></ClientDocumentComp>
+                    <ClientTrackComp class="buttons"></ClientTrackComp>
                 </div>
                 <div class="actions-first-col flex m-5 space-x-5 grid-cols-3 ">
-                    <ClientProfileComponent class="buttons"></ClientProfileComponent>
-                    <ClientContactComponent class="buttons"></ClientContactComponent>
-                    <ClientLogoutComponent class="buttons"></ClientLogoutComponent>
+                    <ClientProfileComp class="buttons"></ClientProfileComp>
+                    <ClientContactComp class="buttons"></ClientContactComp>
+                    <ClientLogoutComp class="buttons"></ClientLogoutComp>
                 </div>
             </div>
         </div>
@@ -19,6 +19,7 @@
     </div>
 </template>
 <script setup>
+    userLandingGreet()
     definePageMeta({
         layout: 'landing'
     })

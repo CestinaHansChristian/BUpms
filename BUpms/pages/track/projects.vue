@@ -1,5 +1,5 @@
 <script setup>
-
+    
     definePageMeta({
         layout: 'landing'
     })
@@ -18,13 +18,11 @@
         </div>
         <div class="project-list-wrapper space-y-4 h-5/6 overflow-y-scroll py-2 p-2 bg-slate-300 rounded-lg">
             <!-- add project list here -->
-            <ProjectListTracking></ProjectListTracking>
-            <ProjectListTracking></ProjectListTracking>
-            <ProjectListTracking></ProjectListTracking>
-            <ProjectListTracking></ProjectListTracking>
-            <ProjectListTracking></ProjectListTracking>
-            <ProjectListTracking></ProjectListTracking>
-            <ProjectListTracking></ProjectListTracking>
+            <ClientProjectList></ClientProjectList>
+            <ClientProjectList></ClientProjectList>
+            <ClientProjectList></ClientProjectList>
+            <ClientProjectList></ClientProjectList>
+            <ClientProjectList></ClientProjectList>
         </div>
     </div>
 </template>

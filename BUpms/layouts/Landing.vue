@@ -15,41 +15,14 @@
                         <IconsNotification></IconsNotification>
                         <div class="notification h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0"></div>
                         <div v-if="alertIsClicked" class="notif_list fixed right-0 z-10 pt-2">
-                            <div class="list-container p-4 bg-slate-300 w-48 md:w-72 me-5 rounded-lg shadow-md shadow-gray-400 relative">
-                                <div class="notif-wrapper p-1 text-sm md:text-xl bg-slate-500 h-60 overflow-y-scroll space-y-2">
+                            <div class="list-container p-4 bg-slate-200 w-48 md:w-72 me-5 rounded-lg shadow-md shadow-gray-400 relative">
+                                <div class="notif-wrapper p-1 text-sm md:text-xl bg-slate-300 h-60 overflow-y-scroll space-y-2 rounded-md">
                                     <!-- one notif sample -->
-                                    <div class="project-notif flex justify-between gap-x-5 p-1 border-2 rounded-md">
-                                        <div class="icon-wrapper grid place-items-center">
-                                            <div class="img-icon h-10 w-10 bg-orange-400 rounded-full"></div>
-                                        </div>
-                                        <div class="notif-info">
-                                            Lorem ipsum dolor sit amet.
-                                        </div>
-                                    </div>
-                                    <div class="project-notif flex justify-between gap-x-5 p-1 border-2 rounded-md">
-                                        <div class="icon-wrapper grid place-items-center">
-                                            <div class="img-icon h-10 w-10 bg-orange-400 rounded-full"></div>
-                                        </div>
-                                        <div class="notif-info">
-                                            Lorem ipsum dolor sit amet.
-                                        </div>
-                                    </div>
-                                    <div class="project-notif flex justify-between gap-x-5 p-1 border-2 rounded-md">
-                                        <div class="icon-wrapper grid place-items-center">
-                                            <div class="img-icon h-10 w-10 bg-orange-400 rounded-full"></div>
-                                        </div>
-                                        <div class="notif-info">
-                                            Lorem ipsum dolor sit amet.
-                                        </div>
-                                    </div>
-                                    <div class="project-notif flex justify-between gap-x-5 p-1 border-2 rounded-md">
-                                        <div class="icon-wrapper grid place-items-center">
-                                            <div class="img-icon h-10 w-10 bg-orange-400 rounded-full"></div>
-                                        </div>
-                                        <div class="notif-info">
-                                            Lorem ipsum dolor sit amet.
-                                        </div>
-                                    </div>
+                                    <NotifDisplay></NotifDisplay>
+                                    <NotifDisplay></NotifDisplay>
+                                    <NotifDisplay></NotifDisplay>
+                                    <NotifDisplay></NotifDisplay>
+                                    <NotifDisplay></NotifDisplay>
                                 </div>
                             </div>
                         </div>
@@ -62,9 +35,27 @@
     </div>
 </template>
 <style scoped>
-.router-link-active {
-    background-color: skyblue;
-}
+    .router-link-active {
+        background-color: skyblue;
+    }
+
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #0369a1;
+        border-radius: 20px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #7dd3fc;
+        border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #198ecc; 
+    }
 </style>
 <script setup>
 

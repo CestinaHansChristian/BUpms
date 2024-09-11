@@ -4,7 +4,7 @@
             Project Status
         </div>
         <div class="project-list-container md:h-screen h-60 space-y-1">
-            <ClientProjectList :project_info="projects"></ClientProjectList>
+            <ClientProjectsComp :project_info="projects"></ClientProjectsComp>
         </div>
     </div>
 </template>

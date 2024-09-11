@@ -1,6 +1,6 @@
 // dynamic title page
 const pb = usePocketbase()
-export const officerLanding = () => {
+export const userLandingGreet = () => {
     if(pb.authStore.model) {
         return useHead({
             title: `Welcome! ${pb.authStore.model.username}`
