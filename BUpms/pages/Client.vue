@@ -1,19 +1,9 @@
 <template>
-    <div class="md:flex grid ">
-        <div class="actions-col w-full relative">
-            <div class="actions-container grid md:gap-y-10 md:py-5 ">
-                <div class="actions-first-col flex m-5 space-x-5 ">
-                    <ClientDocumentComp class="buttons"></ClientDocumentComp>
-                    <ClientTrackComp class="buttons"></ClientTrackComp>
-                </div>
-                <div class="actions-first-col flex m-5 space-x-5 grid-cols-3 ">
-                    <ClientProfileComp class="buttons"></ClientProfileComp>
-                    <ClientContactComp class="buttons"></ClientContactComp>
-                    <ClientLogoutComp class="buttons"></ClientLogoutComp>
-                </div>
-            </div>
+    <div class="md:flex grid m-1 gap-y-5 md:py-10">
+        <div class="actions-col w-full grid">
+            <ClientOptions></ClientOptions>
         </div>
-        <div class="status-col w-full md:w-1/2 shadow-md  shadow-gray-400 p-1 rounded-md">
+        <div class="status-col grid w-full md:w-1/2 rounded-md">
             <ClientProjectTracker></ClientProjectTracker>
         </div>
     </div>

@@ -101,7 +101,7 @@ const loginFunc = async () => {
       // cookies.value = {
       //   value: pb.authStore.model.id
       // }
-      navigateTo(pb.authStore.model?.role === 'student' ? '/client' : pb.authStore.model?.role === 'officer' ? '/officer' : pb.authStore.model?.role === 'admin' ? '/admin' : '/');
+      navigateTo(pb.authStore.model?.role === 'student' ? '/client' : pb.authStore.model?.role === 'officer' ? '/officer/projectlist' : pb.authStore.model?.role === 'admin' ? '/admin' : '/');
     }
   } catch (e) {
     console.log(e);

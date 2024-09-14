@@ -27,12 +27,16 @@
                             <div class="approve-design-btn uppercase cursor-pointer hover:bg-sky-600 hover:border-sky-700 bg-sky-400 px-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl p-1 text-white tracking-wider  border-2 border-sky-300">
                                 Approve
                             </div>
-                            <div class="reject-design-btn bg-red-400 cursor-pointer hover:bg-red-600 hover:border-red-700 uppercase px-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl p-1 text-white tracking-wider  border-2 border-red-300">
-                                Reject
-                            </div>
-                            <div class="reject-design-btn bg-orange-600 cursor-pointer hover:bg-orange-600 hover:border-orange-700 uppercase px-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl p-1 text-white tracking-wider  border-2 border-orange-300">
-                                Go Back
-                            </div>
+                            <nuxt-link to="/officer/projectlist">
+                                <div class="reject-design-btn bg-red-400 cursor-pointer hover:bg-red-600 hover:border-red-700 uppercase px-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl p-1 text-white tracking-wider  border-2 border-red-300">
+                                    Reject
+                                </div>
+                            </nuxt-link>
+                            <nuxt-link to="/officer/projectlist">
+                                <div class="reject-design-btn bg-orange-600 cursor-pointer hover:bg-orange-600 hover:border-orange-700 uppercase px-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl p-1 text-white tracking-wider  border-2 border-orange-300">
+                                    Go Back
+                                </div>
+                            </nuxt-link>
                         </div>
                     </div>
                 </div>

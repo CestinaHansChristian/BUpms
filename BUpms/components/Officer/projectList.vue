@@ -4,11 +4,11 @@
 <template>
     <div>
         <div class="project-container grid md:flex md:justify-between gap-x-2 md:place-content-center md:gap-x-5" >
-            <div class="left-flex-container grid justify-between md:flex shadow-md bg-slate-200 md:rounded-b-xl rounded-t-xl p-2 shadow-gray-500 gap-x-4 md:w-full">
-                <div class="project-name text-blue-700 font-semibold uppercase text-base grid place-items-center md:flex md:mx-5 md:w-full">
+            <div class="left-flex-container grid justify-around md:flex shadow-md bg-slate-200 md:rounded-b-xl rounded-t-xl p-2 md:pe-5 shadow-gray-500 gap-x-4 md:w-full">
+                <div class="project-name text-blue-700 font-semibold uppercase text-base grid place-items-center md:flex md:w-full">
                     <span class="pe-3 font-bold text-gray-700">Project Name:</span> Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 </div>
-                <div class="meta-info-wrapper grid md:w-2/12 md:mx-2 text-sky-600 font-bold">
+                <div class="meta-info-wrapper grid md:w-2/12 md:mx-2 text-sky-600 font-bold ">
                     <div class="date-wrapper text-xs md:text-base">
                         <span class="text-gray-800 font-semibold">
                             Date Created: 
