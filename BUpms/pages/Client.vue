@@ -1,9 +1,9 @@
 <template>
-    <div class="md:flex grid m-1 gap-y-5 md:py-10">
+    <div class="md:flex grid m-1 gap-y-5 md:py-10 md:h-screen">
         <div class="actions-col w-full grid">
             <ClientOptions></ClientOptions>
         </div>
-        <div class="status-col grid w-full md:w-1/2 rounded-md">
+        <div class="status-col grid w-full md:w-1/2 rounded-md border-2 border-black">
             <ClientProjectTracker></ClientProjectTracker>
         </div>
     </div>

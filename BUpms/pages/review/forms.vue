@@ -42,63 +42,8 @@
                 </div>
             </div>
             <div class="wrapper-two grid gap-y-2 md:flex">
-                <div class="org-data-wrapper mx-3 grid md:ms-5">
-                    <div class="card border-2 rounded-xl">
-                        <div class="card-heading bg-sky-400 text-white tracking-widest p-1 rounded-t-xl ps-3 uppercase font-medium">
-                            Client Documents
-                        </div>
-                        <div class="card-body mx-2">
-                            <div class="overflow-wrapper h-36 md:h-52 overflow-y-scroll tracking-wider space-y-2 my-2">
-                                <!-- component -->
-                                <OfficerDownloadDocument></OfficerDownloadDocument>
-                                <OfficerDownloadDocument></OfficerDownloadDocument>
-                                <OfficerDownloadDocument></OfficerDownloadDocument>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment-box-wrapper grid mx-3 md:me-5 h-full border-2 rounded-xl gap-y-2">
-                    <div class="comment-box-wrapper bg-sky-400 text-white tracking-widest p-1 rounded-t-xl ps-3 uppercase font-medium">
-                        Comment Box
-                    </div>
-                    <div class="comment-content-wrapper mx-2">
-                        <div class="display-message overflow-y-scroll h-32 bg-sky-400 rounded-md space-y-2 py-1">
-                            <!-- message component -->
-                            <div class="from-client-msg-wrapper flex grid-cols-2 gap-x-3 m-1 p-2 bg-slate-100 rounded-md">
-                                <div class="icon-wrapper grid place-content-center ps-2">
-                                    <div class="icon bg-orange-300 h-10 w-10 rounded-full"></div>
-                                </div>
-                                <div class="text-msg grid place-items-center">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, culpa?
-                                </div>
-                            </div>
-                            <div class="from-client-msg-wrapper flex justify-between gap-x-3 m-1 bg-slate-100 rounded-md">
-                                <div class="text-msg w-full ps-2 grid place-items-center">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, culpa?
-                                </div>
-                                <div class="icon-wrapper grid place-content-center pe-2 p-2">
-                                    <div class="icon bg-orange-300 h-10 w-10 rounded-full"></div>
-                                </div>
-                            </div>
-                            <div class="from-client-msg-wrapper flex justify-between gap-x-3 m-1 bg-slate-100 rounded-md">
-                                <div class="text-msg w-full ps-2 grid place-items-center">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, culpa?
-                                </div>
-                                <div class="icon-wrapper grid place-content-center pe-2 p-2">
-                                    <div class="icon bg-orange-300 h-10 w-10 rounded-full"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="send-btn-control grid p-3 bg-orange-400 rounded-b-lg">
-                        <div class="text-wrapper flex justify-between gap-x-5">
-                            <input type="text" name="" id="" class="rounded-md w-full p-1 ps-2 tracking-widest font-medium">
-                            <div class="submit-btn bg-sky-400 grid place-items-center hover:bg-sky-600 hover:border-sky-700 border-2 px-2 p-1 rounded-lg tracking-widest uppercase text-white font-medium">
-                                submit
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <OfficerClientDoculist></OfficerClientDoculist>
+                <MessageBox></MessageBox>
             </div>
         </div>
     </div>

@@ -50,7 +50,10 @@
                 </div>
             </div>
         </div>
-        <div class="comment-feature mx-2 space-y-3">
+        <MessageBox>
+            {{ dateSentAt }}
+        </MessageBox>
+        <!-- <div class="comment-feature mx-2 space-y-3">
             <div class="heading-nav flex justify-between">
                 <div class="comment-heading text-xl text-gray-500 font-bold py-1">
                     Comment
@@ -60,7 +63,7 @@
             <div class="display-prev-comment h-52 tracking-widest relative shadow-md shadow-slate-500 p-2 rounded-xl">
                 <div class="text-response-wrapper overflow-y-scroll h-36">
                     <div class="officer-comment-wrapper">
-                        <!-- officer comment -->
+                        officer comment
                         <div class="from-officer border-2 border-b-slate-100 p-1 rounded-xl space-y-2">
                             <div class="message-wrapper flex gap-x-4">
                                 <div class="user-icon">
@@ -78,7 +81,7 @@
                         </div>
                     </div>
                     <div class="user-comment-wrapper border-2">
-                        <!-- user comment -->
+                        user comment
                         <div class="from-officer grid gap-x-4 relative m-1">
                             <div class="message-wrapper flex gap-x-4 mx-2">
                                 <div class="message-content">
@@ -98,12 +101,12 @@
                 </div>
                 <div class="btn-send-controller bottom-0 flex gap-1 py-2">
                     <input type="text" name="" id="" class="border-2 border-gray-300 rounded-xl p-1 md:w-full">
-                    <!-- TODO: find send icon -->
+                    TODO: find send icon
                     <div class="btn-submit border-2 border-green-400 grid place-items-center p-1 bg-green-200 rounded-xl">
                         Submit
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
