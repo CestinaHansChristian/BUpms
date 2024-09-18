@@ -17,36 +17,38 @@
 
 <template>
     <div class="project-details-wrapper grid gap-y-4 md:gap-x-2 md:flex md:container md:mx-auto md:w-3/4 pb-3">
-        <div class="project-details-wrapper place-items-center mx-1 space-y-3">
-            <div class="project-details-heading font-medium text-xl p-1 text-blue-900 tracking-wide">
-                Details
-            </div>
-            <div class="project-details-content space-y-1">
-                <div class="border-2 border-gray-300 shadow-inner shadow-gray-400 rounded-tl-xl rounded-tr-xl">
-                    <div class="date-created-container flex border-b-4 border-gray-300">
-                        <div class="created-wrapper h-14 w-full grid p-1 place-items-center bg-slate-200 rounded-tl-xl text-blue-800 font-semibold text-sm">
+        <div class="project-details-wrapper place-items-center mx-1">
+            <div class="top-wrapper h-grid">
+                <div class="project-details-heading font-medium grid place-items-center text-xl md:text-base p-1 text-white tracking-widest bg-sky-400 rounded-t-xl ps-3 uppercase">
+                    Details
+                </div>
+                <div class="project-details-content grid md:h-36">
+                    <div class="date-created-container flex border-2">
+                        <div class="created-wrapper h-full w-full grid p-1 text-center bg-slate-200 text-blue-800 font-semibold text-sm">
                             DATE CREATED
                         </div>
-                        <div class="created-value-wrapper p-1 w-full h-14 grid place-items-center bg-slate-300 rounded-tr-xl font-semibold text-sm text-slate-800">
+                        <div class="created-value-wrapper p-1 w-full h-full grid text-center bg-slate-300 font-semibold text-sm text-slate-800">
                             AUG / 21 /2024
                         </div>
                     </div>
-                    <div class="date-updated-contianer grid grid-cols-2 justify-around">
-                        <div class="created-wrapper h-14 w-full grid p-1 place-items-center bg-slate-200 text-blue-800 font-semibold text-sm">
+                    <div class="date-updated-contianer grid grid-cols-2 justify-around h-full border-2">
+                        <div class="created-wrapper h-full w-full grid p-1 text-center bg-slate-200 text-blue-800 font-semibold text-sm">
                             DATA UPDATED
                         </div>
-                        <div class="created-value-wrapper p-1 w-full h-14 grid place-items-center bg-slate-300 font-semibold text-sm text-slate-800">
+                        <div class="created-value-wrapper p-1 w-full h-full grid text-center bg-slate-300 font-semibold text-sm text-slate-800">
                             AUG / 21 /2024
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="org-name-wrapper relative shadow-md shadow-gray-400 p-1 rounded-br-xl rounded-bl-xl flex">
-                <div class="text-lg text-gray-700 font-bold tracking-wide p-1">
-                    Organization: 
-                    <span class="text-sky-800 tracking-widest font-bold">
-                        {{orgName}}
-                    </span>
+            <div class="org-name-wrapper relative shadow-md shadow-gray-400 p-1 h-14 rounded-br-xl rounded-bl-xl grid place-content-center">
+                <div class="center-items flex md:p-2">
+                    <div class="heading-wrapper uppercase text-amber-700 font-bold text-base md:text-xl">
+                        organization: 
+                        <span class="text-sky-800 tracking-widest font-bold">
+                            {{orgName}}
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>

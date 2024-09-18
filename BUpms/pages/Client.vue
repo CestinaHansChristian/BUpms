@@ -1,9 +1,9 @@
 <template>
-    <div class="md:flex grid m-1 gap-y-5 md:py-10 md:h-screen">
+    <div class="md:flex grid m-1 gap-y-5 md:py-10 md:h-screen md:gap-x-4">
         <div class="actions-col w-full grid">
             <ClientOptions></ClientOptions>
         </div>
-        <div class="status-col grid w-full md:w-1/2 rounded-md border-2 border-black">
+        <div class="status-col grid w-full md:w-1/2">
             <ClientProjectTracker></ClientProjectTracker>
         </div>
     </div>
@@ -15,20 +15,22 @@
     })
 </script>
 
-<style scoped>
-.buttons:hover {
-    background-color: rgb(94, 152, 206);
-    color: white
-}
-
-/* width */
+<style>
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 12px;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #4ca5d8;
-    border-radius: 30px
+    background-color: #2f96ce;
+    border-radius: 3px;
+    
+}
+
+::-webkit-scrollbar-track {
+    background-color: #7dd3fc;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #085b88; 
 }
 </style>

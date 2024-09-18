@@ -31,16 +31,16 @@
 
 </script>
 <template>
-    <div class="main-container grid place-items-center border-2 border-slate-100 pt-10">
-        <div class="gap-x-2 md:gap-x-6 relative flex place-items-center border-2 border-slate-100">
+    <div class="main-container grid place-items-center pt-6 pb-4">
+        <div class="gap-x-2 md:gap-x-4 lg:gap-x-8 2xl:gap-x-20 relative flex place-items-center">
             <div class="circle-stage-success-wrapper z-10 relative lg:space-y-2">
                 <div class="circle bg-sky-600 h-14 w-14 md:h-32 md:w-32 rounded-full  place-content-center grid">
                     <div class="circle-inner h-12 w-12 md:h-28 md:w-28 bg-sky-400 rounded-full grid place-items-center">
                         <IconsDocumentStack></IconsDocumentStack>
                     </div>
                 </div>
-                <div class="project-stage-description absolute w-16 md:w-full text-xs md:text-base uppercase lg:text-center lg:font-semibold">
-                    Proposal Recieved
+                <div class="project-stage-description absolute w-16 md:pt-3 md:w-full tracking-tighter md:tracking-wide text-sm md:text-base uppercase md:text-center md:font-semibold">
+                    Recieved
                 </div>
             </div>
             <!-- first status stage one -->
@@ -55,10 +55,10 @@
                         </div> -->
                     </div>
                 </div>
-                <div v-if="projectStage.stageOne" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
-                    Passed Stage One
+                <div v-if="projectStage.stageOne" class="project-stage-description ps-2 absolute tracking-tighter md:tracking-wide w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
+                    Stage One
                 </div>
-                <div v-if="projectStage.stageOne == false" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
+                <div v-if="projectStage.stageOne == false" class="project-stage-description tracking-tighter md:tracking-wide absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
                     Pending on Review Stage One
                 </div>
             </div>
@@ -83,9 +83,9 @@
                     </div>
                 </div>
                 <div v-if="projectStage.stageTwo" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
-                    Passed Stage Two
+                    Stage Two
                 </div>
-                <div v-if="projectStage.stageTwo == false" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
+                <div v-if="projectStage.stageTwo == false" class="project-stage-description tracking-tighter md:tracking-wide absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
                     Pending on Review Stage Two
                 </div>
             </div>
@@ -110,9 +110,9 @@
                     </div>
                 </div>
                 <div v-if="projectStage.stageThree" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
-                    Passed Stage Three
+                    Stage Three
                 </div>
-                <div v-if="projectStage.stageThree == false" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
+                <div v-if="projectStage.stageThree == false" class="project-stage-description tracking-tighter md:tracking-wide absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
                     Pending on Review Stage Three
                 </div>
             </div>
@@ -139,7 +139,7 @@
                 <div v-if="isCleared" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
                     Passed
                 </div>
-                <div v-if="isCleared === false" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
+                <div v-if="isCleared === false" class="project-stage-description absolute w-16 tracking-tighter md:tracking-wide text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
                     Pending
                 </div>
             </div>

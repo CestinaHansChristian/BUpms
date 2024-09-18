@@ -1,5 +1,5 @@
 <template>
-    <div class="comment-box-wrapper grid mx-3 md:me-5 h-full border-2 rounded-xl gap-y-2">
+    <div class="comment-box-wrapper grid h-full border-2 rounded-xl gap-y-2 w-full">
         <div class="comment-box-wrapper bg-sky-400 text-white tracking-widest p-1 rounded-t-xl ps-3 uppercase font-medium">
             Comment Box
         </div>
