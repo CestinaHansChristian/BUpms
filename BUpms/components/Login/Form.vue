@@ -23,22 +23,28 @@
         <p>{{ error }}</p>
         <div class="bu-btn-container grid gap-2">
           <button @click="loginFunc" type="submit" :disabled="isLoading"
-            class="bg-sky-400 rounded-md disabled:bg-slate-300 p-2 w-full text-white text-base font-semibold tracking-widest hover:bg-sky-500">Sign
-            in</button>
-          <button @click="authFunc"
+            class="bg-sky-400 rounded-md disabled:bg-slate-300 p-2 w-full text-white text-base font-semibold tracking-widest hover:bg-sky-500">
+            Sign in
+          </button>
+          <div class="google-function">
+            <div class="label-wrapper text-sm uppercase font-mono tracking-wide md:tracking-widest">
+              Log in using your account on:
+            </div>
+            <button @click="authFunc"
             class="bg-slate-300 rounded-md p-2 w-full hover:bg-green-500 text-sky-700 hover:text-white">
             <div class="google-btn-container flex place-content-center">
               <IconsGoogleIcon></IconsGoogleIcon>
               <span class=" font-semibold text-base tracking-widest ">Google</span>
             </div>
           </button>
-          <button @click="logoutFunc"
+          </div>
+          <!-- <button @click="logoutFunc"
             class="bg-slate-300 rounded-md p-2 w-full hover:bg-green-500 text-sky-700 hover:text-white">
             <div class="google-btn-container flex place-content-center">
               <p>Logout</p>
               <span class=" font-semibold text-base tracking-widest ">Logout</span>
             </div>
-          </button>
+          </button> -->
         </div>
       </div>
     </div>

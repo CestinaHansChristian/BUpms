@@ -1,5 +1,5 @@
 <template>
-    <div class="comment-box-wrapper grid h-full border-2 rounded-xl gap-y-2 w-full">
+    <div class="comment-box-wrapper grid h-full border-2 rounded-xl gap-y-2 w-full md:mx-4">
         <div class="comment-box-wrapper bg-sky-400 text-white tracking-widest p-1 rounded-t-xl ps-3 uppercase font-medium">
             Comment Box
         </div>
@@ -56,7 +56,7 @@
         <div class="send-btn-control grid p-3 bg-orange-400 rounded-b-lg">
             <div class="text-wrapper flex justify-between gap-x-5">
                 <input type="text" name="" id="" class="rounded-md w-full p-1 ps-2 tracking-widest font-medium">
-                <div class="submit-btn bg-sky-400 grid place-items-center hover:bg-sky-600 hover:border-sky-700 border-2 px-2 p-1 rounded-lg tracking-widest uppercase text-white font-medium">
+                <div class="cursor-pointer submit-btn bg-sky-400 grid place-items-center hover:bg-sky-600 hover:border-sky-700 border-2 px-2 p-1 rounded-lg tracking-widest uppercase text-white font-medium">
                     submit
                 </div>
             </div>

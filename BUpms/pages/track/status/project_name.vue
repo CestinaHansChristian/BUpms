@@ -17,7 +17,7 @@
 
 </script>
 <template>
-    <div class="grid mx-auto relative overflow-hidden md:pb-4">
+    <div class="grid mx-auto relative overflow-hidden md:h-screen">
         <div class="top-heading-wrapper-go-back flex absolute top-2">
             <div class="return-btn text-red-400 text-center font-medium tracking-wider text-xl rounded-md md:p-1 px-2 mx-2 border-2 border-red-600 cursor-pointer hover:text-white hover:bg-red-400 hover:border-red-300">
                 Go Back

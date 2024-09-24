@@ -31,7 +31,7 @@
 
 </script>
 <template>
-    <div class="main-container grid place-items-center pt-6 pb-4">
+    <div class="main-container grid place-items-center pt-6 pb-4 ">
         <div class="gap-x-2 md:gap-x-4 lg:gap-x-8 2xl:gap-x-20 relative flex place-items-center">
             <div class="circle-stage-success-wrapper z-10 relative lg:space-y-2">
                 <div class="circle bg-sky-600 h-14 w-14 md:h-32 md:w-32 rounded-full  place-content-center grid">
@@ -39,8 +39,8 @@
                         <IconsDocumentStack></IconsDocumentStack>
                     </div>
                 </div>
-                <div class="project-stage-description absolute w-16 md:pt-3 md:w-full tracking-tighter md:tracking-wide text-sm md:text-base uppercase md:text-center md:font-semibold">
-                    Recieved
+                <div class="project-stage-description absolute w-16 md:pt-1 md:w-full tracking-tighter md:tracking-wide text-sm md:text-base uppercase md:text-center md:font-semibold">
+                    Received
                 </div>
             </div>
             <!-- first status stage one -->
