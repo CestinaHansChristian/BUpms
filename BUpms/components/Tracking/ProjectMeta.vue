@@ -17,7 +17,7 @@
 
 <template>
     <div class="project-details-wrapper grid gap-y-4 md:gap-x-2 md:flex md:container md:mx-auto md:w-3/4 pb-3">
-        <div class="project-details-wrapper place-items-center mx-1">
+        <div class="project-details-wrapper place-items-center mx-1 grid">
             <div class="top-wrapper h-grid">
                 <div class="project-details-heading font-medium grid place-items-center text-xl md:text-base p-1 text-white tracking-widest bg-sky-400 rounded-t-xl ps-3 uppercase">
                     Details
@@ -52,9 +52,7 @@
                 </div>
             </div>
         </div>
-        <MessageBox>
-            {{ dateSentAt }}
-        </MessageBox>
+        <MessageBox></MessageBox>
         <!-- <div class="comment-feature mx-2 space-y-3">
             <div class="heading-nav flex justify-between">
                 <div class="comment-heading text-xl text-gray-500 font-bold py-1">

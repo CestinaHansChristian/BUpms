@@ -1,6 +1,6 @@
 <template>
-    <div class="comment-box-wrapper grid h-full border-2 rounded-xl gap-y-2 w-full md:mx-4">
-        <div class="comment-box-wrapper bg-sky-400 text-white tracking-widest p-1 rounded-t-xl ps-3 uppercase font-medium">
+    <div class="comment-box-wrapper grid h-full border-2 rounded-xl gap-y-2 w-full md:mx-4 md:h-80">
+        <div class="comment-box-wrapper bg-sky-400 text-white tracking-widest p-1 rounded-t-xl ps-3 uppercase font-medium md:grid md:place-content-center">
             Comment Box
         </div>
         <div class="comment-content-wrapper mx-2">

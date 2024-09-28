@@ -30,21 +30,13 @@
             <div class="label-wrapper text-sm uppercase font-mono tracking-wide md:tracking-widest">
               Log in using your account on:
             </div>
-            <button @click="authFunc"
-            class="bg-slate-300 rounded-md p-2 w-full hover:bg-green-500 text-sky-700 hover:text-white">
-            <div class="google-btn-container flex place-content-center">
-              <IconsGoogleIcon></IconsGoogleIcon>
-              <span class=" font-semibold text-base tracking-widest ">Google</span>
-            </div>
-          </button>
+            <button @click="googleLogin" class="bg-slate-300 rounded-md p-2 w-full hover:bg-green-500 text-sky-700 hover:text-white">
+              <div class="google-btn-container flex place-content-center">
+                <IconsGoogleIcon></IconsGoogleIcon>
+                <span class=" font-semibold text-base tracking-widest ">Google</span>
+              </div>
+            </button>
           </div>
-          <!-- <button @click="logoutFunc"
-            class="bg-slate-300 rounded-md p-2 w-full hover:bg-green-500 text-sky-700 hover:text-white">
-            <div class="google-btn-container flex place-content-center">
-              <p>Logout</p>
-              <span class=" font-semibold text-base tracking-widest ">Logout</span>
-            </div>
-          </button> -->
         </div>
       </div>
     </div>
@@ -101,12 +93,6 @@ const loginFunc = async () => {
     const auth = await pb.collection('Users_tbl').authWithPassword(email, password)
     if (auth) {
       store.setUser(pb.authStore.model)
-
-      // store logged in user in cookies
-      // let cookies = useCookie('userId')
-      // cookies.value = {
-      //   value: pb.authStore.model.id
-      // }
       navigateTo(pb.authStore.model?.role === 'student' ? '/client' : pb.authStore.model?.role === 'officer' ? '/officer/projectlist' : pb.authStore.model?.role === 'admin' ? '/admin' : '/');
     }
   } catch (e) {
@@ -119,7 +105,7 @@ const logoutFunc = async () => {
   pb.authStore.clear();
 };
 
-const authFunc = async () => {
+const googleLogin = async () => {
   console.log(pb.authStore.model);
 };
 

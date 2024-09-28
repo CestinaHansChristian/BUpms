@@ -1,6 +1,6 @@
 <template>
-    <div class="md:flex grid m-1 gap-y-5 md:py-10 md:h-screen md:gap-x-4">
-        <div class="actions-col w-full grid">
+    <div class="md:flex grid m-1 md:py-10 md:gap-x-4 h-screen">
+        <div class="actions-col w-full">
             <ClientOptions></ClientOptions>
         </div>
         <div class="status-col grid w-full md:w-1/2">

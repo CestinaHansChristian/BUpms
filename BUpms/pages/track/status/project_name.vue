@@ -23,11 +23,11 @@
                 Go Back
             </div>
         </div>
-        <div class="content pt-8 k">
+        <div class="content pt-8">
             <div class="project-icons grid grid-rows-2">
                 <TrackingProjectStage :projectStage="documentStatus"></TrackingProjectStage>
             </div>
-            <div class="project-description ">
+            <div class="project-description">
                 <TrackingProjectMeta :organization="trackDetails"></TrackingProjectMeta>
             </div>
         </div>

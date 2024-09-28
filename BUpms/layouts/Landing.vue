@@ -31,8 +31,8 @@
             </div>
         </nav>
         <slot></slot>
-        <Footer></Footer>
     </div>
+    <Footer></Footer>
 </template>
 <style scoped>
     .router-link-active {
