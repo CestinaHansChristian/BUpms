@@ -1,10 +1,10 @@
 <template>
-    <div class="comment-box-wrapper grid h-full border-2 rounded-xl gap-y-2 w-full md:mx-4 md:h-80">
-        <div class="comment-box-wrapper bg-sky-400 text-white tracking-widest p-1 rounded-t-xl ps-3 uppercase font-medium md:grid md:place-content-center">
+    <fieldset class="md:space-y-3 comment-box-wrapper grid h-full border-2 border-orange-500 rounded-md gap-y-2 w-full md:mx-4 md:pb-1 shadow-inner shadow-gray-300">
+        <legend class="text-center font-semibold text-lg uppercase">
             Comment Box
-        </div>
-        <div class="comment-content-wrapper mx-2">
-            <div class="display-message overflow-y-scroll h-32 bg-sky-400 rounded-md space-y-2 py-1">
+        </legend>
+        <div class="comment-content-wrapper mx-2 h-full">
+            <div class="display-message overflow-y-scroll h-32 md:h-52 bg-sky-400 rounded-md space-y-2 py-1">
                 <!-- component for reciever -->
                 <div class="from-client-msg-wrapper m-1 p-2 bg-slate-100 rounded-md space-y-2">
                     <div class="top-message flex gap-x-5">
@@ -53,13 +53,13 @@
                 </div>
             </div>
         </div>
-        <div class="send-btn-control grid p-3 bg-orange-400 rounded-b-lg">
-            <div class="text-wrapper flex justify-between gap-x-5">
-                <input type="text" name="" id="" class="rounded-md w-full p-1 ps-2 tracking-widest font-medium">
-                <div class="cursor-pointer submit-btn bg-sky-400 grid place-items-center hover:bg-sky-600 hover:border-sky-700 border-2 px-2 p-1 rounded-lg tracking-widest uppercase text-white font-medium">
-                    submit
+        <div class="send-btn-control grid p-3 rounded-b-lg">
+            <div class="text-wrapper flex justify-between gap-x-2">
+                <input type="text" name="" id="" class="w-full p-1 tracking-widest border-2 border-slate-300 rounded-2xl ps-3">
+                <div class="cursor-pointer submit-btn bg-sky-400 grid place-items-center hover:bg-sky-600 hover:border-sky-700 border-2 px-2 p-1 rounded-xl tracking-widest uppercase text-white font-medium">
+                    <IconsAirplane></IconsAirplane>
                 </div>
             </div>
         </div>
-    </div> 
+    </fieldset> 
 </template>

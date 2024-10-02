@@ -2,7 +2,7 @@
     <!-- todo modal display -->
     <ClientOnly>
         <Teleport to='#modal'>
-            <div v-if="isModalClicked" class="fixed grid place-items-center h-full w-full  z-10">
+            <div v-if="isModalClicked" ref="displayModal" class="fixed grid place-items-center h-full w-full  z-10">
                 <div class="wrapper grid place-items-center shadow-md rounded-xl shadow-gray-400 h-64 w-64 md:h-96 md:w-96 bg-slate-50 relative">
                     <div class="card grid place-items-center gap-y-5">
                         <div class="card-info grid place-items-center tracking-wider">
@@ -28,10 +28,33 @@
         </Teleport>
     </ClientOnly>
     <div class=" md:space-y-4" :class="{blur: isBlur}">
-        <div class="card-container grid place-items-center">
-            <IconsDocument @fileUploaded="display_file"></IconsDocument>
+        <!-- {{ hideDefault }}
+        {{ hideUploadFile }} -->
+        <div class="card-container relative grid place-items-center py-12">
+            <div v-if="hideDefault" class="card-border h-60 w-64 md:w-3/4 md:h-80 grid place-items-center rounded-2xl shadow-gray-400 shadow-inner relative text-sky-600 font-semibold md:text-xl" >
+                <div class="file-upload-wrapper grid place-content-center gap-y-10">
+                    <div class="uploadfile-wrapper grid place-content-center">
+                        <input @change="fetchFile" type="file" name="" id="" class=" cursor-pointer absolute h-full w-full opacity-0" accept="application/pdf">
+                        <IconsDocument></IconsDocument>
+                    </div>
+                    Select or Drag a File to Upload
+                </div>
+            </div>
+            <div v-if="hideUploadFile" class="card-border h-60 w-64 md:w-3/4 md:h-80 grid place-items-center rounded-2xl shadow-gray-400 shadow-inner relative text-sky-500 font-semibold md:text-xl">
+                <div class="pdf-file-preview-wrapper relative bg-slate-200 px-5 rounded-md">
+                    <div @click="removeUploaded" class="remove-btn-wrapper absolute right-0 bg-red-400 text-white rounded-md p-0.5 hover:bg-red-500 cursor-pointer">
+                        <IconsTrashIcon></IconsTrashIcon>
+                    </div>
+                    <div class="">
+                        <img src="assets/pdf_image_prev.png" alt="" class=" h-52 md:w-full">
+                    </div>
+                    <div class="description-wrapper text-center">
+                        {{ attachedFile.name }}
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card-container rounded-lg md:mx-5 mx-2 md:space-y-3">
+        <div class="card-container rounded-lg md:mx-5 mx-2 md:space-y-3 py-6">
             <div class="md:flex md:gap-x-5">
                 <div class="general-info w-full">
                     <fieldset class="border-2 border-orange-500 rounded-md">
@@ -53,126 +76,92 @@
                     </fieldset>
                 </div>
                 <div class="classification-wrapper w-full">
-                    <fieldset class="border-2 border-orange-500 rounded-md">
-                        <legend class="text-center font-semibold uppercase tracking-widest">Event classification</legend>
-                        <div class="m-2 space-y-2">
-                            <div class="classification-wrapper-row2 space-x-3">
-                                <input type="checkbox" name="" id="">
-                                <label for="">Mission Based</label>
-                            </div>
-                            <div class="classification-wrapper-row2 space-x-3">
-                                <input type="checkbox" name="" id="">
-                                <label for="">Convention, Seminar, etc.</label>
-                            </div>
-                            <div class="classification-wrapper-row2 space-x-3">
-                                <input type="checkbox" name="" id="">
-                                <label for="">Volunteer Work</label>
-                            </div>
-                            <div class="classification-wrapper-row2 space-x-3">
-                                <input type="checkbox" name="" id="">
-                                <label for="">Advocacy Project Campaigns</label>
-                            </div>
-                            <div class="classification-wrapper-row2 space-x-3">
-                                <input type="checkbox" name="" id="">
-                                <label for="">Sports Activities</label>
-                            </div>
-                            <div class="classification-wrapper-row2 space-x-3">
-                                <input type="checkbox" name="" id="">
-                                <label for="">Interschool Competitions / Tournaments</label>
-                            </div>
-                            <div class="classification-wrapper-row2 space-x-3">
-                                <input type="checkbox" name="" id="">
-                                <label for="">Culture & Arts Competitions</label>
-                            </div>
-                            <div class="classification-wrapper-row2 space-x-3 flex">
-                                <input type="checkbox" name="" id="">
-                                <label for="">Others:</label>
-                                <input type="text" class="border-b-2 border-black bg-slate-100">
-                            </div>
+                    <div class="event-classification-wrapper">
+                        <fieldset class="border-2 border-orange-500 rounded-md">
+                            <legend class="text-center font-semibold uppercase tracking-widest">Event classification</legend>
+                            <select name="" id="" class="p-3 rounded-md my-3 w-full shadow-inner shadow-gray-300">
+                                <option value="">Select an Item</option>
+                                <option value="" class="">Convention, Seminar, etc.</option>
+                                <option value="" class="">Volunteer Work</option>
+                                <option value="" class="">Advocacy Project Campaigns</option>
+                                <option value="" class="">Sports Activities</option>
+                                <option value="" class="">Interschool Competitions / Tournaments</option>
+                                <option value="" class="">Culture & Arts Competitions</option>
+                                <option value="" class="">Others</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="event-classification-wrapper space-y-3">
+                        <div class="doc-type-wrapper">
+                            <fieldset class="border-2 border-orange-500 rounded-md relative">
+                                <legend class="text-center font-semibold uppercase tracking-widest">Document Type</legend>
+                                <select name="" id="" class="p-3 rounded-md my-3 w-full shadow-inner shadow-gray-300">
+                                    <option value="">Select an Item</option>
+                                    <option value="" class="">Letter to the President</option>
+                                    <option value="" class="">Activity Proposal</option>
+                                    <option value="" class="">Endorsement from the College Crisis Mgt. Committee</option>
+                                    <option value="" class="">List of Participants duly certified officially enrolled</option>
+                                    <option value="" class="">Parent Cosent/ Jurat</option>
+                                    <option value="" class="">Health Clearance from UHS</option>
+                                    <option value="" class="">Proof of Insurance Coverage</option>
+                                    <option value="" class="">Designation of Faculty/Personel-in-charge</option>
+                                    <option value="" class="">Other Documents that the approving authority may require</option>
+                                </select>
+                            </fieldset>
                         </div>
-                    </fieldset>
+                        <fieldset class="btn-controller grid place-items-center grid-cols-2 py-4 border-2 border-orange-500 rounded-md">
+                            <button @click="submit_doc" class="bg-orange-500 text-white p-2 rounded-lg md:text-2xl font-normal hover:bg-green-500">SUBMIT</button>
+                            <button class="bg-sky-500 text-white p-2 rounded-lg md:text-2xl font-normal hover:bg-red-400">Return</button>    
+                        </fieldset>
+                    </div>
                 </div>
             </div>
-            <div class="type-of-documents-wrapper">
-                <fieldset class="border-2 border-orange-500 rounded-md">
-                    <legend class="text-center font-semibold uppercase tracking-widest">document type</legend>
-                    <div class="m-2 space-y-2">
-                        <div class="mission-based-wrapper space-x-3">
-                            <input type="checkbox" name="" id="">
-                            <label for="">Letter to the President</label>
-                        </div>
-                        <div class="mission-based-wrapper space-x-3">
-                            <input type="checkbox" name="" id="">
-                            <label for="">Activity Proposal</label>
-                        </div>
-                        <div class="mission-based-wrapper space-x-3">
-                            <input type="checkbox" name="" id="">
-                            <label for="">Endorsement from the College Crisis Mgt. Committee</label>
-                        </div>
-                        <div class="mission-based-wrapper space-x-3">
-                            <input type="checkbox" name="" id="">
-                            <label for="">List of Participants duly certified officially enrolled</label>
-                        </div>
-                        <div class="mission-based-wrapper space-x-3">
-                            <input type="checkbox" name="" id="">
-                            <label for="">Parent Cosent/ Jurat</label>
-                        </div>
-                        <div class="mission-based-wrapper space-x-3">
-                            <input type="checkbox" name="" id="">
-                            <label for="">Health Clearance from UHS</label>
-                        </div>
-                        <div class="mission-based-wrapper space-x-3">
-                            <input type="checkbox" name="" id="">
-                            <label for="">Proof of Insurance Coverage</label>
-                        </div>
-                        <div class="mission-based-wrapper space-x-3">
-                            <input type="checkbox" name="" id="">
-                            <label for="">Designation of Faculty/Personel-in-charge</label>
-                        </div>
-                        <div class="mission-based-wrapper space-x-3">
-                            <input type="checkbox" name="" id="">
-                            <i><label for="">Other Documents that the approving authority may require</label></i>
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
         </div>
-        <div class="btn-controller grid place-items-center grid-cols-2 py-4">
-            <button @click="submit_doc" class="bg-orange-500 text-white p-2 rounded-lg md:text-2xl font-normal hover:bg-green-500">SUBMIT</button>
-            <button class="bg-sky-500 text-white p-2 rounded-lg md:text-2xl font-normal hover:bg-red-400">Return</button>
-        </div>
+        
     </div>
 </template>
-<script>
-    export default {
-        name: 'Submission_client',
-        emits:['fileUploaded'],
-        data() {
-            return {
-                isModalClicked: false,
-                isBlur: false
-            }
-        },
-        beforeMount() {
-            definePageMeta({
-                layout: 'landing'
-            })
-        },
-        methods: {
-            submit_doc(e) {
-                this.isBlur = !this.isBlur
-                this.isModalClicked = !this.isModalClicked
-                console.log(e)
-            },
-            close_modal(){
-                this.isBlur = !this.isBlur
-                this.isModalClicked = !this.isModalClicked
-            },
-            display_file(event) {
-                console.log(event)
-            }
-        }
+<script setup>
+    definePageMeta({
+        layout: 'landing'
+    })
+
+    let isModalClicked = ref(false)
+    let isBlur =  ref(false)
+    let attachedFile = ref(null)
+
+    const hideDefault = computed(()=> {
+        return attachedFile.value ? false : true 
+    }) 
+
+    const hideUploadFile = computed(()=> {
+        return attachedFile.value ? true : false 
+    }) 
+    // const hideUpload = computed(()=> {
+    //     return attachedFile.value ? true  : hideFileUploaded
+    // })
+
+    function submit_doc(e) {
+        isModalClicked.value = !isModalClicked.value 
+        isBlur.value = !isBlur.value
+        console.log(e)
     }
+    function close_modal(){
+        isBlur.value = !isBlur.value
+        isModalClicked.value = !isModalClicked.value
+    }
+
+    // fetch file
+    function fetchFile(event) {
+        attachedFile.value = event.target.files[0]
+        console.log(attachedFile)
+    }
+
+    // remove uploaded file
+    function removeUploaded() {
+        attachedFile.value = null
+        console.log(attachedFile.value)
+    }
+    
 </script>
 
 <style scoped>
