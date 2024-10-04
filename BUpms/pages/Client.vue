@@ -1,5 +1,5 @@
 <template>
-    <div class="md:flex grid m-1 md:py-10 md:gap-x-4 h-screen">
+    <div class="md:flex grid m-1 md:py-10 md:gap-x-4 h-screen md:container md:mx-auto">
         <div class="actions-col w-full">
             <ClientOptions></ClientOptions>
         </div>

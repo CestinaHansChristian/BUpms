@@ -5,7 +5,7 @@
     })
 </script>
 <template>
-    <div class="h-screen mx-2 lg:mx-5">
+    <div class="h-screen mx-2 lg:container lg:mx-auto">
         <div class="heading-wrapper flex justify-between">
             <div class="return-btn-wrapper btn-wrapper text-xl text-red-400 font-bold tracking-wider uppercase py-3">
                 <nuxt-link to="/client" class=" md:text-3xl cursor-pointer hover:text-red-600">

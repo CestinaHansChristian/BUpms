@@ -16,8 +16,8 @@
 </script>
 
 <template>
-    <div class="project-details-wrapper md:pt-16 gap-y-4 md:flex">
-        <fieldset class="border-2 border-orange-500 h-full w-full rounded-md grid md:mx-2  shadow-inner shadow-gray-300">
+    <div class="project-details-wrapper lg:py-5 gap-y-4 lg:flex">
+        <fieldset class="border-2 border-orange-500 h-full w-full rounded-md grid lg:mx-2  shadow-inner shadow-gray-300">
             <legend class="text-center uppercase text-lg font-semibold tracking-widest">Information</legend>
             <div class="space-y-5 md:space-y-7 p-2 md:text-xl">
                 <div class="title-of-activity-wrapper">
