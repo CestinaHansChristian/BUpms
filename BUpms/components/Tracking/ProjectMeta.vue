@@ -17,31 +17,34 @@
 
 <template>
     <div class="project-details-wrapper lg:py-5 gap-y-4 lg:flex">
-        <fieldset class="border-2 border-orange-500 h-full w-full rounded-md grid lg:mx-2  shadow-inner shadow-gray-300">
+        <fieldset class="h-full w-full rounded-md grid lg:mx-2 shadow-inner shadow-gray-300 bg-slate-200 border-2 border-orange-500">
             <legend class="text-center uppercase text-lg font-semibold tracking-widest">Information</legend>
-            <div class="space-y-5 md:space-y-7 p-2 md:text-xl">
+            <div class="space-y-3 md:space-y-6 p-2 md:text-xl md:mx-3 mx-1">
                 <div class="title-of-activity-wrapper">
-                    <label for="" class="font-semibold tracking-tighter uppercase">Title of Activity:</label>
-                    <span class="border-b-2 border-b-black w-full px-2">hello world</span>
+                    <label for="" class="font-medium tracking-widest pe-2">Title of Activity:</label>
+                    <span class="border-b-2 border-b-black w-full ">hello world</span>
                 </div>
                 <div class="when-wrapper">
-                    <label for="" class="font-semibold tracking-tighter uppercase">When:</label>
-                    <span class="border-b-2 border-b-black w-full px-2"></span>
+                    <label for="" class="font-medium tracking-widest pe-2">When:</label>
+                    <span class="border-b-2 border-b-black w-full ">asdsd</span>
                 </div>
                 <div class="where-wrapper">
-                    <label for="" class="font-semibold tracking-tighter uppercase">Who:</label>
-                    <span class="border-b-2 border-b-black w-full px-2"></span>
+                    <label for="" class="font-medium tracking-widest pe-2">Who:</label>
+                    <span class="border-b-2 border-b-black w-full ">dsdds</span>
                 </div>
                 <div class="contact-num-wrapper">
-                    <label for="" class="font-semibold tracking-tighter uppercase">Contact no.</label>
-                    <span class="border-b-2 border-b-black w-full px-2"></span>
+                    <label for="" class="font-medium tracking-widest pe-2">Contact no:</label>
+                    <span class="border-b-2 border-b-black w-full ">sdsdd</span>
                 </div>
-                <fieldset class=" grid gap-y-3 font-semibold">
+                <fieldset class="grid gap-y-3 font-medium rounded-md p-2">
                     <div class="document-type-wrapper">
-                        Type of document: 
+                        Type of document:
+                        <span class="border-b-2 border-b-black w-full "></span>
                     </div>
                     <div class="event-classification-wrapper">
                         Type of Event:
+                        <!-- value here -->
+                        <span class="border-b-2 border-b-black w-full "></span>
                     </div>
                 </fieldset>
             </div>

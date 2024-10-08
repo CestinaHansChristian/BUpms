@@ -1,5 +1,5 @@
 <template>
-    <div v-for="(item, index) in project_info" :key="index" class=" project-quick-status flex place-content-around border-2 border-orange-500 rounded-md bg-slate-100 mx-3">
+    <div v-for="(item, index) in project_info" :key="index" class=" project-quick-status flex place-content-around border-2 border-slate-300 rounded-md bg-slate-100 mx-3">
         <div class="project-name grid place-items-center p-1 text-slate-500 font-semibold md:text-lg ">
             {{ item.name }}
         </div>
