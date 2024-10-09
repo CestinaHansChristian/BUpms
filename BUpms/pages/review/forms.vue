@@ -1,5 +1,5 @@
 <template>
-    <div class="md:h-screen">
+    <div class="">
         <div class="container mx-auto space-y-2 grid pt-5  place-content-center">
             <div class="wrapper-one mx-3 md:mx-5 grid border-2 rounded-xl md:gap-y-4">
                 <div class="card-heading bg-sky-400 text-white tracking-widest p-1 rounded-t-xl ps-3 uppercase font-medium">
@@ -25,7 +25,7 @@
                     <div class="btn-controller-wrapper pb-5">
                         <div class="approve-btn-wrapper flex justify-between mx-2 md:mx-5">
                             <nuxt-link to="/track/status/project_name">
-                                <div class="approve-design-btn uppercase cursor-pointer hover:bg-sky-600 hover:border-sky-700 bg-sky-400 px-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl p-1 text-white tracking-wider  border-2 border-sky-300">
+                                <div class="approve-design-btn uppercase cursor-pointer hover:bg-sky-600 hover:border-sky-700 text-slate-500 px-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl p-1 hover:text-white tracking-wider  border-2 border-slate-300">
                                     Approve
                                 </div>
                             </nuxt-link>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <div class="wrapper-two grid gap-y-2 md:flex">
+            <div class="wrapper-two grid gap-2 md:flex">
                 <OfficerClientDoculist></OfficerClientDoculist>
                 <MessageBox></MessageBox>
             </div>

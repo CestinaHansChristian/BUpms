@@ -31,8 +31,8 @@
 
 </script>
 <template>
-    <div class="main-container grid place-items-center pt-8 pb-4">
-        <div class="gap-x-2 md:gap-x-4 lg:gap-x-8 2xl:gap-x-20 relative flex place-items-center">
+    <div class="main-container grid place-items-center pt-8">
+        <div class="gap-x-2 md:gap-x-4 lg:gap-x-16 relative flex place-items-center">
             <div class="circle-stage-success-wrapper z-10 relative lg:space-y-2">
                 <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid">
                     <div class="circle-inner h-12 w-12 md:h-24 md:w-24 bg-sky-400 rounded-full grid place-items-center">

@@ -56,8 +56,8 @@
         </div>
         <div class="send-btn-control grid p-1 rounded-b-lg">
             <div class="text-wrapper flex justify-between gap-x-2 relative md:mx-2">
-                <textarea name="" id="" class="w-full p-3 h-14 tracking-widest border-2 border-slate-400 rounded-xl ps-3 bg-slate-200" placeholder="Type a message here. . ."></textarea>
-                <div class="cursor-pointer submit-btn absolute right-0 border-slate-400 h-full grid place-items-center border-s-2 px-2 p-1 rounded-e-xl text-blue-500 hover:bg-sky-400 hover:text-white">
+                <textarea name="" id="" class="w-full p-3 h-14 tracking-widest border-2 border-slate-300 rounded-xl ps-3 bg-slate-100" placeholder="Type a message here. . ."></textarea>
+                <div class="cursor-pointer submit-btn absolute right-0 border-slate-300 h-full grid place-items-center border-s-2 px-2 p-1 rounded-e-xl text-blue-500 hover:bg-sky-400 hover:text-white">
                     <IconsAirplane></IconsAirplane>
                 </div>
             </div>
