@@ -1,6 +1,6 @@
 <template>
-    <fieldset class="md:space-y-3 comment-box-wrapper grid h-full border-2 border-slate-300 rounded-md gap-y-2 w-full md:pb-1 shadow-inner shadow-gray-300">
-        <legend class="text-center font-semibold text-lg uppercase">
+    <fieldset class="md:space-y-3 comment-box-wrapper grid h-full border-x-2 border-slate-300 rounded-md gap-y-2 w-full md:pb-1 shadow-inner shadow-gray-300">
+        <legend class="text-center font-semibold text-base uppercase">
             Comment Box
         </legend>
         <div class="comment-content-wrapper mx-2 h-full">

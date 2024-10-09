@@ -12,7 +12,7 @@
                 </nuxt-link>
             </div>
         </div>
-        <div class="return-btn-wrapper btn-wrapper text-xl text-red-400 font-bold tracking-wider uppercase py-2 grid place-items-center">
+        <div @click="logoutOfficer" class="return-btn-wrapper btn-wrapper text-xl text-red-400 font-bold tracking-wider uppercase py-2 grid place-items-center">
             <div class="logout-wrapper grid place-items-center bg-red-400 px-3 rounded-lg  hover:bg-red-500 p-1">
                 <div class="logout-btn md:text-xl rounded-md md:tracking-widest text-sm uppercase font-semibold text-white cursor-pointer p-1">
                     Logout
@@ -30,3 +30,13 @@
         border-radius: 10px;
     }
 </style>
+
+<script setup>
+    const pb = usePocketbase()
+
+    // logout officer
+    function logoutOfficer() {
+        pb.authStore.clear()
+        navigateTo('/')
+    }
+</script>

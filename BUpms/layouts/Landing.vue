@@ -3,9 +3,7 @@
         <div id="modal"></div>
         <nav class="h-20 p-3 shadow-md flex sticky top-0 bg-slate-100 z-50">
             <div class="relative justify-between flex w-full">
-                <nuxt-link to="/client" class="flex pb-1">
-                    <img src="assets/BU_title.png" alt="" class="object-contain min-w-32">
-                </nuxt-link>
+                <img @click="goToHome" src="assets/BU_title.png" alt="" class="object-contain min-w-32">
                 <div class="header-2-wrapper flex place-self-center gap-x-5 px-3 min-w-32">
                     <clientOnly>
                         <div @click="show_user_option" class="hidden name-container md:grid place-items-center text-sky-500 font-semibold text-sm md:text-2xl tracking-widest">
@@ -14,6 +12,7 @@
                         </div>
                     </clientOnly>
                     <div class="absolute top-3 right-0 md:relative md:top-0">
+                       <ClientOnly>
                         <div :class="displayNotif" @click="show_alert_notify" class="notification-container cursor-pointer relative ">
                             <IconsNotification></IconsNotification>
                             <div class="notification h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0"></div>
@@ -30,6 +29,7 @@
                                 </div>
                             </div>
                         </div>
+                       </ClientOnly>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
     const userIsClicked = ref(false)
 
     // get current logged in user role
-    const isLoggedUserAdmin = reactive({
+    const typeOfUser = reactive({
         userRole: pb.authStore.model?.role
     })
 
@@ -89,8 +89,13 @@
 
     // hides if role is admin
     const displayNotif = computed(()=> {
-        return isLoggedUserAdmin.userRole === 'admin'  ? isNotifHidden :  isNotifShow
+        return (typeOfUser.userRole === 'admin') || (typeOfUser.userRole === 'officer')   ? isNotifHidden :  isNotifShow
     })
+
+    // if bupms logo is clicked go to homescreen
+    function goToHome() {
+        return typeOfUser.userRole === 'student' ? navigateTo('/client') : typeOfUser.userRole === 'admin' ? navigateTo('/admin') : typeOfUser.userRole === 'officer' ? navigateTo('/officer/projectlist') : false
+    }
 
     // display user option window
     const show_user_option = () => {
