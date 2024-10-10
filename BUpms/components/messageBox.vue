@@ -4,7 +4,7 @@
             Comment Box
         </legend>
         <div class="comment-content-wrapper mx-2 h-full">
-            <div class="display-message overflow-y-scroll h-32 md:h-52 bg-slate-300 rounded-md space-y-2 py-1">
+            <div class="display-message overflow-y-scroll h-40 md:h-72 bg-slate-300 rounded-md space-y-2 py-1">
                 <!-- component for reciever -->
                 <div class="from-client-msg-wrapper mx-1 p-2 bg-slate-100 rounded-md space-y-2">
                     <div class="top-message flex gap-x-5">

@@ -55,11 +55,11 @@
                         </div> -->
                     </div>
                 </div>
-                <div v-if="projectStage.stageOne" class="project-stage-description ps-2 absolute tracking-tighter md:tracking-wide w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
+                <div v-if="projectStage.stageOne" class="project-stage-description md:ps-0 ps-2 absolute tracking-tighter md:tracking-wide w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
                     Stage One
                 </div>
                 <div v-if="projectStage.stageOne == false" class="project-stage-description tracking-tighter md:tracking-wide absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
-                    Pending on Review Stage One
+                    Pending
                 </div>
             </div>
             <!-- second status stage two -->
@@ -82,11 +82,11 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="projectStage.stageTwo" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
+                <div v-if="projectStage.stageTwo" class="project-stage-description md:ps-0 ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
                     Stage Two
                 </div>
                 <div v-if="projectStage.stageTwo == false" class="project-stage-description tracking-tighter md:tracking-wide absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
-                    Pending on Review Stage Two
+                    Pending
                 </div>
             </div>
             <!-- third status stage three -->
@@ -109,11 +109,11 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="projectStage.stageThree" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
+                <div v-if="projectStage.stageThree" class="project-stage-description md:ps-0 ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
                     Stage Three
                 </div>
                 <div v-if="projectStage.stageThree == false" class="project-stage-description tracking-tighter md:tracking-wide absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
-                    Pending on Review Stage Three
+                    Pending
                 </div>
             </div>
             <!-- Project Final Status -->
@@ -136,7 +136,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="isCleared" class="project-stage-description ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
+                <div v-if="isCleared" class="project-stage-description md:ps-0 ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
                     Passed
                 </div>
                 <div v-if="isCleared === false" class="project-stage-description absolute w-16 tracking-tighter md:tracking-wide text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
