@@ -38,7 +38,7 @@
                             {{ attachedFile.name }} is Posted
                         </div>
                         <div class="information-wrapper">
-                            Redirecting you to Home Page
+                            Redirecting you to Tracking Page
                         </div>
                     </div>
                 </div>
@@ -227,7 +227,9 @@
                 'Document Type': docType,
                 'Event Classification': eventClassification
                 }
-                navigateTo('/track/projects')
+                setInterval(() => {
+                    navigateTo('/track/projects')
+                }, 2000);
                 console.log(createdProject)
             } else {
                 warnMissingFields()
