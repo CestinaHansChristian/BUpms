@@ -28,9 +28,9 @@
         </Teleport>
         <Teleport to="#modal">
             <div v-if="isPosted" class="fixed grid place-items-center h-full w-full z-10">
-                <div class="wrapper grid place-items-center shadow-md rounded-xl shadow-gray-400 h-64 w-64 md:h-96 md:w-96 bg-slate-50 relative">
+                <div v-if="inputChecker()" class="wrapper grid place-items-center shadow-md rounded-xl shadow-gray-400 h-64 w-64 md:h-96 md:w-96 bg-slate-50 relative">
                     <!-- display file name and redirection to homepage client -->
-                    <div v-if="attachedFile != null" class="card grid place-items-center gap-y-5">
+                    <div  class="card grid place-items-center gap-y-5">
                         <div class="icon-wrapper">
 
                         </div>
@@ -41,16 +41,19 @@
                             Redirecting you to Home Page
                         </div>
                     </div>
-                    <!-- display no file attached and redirection to homepage client -->
-                    <div v-if="attachedFile == null" class="card grid place-items-center gap-y-5 py-5">
-                        <div class="icon-wrapper grid place-content-center">
+                </div>
+            </div>
+        </Teleport>
+        <Teleport to="#modal">
+            <div v-if="missingFields" class="fixed grid place-items-center h-full w-full z-10">
+                <div class="wrapper grid place-items-center shadow-md rounded-xl shadow-gray-400 h-64 w-64 md:h-96 md:w-96 bg-slate-50 relative">
+                    <!-- missing fields warning display modal -->
+                    <div class="card grid place-items-center gap-y-5">
+                        <div class="icon-wrapper">
                             <IconsWarningIcon></IconsWarningIcon>
                         </div>
-                        <div class="description-wrapper text-center">
-                            Uh oh! a document file must be attachment
-                        </div>
-                        <div class="information-wrapper text-center">
-                            Please retry uploading the document again. Thanks
+                        <div class="description">
+                            Some fields are missing, try again.
                         </div>
                     </div>
                 </div>
@@ -58,8 +61,6 @@
         </Teleport>
     </ClientOnly>
     <div class="md:space-y-4 overflow-hidden md:container md:mx-auto" :class="{blur: isBlur}">
-        <!-- {{ hideDefault }}
-        {{ hideUploadFile }} -->
         <div class="card-container relative grid place-items-center py-12">
             <div v-if="hideDefault" class="card-border h-60 w-64 md:w-3/4 md:h-80 grid place-items-center rounded-2xl shadow-gray-400 shadow-inner relative text-sky-600 font-semibold md:text-xl" >
                 <div class="file-upload-wrapper grid place-content-center gap-y-10">
@@ -157,6 +158,9 @@
     let isModalClicked = ref(false)
     let isBlur =  ref(false)
 
+    //warning modal dislay
+    let missingFields = ref(false)
+
     // for file attachment
     let attachedFile = ref(null)
     let isPosted = ref(false)
@@ -179,19 +183,41 @@
         return attachedFile.value ? true : false 
     }) 
 
+    function inputChecker() {
+        if(attachedFile.value != null && clientActiviyTitle.value != '' && clientwhenDateTime.value != '' && clientWho.value != '' && clientContactNum.value != '' && docType != '' && eventClassification != '' ) {
+            console.log('not exist')
+            return true
+        } else {
+            console.log(' exist')
+            return false
+        }
+    }
+
     // modal confimation function
     function confirmSubmit() {
         // success interval display modal
-        isPosted.value = true
+        isPosted.value = !isPosted.value
         if(isPosted.value) {
+
+            // auto close modal after 2sec or execute this command after 2sec
             const counter = setInterval(() => {
                 isPosted.value = !isPosted.value
-                console.log('counter')
                 isModalClicked.value = !isModalClicked.value
                 isBlur.value = !isBlur.value
+                missingFields.value = false
                 clearInterval(counter)
+                clientActiviyTitle.value = ''
+                clientwhenDateTime.value = ''
+                clientWho.value = ''
+                clientContactNum.value = ''
+                attachedFile.value = ''
+                docType = ''
+                eventClassification = ''
+                console.log('counter')
             }, 2000);
-            if(attachedFile.value && clientActiviyTitle.value && clientwhenDateTime.value && clientWho.value && clientContactNum.value && docType && eventClassification) {
+
+            // submit to pocketbase
+            if(inputChecker()) {
                 const createdProject = {
                 'Activity': clientActiviyTitle.value,
                 'When': clientwhenDateTime.value,
@@ -201,17 +227,22 @@
                 'Document Type': docType,
                 'Event Classification': eventClassification
                 }
+                navigateTo('/track/projects')
                 console.log(createdProject)
             } else {
+                warnMissingFields()
+                clientActiviyTitle.value = ''
+                clientwhenDateTime.value = ''
+                clientWho.value = ''
+                clientContactNum.value = ''
+                attachedFile.value = ''
+                docType = ''
+                eventClassification = ''
                 console.log('Fields need to be filled')
             }
         } else {
             console.log('An error occured')
         }
-    }
-
-    function error() {
-        console.log('Needs to be filled')
     }
 
     // submit button first modal
@@ -239,6 +270,10 @@
         console.log(attachedFile.value)
     }
     
+    // error handling for missing field
+    function warnMissingFields() {
+        missingFields.value = !missingFields.value
+    }
 </script>
 
 <style scoped>
