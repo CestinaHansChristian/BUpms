@@ -227,8 +227,9 @@
                 'Document Type': docType,
                 'Event Classification': eventClassification
                 }
-                setInterval(() => {
+                const redirectTracking = setInterval(() => {
                     navigateTo('/track/projects')
+                    clearInterval(redirectTracking)
                 }, 2000);
                 console.log(createdProject)
             } else {
