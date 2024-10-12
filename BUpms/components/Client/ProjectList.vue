@@ -37,11 +37,6 @@
                             Review
                         </div>
                     </nuxt-link>
-                    <!--  -->
-                    <nuxt-link v-if="pb.authStore.model?.role === 'officer'" to="/review/forms" class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 place-content-center px-3 text-white font-semibold w-full">
-                        <IconsArchieveBox></IconsArchieveBox>
-                            Reject
-                    </nuxt-link>
                     <nuxt-link v-if="pb.authStore.model?.role === 'student'" to="/client" class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
                         <div class="btn-label-wrapper flex gap-x-3">
                             <IconsArchieveBox></IconsArchieveBox>

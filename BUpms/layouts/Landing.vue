@@ -13,7 +13,7 @@
                     </clientOnly>
                     <div class="absolute top-3 right-0 md:relative md:top-0">
                        <ClientOnly>
-                            <div :class="displayNotif" @click="show_alert_notify" class="notification-container cursor-pointer relative ">
+                            <div v-if="displayNotif" @click="show_alert_notify" class="notification-container cursor-pointer relative ">
                                 <IconsNotification></IconsNotification>
                                 <div class="notification h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0"></div>
                                 <div v-if="alertIsClicked" class="notif_list fixed right-0 z-10 pt-2">
@@ -39,8 +39,6 @@
     <Footer></Footer>
 </template>
 <style scoped>
-    
-
     ::-webkit-scrollbar {
         width: 12px;
     }
@@ -75,21 +73,9 @@
         username: pb.authStore.model
     })
 
-    // hide notif class
-    const isNotifHidden = reactive({
-        active: true,
-        'hidden': true
-    })
-
-    // display notif class
-    const isNotifShow = reactive({
-        active: true,
-        'block': true
-    })
-
-    // hides if role is admin
+    // hides if role is admin / officer
     const displayNotif = computed(()=> {
-        return (typeOfUser.userRole === 'admin') || (typeOfUser.userRole === 'officer')   ? isNotifHidden :  isNotifShow
+        return (typeOfUser.userRole === 'admin') || (typeOfUser.userRole === 'officer') ? false :  true
     })
 
     // if bupms logo is clicked go to homescreen

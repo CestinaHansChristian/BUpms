@@ -101,12 +101,34 @@ const loginFunc = async () => {
   isLoading.value = false;
 };
 
-const logoutFunc = async () => {
-  pb.authStore.clear();
-};
-
 const googleLogin = async () => {
-  console.log(pb.authStore.model);
+  pb.authStore.clear()
+  const authData = await pb.collection('Users_tbl').authWithOAuth2({ provider: 'google'}) 
+
+  const meta = authData.meta
+
+  if(meta.isNew) {
+    console.log(meta)
+    const userName = meta.name
+    const setLoggedInAcc = {
+      // 'username': userName,
+      'role': 'student'
+    }
+
+    console.log(authData)
+    await pb.collection('Users_tbl').update(authData.record.id,setLoggedInAcc)
+    navigateTo('/client')
+  } else {
+    if(pb.authStore.model?.role === 'student') {
+      navigateTo('/client')
+    } else if(pb.authStore.model?.role === 'officer') {
+      navigateTo('/track/projects')
+    } else if (pb.authStore.model?.role === 'admin') {
+      navigateTo('/admin')
+    } else {
+      navigateTo('/')
+    }
+  }
 };
 
 onMounted(() => {
