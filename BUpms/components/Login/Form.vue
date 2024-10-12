@@ -23,22 +23,20 @@
         <p>{{ error }}</p>
         <div class="bu-btn-container grid gap-2">
           <button @click="loginFunc" type="submit" :disabled="isLoading"
-            class="bg-sky-400 rounded-md disabled:bg-slate-300 p-2 w-full text-white text-base font-semibold tracking-widest hover:bg-sky-500">Sign
-            in</button>
-          <button @click="authFunc"
-            class="bg-slate-300 rounded-md p-2 w-full hover:bg-green-500 text-sky-700 hover:text-white">
-            <div class="google-btn-container flex place-content-center">
-              <IconsGoogleIcon></IconsGoogleIcon>
-              <span class=" font-semibold text-base tracking-widest ">Google</span>
-            </div>
+            class="bg-sky-400 rounded-md disabled:bg-slate-300 p-2 w-full text-white text-base font-semibold tracking-widest hover:bg-sky-500">
+            Sign in
           </button>
-          <button @click="logoutFunc"
-            class="bg-slate-300 rounded-md p-2 w-full hover:bg-green-500 text-sky-700 hover:text-white">
-            <div class="google-btn-container flex place-content-center">
-              <p>Logout</p>
-              <span class=" font-semibold text-base tracking-widest ">Logout</span>
+          <div class="google-function">
+            <div class="label-wrapper text-sm uppercase font-mono tracking-wide md:tracking-widest">
+              Log in using your account on:
             </div>
-          </button>
+            <button @click="googleLogin" class="bg-slate-300 rounded-md p-2 w-full hover:bg-green-500 text-sky-700 hover:text-white">
+              <div class="google-btn-container flex place-content-center">
+                <IconsGoogleIcon></IconsGoogleIcon>
+                <span class=" font-semibold text-base tracking-widest ">Google</span>
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -95,13 +93,7 @@ const loginFunc = async () => {
     const auth = await pb.collection('Users_tbl').authWithPassword(email, password)
     if (auth) {
       store.setUser(pb.authStore.model)
-
-      // store logged in user in cookies
-      // let cookies = useCookie('userId')
-      // cookies.value = {
-      //   value: pb.authStore.model.id
-      // }
-      navigateTo(pb.authStore.model?.role === 'student' ? '/client' : pb.authStore.model?.role === 'officer' ? '/officer' : pb.authStore.model?.role === 'admin' ? '/admin' : '/');
+      navigateTo(pb.authStore.model?.role === 'student' ? '/client' : pb.authStore.model?.role === 'officer' ? '/officer/projectlist' : pb.authStore.model?.role === 'admin' ? '/admin' : '/');
     }
   } catch (e) {
     console.log(e);
@@ -109,12 +101,34 @@ const loginFunc = async () => {
   isLoading.value = false;
 };
 
-const logoutFunc = async () => {
-  pb.authStore.clear();
-};
+const googleLogin = async () => {
+  pb.authStore.clear()
+  const authData = await pb.collection('Users_tbl').authWithOAuth2({ provider: 'google'}) 
 
-const authFunc = async () => {
-  console.log(pb.authStore.model);
+  const meta = authData.meta
+
+  if(meta.isNew) {
+    console.log(meta)
+    const userName = meta.name
+    const setLoggedInAcc = {
+      // 'username': userName,
+      'role': 'student'
+    }
+
+    console.log(authData)
+    await pb.collection('Users_tbl').update(authData.record.id,setLoggedInAcc)
+    navigateTo('/client')
+  } else {
+    if(pb.authStore.model?.role === 'student') {
+      navigateTo('/client')
+    } else if(pb.authStore.model?.role === 'officer') {
+      navigateTo('/track/projects')
+    } else if (pb.authStore.model?.role === 'admin') {
+      navigateTo('/admin')
+    } else {
+      navigateTo('/')
+    }
+  }
 };
 
 onMounted(() => {

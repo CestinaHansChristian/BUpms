@@ -1,19 +1,9 @@
 <template>
-    <div class="md:flex grid ">
-        <div class="actions-col w-full relative">
-            <div class="actions-container grid md:gap-y-10 md:py-5 ">
-                <div class="actions-first-col flex m-5 space-x-5 ">
-                    <ClientDocumentComp class="buttons"></ClientDocumentComp>
-                    <ClientTrackComp class="buttons"></ClientTrackComp>
-                </div>
-                <div class="actions-first-col flex m-5 space-x-5 grid-cols-3 ">
-                    <ClientProfileComp class="buttons"></ClientProfileComp>
-                    <ClientContactComp class="buttons"></ClientContactComp>
-                    <ClientLogoutComp class="buttons"></ClientLogoutComp>
-                </div>
-            </div>
+    <div class="md:flex grid m-1 md:py-10 md:gap-x-4 md:container md:mx-auto gap-y-5 md:h-screen">
+        <div class="actions-col w-full">
+            <ClientOptions></ClientOptions>
         </div>
-        <div class="status-col w-full md:w-1/2 shadow-md  shadow-gray-400 p-1 rounded-md">
+        <div class="status-col grid w-full md:w-1/2">
             <ClientProjectTracker></ClientProjectTracker>
         </div>
     </div>
@@ -25,20 +15,22 @@
     })
 </script>
 
-<style scoped>
-.buttons:hover {
-    background-color: rgb(94, 152, 206);
-    color: white
-}
-
-/* width */
+<style>
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 12px;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #4ca5d8;
-    border-radius: 30px
+    background-color: #2f96ce;
+    border-radius: 3px;
+    
+}
+
+::-webkit-scrollbar-track {
+    background-color: #7dd3fc;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #085b88; 
 }
 </style>
