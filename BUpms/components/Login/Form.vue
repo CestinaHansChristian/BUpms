@@ -122,7 +122,7 @@ const googleLogin = async () => {
     if(pb.authStore.model?.role === 'student') {
       navigateTo('/client')
     } else if(pb.authStore.model?.role === 'officer') {
-      navigateTo('/track/projects')
+      navigateTo('/officer/projectlist')
     } else if (pb.authStore.model?.role === 'admin') {
       navigateTo('/admin')
     } else {
