@@ -39,7 +39,19 @@
             </div>
             <fieldset class="border-2 border-slate-300 rounded-lg shadow-inner shadow-slate-300">
                 <legend class="text-center font-semibold tracking-widest md:text-lg text-sm uppercase">Recent Transaction</legend>
-                <div class="archive-scrollbar m-1 h-96 overflow-y-scroll">
+                <div class="archive-scrollbar m-1 h-screen overflow-y-scroll">
+                    <OfficerArchiveList></OfficerArchiveList>
+                    <OfficerArchiveList></OfficerArchiveList>
+                    <OfficerArchiveList></OfficerArchiveList>
+                    <OfficerArchiveList></OfficerArchiveList>
+                    <OfficerArchiveList></OfficerArchiveList>
+                    <OfficerArchiveList></OfficerArchiveList>
+                    <OfficerArchiveList></OfficerArchiveList>
+                    <OfficerArchiveList></OfficerArchiveList>
+                    <OfficerArchiveList></OfficerArchiveList>
+                    <OfficerArchiveList></OfficerArchiveList>
+                    <OfficerArchiveList></OfficerArchiveList>
+                    <OfficerArchiveList></OfficerArchiveList>
                     <OfficerArchiveList></OfficerArchiveList>
                     <OfficerArchiveList></OfficerArchiveList>
                     <OfficerArchiveList></OfficerArchiveList>

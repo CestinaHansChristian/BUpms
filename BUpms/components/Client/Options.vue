@@ -53,13 +53,9 @@
     </div>
 </template>
 <script setup>
-const store = useMyAuthStoreStore()
-const pb = usePocketbase()
 
 const logout = () => {
-    pb.authStore.clear()
-    store.setIsLoggedIn(pb.authStore.isValid)
-    navigateTo('/')
+    logoutUser()
 }
 
 </script>

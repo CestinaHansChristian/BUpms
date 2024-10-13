@@ -1,9 +1,11 @@
 <template>
-    <div class="header-wrapper sticky top-0 text-white tracking-widest uppercase font-semibold text-2xl text-center bg-sky-300 p-3 rounded-t-xl">
-        Project Status
-    </div>
-    <div class="project-list-container h-80 md:h-full space-y-2 overflow-y-scroll py-1 bg-slate-200">
-        <ClientProjectsComp :project_info="projects"></ClientProjectsComp>
+    <div class="wrapper">
+        <div class="header-wrapper sticky top-0 text-white tracking-widest uppercase font-semibold text-2xl text-center bg-sky-300 p-3 rounded-t-xl">
+            Project Status
+        </div>
+        <div class="project-list-container h-96 md:h-screen space-y-2 overflow-y-scroll py-1 bg-slate-200">
+            <ClientProjectsComp :project_info="projects"></ClientProjectsComp>
+        </div>
     </div>
 </template>
 <script>

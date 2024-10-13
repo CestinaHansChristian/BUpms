@@ -2,7 +2,7 @@
     <div class="wrapper grid md:flex bg-slate-300 p-1 border-2 rounded-xl m-1">
         <div class="project-title text-blue-600 font-semibold uppercase text-base grid place-items-center md:flex md:w-full">
             <div class="label-project-title pe-3 font-bold text-gray-700 md:ps-5">
-                Activity Name
+                Title:
             </div>
             <div class="project-value-wrapper">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa, et!

@@ -10,9 +10,16 @@
 <template>
     <div class="mx-2 overflow-hidden">
         <OfficerNavbar></OfficerNavbar>
-        <div class="history-content-wrapper h-screen">
-            <div class="project-list-wrapper space-y-4 h-full overflow-y-scroll py-2 p-2 bg-slate-300 rounded-lg">
+        <div class="history-content-wrapper">
+            <div class="project-list-wrapper space-y-4 h-screen overflow-y-scroll py-2 p-2 bg-slate-200 rounded-lg">
                 <!-- add project list here -->
+                <OfficerProjectList></OfficerProjectList>
+                <OfficerProjectList></OfficerProjectList>
+                <OfficerProjectList></OfficerProjectList>
+                <OfficerProjectList></OfficerProjectList>
+                <OfficerProjectList></OfficerProjectList>
+                <OfficerProjectList></OfficerProjectList>
+                <OfficerProjectList></OfficerProjectList>
                 <OfficerProjectList></OfficerProjectList>
                 <OfficerProjectList></OfficerProjectList>
                 <OfficerProjectList></OfficerProjectList>

@@ -33,10 +33,8 @@
 
 <script setup>
     const pb = usePocketbase()
-
     // logout officer
     function logoutOfficer() {
-        pb.authStore.clear()
-        navigateTo('/')
+        logoutUser()
     }
 </script>

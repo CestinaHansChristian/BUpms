@@ -1,9 +1,9 @@
 <template>
-    <div class="md:flex grid m-1 md:py-10 md:gap-x-4 md:container md:mx-auto gap-y-5 md:h-screen">
+    <div class="md:flex grid m-1 md:py-5 md:gap-x-4 md:mx-1">
         <div class="actions-col w-full">
             <ClientOptions></ClientOptions>
         </div>
-        <div class="status-col grid w-full md:w-1/2">
+        <div class="status-col w-full md:w-1/2 py-5 md:py-2">
             <ClientProjectTracker></ClientProjectTracker>
         </div>
     </div>
@@ -15,7 +15,7 @@
     })
 </script>
 
-<style>
+<style scoped>
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -23,7 +23,6 @@
 ::-webkit-scrollbar-thumb {
     background-color: #2f96ce;
     border-radius: 3px;
-    
 }
 
 ::-webkit-scrollbar-track {

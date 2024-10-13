@@ -3,16 +3,14 @@
         <div id="modal"></div>
         <nav class="h-20 p-3 shadow-md flex sticky top-0 bg-slate-100 z-50">
             <div class="relative justify-between flex w-full">
-                <img @click="goToHome" src="assets/BU_title.png" alt="" class="object-contain min-w-32">
+                <img @click="goToHome" src="assets/BU_title.png" alt="" class="object-contain min-w-32 cursor-pointer">
                 <div class="header-2-wrapper flex place-self-center gap-x-5 px-3 min-w-32">
-                    <clientOnly>
+                    <ClientOnly>
                         <div @click="show_user_option" class="hidden name-container md:grid place-items-center text-sky-500 font-semibold text-sm md:text-2xl tracking-widest">
                             Welcome,
                             {{ ifLoggedIn.username }}
                         </div>
-                    </clientOnly>
-                    <div class="absolute top-3 right-0 md:relative md:top-0">
-                       <ClientOnly>
+                        <div class="absolute top-3 right-0 md:relative md:top-0">
                             <div v-if="displayNotif" @click="show_alert_notify" class="notification-container cursor-pointer relative ">
                                 <IconsNotification></IconsNotification>
                                 <div class="notification h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0"></div>
@@ -29,8 +27,13 @@
                                     </div>
                                 </div>
                             </div>
-                       </ClientOnly>
-                    </div>
+                            <div v-if="typeOfUser.userRole === 'admin'" class="admin-logout-btn pt-1">
+                                <div @click="logout" class="btn-wrapper uppercase bg-red-500 p-2 tracking-widest font-semibold rounded-md text-white cursor-pointer hover:bg-red-600">
+                                    Log out
+                                </div>
+                            </div>
+                        </div>
+                    </ClientOnly>
                 </div>
             </div>
         </nav>
@@ -98,10 +101,7 @@
     };
 
     const logout = () => {
-        const pb = usePocketbase();
-        const router = useRouter();
-        pb.authStore.clear();
-        router.push('/');
+        logoutUser()
     };
 
     defineExpose({

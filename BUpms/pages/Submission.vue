@@ -141,8 +141,10 @@
                             </fieldset>
                         </div>
                         <fieldset class="btn-controller grid place-items-center grid-cols-2 py-4 border-2 border-slate-300 rounded-md">
-                            <button @click="submit_doc" class="bg-orange-400 text-white p-2 rounded-lg md:text-2xl font-normal hover:bg-green-500">SUBMIT</button>
-                            <button class="bg-sky-400 text-white p-2 rounded-lg md:text-2xl font-normal hover:bg-red-400">Return</button>    
+                            <button @click="submit_doc" class="bg-sky-400 text-white p-2 rounded-lg md:text-2xl font-normal hover:bg-sky-500">SUBMIT</button>
+                            <nuxt-link to="/client">
+                                <button class="bg-red-300 text-white p-2 rounded-lg md:text-2xl font-normal hover:bg-red-400">Return</button>    
+                            </nuxt-link>    
                         </fieldset>
                     </div>
                 </div>
