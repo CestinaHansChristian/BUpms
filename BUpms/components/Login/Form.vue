@@ -26,14 +26,25 @@
             class="bg-sky-400 rounded-md disabled:bg-slate-300 p-2 w-full text-white text-base font-semibold tracking-widest hover:bg-sky-500">
             Sign in
           </button>
-          <div class="google-function">
-            <div class="label-wrapper text-sm uppercase font-mono tracking-wide md:tracking-widest">
+          <div class="flex justify-center gap-x-2">
+            <hr class="border-b-2 border-slate-300 rounded-xl w-full mt-1.5">
+            <div class="text-wrapper text-xs">
+              OR
+            </div>
+            <hr class="border-b-2 border-slate-300 rounded-xl w-full mt-1.5">
+          </div>
+          <div class="google-function space-y-4">
+            <div class="label-wrapper text-center uppercase font-mono text-xs tracking-wide md:tracking-widest">
               Log in using your account on:
             </div>
             <button @click="googleLogin" class="bg-slate-300 rounded-md p-2 w-full hover:bg-green-500 text-sky-700 hover:text-white">
-              <div class="google-btn-container flex place-content-center">
-                <IconsGoogleIcon></IconsGoogleIcon>
-                <span class=" font-semibold text-base tracking-widest ">Google</span>
+              <div class="google-btn-container flex place-content-center gap-x-2">
+                <div class="google-bg-wrapper bg-slate-50 rounded-full h-9 w-9 grid place-content-center">
+                  <IconsGoogleIcon></IconsGoogleIcon>
+                </div>
+                <div class=" font-semibold text-base tracking-tighter flex pt-2">
+                  Sign in with Google
+                </div>
               </div>
             </button>
           </div>
@@ -93,7 +104,7 @@ const loginFunc = async () => {
     const auth = await pb.collection('Users_tbl').authWithPassword(email, password)
     if (auth) {
       store.setUser(pb.authStore.model)
-      navigateTo(pb.authStore.model?.role === 'student' ? '/client' : pb.authStore.model?.role === 'officer' ? '/officer/projectlist' : pb.authStore.model?.role === 'admin' ? '/admin' : '/');
+      navigateTo(pb.authStore.model?.role === 'student' ? '/client' : pb.authStore.model?.role === 'officer' ? '/officer/projects' : pb.authStore.model?.role === 'admin' ? '/admin' : '/');
     }
   } catch (e) {
     console.log(e);
@@ -105,8 +116,10 @@ const googleLogin = async () => {
   pb.authStore.clear()
   const authData = await pb.collection('Users_tbl').authWithOAuth2({ provider: 'google'}) 
 
+  // google data
   const meta = authData.meta
 
+  // check if new account
   if(meta.isNew) {
     console.log(meta)
     const userName = meta.name
@@ -117,12 +130,13 @@ const googleLogin = async () => {
 
     console.log(authData)
     await pb.collection('Users_tbl').update(authData.record.id,setLoggedInAcc)
+    // by default can only be used on client 
     navigateTo('/client')
-  } else {
+  } else { // redirect to landing page
     if(pb.authStore.model?.role === 'student') {
       navigateTo('/client')
     } else if(pb.authStore.model?.role === 'officer') {
-      navigateTo('/officer/projectlist')
+      navigateTo('/officer/projects')
     } else if (pb.authStore.model?.role === 'admin') {
       navigateTo('/admin')
     } else {

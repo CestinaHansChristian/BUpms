@@ -2,7 +2,7 @@
     <nav class="heading-wrapper flex justify-between">
         <div class="btn-controller flex gap-x-2 md:gap-x-5">
             <div class="heading-wrapper text-xl text-sky-500 font-bold tracking-wider uppercase py-3 md:text-3xl">
-                <nuxt-link to="/officer/projectlist" class="text-lg md:text-2xl">
+                <nuxt-link to="/officer/projects" class="text-lg md:text-2xl">
                     Projects
                 </nuxt-link>
             </div>

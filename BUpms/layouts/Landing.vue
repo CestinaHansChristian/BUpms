@@ -83,7 +83,7 @@
 
     // if bupms logo is clicked go to homescreen
     function goToHome() {
-        return typeOfUser.userRole === 'student' ? navigateTo('/client') : typeOfUser.userRole === 'admin' ? navigateTo('/admin') : typeOfUser.userRole === 'officer' ? navigateTo('/officer/projectlist') : false
+        return typeOfUser.userRole === 'student' ? navigateTo('/client') : typeOfUser.userRole === 'admin' ? navigateTo('/admin') : typeOfUser.userRole === 'officer' ? navigateTo('/officer/projects') : false
     }
 
     // display user option window

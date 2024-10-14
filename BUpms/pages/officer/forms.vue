@@ -56,19 +56,19 @@
                     </div>
                     <div class="btn-controller-wrapper pb-5">
                         <div class="approve-btn-wrapper flex justify-between mx-2 md:mx-5">
-                            <nuxt-link to="/officer/projectlist">
-                                <div class="reject-design-btn bg-orange-400 cursor-pointer hover:bg-orange-600  uppercase px-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl p-1 text-slate-50 tracking-wider">
+                            <nuxt-link to="/officer/projects">
+                                <div class="reject-design-btn bg-orange-400 cursor-pointer hover:bg-orange-600  uppercase p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 text-slate-50 tracking-wider">
                                     Go Back
                                 </div>
                             </nuxt-link>
                            <div class="control-btn flex lg:gap-x-5 gap-x-2">
-                                <nuxt-link to="/track/status/project_name">
-                                    <div @click="approveProposal" class="approve-design-btn uppercase cursor-pointer bg-blue-400 hover:bg-sky-700 text-slate-50 px-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl p-1 hover:text-white tracking-wider">
+                                <nuxt-link to="/officer/project_name">
+                                    <div @click="approveProposal" class="approve-design-btn uppercase cursor-pointer bg-blue-400 hover:bg-sky-700 text-slate-50 p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 hover:text-white tracking-wider">
                                         Approve
                                     </div>
                                 </nuxt-link>
-                                <nuxt-link to="/officer/projectlist">
-                                    <div class="reject-design-btn bg-red-400 cursor-pointer hover:bg-red-700  uppercase px-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl p-1 text-slate-50 tracking-wider">
+                                <nuxt-link to="/officer/projects">
+                                    <div class="reject-design-btn bg-red-400 cursor-pointer hover:bg-red-700  uppercase p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 text-slate-50 tracking-wider">
                                         Reject
                                     </div>
                                 </nuxt-link>

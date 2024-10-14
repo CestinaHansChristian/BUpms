@@ -25,7 +25,7 @@
             </div>
             <div class="flex-wrapper flex shadow-md shadow-gray-500 md:rounded-tl-xl md:rounded-t-xl w-full rounded-bl-xl rounded-br-xl md:w-2/5">
                 <ClientOnly>
-                    <nuxt-link v-if="pb.authStore.model?.role === 'student'" to="/track/status/project_name" class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 place-content-center px-3 text-white font-semibold w-full">
+                    <nuxt-link v-if="pb.authStore.model?.role === 'student'" to="/client/project_name" class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 place-content-center px-3 text-white font-semibold w-full">
                         <div class="btn-label-wrapper flex gap-x-3">
                             <IconsMagnifyingGlass></IconsMagnifyingGlass>
                             View

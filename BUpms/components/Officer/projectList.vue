@@ -30,7 +30,7 @@
             <div class="flex-wrapper flex shadow-md shadow-gray-500 md:rounded-tl-xl md:rounded-t-xl w-full rounded-bl-xl rounded-br-xl md:w-2/5">
                 <ClientOnly>
                     <div class="project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 grid place-content-center px-3 text-white font-semibold w-full md:place-content-center">
-                        <nuxt-link v-if="pb.authStore.model?.role === 'officer'" to="/review/forms" class="gap-x-5 flex p-2">
+                        <nuxt-link v-if="pb.authStore.model?.role === 'officer'" to="/officer/forms" class="gap-x-5 flex p-2">
                             <IconsMagnifyingGlass></IconsMagnifyingGlass>
                             Review
                         </nuxt-link>
