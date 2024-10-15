@@ -2,14 +2,44 @@
     <nav class="heading-wrapper flex justify-between">
         <div class="btn-controller flex gap-x-2 md:gap-x-5">
             <div class="heading-wrapper text-xl text-sky-500 font-bold tracking-wider uppercase py-3 md:text-3xl">
-                <nuxt-link to="/officer/projects" class="text-lg md:text-2xl">
-                    Projects
-                </nuxt-link>
+                <!-- officer 1 -->
+                <div v-if="pb.authStore.model?.role === 'officer1'" class="">
+                    <nuxt-link to="/officer1/projects" class="text-lg md:text-2xl">
+                        Projects
+                    </nuxt-link>
+                </div>
+                <!-- officer 2 -->
+                <div v-if="pb.authStore.model?.role === 'officer2'" class="">
+                    <nuxt-link to="/officer2/projects" class="text-lg md:text-2xl">
+                        Projects
+                    </nuxt-link>
+                </div>
+                <!-- officer 3 -->
+                <div v-if="pb.authStore.model?.role === 'officer3'" class="">
+                    <nuxt-link to="/officer3/projects" class="text-lg md:text-2xl">
+                        Projects
+                    </nuxt-link>
+                </div>
             </div>
             <div class="heading-wrapper text-xl text-sky-500 font-bold tracking-wider uppercase py-3 md:text-3xl">
-                <nuxt-link to="/officer/archive" class="text-lg md:text-2xl">
-                    Archive
-                </nuxt-link>
+                <!-- officer 1 -->
+                <div v-if="pb.authStore.model?.role === 'officer1'" class="">
+                    <nuxt-link to="/officer1/archive" class="text-lg md:text-2xl">
+                        Archive
+                    </nuxt-link>
+                </div>
+                <!-- officer 2 -->
+                <div v-if="pb.authStore.model?.role === 'officer2'" class="">
+                    <nuxt-link to="/officer2/archive" class="text-lg md:text-2xl">
+                        Archive
+                    </nuxt-link>
+                </div>
+                <!-- officer 3 -->
+                <div v-if="pb.authStore.model?.role === 'officer3'" class="">
+                    <nuxt-link to="/officer3/archive" class="text-lg md:text-2xl">
+                        Archive
+                    </nuxt-link>
+                </div>
             </div>
         </div>
         <div @click="logoutOfficer" class="return-btn-wrapper btn-wrapper text-xl text-red-400 font-bold tracking-wider uppercase py-2 grid place-items-center">

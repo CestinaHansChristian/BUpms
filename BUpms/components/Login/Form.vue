@@ -10,8 +10,7 @@
             class="border-2 rounded-md w-72 p-2 tracking-widest placeholder-shown:font-semibold">
         </div>
         <div class="bu-password relative flex ">
-          <input autofocus required :type="isClicked ? 'text' : 'password'" placeholder="PASSWORD"
-            class="w-72 tracking-widest border-2 rounded-md p-2 placeholder-shown:font-semibold" v-model="_password">
+          <input autofocus required :type="isClicked ? 'text' : 'password'" placeholder="PASSWORD" class="w-72 tracking-widest border-2 rounded-md p-2 placeholder-shown:font-semibold" v-model="_password">
           <span @click="eye_icon_enable" class="h-full py-1 absolute right-0 w-14 grid place-content-center">
             <IconsEyeEnable></IconsEyeEnable>
           </span>
@@ -20,7 +19,11 @@
             <IconsEyeDisable></IconsEyeDisable>
           </span>
         </div>
-        <p>{{ error }}</p>
+        <div class="error-handling relative grid place-content-center w-72">
+          <p class="text-center uppercase font-bold text-red-800 tracking-wider">
+            {{error}}
+          </p>
+        </div>
         <div class="bu-btn-container grid gap-2">
           <button @click="loginFunc" type="submit" :disabled="isLoading"
             class="bg-sky-400 rounded-md disabled:bg-slate-300 p-2 w-full text-white text-base font-semibold tracking-widest hover:bg-sky-500">
@@ -93,55 +96,75 @@ const handleEmailChange = (newValue: string) => {
 };
 
 const loginFunc = async () => {
-  isLoading.value = true;
+  isLoading.value = !isLoading.value;
   try {
     const data = loginSchema.safeParse({ email: _email.value, password: _password.value });
     if (data.error) {
       error.value = data.error.flatten().fieldErrors.email?.[0] || data.error.flatten().fieldErrors.password?.[0] || '';
+        const buttonDisable = setTimeout(()=> {
+        isLoading.value = !isLoading.value;
+        error.value = '';
+        clearTimeout(buttonDisable)
+      },2000)
       return;
     }
     const { email, password } = data.data;
     const auth = await pb.collection('Users_tbl').authWithPassword(email, password)
     if (auth) {
       store.setUser(pb.authStore.model)
-      navigateTo(pb.authStore.model?.role === 'student' ? '/client' : pb.authStore.model?.role === 'officer' ? '/officer/projects' : pb.authStore.model?.role === 'admin' ? '/admin' : '/');
+      navigateTo(pb.authStore.model?.role === 'student' ? '/client' : pb.authStore.model?.role === 'officer1' ? '/officer1/projects' : pb.authStore.model?.role === 'admin' ? '/admin' : pb.authStore.model?.role === 'officer2' ? '/officer2/projects' : pb.authStore.model?.role === 'officer3' ? '/officer3/projects' : '/') ;
     }
   } catch (e) {
-    console.log(e);
+    error.value = 'Account does not exist'
+    const buttonDisable = setTimeout(()=> {
+        isLoading.value = !isLoading.value;
+        error.value = '';
+        _email.value = ''
+        _password.value = ''
+        clearTimeout(buttonDisable)
+    },1000)
   }
-  isLoading.value = false;
+  // isLoading.value = !isLoading.value;
 };
 
 const googleLogin = async () => {
-  pb.authStore.clear()
-  const authData = await pb.collection('Users_tbl').authWithOAuth2({ provider: 'google'}) 
+  try {
+    pb.authStore.clear()
+    const authData = await pb.collection('Users_tbl').authWithOAuth2({ provider: 'google'}) 
 
-  // google data
-  const meta = authData.meta
+    // google data
+    const meta = authData.meta
 
-  // check if new account
-  if(meta.isNew) {
-    console.log(meta)
-    const userName = meta.name
-    const setLoggedInAcc = {
-      // 'username': userName,
-      'role': 'student'
-    }
+    // check if new account
+    if(meta.isNew) {
+      console.log(meta)
+      const userName = meta.name
+      const setLoggedInAcc = {
+        // 'username': userName,
+        'role': 'student'
+      }
 
-    console.log(authData)
-    await pb.collection('Users_tbl').update(authData.record.id,setLoggedInAcc)
-    // by default can only be used on client 
-    navigateTo('/client')
-  } else { // redirect to landing page
-    if(pb.authStore.model?.role === 'student') {
+      console.log(authData)
+      await pb.collection('Users_tbl').update(authData.record.id,setLoggedInAcc)
+      // by default can only be used on client 
       navigateTo('/client')
-    } else if(pb.authStore.model?.role === 'officer') {
-      navigateTo('/officer/projects')
-    } else if (pb.authStore.model?.role === 'admin') {
-      navigateTo('/admin')
-    } else {
-      navigateTo('/')
+    } else { // redirect to landing page
+      if(pb.authStore.model?.role === 'student') {
+        navigateTo('/client')
+      } else if(pb.authStore.model?.role === 'officer1') {
+        navigateTo('/officer1/projects')
+      } else if (pb.authStore.model?.role === 'admin') {
+        navigateTo('/admin')
+      } else {
+        navigateTo('/')
+      }
     }
+  } catch (e) {
+    error.value = 'Your email must be Affiliated with bicol-university'
+    const invalidEmail = setTimeout(()=>{
+      error.value = ''
+      clearTimeout(invalidEmail)
+    },2000)
   }
 };
 

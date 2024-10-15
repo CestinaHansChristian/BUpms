@@ -30,17 +30,40 @@
             <div class="flex-wrapper flex shadow-md shadow-gray-500 md:rounded-tl-xl md:rounded-t-xl w-full rounded-bl-xl rounded-br-xl md:w-2/5">
                 <ClientOnly>
                     <div class="project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 grid place-content-center px-3 text-white font-semibold w-full md:place-content-center">
-                        <nuxt-link v-if="pb.authStore.model?.role === 'officer'" to="/officer/forms" class="gap-x-5 flex p-2">
+                        <!-- officer 1 -->
+                        <nuxt-link v-if="pb.authStore.model?.role === 'officer1'" to="/officer1/forms" class="gap-x-5 flex p-2">
                             <IconsMagnifyingGlass></IconsMagnifyingGlass>
                             Review
                         </nuxt-link>
+                        <!-- officer 2 -->
+                        <nuxt-link v-if="pb.authStore.model?.role === 'officer2'" to="/officer2/forms" class="gap-x-5 flex p-2">
+                            <IconsMagnifyingGlass></IconsMagnifyingGlass>
+                            Review
+                        </nuxt-link>
+                        <!-- officer 3 -->
+                        <nuxt-link v-if="pb.authStore.model?.role === 'officer3'" to="/officer3/forms" class="gap-x-5 flex p-2">
+                            <IconsMagnifyingGlass></IconsMagnifyingGlass>
+                            Review
+                        </nuxt-link>
+                        <!-- student -->
                         <nuxt-link v-if="pb.authStore.model?.role === 'student'" to="/track/status/project_name" class="gap-x-5 flex p-2">
                             <IconsMagnifyingGlass></IconsMagnifyingGlass>
                             View
                         </nuxt-link>
                     </div>
                     <div class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
-                        <div v-if="pb.authStore.model?.role === 'officer'" class="gap-x-5 flex md:place-items-center p-2">
+                        <!-- officer 1 -->
+                        <div v-if="pb.authStore.model?.role === 'officer1'" class="gap-x-5 flex md:place-items-center p-2">
+                            <IconsArchieveBox></IconsArchieveBox>
+                            Reject
+                        </div>
+                        <!-- officer 2 -->
+                        <div v-if="pb.authStore.model?.role === 'officer2'" class="gap-x-5 flex md:place-items-center p-2">
+                            <IconsArchieveBox></IconsArchieveBox>
+                            Reject
+                        </div>
+                        <!-- officer 3 -->
+                        <div v-if="pb.authStore.model?.role === 'officer3'" class="gap-x-5 flex md:place-items-center p-2">
                             <IconsArchieveBox></IconsArchieveBox>
                             Reject
                         </div>

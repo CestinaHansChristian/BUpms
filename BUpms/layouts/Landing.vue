@@ -78,12 +78,12 @@
 
     // hides if role is admin / officer
     const displayNotif = computed(()=> {
-        return (typeOfUser.userRole === 'admin') || (typeOfUser.userRole === 'officer') ? false :  true
+        return (typeOfUser.userRole === 'admin') || (typeOfUser.userRole === 'officer1') ||  (typeOfUser.userRole === 'officer2') || (typeOfUser.userRole === 'officer3')? false :  true
     })
 
     // if bupms logo is clicked go to homescreen
     function goToHome() {
-        return typeOfUser.userRole === 'student' ? navigateTo('/client') : typeOfUser.userRole === 'admin' ? navigateTo('/admin') : typeOfUser.userRole === 'officer' ? navigateTo('/officer/projects') : false
+        return typeOfUser.userRole === 'student' ? navigateTo('/client') : typeOfUser.userRole === 'admin' ? navigateTo('/admin') : typeOfUser.userRole === 'officer1' ? navigateTo('/officer1/projects') : typeOfUser.userRole === 'officer2' ? navigateTo('/officer2/projects') : typeOfUser.userRole === 'officer3' ? navigateTo('/officer3/projects') : false
     }
 
     // display user option window
