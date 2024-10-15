@@ -1,8 +1,14 @@
 <script setup>
-    
-    definePageMeta({
-        layout: 'landing'
-    })
+
+const pb = usePocketbase()
+
+const projects = await pb.collection('Projects_tbl').getFullList({
+    sort: '-created'
+})
+
+definePageMeta({
+    layout: 'landing'
+})
 </script>
 <template>
     <div class="h-screen mx-2 lg:container lg:mx-auto">
@@ -18,14 +24,7 @@
         </div>
         <div class="project-list-wrapper space-y-4 h-5/6 overflow-y-scroll py-2 p-2 bg-slate-300 rounded-lg">
             <!-- add project list here -->
-            <ClientProjectList></ClientProjectList>
-            <ClientProjectList></ClientProjectList>
-            <ClientProjectList></ClientProjectList>
-            <ClientProjectList></ClientProjectList>
-            <ClientProjectList></ClientProjectList>
+            <ClientProjectList v-for="project in projects" :key="project.id" :project="project" />
         </div>
     </div>
 </template>
-<script setup>
-    
-</script>

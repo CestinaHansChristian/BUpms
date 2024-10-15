@@ -1,288 +1,238 @@
 <template>
-    <ClientOnly>
-        <Teleport to='#modal'>
-            <div v-if="isModalClicked" class="fixed grid place-items-center h-full w-full  z-10">
-                <div class="wrapper grid place-items-center shadow-md rounded-xl shadow-gray-400 h-64 w-64 md:h-96 md:w-96 bg-slate-50 relative">
-                    <div class="card grid place-items-center gap-y-5">
-                        <div class="card-info grid place-items-center tracking-wider">
-                            <div class="warning-icon">
-                                <IconsWarningIcon></IconsWarningIcon>                              
-                            </div>
-                            <div class="card-top-heading">
-                                Actions here are 
-                                <i class="font-bold text-red-500 text-lg">
-                                    irreversable
-                                </i>
-                            </div>
-                            <div class="bottom-heading text-center">
-                                Are you sure you want to submit?
-                            </div>
-                        </div>
-                        <div class="card-btn-controller flex justify-evenly w-full uppercase font-semibold tracking-widest">
-                            <div @click="confirmSubmit" class="confirm-btn bg-sky-300 p-1 px-5 rounded-md cursor-pointer">Yes</div>
-                            <div @click="close_modal" class="cancel-btn bg-red-300 px-3 p-1 rounded-lg cursor-pointer">Return</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </Teleport>
-        <Teleport to="#modal">
-            <div v-if="isPosted" class="fixed grid place-items-center h-full w-full z-10">
-                <div v-if="inputChecker()" class="wrapper grid place-items-center shadow-md rounded-xl shadow-gray-400 h-64 w-64 md:h-96 md:w-96 bg-slate-50 relative">
-                    <!-- display file name and redirection to homepage client -->
-                    <div  class="card grid place-items-center gap-y-5">
-                        <div class="icon-wrapper">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-6">Submit New Activity</h1>
 
-                        </div>
-                        <div class="description-wrapper">
-                            {{ attachedFile.name }} is Posted
-                        </div>
-                        <div class="information-wrapper">
-                            Redirecting you to Tracking Page
-                        </div>
+        <form @submit.prevent="submit_doc" class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div>
+                        <label for="activityTitle" class="block text-sm font-medium text-gray-700">Title of
+                            Activity</label>
+                        <input v-model="clientActivityTitle" type="text" id="activityTitle" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <p v-if="validationErrors.clientActivityTitle" class="text-red-500 text-sm mt-1">
+                            {{ validationErrors.clientActivityTitle[0] }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                        <textarea v-model="clientDescription" id="description" rows="4" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                        <p v-if="validationErrors.clientDescription" class="text-red-500 text-sm mt-1">
+                            {{ validationErrors.clientDescription[0] }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <label for="whoInput" class="block text-sm font-medium text-gray-700">Who</label>
+                        <input v-model="whoInput" type="text" id="whoInput" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <p v-if="validationErrors.whoInput" class="text-red-500 text-sm mt-1">
+                            {{ validationErrors.whoInput[0] }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <label for="whenInput" class="block text-sm font-medium text-gray-700">When</label>
+                        <input v-model="whenInput" type="date" id="whenInput" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <p v-if="validationErrors.whenInput" class="text-red-500 text-sm mt-1">
+                            {{ validationErrors.whenInput[0] }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label for="eventClassification" class="block text-sm font-medium text-gray-700">Event
+                            Classification</label>
+                        <select v-model="eventClassification" id="eventClassification" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <option value="">Select an Item</option>
+                            <option value="Convention, Seminar, etc.">Convention, Seminar, etc.</option>
+                            <option value="Volunteer Work">Volunteer Work</option>
+                            <option value="Advocacy Project Campaigns">Advocacy Project Campaigns</option>
+                            <option value="Sports Activities">Sports Activities</option>
+                            <option value="Interschool Competitions / Tournaments">Interschool Competitions /
+                                Tournaments</option>
+                            <option value="Culture & Arts Competitions">Culture & Arts Competitions</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        <p v-if="validationErrors.eventClassification" class="text-red-500 text-sm mt-1">
+                            {{ validationErrors.eventClassification[0] }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <label for="contactNumber" class="block text-sm font-medium text-gray-700">Contact
+                            Number</label>
+                        <input v-model="contactNumber" type="number" id="contactNumber" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <p v-if="validationErrors.contactNumber" class="text-red-500 text-sm mt-1">
+                            {{ validationErrors.contactNumber[0] }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end space-x-4">
+                <nuxt-link to="/client"
+                    class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancel</nuxt-link>
+                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modals -->
+    <ClientOnly>
+        <Teleport to="#modal">
+            <div v-if="showConfirmModal"
+                class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white p-6 rounded-lg max-w-sm w-full">
+                    <h2 class="text-xl font-bold mb-4">Confirm Submission</h2>
+                    <p class="mb-4">Are you sure you want to submit this activity?</p>
+                    <div class="flex justify-end space-x-4">
+                        <button @click="showConfirmModal = false"
+                            class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancel</button>
+                        <button @click="confirmSubmission"
+                            class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Confirm</button>
                     </div>
                 </div>
             </div>
         </Teleport>
+
         <Teleport to="#modal">
-            <div v-if="missingFields" class="fixed grid place-items-center h-full w-full z-10">
-                <div class="wrapper grid place-items-center shadow-md rounded-xl shadow-gray-400 h-64 w-64 md:h-96 md:w-96 bg-slate-50 relative">
-                    <!-- missing fields warning display modal -->
-                    <div class="card grid place-items-center gap-y-5">
-                        <div class="icon-wrapper">
-                            <IconsWarningIcon></IconsWarningIcon>
-                        </div>
-                        <div class="description">
-                            Some fields are missing, try again.
-                        </div>
-                    </div>
+            <div v-if="isPosted" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div class="bg-white p-6 rounded-lg max-w-sm w-full text-center">
+                    <IconsDocument class="mx-auto mb-4" />
+                    <p class="mb-2">Your submission has been posted successfully.</p>
+                    <p class="text-sm text-gray-500">Redirecting to Tracking Page...</p>
+                </div>
+            </div>
+        </Teleport>
+
+        <Teleport to="#modal">
+            <div v-if="missingFields" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div class="bg-white p-6 rounded-lg max-w-sm w-full text-center">
+                    <IconsWarningIcon class="mx-auto mb-4" />
+                    <p class="mb-4">Please correct the following errors:</p>
+                    <ul class="text-left list-disc pl-5 mb-4">
+                        <li v-for="(errors, field) in validationErrors" :key="field" class="text-red-500">
+                            {{ errors[0] }}
+                        </li>
+                    </ul>
+                    <button @click="missingFields = false"
+                        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">OK</button>
                 </div>
             </div>
         </Teleport>
     </ClientOnly>
-    <div class="md:space-y-4 overflow-hidden md:container md:mx-auto" :class="{blur: isBlur}">
-        <div class="card-container relative grid place-items-center py-12">
-            <div v-if="hideDefault" class="card-border h-60 w-64 md:w-3/4 md:h-80 grid place-items-center rounded-2xl shadow-gray-400 shadow-inner relative text-sky-600 font-semibold md:text-xl" >
-                <div class="file-upload-wrapper grid place-content-center gap-y-10">
-                    <div class="uploadfile-wrapper grid place-content-center">
-                        <IconsDocument></IconsDocument>
-                    </div>
-                    Select or Drag a File to Upload
-                </div>
-                <input @change="fetchFile" required type="file" name="" id="" class=" cursor-pointer absolute border-2 h-full w-full opacity-0" accept="application/pdf">
-            </div>
-            <div v-if="hideUploadFile" class="card-border h-60 w-64 md:w-3/4 md:h-80 grid place-items-center rounded-2xl shadow-gray-400 shadow-inner relative text-sky-500 font-semibold md:text-xl">
-                <div class="pdf-file-preview-wrapper relative bg-slate-200 px-5 rounded-lg border-2 border-slate-300">
-                    <div @click="removeUploaded" class="remove-btn-wrapper absolute right-0 bg-red-400 text-white rounded-md p-0.5 hover:bg-red-500 cursor-pointer">
-                        <IconsTrashIcon></IconsTrashIcon>
-                    </div>
-                    <div class="">
-                        <img src="assets/pdf_image_prev.png" alt="" class=" h-52 md:w-full">
-                    </div>
-                    <div class="description-wrapper text-center">
-                        {{ attachedFile.name }}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card-container rounded-lg md:mx-5 mx-2 md:space-y-3 py-6">
-            <div class="md:flex md:gap-x-5">
-                <div class="general-info w-full">
-                    <fieldset class="border-2 border-slate-300 rounded-md">
-                        <legend class="text-center font-semibold uppercase tracking-widest">General Information</legend>
-                        <div class="m-2 space-y-6 p-1.5">
-                            <div class="title-of-activity-wrapper mt-2">
-                                <input required v-model="clientActiviyTitle" type="text" name="" id="" class="p-2 size-10 w-full rounded-md shadow-inner shadow-gray-300" placeholder="Title of Activity">
-                            </div>
-                            <div class="when-wrapper">
-                                <input required v-model="clientwhenDateTime" type="text" class="p-2 size-10 w-full rounded-md shadow-inner shadow-gray-300" placeholder="When">
-                            </div>
-                            <div class="where-wrapper">
-                                <input required v-model="clientWho" type="text" class="p-2 size-10 w-full rounded-md shadow-inner shadow-gray-300" placeholder="Who">
-                            </div>
-                            <div class="contact-num-wrapper">
-                                <input required v-model="clientContactNum" type="text" class="p-2 size-10 w-full rounded-md shadow-inner shadow-gray-300" placeholder="Contact No.">
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="classification-wrapper w-full">
-                    <div class="event-classification-wrapper lg:container lg:mx-auto">
-                        <fieldset class="border-2 border-slate-300 rounded-md px-2">
-                            <legend class="text-center font-semibold uppercase tracking-widest">Event classification</legend>
-                            <select v-model="eventClassification" name="" id="" class="p-3 rounded-md text-xs md:text-lg my-3 w-full shadow-inner shadow-gray-300">
-                                <option value="">Select an Item</option>
-                                <option value="Convention, Seminar, etc." class="">Convention, Seminar, etc.</option>
-                                <option value="Volunteer Work" class="">Volunteer Work</option>
-                                <option value="Advocacy Project Campaigns" class="">Advocacy Project Campaigns</option>
-                                <option value="Sports Activities" class="">Sports Activities</option>
-                                <option value="Interschool Competitions / Tournaments" class="">Interschool Competitions / Tournaments</option>
-                                <option value="Culture & Arts Competitions" class="">Culture & Arts Competitions</option>
-                                <option value="Others" class="">Others</option>
-                            </select>
-                        </fieldset>
-                    </div>
-                    <div class="event-classification-wrapper space-y-3">
-                        <div class="doc-type-wrapper">
-                            <fieldset class="border-2 border-slate-300 rounded-md relative px-2">
-                                <legend class="text-center font-semibold uppercase tracking-widest">Document Type</legend>
-                                <select v-model="docType" name="" id="" class="p-3 text-xs md:text-lg rounded-md my-3 w-full shadow-inner shadow-gray-300">
-                                    <option value="">Select an Item</option>
-                                    <option value="Letter to the President" class="">Letter to the President</option>
-                                    <option value="Activity Proposal" class="">Activity Proposal</option>
-                                    <option value="Endorsement from the College Crisis Mgt. Committee" class="">Endorsement from the College Crisis Mgt. Committee</option>
-                                    <option value="List of Participants duly certified officially enrolled" class="">List of Participants duly certified officially enrolled</option>
-                                    <option value="Parent Cosent/ Jurat" class="">Parent Cosent/ Jurat</option>
-                                    <option value="Health Clearance from UHS" class="">Health Clearance from UHS</option>
-                                    <option value="Proof of Insurance Coverage" class="">Proof of Insurance Coverage</option>
-                                    <option value="Designation of Faculty/Personel-in-charge" class="">Designation of Faculty/Personel-in-charge</option>
-                                    <option value="Other Documents approving authority may require" class="">Other Documents approving authority may require</option>   
-                                </select>
-                            </fieldset>
-                        </div>
-                        <fieldset class="btn-controller grid place-items-center grid-cols-2 py-4 border-2 border-slate-300 rounded-md">
-                            <button @click="submit_doc" class="bg-sky-400 text-white p-2 rounded-lg md:text-2xl font-normal hover:bg-sky-500">SUBMIT</button>
-                            <nuxt-link to="/client">
-                                <button class="bg-red-300 text-white p-2 rounded-lg md:text-2xl font-normal hover:bg-red-400">Return</button>    
-                            </nuxt-link>    
-                        </fieldset>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </template>
+
 <script setup>
-    definePageMeta({
-        layout: 'landing'
-    })
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { z } from 'zod'
 
-    let isModalClicked = ref(false)
-    let isBlur =  ref(false)
+const pb = usePocketbase()
+const router = useRouter()
 
-    //warning modal dislay
-    let missingFields = ref(false)
+const clientActivityTitle = ref('')
+const clientDescription = ref('')
+const eventClassification = ref('')
+const whoInput = ref('')
+const whenInput = ref('')
+const contactNumber = ref('')
+const showConfirmModal = ref(false)
+const isPosted = ref(false)
+const missingFields = ref(false)
+const loading = ref(false)
 
-    // for file attachment
-    let attachedFile = ref(null)
-    let isPosted = ref(false)
+const submissionSchema = z.object({
+    clientActivityTitle: z.string().min(1, "Title is required"),
+    clientDescription: z.string().min(1, "Description is required"),
+    eventClassification: z.string().min(1, "Event classification is required"),
+    whoInput: z.string().min(1, "Who is required"),
+    whenInput: z.string().min(1, "When is required"),
+    contactNumber: z.coerce.string({ message: "Not a valid number" }).min(10, "Contact number is required").max(11, "Contact number is required")
+})
 
-    // client added information
-    let clientActiviyTitle = ref('')
-    let clientwhenDateTime = ref('')
-    let clientWho = ref('')
-    let clientContactNum = ref('')
+const validationErrors = ref({})
 
-    // document attachment
-    let docType = ref('')
-    let eventClassification = ref('')
-
-    const hideDefault = computed(()=> {
-        return attachedFile.value ? false : true 
-    }) 
-
-    const hideUploadFile = computed(()=> {
-        return attachedFile.value ? true : false 
-    }) 
-
-    function inputChecker() {
-        if(attachedFile.value != null && clientActiviyTitle.value != '' && clientwhenDateTime.value != '' && clientWho.value != '' && clientContactNum.value != '' && docType != '' && eventClassification != '' ) {
-            console.log('not exist')
-            return true
-        } else {
-            console.log(' exist')
-            return false
+function submit_doc() {
+    try {
+        submissionSchema.parse({
+            clientActivityTitle: clientActivityTitle.value,
+            clientDescription: clientDescription.value,
+            eventClassification: eventClassification.value,
+            whoInput: whoInput.value,
+            whenInput: whenInput.value,
+            contactNumber: contactNumber.value
+        })
+        validationErrors.value = {}
+        showConfirmModal.value = true
+    } catch (error) {
+        if (error instanceof z.ZodError) {
+            validationErrors.value = error.flatten().fieldErrors
+            missingFields.value = true
         }
     }
+}
 
-    // modal confimation function
-    function confirmSubmit() {
-        // success interval display modal
-        isPosted.value = !isPosted.value
-        if(isPosted.value) {
-
-            // auto close modal after 2sec or execute this command after 2sec
-            const counter = setInterval(() => {
-                isPosted.value = !isPosted.value
-                isModalClicked.value = !isModalClicked.value
-                isBlur.value = !isBlur.value
-                missingFields.value = false
-                clearInterval(counter)
-                clientActiviyTitle.value = ''
-                clientwhenDateTime.value = ''
-                clientWho.value = ''
-                clientContactNum.value = ''
-                attachedFile.value = ''
-                docType = ''
-                eventClassification = ''
-                console.log('counter')
-            }, 2000);
-
-            // submit to pocketbase
-            if(inputChecker()) {
-                const createdProject = {
-                'Activity': clientActiviyTitle.value,
-                'When': clientwhenDateTime.value,
-                'Who': clientWho.value ,
-                'ClientContactNum': clientContactNum.value,
-                'File': attachedFile.value,
-                'Document Type': docType,
-                'Event Classification': eventClassification
-                }
-                const redirectTracking = setInterval(() => {
-                    navigateTo('/track/projects')
-                    clearInterval(redirectTracking)
-                }, 2000);
-                console.log(createdProject)
-            } else {
-                warnMissingFields()
-                clientActiviyTitle.value = ''
-                clientwhenDateTime.value = ''
-                clientWho.value = ''
-                clientContactNum.value = ''
-                attachedFile.value = ''
-                docType = ''
-                eventClassification = ''
-                console.log('Fields need to be filled')
-            }
-        } else {
-            console.log('An error occured')
+async function confirmSubmission() {
+    showConfirmModal.value = false
+    isPosted.value = true
+    loading.value = true
+    const createdProject = {
+        "User": pb.authStore.model.id,
+        "Title": clientActivityTitle.value,
+        "When": whenInput.value,
+        "Who": whoInput.value,
+        "Contact_num": contactNumber.value
+    }
+    console.log(createdProject)
+    try {
+        const newProject = await pb.collection('Projects_tbl').create(createdProject, {
+            requestKey: 'createProject'
+        })
+        console.log(newProject)
+        const data = {
+            "Project_id": newProject.id,
+            "Stage1": true,
+            "Stage2": true,
+            "Stage3": true
+        };
+        const relStatus = await pb.collection('Status_tbl').create(data, {
+            requestKey: 'createStatus'
+        })
+        if (!relStatus) {
+            pb.cancelRequest('createProject')
+            pb.cancelRequest('createStatus')
+            await pb.collection('Projects_tbl').delete(newProject.id)
         }
+        const relActivity = await pb.collection('Projects_tbl').update(newProject.id, {
+            "Status": relStatus.id
+        })
+
+
+        setTimeout(() => {
+            loading.value = false
+            router.push('/client/projects')
+        }, 3000)
+    } catch (error) {
+        console.log(error)
     }
 
-    // submit button first modal
-    function submit_doc(e) {
-        isModalClicked.value = !isModalClicked.value 
-        isBlur.value = !isBlur.value
-        console.log(e)
-    }
+    // Redirect after a delay
+}
 
-    // close modal
-    function close_modal(){
-        isBlur.value = !isBlur.value
-        isModalClicked.value = !isModalClicked.value
-    }
+definePageMeta({
+    layout: 'landing'
+})
 
-    // fetch file
-    function fetchFile(event) {
-        attachedFile.value = event.target.files[0]
-        console.log(attachedFile)
-    }
-
-    // remove uploaded file
-    function removeUploaded() {
-        attachedFile.value = null
-        console.log(attachedFile.value)
-    }
-    
-    // error handling for missing field
-    function warnMissingFields() {
-        missingFields.value = !missingFields.value
-    }
 </script>
 
 <style scoped>
-    textarea {
-        resize: none
-    }
+/* ... (keep any existing styles) */
 </style>
