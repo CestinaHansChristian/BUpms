@@ -104,6 +104,8 @@ const loginFunc = async () => {
         const buttonDisable = setTimeout(()=> {
         isLoading.value = !isLoading.value;
         error.value = '';
+        _email.value = '';
+        _password.value = '';
         clearTimeout(buttonDisable)
       },2000)
       return;
