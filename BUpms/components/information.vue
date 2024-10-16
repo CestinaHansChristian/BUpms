@@ -7,17 +7,18 @@ const { organization } = defineProps({
 
 <template>
     <fieldset
-        class="h-full w-full rounded-md grid lg:mx-2 shadow-inner shadow-gray-300 text-slate-700 border-x-2 border-slate-300 ">
-        <legend class="text-center uppercase text-lg font-semibold tracking-widest text-black pt-16 md:pt-0">Information
+        class="h-full w-full rounded-md grid lg:mx-2 shadow-inner shadow-gray-300 text-slate-700 border-x-2 border-slate-300">
+        <legend class="scroll-m-20 text-3xl font-semibold tracking-tight text-center uppercase pt-16 md:pt-0">
+            Information
         </legend>
         <div class="space-y-3 md:space-y-2 p-2 md:text-xl md:mx-3 mx-1">
             <div class="general-info-wrapper space-y-3 md:space-y-2 border-2 p-2 rounded-md bg-slate-200">
                 <div class="project-name-wrapper mx-2 md:space-y-2">
                     <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
-                        Title of Actvity:
+                        Title of Activity:
                     </div>
                     <div
-                        class="project-name-wrapper p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                        class="project-name-wrapper p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
                         {{ organization.Title }}
                     </div>
                 </div>
@@ -26,7 +27,7 @@ const { organization } = defineProps({
                         When
                     </div>
                     <div
-                        class="project-name-wrapper p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                        class="project-name-wrapper p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
                         {{ organization.When }}
                     </div>
                 </div>
@@ -35,7 +36,7 @@ const { organization } = defineProps({
                         Who
                     </div>
                     <div
-                        class="project-name-wrapper p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                        class="project-name-wrapper p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
                         {{ organization.Who }}
                     </div>
                 </div>
@@ -44,7 +45,7 @@ const { organization } = defineProps({
                         Contact num:
                     </div>
                     <div
-                        class="project-name-wrapper p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                        class="project-name-wrapper p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
                         {{ organization.Contact_num }}
                     </div>
                 </div>

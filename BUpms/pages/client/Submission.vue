@@ -16,7 +16,8 @@
                     </div>
 
                     <div>
-                        <label for="description" class="block text-sm font-medium text-gray-700 md:text-xl">Description</label>
+                        <label for="description"
+                            class="block text-sm font-medium text-gray-700 md:text-xl">Description</label>
                         <textarea v-model="clientDescription" id="description" rows="4" required
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-5 resize-none"></textarea>
                         <p v-if="validationErrors.clientDescription" class="text-red-500 text-sm mt-1">
@@ -45,7 +46,8 @@
 
                 <div class="space-y-4">
                     <div>
-                        <label for="eventClassification" class="block text-sm font-medium text-gray-700 md:text-xl">Event
+                        <label for="eventClassification"
+                            class="block text-sm font-medium text-gray-700 md:text-xl">Event
                             Classification</label>
                         <select v-model="eventClassification" id="eventClassification" required
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
@@ -198,9 +200,7 @@ async function confirmSubmission() {
         console.log(newProject)
         const data = {
             "Project_id": newProject.id,
-            "Stage1": true,
-            "Stage2": true,
-            "Stage3": true
+            "stages": "stage1"
         };
         const relStatus = await pb.collection('Status_tbl').create(data, {
             requestKey: 'createStatus'
