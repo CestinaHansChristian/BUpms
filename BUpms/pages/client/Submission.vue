@@ -2,41 +2,41 @@
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold mb-6">Submit New Activity</h1>
 
-        <form @submit.prevent="submit_doc" class="space-y-6">
+        <form @submit.prevent="submit_doc" class="space-y-6 md:h-screen">
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="space-y-4">
                     <div>
-                        <label for="activityTitle" class="block text-sm font-medium text-gray-700">Title of
+                        <label for="activityTitle" class="block text-sm font-medium text-gray-700 md:text-xl">Title of
                             Activity</label>
                         <input v-model="clientActivityTitle" type="text" id="activityTitle" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
                         <p v-if="validationErrors.clientActivityTitle" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.clientActivityTitle[0] }}
                         </p>
                     </div>
 
                     <div>
-                        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                        <label for="description" class="block text-sm font-medium text-gray-700 md:text-xl">Description</label>
                         <textarea v-model="clientDescription" id="description" rows="4" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-5 resize-none"></textarea>
                         <p v-if="validationErrors.clientDescription" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.clientDescription[0] }}
                         </p>
                     </div>
 
                     <div>
-                        <label for="whoInput" class="block text-sm font-medium text-gray-700">Who</label>
+                        <label for="whoInput" class="block text-sm font-medium text-gray-700 md:text-xl">Who</label>
                         <input v-model="whoInput" type="text" id="whoInput" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
                         <p v-if="validationErrors.whoInput" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.whoInput[0] }}
                         </p>
                     </div>
 
                     <div>
-                        <label for="whenInput" class="block text-sm font-medium text-gray-700">When</label>
+                        <label for="whenInput" class="block text-sm font-medium text-gray-700 md:text-xl">When</label>
                         <input v-model="whenInput" type="date" id="whenInput" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
                         <p v-if="validationErrors.whenInput" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.whenInput[0] }}
                         </p>
@@ -45,10 +45,10 @@
 
                 <div class="space-y-4">
                     <div>
-                        <label for="eventClassification" class="block text-sm font-medium text-gray-700">Event
+                        <label for="eventClassification" class="block text-sm font-medium text-gray-700 md:text-xl">Event
                             Classification</label>
                         <select v-model="eventClassification" id="eventClassification" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
                             <option value="">Select an Item</option>
                             <option value="Convention, Seminar, etc.">Convention, Seminar, etc.</option>
                             <option value="Volunteer Work">Volunteer Work</option>
@@ -65,18 +65,17 @@
                     </div>
 
                     <div>
-                        <label for="contactNumber" class="block text-sm font-medium text-gray-700">Contact
+                        <label for="contactNumber" class="block text-sm font-medium text-gray-700 md:text-xl">Contact
                             Number</label>
                         <input v-model="contactNumber" type="number" id="contactNumber" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
                         <p v-if="validationErrors.contactNumber" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.contactNumber[0] }}
                         </p>
                     </div>
                 </div>
             </div>
-
-            <div class="flex justify-end space-x-4">
+            <div class="flex justify-end space-x-4 border-2 border-black">
                 <nuxt-link to="/client"
                     class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancel</nuxt-link>
                 <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Submit</button>
