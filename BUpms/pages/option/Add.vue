@@ -1,7 +1,7 @@
 <template>
     <ClientOnly>
         <teleport to='#modal' >
-            <div v-if="isModalToggle" class="h-screen z-10 w-full fixed grid place-content-center border-2 border-black">
+            <div v-if="isModalToggle" class="h-screen backdrop-blur-md z-10 w-full fixed grid place-content-center border-2 border-black">
                 <div  class=" card-container grid place-content-center bg-slate-200 shadow-md shadow-slate-400 border-2 border-slate-300 h-72 w-60 gap-y-5 rounded-lg md:h-80 md:w-96">
                     <div class="card-heading grid place-content-center">
                         <div class="border-8 border-green-400 rounded-full p-3">
@@ -11,7 +11,7 @@
                         </div>
                     </div>
                     <div class="information-wrapper text-center space-y-5 text-xs tracking-widest md:text-lg">
-                        <div class="card-description text-lg uppercase font-semibold">
+						<div class="card-description text-lg uppercase font-semibold">
                             User added
                         </div>
                         <div class="redirection-notice uppercase text-sm">
@@ -21,8 +21,29 @@
                 </div>
             </div>
         </teleport>
+		<teleport to='#modal' >
+            <div v-if="modalError" class="h-screen backdrop-blur-md z-10 w-full fixed grid place-content-center border-2 border-black">
+                <div  class=" card-container grid place-content-center bg-slate-200 shadow-md shadow-slate-400 border-2 border-slate-300 h-72 w-60 gap-y-5 rounded-lg md:h-80 md:w-96">
+                    <div class="card-heading grid place-content-center">
+                        <div class="border-8 border-red-400 rounded-full p-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="6" stroke="white" class="h-20 w-20 border-red-500 errorDisplay">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+							</svg>
+                        </div>
+                    </div>
+                    <div class="information-wrapper text-center space-y-5 text-xs tracking-widest md:text-lg">
+                        <div class="card-description text-lg uppercase font-semibold">
+                            An error occured existing user conflict
+                        </div>
+                        <div class="redirection-notice uppercase text-sm">
+                            try again
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </teleport>
     </ClientOnly>
-    <div class="bg-slate-200" :class="blurForm">
+    <div class="bg-slate-200">
         <div class="md:h-screen md:grid md:place-items-center md:-my-11 m-4 pb-5">
             <div class="first-row-col md:container shadow-inner shadow-slate-400 rounded-xl space-y-3 pb-5 mb:pb-0">
                 <header class="text-center pt-2 text-base md:py-5 md:text-2xl uppercase tracking-wider font-bold text-slate-700 grid place-content-center">
@@ -80,7 +101,7 @@
                                 </div>
                             </div>
                             <div class="btn-bg-wrapper grid place-content-center md:w-full">
-                                <button type="submit" @click="createUser" class="btn-value bg-orange-400 p-2 rounded-lg border-orange-500 shadow-md text-white uppercase tracking-wider font-semibold cursor-pointer hover:bg-orange-600">
+                                <button type="submit" class="btn-value bg-orange-400 p-2 rounded-lg border-orange-500 shadow-md text-white uppercase tracking-wider font-semibold cursor-pointer hover:bg-orange-600">
                                     Save Changes
                                 </button>
                             </div>
@@ -106,23 +127,7 @@
     const pb = usePocketbase()
     const displayError = ref({})
     const isModalToggle = ref(false)
-
-    // blur effect
-    const bgBlur = reactive({
-        'blur': 100,
-        'active': true
-    })
-
-    // remove blur effect
-    const bgNotBlur = reactive({
-        'blur': 0,
-        'active': true
-    })
-
-
-    const blurForm = computed(()=>{
-        return isModalToggle.value ? bgBlur : bgNotBlur
-    })
+	const modalError = ref(false)
 
     //validation
     const formSchema = zod.object({
@@ -135,7 +140,7 @@
 
     async function createUser() {
         try {
-            const validtedData = formSchema.parse({
+            const validatedData = formSchema.parse({
                 username: username.value,
                 email:email.value,
                 password:password.value,
@@ -143,19 +148,37 @@
                 role:role.value
             })
 
-            if(await pb.collection('Users_tbl').create(validtedData)) {
-                isModalToggle.value = !isModalToggle.value
-                username.value = ''
-                email.value = ''
-                password.value = ''
-                role.value = ''
-                const userAddedPrev = setTimeout(() => {
-                    console.log(`user: ${username} created`)
-                    isModalToggle.value = !isModalToggle.value
-                    clearTimeout(userAddedPrev)
-                }, 2000);
-                navigateTo('/admin')
-            }
+			// check if user already exists
+			if(checkIfuserExists()) {
+				try {
+					// create new user
+					await pb.collection('Users_tbl').create(validatedData)
+					console.log('create new user account')
+					isModalToggle.value = !isModalToggle.value
+					username.value = ''
+					email.value = ''
+					password.value = ''
+					role.value = ''
+					const userAddedPrev = setTimeout(() => {
+						console.log(`user: ${username} created`)
+						isModalToggle.value = !isModalToggle.value
+						clearTimeout(userAddedPrev)
+					}, 2000);
+					navigateTo('/admin')
+				} catch (error) {
+					// if user already exists display error
+					modalError.value = !modalError.value
+					console.log(error,'user already exists')
+					username.value = ''
+					email.value = ''
+					password.value = ''
+					role.value = ''
+					const errorPrev = setTimeout(() => {
+						modalError.value = !modalError.value
+						clearTimeout(errorPrev)
+					},2000)
+				}
+			}
         } catch (error) {
             if(error instanceof zod.ZodError) {
                 displayError.value = error.flatten().fieldErrors
@@ -170,10 +193,23 @@
             }
         }
     }
+
+	// check if user already exists
+	function checkIfuserExists() {
+		if(pb.collection('Users_tbl').getFirstListItem(`username = "${username.value}" || email = "${email.value}"`)) {
+			return true
+		} else {
+			return false
+		}
+	}
 </script>
 
 <style scoped>
     .checkedicon {
         stroke: rgb(120, 218, 75);
     }
+
+	.errorDisplay{
+		stroke: rgb(219, 66, 66)
+	}
 </style>
