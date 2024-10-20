@@ -1,5 +1,25 @@
 <template>
     <ClientOnly>
+        <teleport to='#modal'>
+            <teleport to='#modal' >
+                <div v-if="ifUserDeletedModal" class="h-screen backdrop-blur-md z-10 w-full fixed grid place-content-center border-2 border-black">
+                    <div  class=" card-container grid place-content-center bg-slate-200 shadow-md shadow-slate-400 border-2 border-slate-300 h-72 w-60 gap-y-5 rounded-lg md:h-80 md:w-96">
+                        <div class="card-heading grid place-content-center">
+                            <div class="border-8 border-green-400 rounded-full p-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="6" stroke="green" class="checkedicon h-20 w-20">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg> 
+                            </div>
+                        </div>
+                        <div class="information-wrapper text-center space-y-5 text-xs tracking-widest md:text-lg">
+                            <div class="card-description text-lg uppercase font-semibold">
+                               Success! user {{ userDeletedID }} Deleted
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </teleport>
+        </teleport>
         <!-- {{data.userInfo}} -->
         <div v-for="(user, index) in data.userInfo" :key="index" class="card-wrapper ">
             <div class="card shadow-inner shadow-slate-400 p-2 rounded-md border-y-2 bg-slate-100 md:flex md:justify-between">
@@ -42,13 +62,13 @@
                 </div>
                 <div class="row2 md:flex border-y-2 border-slate-300">
                     <div class="grid place-content-center rounded-b-lg p-5 bg-slate-200 border-slate-300 md:flex md:rounded-e-md md:rounded-s-none md:border-s-0 md:border-2">
-                        <div class="bottom-controller-wrapper flex gap-x-4 md:my-10">
-                            <div class="edit-wrapper bg-sky-500 p-3 uppercase text-white rounded-lg tracking-widest font-semibold place-content-center md:px-3">
+                        <div  class="bottom-controller-wrapper flex gap-x-4 md:my-10">
+                            <button type="submit" @click="editUser(user.id)" class="edit-wrapper bg-sky-500 p-3 uppercase text-white rounded-lg tracking-widest font-semibold place-content-center md:px-3">
                                 edit
-                            </div>
-                            <div class="delete-wrapper bg-red-500 p-3 uppercase text-white rounded-lg tracking-widest font-semibold place-content-center md:px-3">
+                            </button>
+                            <button @click="deleteUser(user.id,user.username)" type="submit" class="delete-wrapper bg-red-500 p-3 uppercase text-white rounded-lg tracking-widest font-semibold place-content-center md:px-3">
                                 delete
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -57,9 +77,32 @@
     </ClientOnly>
 </template>
 <script setup>
+
+    // variables
+    const pb = usePocketbase()
     const data = defineProps({
         userInfo: Array
     })
 
+    let ifUserDeletedModal = ref(false)
+    let userDeletedID = ref('')
+
     console.log(data)
+
+    // edit user
+    function editUser(id) {
+        navigateTo(`/option/${id}/user`)
+    }
+
+    // delete user
+    async function deleteUser(id,username) {
+        userDeletedID.value = username
+        ifUserDeletedModal.value = !ifUserDeletedModal.value
+        await pb.collection('Users_tbl').delete(id)
+        location.reload()
+        const deletedUserModal = setTimeout(() => {
+            ifUserDeletedModal.value = !ifUserDeletedModal.value
+            clearTimeout(deletedUserModal)
+        },2000)
+    }
 </script>
