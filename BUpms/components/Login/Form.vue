@@ -131,36 +131,41 @@ const loginFunc = async () => {
 
 const googleLogin = async () => {
   try {
-    pb.authStore.clear()
+    // pb.authStore.clear()
     const authData = await pb.collection('Users_tbl').authWithOAuth2({ provider: 'google'}) 
 
     // google data
     const meta = authData.meta
 
-    // check if new account
-    if(meta.isNew) {
-      console.log(meta)
-      const userName = meta.name
-      const setLoggedInAcc = {
-        // 'username': userName,
-        'role': 'student'
-      }
+      // check if new account
+      if(meta.isNew) {
+        console.log(meta)
+        const userName = meta.name
+        const setLoggedInAcc = {
+          // 'username': userName,
+          'role': 'student'
+        }
 
-      console.log(authData)
-      await pb.collection('Users_tbl').update(authData.record.id,setLoggedInAcc)
-      // by default can only be used on client 
-      navigateTo('/client')
-    } else { // redirect to landing page
-      if(pb.authStore.model?.role === 'student') {
+        console.log(authData)
+        await pb.collection('Users_tbl').update(authData.record.id,setLoggedInAcc)
+        // by default can only be used on client 
         navigateTo('/client')
-      } else if(pb.authStore.model?.role === 'officer1') {
-        navigateTo('/officer1/projects')
-      } else if (pb.authStore.model?.role === 'admin') {
-        navigateTo('/admin')
-      } else {
-        navigateTo('/')
+      } else { // redirect to landing page
+        if(pb.authStore.model?.role === 'student') {
+          navigateTo('/client')
+        } else if(pb.authStore.model?.role === 'officer1') {
+          navigateTo('/officer1/projects')
+        } else if(pb.authStore.model?.role === 'officer2') {
+          navigateTo('/officer2/projects')
+        } else if(pb.authStore.model?.role === 'officer3') {
+          navigateTo('/officer3/projects')
+        }
+        else if (pb.authStore.model?.role === 'admin') {
+          navigateTo('/admin')
+        } else {
+          navigateTo('/')
+        }
       }
-    }
   } catch (e) {
     error.value = 'Your email must be Affiliated with bicol-university'
     const invalidEmail = setTimeout(()=>{

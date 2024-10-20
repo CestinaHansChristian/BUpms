@@ -1,5 +1,6 @@
 <template>
     <ClientOnly>
+         <!-- modal success  -->
         <teleport to='#modal' >
             <div v-if="isModalToggle" class="h-screen backdrop-blur-md z-10 w-full fixed grid place-content-center border-2 border-black">
                 <div  class=" card-container grid place-content-center bg-slate-200 shadow-md shadow-slate-400 border-2 border-slate-300 h-72 w-60 gap-y-5 rounded-lg md:h-80 md:w-96">
@@ -21,8 +22,9 @@
                 </div>
             </div>
         </teleport>
+         <!-- modal error user exist -->
 		<teleport to='#modal' >
-            <div v-if="modalError" class="h-screen backdrop-blur-md z-10 w-full fixed grid place-content-center border-2 border-black">
+            <div v-if="modalError" class="h-screen backdrop-blur-md z-10 w-full fixed grid place-content-center">
                 <div  class=" card-container grid place-content-center bg-slate-200 shadow-md shadow-slate-400 border-2 border-slate-300 h-72 w-60 gap-y-5 rounded-lg md:h-80 md:w-96">
                     <div class="card-heading grid place-content-center">
                         <div class="border-8 border-red-400 rounded-full p-3">
@@ -37,6 +39,29 @@
                         </div>
                         <div class="redirection-notice uppercase text-sm">
                             try again
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </teleport>
+        <!-- modal invalid email -->
+        <teleport to='#modal' >
+            <div v-if="isInvalidEmail" class="h-screen backdrop-blur-md z-10 w-full fixed grid place-content-center">
+                <div  class=" card-container grid place-content-center bg-slate-200 shadow-md shadow-slate-400 border-2 border-slate-300 h-72 w-60 gap-y-5 rounded-lg md:h-80 md:w-96">
+                    <div class="card-heading grid place-content-center">
+                        <div class="border-8 border-red-400 rounded-full p-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="6" stroke="white" class="h-20 w-20 border-red-500 errorDisplay">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+							</svg>
+                        </div>
+                    </div>
+                    <div class="information-wrapper text-center space-y-5 text-xs tracking-widest md:text-lg">
+						<div class="card-description text-lg uppercase font-semibold text-red-500">
+                            Invalid email format
+                        </div>
+                        <div class="redirection-notice text-sm space-x-2">
+                            <span class="text-red-500">Please use</span> 
+                            <span class="text-slate-800">@bicol-u.edu.ph</span>
                         </div>
                     </div>
                 </div>
@@ -128,6 +153,7 @@
     const displayError = ref({})
     const isModalToggle = ref(false)
 	const modalError = ref(false)
+    const isInvalidEmail = ref(false)
 
     //validation
     const formSchema = zod.object({
@@ -149,7 +175,7 @@
             })
 
 			// check if user already exists
-			if(checkIfuserExists()) {
+			if(checkIfuserExists() && checkifEmailValid()) {
 				try {
 					// create new user
 					await pb.collection('Users_tbl').create(validatedData)
@@ -178,7 +204,17 @@
 						clearTimeout(errorPrev)
 					},2000)
 				}
-			}
+            } else {
+                isInvalidEmail.value = !isInvalidEmail.value
+                username.value = ''
+                email.value = ''
+                password.value = ''
+                role.value = ''
+                const invalidEmailPrev = setTimeout(() => {
+                    isInvalidEmail.value = !isInvalidEmail.value
+                    clearTimeout(invalidEmailPrev)
+                },3000) 
+            }
         } catch (error) {
             if(error instanceof zod.ZodError) {
                 displayError.value = error.flatten().fieldErrors
@@ -197,11 +233,23 @@
 	// check if user already exists
 	function checkIfuserExists() {
 		if(pb.collection('Users_tbl').getFirstListItem(`username = "${username.value}" || email = "${email.value}"`)) {
-			return true
+            return true
 		} else {
 			return false
 		}
 	}
+
+    // check if email is valid
+    function checkifEmailValid() {
+        const regex = /\b@bicol-u\.edu\.ph\b/gi
+        if(email.value.match(regex)) {
+            console.log('has bicol-u email')
+            return true
+        } else {
+            console.log('does not have bicol email')
+            return false
+        }
+    }
 </script>
 
 <style scoped>
