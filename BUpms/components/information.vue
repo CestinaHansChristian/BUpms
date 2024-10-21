@@ -8,7 +8,7 @@ const { organization } = defineProps({
 <template>
     <fieldset
         class="h-full w-full rounded-md grid lg:mx-2 shadow-inner shadow-gray-300 text-slate-700 border-x-2 border-slate-300">
-        <legend class="scroll-m-20 text-3xl font-semibold tracking-tight text-center uppercase pt-16 md:pt-0">
+        <legend class="scroll-m-20 text-xl font-semibold tracking-tight text-center uppercase pt-16 md:pt-0 md:text-2xl">
             Information
         </legend>
         <div class="space-y-3 md:space-y-2 p-2 md:text-xl md:mx-3 mx-1">

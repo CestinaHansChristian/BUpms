@@ -28,14 +28,14 @@ const documentStatus = ref({
                 <TrackingProjectStage :projectStage="project.expand.Status.stages"></TrackingProjectStage>
             </div>
             <div class="project-description">
-                <div v-if="project.expand.Status.stages === 'stage1'" class="w-full my-4 h-fit p-4 border-2 rounded-lg">
-                    <div class="flex justify-between">
-                        <div class="flex flex-col w-full h-full">
-                            <div class="text-xl font-semibold">
-                                Project Created
-                            </div>
+                <div v-if="project.expand.Status.stages === 'stage1'" class=" p-2 rounded-lg backdrop-blur-md">
+                    <div class="flex justify-between ">
+                        <fieldset class="flex flex-col w-full h-full border-2 border-slate-300 rounded-lg shadow-inner">
+                            <legend class="text-xl font-semibold text-center uppercase text-slate-700">
+                                Upload your document/s
+                            </legend>
                             <ClientProjectSubmit />
-                        </div>
+                        </fieldset>
                     </div>
                 </div>
                 <TrackingProjectMeta :organization="project"></TrackingProjectMeta>

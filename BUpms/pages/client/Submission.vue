@@ -1,8 +1,7 @@
 <template>
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-6">Submit New Activity</h1>
-
-        <form @submit.prevent="submit_doc" class="space-y-6 md:h-screen">
+    <div class="px-4 md:grid md:place-content-center md:h-screen ">
+        <form @submit.prevent="submit_doc" class="space-y-6 shadow-inner p-5 shadow-slate-400 rounded-xl pb-5 mb:pb-0 ">
+            <h1 class="text-3xl font-bold mb-6">Submit New Activity</h1>
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="space-y-4">
                     <div>
@@ -18,8 +17,8 @@
                     <div>
                         <label for="description"
                             class="block text-sm font-medium text-gray-700 md:text-xl">Description</label>
-                        <textarea v-model="clientDescription" id="description" rows="4" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-5 resize-none"></textarea>
+                        <textarea v-model="clientDescription" id="description" rows="4" required placeholder="Description"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring placeholder:tracking-wider focus:ring-indigo-200 focus:ring-opacity-50 p-3 resize-none"></textarea>
                         <p v-if="validationErrors.clientDescription" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.clientDescription[0] }}
                         </p>
@@ -77,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex justify-end space-x-4 border-2 border-black">
+            <div class="flex justify-end space-x-4">
                 <nuxt-link to="/client"
                     class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancel</nuxt-link>
                 <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Submit</button>
