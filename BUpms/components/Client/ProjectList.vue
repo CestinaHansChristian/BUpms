@@ -38,7 +38,7 @@ async function rejectProject() {
                             Status:
                         </span>
                         {{ projectStatus.stages === 'stage1' ? "Pending" : projectStatus.stages === 'stage2' ?
-                            "InProgress" : "Completed" }}
+                            "In Progress" : "Completed" }}
                     </div>
                     <div v-if="project.isRejected" class="text-red-600 font-bold">
                         Rejected
@@ -54,14 +54,14 @@ async function rejectProject() {
             <div
                 class="flex-wrapper flex shadow-md shadow-gray-500 md:rounded-tl-xl md:rounded-t-xl w-full rounded-bl-xl rounded-br-xl md:w-2/5">
                 <ClientOnly>
-                    <nuxt-link v-if="pb.authStore.model?.role === 'student'" to="/client/projects/{{ project.id }}"
+                    <nuxt-link v-if="pb.authStore.model?.role === 'student'" :to="'/client/projects/' + project.id"
                         class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 place-content-center px-3 text-white font-semibold w-full">
                         <div class="btn-label-wrapper flex gap-x-3">
                             <IconsMagnifyingGlass></IconsMagnifyingGlass>
                             View
                         </div>
                     </nuxt-link>
-                    <nuxt-link v-if="pb.authStore.model?.role === 'officer'" to="/review/forms/{{ project.id }}"
+                    <nuxt-link v-if="pb.authStore.model?.role === 'officer'" :to="'/review/forms/' + project.id"
                         class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 place-content-center px-3 text-white font-semibold w-full">
                         <div class="btn-label-wrapper flex gap-x-3">
                             <IconsMagnifyingGlass></IconsMagnifyingGlass>
@@ -75,7 +75,7 @@ async function rejectProject() {
                             Cancel
                         </div>
                     </button>
-                    <nuxt-link v-if="pb.authStore.model?.role === 'officer'" to="/review/forms"
+                    <nuxt-link v-if="pb.authStore.model?.role === 'officer'" :to="'/review/forms/' + project.id"
                         class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
                         <div class="btn-label-wrapper flex gap-x-3">
                             <IconsArchieveBox></IconsArchieveBox>

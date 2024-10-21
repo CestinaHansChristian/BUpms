@@ -2,6 +2,10 @@
 // project data
 const { projectStage } = defineProps(['projectStage'])
 
+onMounted(() => {
+    console.log(projectStage)
+})
+
 const isChecked = reactive({
     active: true,
     'bg-sky-400': true,
@@ -13,9 +17,10 @@ const isPending = reactive({
 })
 
 const stageStatus = computed(() => ({
-    stage1: projectStage === 'stage1' || projectStage === 'stage2' || projectStage === 'stage3',
-    stage2: projectStage === 'stage2' || projectStage === 'stage3',
-    stage3: projectStage === 'stage3'
+    stage1: projectStage === 'stage1' || projectStage === 'stage2' || projectStage === 'stage3' || projectStage === 'stage4',
+    stage2: projectStage === 'stage2' || projectStage === 'stage3' || projectStage === 'stage4',
+    stage3: projectStage === 'stage3' || projectStage === 'stage4',
+    stage4: projectStage === 'stage4'
 }))
 
 const isCleared = computed(() => projectStage === 'stage3')
@@ -32,26 +37,29 @@ const isCleared = computed(() => projectStage === 'stage3')
                 </div>
                 <div
                     class="project-stage-description absolute  w-16 md:pt-3 lg:pt-1 md:w-full tracking-tighter md:tracking-wide text-sm md:text-base uppercase md:text-center md:font-semibold">
-                    Received
+                    Project Created
                 </div>
             </div>
             <!-- first status stage one -->
             <div class="circle-stage-one-wrapper z-10 relative md:space-y-3">
                 <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full place-content-center grid">
-                    <div :class="stageStatus.stage1 ? isChecked : isPending"
+                    <div :class="stageStatus.stage2 ? isChecked : isPending"
                         class="circle-inner h-12 w-12 md:h-24 md:w-24 rounded-full grid place-items-center">
-                        <div v-if="stageStatus.stage1" class="display-icon-check">
+                        <div v-if="stageStatus.stage2" class="display-icon-check">
                             <IconsCheckIcon />
+                        </div>
+                        <div v-else class="display-status-icon-x">
+                            <IconsExIcon />
                         </div>
                     </div>
                 </div>
-                <div v-if="stageStatus.stage1"
+                <div v-if="stageStatus.stage2"
                     class="project-stage-description md:ps-0 ps-2 absolute tracking-tighter md:tracking-wide w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
-                    Stage One
+                    Uploaded Documents
                 </div>
                 <div v-else
                     class="project-stage-description md:pe-5 tracking-tighter md:tracking-wide absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
-                    Pending
+                    Upload your Documents
                 </div>
             </div>
             <!-- second status stage two -->
@@ -67,9 +75,9 @@ const isCleared = computed(() => projectStage === 'stage3')
                         </div>
                     </div>
                 </div>
-                <div v-if="stageStatus.stage2"
+                <div v-if="stageStatus.stage3"
                     class="project-stage-description md:ps-0 ps-2 md:pe-5 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
-                    Stage Two
+                    Review Documents
                 </div>
                 <div v-else
                     class="project-stage-description md:pe-5 tracking-tighter md:tracking-wide absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
@@ -89,7 +97,7 @@ const isCleared = computed(() => projectStage === 'stage3')
                         </div>
                     </div>
                 </div>
-                <div v-if="stageStatus.stage3"
+                <div v-if="stageStatus.stage4"
                     class="project-stage-description md:pe-5 md:ps-0 ps-2 absolute w-16 text-sm md:font-semibold md:w-32 uppercase md:text-center md:text-base">
                     Stage Three
                 </div>
