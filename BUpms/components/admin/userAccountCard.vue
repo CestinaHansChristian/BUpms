@@ -24,19 +24,19 @@
             <div class="card shadow-inner shadow-slate-400 p-2 rounded-md border-y-2 bg-slate-100 md:flex md:justify-between">
                 <div class="top-wrapper grid rounded-t-lg border-b-2 md:border-2  md:flex md:w-full border-slate-300 md:rounded-md md:rounded-e-none md:border-e-0">
                     <div class="image-col grid place-content-center py-2 w-full  md:min-w-40 md:w-1/5 bg-slate-300 rounded-s-md">
-                        <div v-if="user.role == 'admin'" class="border bg-orange-300 p-5 rounded-full">
+                        <div v-if="user.role == 'admin'" class="border-2 bg-orange-200 p-5 rounded-full border-orange-600">
                             <IconsUserprofile></IconsUserprofile>
                         </div>
-                        <div v-if="user.role == 'student'" class="border bg-slate-200 p-5 rounded-full">
+                        <div v-if="user.role == 'student'" class="bg-slate-200 p-5 rounded-full border-2 border-slate-600">
                             <IconsUserprofile></IconsUserprofile>
                         </div> 
-                        <div v-if="user.role == 'officer1' || user.role == 'officer2' || user.role == 'officer3'" class="border bg-sky-300 p-5 rounded-full">
+                        <div v-if="user.role == 'officer1' || user.role == 'officer2' || user.role == 'officer3'" class="border-2 border-sky-600 bg-sky-200 p-5 rounded-full">
                             <IconsUserprofile></IconsUserprofile>
                         </div>                           
                     </div>
-                    <div class="description-wrapper w-full gap-y-2 md:mx-10 md:m-5">
-                        <div class="col grid px-2 border-t-2 border-e-2 rounded-md gap-y-4 w-full md:flex md:justify-between md:gap-x-5 md:border-0 md:w-full">
-                            <div class="name-wrapper text-base grid md:grid md:content-center md:text-base">
+                    <div class="description-wrapper w-full gap-y-2 py-3 md:mx-10 md:m-5 lg:flex lg:justify-between">
+                        <div class="col grid px-2 rounded-md gap-y-4 w-full lg:flex lg:justify-between md:gap-x-5 md:border-0 md:w-full">
+                            <div class="name-wrapper text-base md:grid lg:text-xl">
                                 <div class="userName font-semibold">
                                     Username:
                                 </div>
@@ -44,22 +44,20 @@
                                     {{ user.username }}
                                 </div>
                             </div>
-                            <div class="role-wrapper text-base grid gap-x-4  md:grid md:content-center md:text-base">
+                            <div class="email-wrapper text-base md:grid lg:text-xl">
+                                <div class="userRole-wrapper font-semibold lg:text-center">
+                                    Email: 
+                                </div>
+                                <div class="userValue-wrapper">
+                                    {{ user.email }}
+                                </div>
+                            </div>
+                            <div class="role-wrapper text-base grid gap-x-4  md:grid lg:text-xl">
                                 <div class="userRole-wrapper font-semibold">
                                     Role: 
                                 </div>
                                 <div class="userValue-wrapper md:w-full">
                                     {{ user.role }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="email-wrapper px-2 border-e-2 md:border-e-0 py-5">
-                            <div class="role-wrapper text-base grid gap-x-4 md:pt-6 md:text-base">
-                                <div class="userRole-wrapper font-semibold">
-                                    Email: 
-                                </div>
-                                <div class="userValue-wrapper">
-                                    {{ user.email }}
                                 </div>
                             </div>
                         </div>

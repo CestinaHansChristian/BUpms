@@ -4,7 +4,7 @@
       <div class="bu-logo-container grid place-items-center">
         <img src="assets/BU_title.png" alt="" class="object-contain w-60 min-w-40 bu-assets">
       </div>
-      <div class="input-fields-container space-y-3">
+      <form class="input-fields-container space-y-3">
         <div class="bu-email">
           <input autofocus required type="email" placeholder="EMAIL" v-model="_email"
             class="border-2 rounded-md w-72 p-2 tracking-widest placeholder-shown:font-semibold">
@@ -52,7 +52,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </template>

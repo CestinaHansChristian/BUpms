@@ -69,25 +69,18 @@
         </teleport>
     </ClientOnly>
     <div class="bg-slate-200">
-        <div class="md:h-screen md:grid md:place-items-center md:-my-11 m-4 pb-5">
-            <div class="first-row-col md:container shadow-inner shadow-slate-400 rounded-xl space-y-3 pb-5 mb:pb-0">
+        <div class="h-screen grid place-items-center ">
+            <div class="first-row-col shadow-inner shadow-slate-400  rounded-xl space-y-3 p-5 md:mx-5 lg:mx-0">
                 <header class="text-center pt-2 text-base md:py-5 md:text-2xl uppercase tracking-wider font-bold text-slate-700 grid place-content-center">
                     Create User
                 </header>
                 <hr class="border-b-2 border-slate-300">
                 <div @submit.prevent="createUser" class="inputfield md:flex md:gap-x-10 md:mx-10">
                     <div @click="addProfile" class="img-profile-container grid place-content-center">
-                        <div class="img-wrapper bg-slate-100 p-10 rounded-full shadow-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="size-24 md:size-32">
+                        <div class="img-wrapper bg-slate-100 p-10 rounded-3xl shadow-md border-2 border-slate-500/5">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="gray" viewBox="0 0 24 24" stroke-width="1" stroke="gray" class="size-24 md:size-32">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                             </svg>
-                            <div class="absolute top-2 right-6">
-                                <!-- <div class="border bg-slate-300 rounded-full p-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                    </svg> 
-                                </div> -->
-                            </div>  
                         </div>                   
                     </div>
                     <form class="field-wrapper space-y-5 md:py-10 md:w-full md:space-y-5">
@@ -125,9 +118,14 @@
                                     {{displayError.role[0]}}
                                 </div>
                             </div>
-                            <div class="btn-bg-wrapper grid place-content-center md:w-full">
+                            <div class="btn-bg-wrapper flex justify-between md:w-full md:gap-x-3 text-sm mx-2 gap-x-4">
                                 <button type="submit" class="btn-value bg-orange-400 p-2 rounded-lg border-orange-500 shadow-md text-white uppercase tracking-wider font-semibold cursor-pointer hover:bg-orange-600">
                                     Save Changes
+                                </button>
+                                <button class="btn-value bg-slate-400 p-2 rounded-lg  border-orange-500 shadow-md text-white uppercase tracking-wider font-semibold cursor-pointer hover:bg-orange-600">
+                                    <nuxt-link to="/admin">
+                                        Go back
+                                    </nuxt-link>
                                 </button>
                             </div>
                         </div>
@@ -140,6 +138,9 @@
 <script setup>
     definePageMeta({
         layout:'landing'
+    })
+    useHead({
+        title: "Create User"
     })
 
     import * as zod from 'zod'

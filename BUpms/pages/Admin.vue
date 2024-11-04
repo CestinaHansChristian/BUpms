@@ -8,7 +8,7 @@
                     </header>
                 </div>
                 <div class="btn-controller-wrapper mx-1 w-full md:w-auto ">
-                    <nuxt-link to="/option/Add">
+                    <nuxt-link to="/option/add">
                         <div class="add-user-wrapper bg-blue-400 p-3 uppercase text-white rounded-lg tracking-widest font-semibold md:place-content-center hover:bg-blue-500 md:p-5">
                             Add
                         </div>
