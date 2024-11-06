@@ -3,7 +3,8 @@
 const pb = usePocketbase()
 
 const projects = await pb.collection('Projects_tbl').getFullList({
-    sort: '-created'
+    sort: '-created',
+    expand: 'User_tbl'
 })
 
 definePageMeta({
@@ -11,8 +12,13 @@ definePageMeta({
 })
 </script>
 <template>
+<<<<<<< HEAD
     <div class="mx-5">
         <div class="heading-wrapper flex justify-between lg:mx-5">
+=======
+    <div class="mx-2">
+        <div class="heading-wrapper flex justify-between">
+>>>>>>> feature
             <div class="return-btn-wrapper btn-wrapper text-xl text-red-400 font-bold tracking-wider uppercase py-3">
                 <nuxt-link to="/client" class=" md:text-3xl cursor-pointer hover:text-red-600">
                     Go back
@@ -24,7 +30,7 @@ definePageMeta({
         </div>
         <div class="project-list-wrapper space-y-4 overflow-y-scroll h-screen py-2 p-2 bg-slate-300 rounded-lg">
             <!-- add project list here -->
-            <ClientProjectList v-for="project in projects" :key="project.id" :project="project" />
+            <ClientProjectList :project="projects" />
         </div>
     </div>
 </template>
