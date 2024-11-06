@@ -1,10 +1,5 @@
-<script setup lang="ts">
-import GoBackButtonClient from '~/components/Client/GoBackButtonClient.vue';
-</script>
-
 <template>
     <div class="h-screen relative">
-        <GoBackButtonClient></GoBackButtonClient>
         <div class="border-2 border-black grid grid-cols-2">
             <div class="profile-card-image">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, reiciendis.
@@ -15,3 +10,8 @@ import GoBackButtonClient from '~/components/Client/GoBackButtonClient.vue';
         </div>
     </div>
 </template>
+<script setup>
+    definePageMeta({
+        layout: 'landing'
+    })
+</script>
