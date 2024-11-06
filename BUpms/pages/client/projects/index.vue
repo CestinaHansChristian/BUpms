@@ -25,7 +25,7 @@ definePageMeta({
         </div>
         <div class="project-list-wrapper space-y-4 overflow-y-scroll h-screen py-2 p-2 bg-slate-300 rounded-lg ">
             <!-- add project list here -->
-            <ClientProjectList v-for="project in projects" :key="project.id" :project="project" />
+            <ClientProjectList :project="projects" />
         </div>
     </div>
 </template>
