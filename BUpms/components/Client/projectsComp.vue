@@ -1,15 +1,28 @@
 <template>
-    <div v-for="(item, index) in project_info" :key="index" class=" project-quick-status flex place-content-around border-2 border-slate-300 rounded-md bg-slate-100 mx-3">
-        <div class="project-name grid place-items-center p-1 text-slate-500 font-semibold md:text-lg ">
-            {{ item.name }}
-        </div>
-        <div class="project-description grid place-items-center p-1 text-sky-600 font-semibold md:text-xl">
-            {{ item.status }}
-        </div>
+    <div v-for="(item, index) in project_info" :key="index" >
+        <ClientOnly>
+            <div v-if="item.User === pb.authStore.model?.id" class="project-quick-status grid gap-y-2 py-3 place-content-start lg:flex lg:place-content-between border-2 border-slate-300 rounded-md bg-slate-100 mx-3">
+                <div class="project-name grid px-2 text-slate-500 font-semibold md:text-lg capitalize">
+                    <span class="text-sm text-slate-500">Title:</span>{{ item.Title }}
+                </div>
+                <div class="project-description grid px-2 text-sky-600 font-semibold md:text-lg">
+                    <span class="text-sm text-slate-500">Status</span>{{ item.isArchived ? 'Active' : 'Archived' }}
+                </div>
+                <div class="project-description grid px-2 text-sm text-slate-500 font-semibold lg:text-xl">
+                    <span class="text-sm text-slate-500">Date Created:</span>{{  new Date(item.created).toLocaleDateString() }}
+                </div>
+            </div>
+            <div v-else class="">
+                <div v-if="index === 0" class="there-are-no-archive-wrapper grid place-items-center capitalize font-italic p-5 tracking-widest border-2 border-slate-300 rounded-md bg-slate-100 mx-3 text-slate-400 text-base text-center">
+                    you currenly have no project
+                </div>
+            </div>
+        </ClientOnly>
     </div>
 </template>
-<script>
-    export default {
-        props:['project_info']
-    }
+<script setup>
+    defineProps({
+        project_info: Array
+    })
+    const pb = usePocketbase()
 </script>
