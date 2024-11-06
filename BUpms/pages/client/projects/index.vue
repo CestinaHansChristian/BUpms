@@ -12,13 +12,8 @@ definePageMeta({
 })
 </script>
 <template>
-<<<<<<< HEAD
-    <div class="mx-5">
-        <div class="heading-wrapper flex justify-between lg:mx-5">
-=======
     <div class="mx-2">
         <div class="heading-wrapper flex justify-between">
->>>>>>> feature
             <div class="return-btn-wrapper btn-wrapper text-xl text-red-400 font-bold tracking-wider uppercase py-3">
                 <nuxt-link to="/client" class=" md:text-3xl cursor-pointer hover:text-red-600">
                     Go back

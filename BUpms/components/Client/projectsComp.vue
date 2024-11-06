@@ -12,8 +12,8 @@
                     <span class="text-sm text-slate-500">Date Created:</span>{{  new Date(item.created).toLocaleDateString() }}
                 </div>
             </div>
-            <div v-else class="">
-                <div v-if="index === 0" class="there-are-no-archive-wrapper grid place-items-center capitalize font-italic p-5 tracking-widest border-2 border-slate-300 rounded-md bg-slate-100 mx-3 text-slate-400 text-base text-center">
+            <div v-if="project_info.length === 0">
+                <div class="there-are-no-archive-wrapper grid place-items-center capitalize font-italic p-5 tracking-widest border-2 border-slate-300 rounded-md bg-slate-100 mx-3 text-slate-400 text-base text-center">
                     you currently have no project/s yet
                 </div>
             </div>
