@@ -3,7 +3,18 @@
         <div class="header-wrapper sticky top-0 text-white tracking-widest uppercase font-semibold text-2xl text-center bg-blue-300 p-3 rounded-t-xl">
             Recent Projects
         </div>
-        <div class="project-list-container h-72 md:h-screen space-y-2 overflow-y-scroll py-1 bg-slate-200">
+        <div class="relative project-list-container h-72 md:h-screen space-y-2 overflow-y-scroll py-1 bg-slate-200">
+            <div class="sticky hidden top-0 lg:flex lg:justify-between lg:mx-10 font-semibold text-slate-600 bg-slate-200">
+                <div class="project-title-wrapper">
+                    Title
+                </div>
+                <div class="project-status-wrapper">
+                    Status
+                </div>
+                <div class="project-date-created">
+                    Generated
+                </div>
+            </div>
             <ClientProjectsComp :project_info="projects"></ClientProjectsComp>
         </div>
     </div>
