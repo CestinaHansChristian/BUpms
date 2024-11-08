@@ -16,55 +16,58 @@
                 Please ensure all documents are up-to-date and clearly scanned.
             </p>
         </div>
-        <div ref="dropzoneRef" class="border-2 border-slate-300 rounded-lg relative p-4 w-full h-40 md:h-auto">
-            <input type="file" class="absolute top-0 left-0 w-full h-full opacity-0 z-10" multiple
-                @change="manualUpload" />
-            <div :class="[
-                'flex justify-center items-center h-full rounded-lg border-dashed transition-all duration-200',
-                isOverDropZone ? 'border-4 border-blue-500 bg-blue-50' : 'border-2 border-slate-300'
-            ]">
-                <div v-if="confirmUploadFiles.length === 0" class="text-center p-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                    </svg>
-                    <h3 class="mt-2 text-sm font-medium text-gray-900">Drop files here</h3>
-                    <p class="mt-1 text-xs text-gray-500">or click to select files</p>
-                </div>
-                <div v-else
-                    class="w-full p-4 grid gap-4 auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-y-auto max-h-[60vh]">
-                    <div v-for="(file, index) in confirmUploadFiles" :key="index"
-                        class="relative flex items-center p-4 space-x-4 z-20 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                        <div class="flex-shrink-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
+        <div class="w-full h-[50vh] flex flex-col">
+            <div ref="dropzoneRef" class="border-2 border-slate-300 rounded-lg relative flex-grow p-4 w-full h-full">
+                <input type="file" class="absolute top-0 left-0 w-full h-full opacity-0 z-10" multiple
+                    @change="manualUpload" />
+                <div :class="[
+                    'flex justify-center items-center h-full rounded-lg border-dashed transition-all duration-200',
+                    isOverDropZone ? 'border-4 border-blue-500 bg-blue-50' : 'border-2 border-slate-300'
+                ]">
+                    <div v-if="confirmUploadFiles.length === 0" class="text-center p-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900">Drop files here</h3>
+                        <p class="mt-1 text-xs text-gray-500">or click to select files</p>
+                    </div>
+                    <div v-else
+                        class="w-full p-4 grid gap-4 auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-y-auto max-h-[60vh]">
+                        <div v-for="(file, index) in confirmUploadFiles" :key="index"
+                            class="relative flex items-center p-4 space-x-4 z-20 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                            <div class="flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate">
+                                    {{ file.file.name }}
+                                </p>
+                                <p class="text-xs text-gray-500">
+                                    {{ (file.file.size / 1024).toFixed(1) }} KB
+                                </p>
+                            </div>
+                            <button @click="removeFile(index)" @click.prevent="removeFile(index)"
+                                class="flex-shrink-0 p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
                         </div>
-                        <div class="flex-1 min-w-0">
-                            <p class="text-sm font-medium text-gray-900 truncate">
-                                {{ file.file.name }}
-                            </p>
-                            <p class="text-xs text-gray-500">
-                                {{ (file.file.size / 1024).toFixed(1) }} KB
-                            </p>
-                        </div>
-                        <button @click="removeFile(index)"
-                            class="flex-shrink-0 p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
                     </div>
                 </div>
             </div>
+            <button class="bg-blue-500 disabled:brightness-75 mt-4 text-white p-2 rounded-md"
+                :disabled="confirmUploadFiles.length === 0" @click="uploadFiles">Confirm These Files?</button>
         </div>
-        <button @click="console.log(confirmUploadFiles.map(f => f.file))">Log Files</button>
     </div>
     <ClientOnly>
         <Teleport to="#modal">
@@ -76,7 +79,7 @@
                             This process is irreversable!
                         </div>
                         <div class="second-paragraph text-sm">
-                            Are you sure you want to upload these files?
+                            Are you sure you want to include these files?
                         </div>
                     </div>
                     <div
@@ -129,7 +132,10 @@
 
 <script lang="ts" setup>
 
+const { projectId } = defineProps(['projectId'])
+const pb = usePocketbase()
 const dropzoneRef = ref()
+const isLoading = ref(false)
 const initialFiles = ref<{ file: File; documentType: string }[]>([])
 const confirmUploadFiles = ref<{ file: File; documentType: string }[]>([])
 const requiredDocs = ref([
@@ -143,6 +149,12 @@ const requiredDocs = ref([
     { label: 'Cert of Insurance', value: 'insurance' },
     { label: 'Designation of Faculty in-Charge', value: 'faculty_designation' },
 ])
+
+onMounted(() => {
+    console.log(projectId)
+    updateAvailableTypes()
+})
+
 const confirmUpload = ref(false)
 
 const { isOverDropZone } = useDropZone(dropzoneRef, {
@@ -178,7 +190,8 @@ function isDocumentUploaded(docType: string): boolean {
         .some(f => f.documentType === docType);
 }
 
-function onDrop(files: File[]) {
+function onDrop(files: File[] | null, event: DragEvent): void {
+    if (!files) return;
     confirmUpload.value = true
     console.log(initialFiles.value)
     initialFiles.value = files.map(file => ({ file, documentType: '' }))
@@ -195,9 +208,33 @@ function manualUpload(e: Event) {
     const input = e.target as HTMLInputElement
     let files = input.files
     if (files) {
-        onDrop(Array.from(files))
+        onDrop(Array.from(files), new DragEvent('drop'))
     } else {
         console.log('null')
+    }
+}
+
+async function uploadFiles() {
+    // Upload files here
+
+    console.log(confirmUploadFiles.value.map(f => f.file));
+    isLoading.value = true
+    try {
+        for (let file of confirmUploadFiles.value) {
+            await pb.collection('Documents_tbl').create({
+                "Project_rel": projectId,
+                "Doc_type": file.documentType,
+                "Document": file.file
+            })
+        }
+    } catch (error) {
+        console.error(error)
+    } finally {
+        isLoading.value = false
+        confirmUpload.value = false
+        initialFiles.value = []
+        confirmUploadFiles.value = []
+        updateAvailableTypes()
     }
 }
 

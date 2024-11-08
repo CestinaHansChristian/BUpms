@@ -34,7 +34,7 @@ const documentStatus = ref({
                             <legend class="text-xl font-semibold text-center uppercase text-slate-700">
                                 Upload your document/s
                             </legend>
-                            <ClientProjectSubmit />
+                            <ClientProjectSubmit :projectId="route.params.projectId" />
                         </fieldset>
                     </div>
                 </div>
