@@ -1,11 +1,12 @@
 <template>
     <div class="w-full min-h-72 grid md:flex p-1 gap-2 justify-center lg:flex-row">
         <div class="border-2 border-slate-300 rounded-lg p-1 md:p-4 md:w-1/4">
-            <h2 class="scroll-m-20 border-b text-lg pb-2 border-slate-400 md:text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+            <h2
+                class="scroll-m-20 border-b text-lg pb-2 border-slate-400 md:text-3xl font-semibold tracking-tight transition-colors first:mt-0">
                 Required Documents
             </h2>
             <ul class="my-6 ml-3 md:ml-6 list-disc [&>li]:mt-2">
-                <li v-for="doc in requiredDocuments" :key="doc.value" class="flex items-center justify-between">
+                <li v-for="doc in requiredDocs" :key="doc.value" class="flex items-center justify-between">
                     <span>{{ doc.label }}</span>
                     <span v-if="isDocumentUploaded(doc.value)" class="text-green-500">✓</span>
                     <span v-else class="text-red-500">✗</span>
@@ -15,71 +16,95 @@
                 Please ensure all documents are up-to-date and clearly scanned.
             </p>
         </div>
-        <div ref="dropzoneRef" class="border-2 border-slate-300 rounded-lg relative p-4 w-full h-40 md:h-auto">
-            <input :disabled="confirmUploadFiles.length > 0" type="file" class="absolute top-0 left-0 w-full h-full opacity-0 z-10" multiple @change="manualUpload" />
-            <div :class="isOverDropZone ? 'border-4 border-dashed rounded-lg flex justify-center items-center border-blue-500 h-full' : 'border-2 flex border-slate-300 justify-center border-dashed rounded-lg h-full'">
-                <h1 v-if="confirmUploadFiles.length === 0" class="text-xl text-center opacity-50 font-semibold grid place-content-center">
-                    Click or drag files here to upload
-                </h1>
-                <div v-else class="w-full max-h-60 gap-4 p-4 space-y-2 overflow-y-scroll md:grid md:grid-flow-row-dense md:grid-cols-2 grid-rows-3 md:max-h-full ">
-                    <div v-for="(file, index) in confirmUploadFiles" :key="index" class="grid z-10 items-center place-items-center bg-gray-200 rounded-lg relative mt-2 py-3">
-                        <div class="items-center overflow-hidden grid place-content-center">
-                            <div class="icon-container grid place-content-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-8 md:size-16 flex-shrink-0 text-blue-500"
-                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="w-full h-[50vh] flex flex-col">
+            <div ref="dropzoneRef" class="border-2 border-slate-300 rounded-lg relative flex-grow p-4 w-full h-full">
+                <input type="file" class="absolute top-0 left-0 w-full h-full opacity-0 z-10" multiple
+                    @change="manualUpload" />
+                <div :class="[
+                    'flex justify-center items-center h-full rounded-lg border-dashed transition-all duration-200',
+                    isOverDropZone ? 'border-4 border-blue-500 bg-blue-50' : 'border-2 border-slate-300'
+                ]">
+                    <div v-if="confirmUploadFiles.length === 0" class="text-center p-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900">Drop files here</h3>
+                        <p class="mt-1 text-xs text-gray-500">or click to select files</p>
+                    </div>
+                    <div v-else
+                        class="w-full p-4 grid gap-4 auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-y-auto max-h-[60vh]">
+                        <div v-for="(file, index) in confirmUploadFiles" :key="index"
+                            class="relative flex items-center p-4 space-x-4 z-20 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                            <div class="flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
                             </div>
-                            <div class="file-name-wrapper md:text-center">
-                                <span class="truncate text-xs font-semibold">{{ file.file.name }}</span>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate">
+                                    {{ file.file.name }}
+                                </p>
+                                <p class="text-xs text-gray-500">
+                                    {{ (file.file.size / 1024).toFixed(1) }} KB
+                                </p>
                             </div>
+                            <button @click="removeFile(index)" @click.prevent="removeFile(index)"
+                                class="flex-shrink-0 p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
                         </div>
-                        <button @click="removeFile(index)" class="ml-2 text-red-500 hover:text-red-700 absolute top-0 right-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
                     </div>
                 </div>
             </div>
+            <button class="bg-blue-500 disabled:brightness-75 mt-4 text-white p-2 rounded-md"
+                :disabled="confirmUploadFiles.length === 0" @click="uploadFiles">Confirm These Files?</button>
         </div>
     </div>
     <ClientOnly>
         <Teleport to="#modal">
-            <div v-if="confirmUpload" class="w-full h-full fixed bg-black/50 grid place-content-center z-20 backdrop-blur-md">
+            <div v-if="confirmUpload"
+                class="w-full h-full fixed bg-black/50 grid place-content-center z-20 backdrop-blur-md">
                 <div class="card relative bg-white rounded-lg p-2 shadow-lg mx-1 gap-y-3 mt-10">
                     <div class="text-center font-semibold tracking-tight mb-4">
                         <div class="first-paragraph text-red-500 text-xl">
                             This process is irreversable!
                         </div>
                         <div class="second-paragraph text-sm">
-                            Are you sure you want to upload these files?
+                            Are you sure you want to include these files?
                         </div>
                     </div>
-                    <div class="flex flex-col gap-y-3 h-60 w-full overflow-y-auto  md:w-full bg-slate-300 p-2 rounded-lg ">
-                        <div v-for="(fileObj, index) in initialFiles" :key="fileObj.file.name" class="flex w-full md:justify-between bg-gray-100 rounded-md relative">
+                    <div
+                        class="flex flex-col gap-y-3 h-60 w-full overflow-y-auto  md:w-full bg-slate-300 p-2 rounded-lg ">
+                        <div v-for="(fileObj, index) in initialFiles" :key="fileObj.file.name"
+                            class="flex w-full md:justify-between bg-gray-100 rounded-md relative">
                             <div class="doc-info grid place-content-center gap-y-4 p-4">
                                 <div class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-500" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-500"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                     </svg>
                                     <span class="text-sm font-medium">{{ fileObj.file.name }}</span>
                                 </div>
-                                <select v-model="fileObj.documentType" class="w-full"
-                                    @change="updateAvailableTypes">
+                                <select v-model="fileObj.documentType" class="w-full" @change="updateAvailableTypes">
                                     <option value="" disabled>Select document type</option>
-                                    <option v-for="doc in getAllDocumentTypes(fileObj)" :key="doc.value" :value="doc.value" >
-                                        {{ doc.label }}
+                                    <option v-for="doc in getAllDocumentTypes(fileObj)" :key="doc?.value"
+                                        :value="doc?.value">
+                                        {{ doc?.label }}
                                     </option>
                                 </select>
                             </div>
-                            <button @click="removeFile(index)" class="ml-2 text-red-500 hover:text-red-700 absolute top-0 right-0">
+                            <button @click="removeFile(index)"
+                                class="ml-2 text-red-500 hover:text-red-700 absolute top-0 right-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                     fill="currentColor">
                                     <path fill-rule="evenodd"
@@ -107,18 +132,13 @@
 
 <script lang="ts" setup>
 
+const { projectId, submittedDocuments } = defineProps(['projectId', 'submittedDocuments'])
+const pb = usePocketbase()
 const dropzoneRef = ref()
+const isLoading = ref(false)
 const initialFiles = ref<{ file: File; documentType: string }[]>([])
 const confirmUploadFiles = ref<{ file: File; documentType: string }[]>([])
-const confirmUpload = ref(false)
-const { isOverDropZone } = useDropZone(dropzoneRef, {
-    onDrop,
-    dataTypes: ['image/jpeg', 'image/png', 'application/pdf'],
-    multiple: true,
-})
-
-
-const requiredDocuments = [
+const requiredDocs = ref([
     { label: 'JURAT', value: 'jurat' },
     { label: 'Medical Certificate', value: 'medical' },
     { label: 'Endorsement from the CCMC', value: 'endorsement' },
@@ -128,34 +148,59 @@ const requiredDocuments = [
     { label: 'Risk Management Plan', value: 'risk_management' },
     { label: 'Cert of Insurance', value: 'insurance' },
     { label: 'Designation of Faculty in-Charge', value: 'faculty_designation' },
-]
+])
 
-const availableDocumentTypes = ref(requiredDocuments)
+onMounted(() => {
+    console.log(projectId)
+    updateAvailableTypes()
+})
+
+const confirmUpload = ref(false)
+
+const { isOverDropZone } = useDropZone(dropzoneRef, {
+    onDrop,
+    dataTypes: ['image/jpeg', 'image/png', 'application/pdf'],
+    multiple: true,
+})
+
+const availableDocumentTypes = ref(requiredDocs.value)
 
 function getAllDocumentTypes(fileObj: { file: File; documentType: string }) {
-    return [
-        ...availableDocumentTypes.value,
-        ...(fileObj.documentType ? [requiredDocuments.find(doc => doc.value === fileObj.documentType)] : [])
-    ].filter(Boolean);
+    // Get all currently selected document types except the current file's type
+    const selectedTypes = new Set([
+        ...confirmUploadFiles.value.map(f => f.documentType),
+        ...initialFiles.value.map(f => f.documentType),
+        ...(submittedDocuments || []) // Add submitted documents directly
+    ].filter(Boolean));
+
+    // Return available docs that aren't already selected, plus current file's type
+    return requiredDocs.value.filter(doc =>
+        !selectedTypes.has(doc.value) || doc.value === fileObj.documentType
+    );
 }
 
 function updateAvailableTypes() {
-    const uploadedTypes = new Set([...confirmUploadFiles.value, ...initialFiles.value]
-        .map(f => f.documentType)
-        .filter(Boolean));
-    availableDocumentTypes.value = requiredDocuments.filter(doc => !uploadedTypes.has(doc.value));
+    const uploadedTypes = new Set([
+        ...confirmUploadFiles.value.map(f => f.documentType),
+        ...initialFiles.value.map(f => f.documentType),
+        ...(submittedDocuments || []) // Add submitted documents directly
+    ].filter(Boolean));
+
+    availableDocumentTypes.value = requiredDocs.value.filter(doc => !uploadedTypes.has(doc.value));
 }
 
 function isDocumentUploaded(docType: string): boolean {
     return [...confirmUploadFiles.value, ...initialFiles.value]
-        .some(f => f.documentType === docType);
+        .some(f => f.documentType === docType) ||
+        submittedDocuments?.includes(docType);
 }
 
-function onDrop(files: File[]) {
+function onDrop(files: File[] | null, event: DragEvent): void {
+    if (!files) return;
     confirmUpload.value = true
     console.log(initialFiles.value)
     initialFiles.value = files.map(file => ({ file, documentType: '' }))
-    availableDocumentTypes.value = requiredDocuments // Reset available types on drop
+    availableDocumentTypes.value = requiredDocs.value // Reset available types on drop
     if (files[0].type.includes('pdf') || files[0].type.includes('jpeg')) {
         console.log('Valid file type:', files[0].type);
     } else {
@@ -168,9 +213,34 @@ function manualUpload(e: Event) {
     const input = e.target as HTMLInputElement
     let files = input.files
     if (files) {
-        onDrop(files)
+        onDrop(Array.from(files), new DragEvent('drop'))
     } else {
         console.log('null')
+    }
+}
+
+async function uploadFiles() {
+    // Upload files here
+
+    console.log(confirmUploadFiles.value.map(f => f.file));
+    isLoading.value = true
+    try {
+        for (let file of confirmUploadFiles.value) {
+            await pb.collection('Documents_tbl').create({
+                "Project_rel": projectId,
+                "Doc_type": file.documentType,
+                "Document": file.file
+            })
+        }
+    } catch (error) {
+        console.error(error)
+    } finally {
+        isLoading.value = false
+        confirmUpload.value = false
+        initialFiles.value = []
+        confirmUploadFiles.value = []
+        location.reload()
+        updateAvailableTypes()
     }
 }
 
@@ -189,23 +259,20 @@ function confirmUploadFunc() {
 }
 
 function removeFile(index: number) {
+    // Remove from initialFiles
     initialFiles.value.splice(index, 1);
-    confirmUploadFiles.value = confirmUploadFiles.value.splice(index, 1);
-    // filter(f => f.file !== initialFiles.value[index].file)
+
+    // Remove from confirmUploadFiles
+    confirmUploadFiles.value.splice(index, 1);
+
+    // Close modal if no files left
     if (initialFiles.value.length === 0) {
         confirmUpload.value = false;
-        console.log('file removed 1',index)
-        console.log(confirmUploadFiles.value, initialFiles.value)
-    } else {
-        console.log('file removed 2',index)
-        console.log(confirmUploadFiles.value, initialFiles.value)
-        confirmUploadFiles.value = confirmUploadFiles.value.filter(f => f.file !== initialFiles.value[index].file)
     }
-    updateAvailableTypes() // Update available types after removing a file
+
+    updateAvailableTypes();
 }
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
