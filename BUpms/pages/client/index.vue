@@ -9,10 +9,13 @@
     </div>
 </template>
 <script setup>
-    userLandingGreet()
-    definePageMeta({
-        layout: 'landing'
-    })
+const pb = usePocketbase()
+userLandingGreet()
+
+definePageMeta({
+    layout: 'landing',
+    middleware: 'guard'
+})
 </script>
 
 <style scoped>
@@ -30,6 +33,6 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #085b88; 
+    background: #085b88;
 }
 </style>

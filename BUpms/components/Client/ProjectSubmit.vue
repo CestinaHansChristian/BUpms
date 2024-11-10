@@ -132,7 +132,7 @@
 
 <script lang="ts" setup>
 
-const { projectId } = defineProps(['projectId'])
+const { projectId, submittedDocuments } = defineProps(['projectId', 'submittedDocuments'])
 const pb = usePocketbase()
 const dropzoneRef = ref()
 const isLoading = ref(false)
@@ -167,10 +167,11 @@ const availableDocumentTypes = ref(requiredDocs.value)
 
 function getAllDocumentTypes(fileObj: { file: File; documentType: string }) {
     // Get all currently selected document types except the current file's type
-    const selectedTypes = new Set([...confirmUploadFiles.value, ...initialFiles.value]
-        .filter(f => f !== fileObj) // Exclude current file
-        .map(f => f.documentType)
-        .filter(Boolean));
+    const selectedTypes = new Set([
+        ...confirmUploadFiles.value.map(f => f.documentType),
+        ...initialFiles.value.map(f => f.documentType),
+        ...(submittedDocuments || []) // Add submitted documents directly
+    ].filter(Boolean));
 
     // Return available docs that aren't already selected, plus current file's type
     return requiredDocs.value.filter(doc =>
@@ -179,15 +180,19 @@ function getAllDocumentTypes(fileObj: { file: File; documentType: string }) {
 }
 
 function updateAvailableTypes() {
-    const uploadedTypes = new Set([...confirmUploadFiles.value, ...initialFiles.value]
-        .map(f => f.documentType)
-        .filter(Boolean));
+    const uploadedTypes = new Set([
+        ...confirmUploadFiles.value.map(f => f.documentType),
+        ...initialFiles.value.map(f => f.documentType),
+        ...(submittedDocuments || []) // Add submitted documents directly
+    ].filter(Boolean));
+
     availableDocumentTypes.value = requiredDocs.value.filter(doc => !uploadedTypes.has(doc.value));
 }
 
 function isDocumentUploaded(docType: string): boolean {
     return [...confirmUploadFiles.value, ...initialFiles.value]
-        .some(f => f.documentType === docType);
+        .some(f => f.documentType === docType) ||
+        submittedDocuments?.includes(docType);
 }
 
 function onDrop(files: File[] | null, event: DragEvent): void {
@@ -234,6 +239,7 @@ async function uploadFiles() {
         confirmUpload.value = false
         initialFiles.value = []
         confirmUploadFiles.value = []
+        location.reload()
         updateAvailableTypes()
     }
 }

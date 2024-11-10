@@ -8,7 +8,8 @@ const projects = await pb.collection('Projects_tbl').getFullList({
 })
 
 definePageMeta({
-    layout: 'landing'
+    layout: 'landing',
+    middleware: 'guard'
 })
 </script>
 <template>
