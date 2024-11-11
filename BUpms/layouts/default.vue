@@ -4,9 +4,8 @@
         <Footer>
         </Footer>
     </div>
+    <UNotifications />
 </template>
-<script>
-export default {
+<script setup>
 
-}
 </script>

@@ -1,24 +1,39 @@
 <template>
-    <div class="w-full min-h-72 grid md:flex p-1 gap-2 justify-center lg:flex-row">
+    <div v-if="!submittedAllDocs" class="w-full h-full grid md:flex p-1 gap-2 justify-center lg:flex-row">
         <div class="border-2 border-slate-300 rounded-lg p-1 md:p-4 md:w-1/4">
             <h2
                 class="scroll-m-20 border-b text-lg pb-2 border-slate-400 md:text-3xl font-semibold tracking-tight transition-colors first:mt-0">
                 Required Documents
             </h2>
             <ul class="my-6 ml-3 md:ml-6 list-disc [&>li]:mt-2">
-                <li v-for="doc in requiredDocs" :key="doc.value" class="flex items-center justify-between">
-                    <span>{{ doc.label }}</span>
-                    <span v-if="isDocumentUploaded(doc.value)" class="text-green-500">✓</span>
-                    <span v-else class="text-red-500">✗</span>
+                <li v-for="doc in requiredDocs" :key="doc.value"
+                    class="flex items-center justify-between p-2 rounded hover:bg-slate-100">
+                    <div class="flex items-center gap-2">
+                        <span class="font-medium">{{ doc.label }}</span>
+                        <div class="flex gap-1">
+                            <span v-if="submittedDocuments.includes(doc.value)"
+                                class="inline-flex items-center justify-center px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700">
+                                Submitted
+                            </span>
+                            <span v-if="isDocumentUploaded(doc.value)"
+                                class="inline-flex items-center justify-center px-2 py-1 text-xs font-medium rounded-full bg-orange-100 text-orange-700">
+                                Pending
+                            </span>
+                            <span v-if="!submittedDocuments.includes(doc.value) && !isDocumentUploaded(doc.value)"
+                                class="inline-flex items-center justify-center px-2 py-1 text-xs font-medium rounded-full bg-red-100 text-red-700">
+                                Required
+                            </span>
+                        </div>
+                    </div>
                 </li>
             </ul>
             <p class="leading-7 [&:not(:first-child)]:mt-6 italic">
                 Please ensure all documents are up-to-date and clearly scanned.
             </p>
         </div>
-        <div class="w-full h-[50vh] flex flex-col">
+        <div class="w-full min-h-full flex flex-col">
             <div ref="dropzoneRef" class="border-2 border-slate-300 rounded-lg relative flex-grow p-4 w-full h-full">
-                <input type="file" class="absolute top-0 left-0 w-full h-full opacity-0 z-10" multiple
+                <input type="file" class="absolute top-0 left-0 min-w-full min-h-full opacity-0 z-10" multiple
                     @change="manualUpload" />
                 <div :class="[
                     'flex justify-center items-center h-full rounded-lg border-dashed transition-all duration-200',
@@ -52,7 +67,7 @@
                                     {{ (file.file.size / 1024).toFixed(1) }} KB
                                 </p>
                             </div>
-                            <button @click="removeFile(index)" @click.prevent="removeFile(index)"
+                            <button @click="removeFile(index)"
                                 class="flex-shrink-0 p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                     fill="currentColor">
@@ -68,6 +83,10 @@
             <button class="bg-blue-500 disabled:brightness-75 mt-4 text-white p-2 rounded-md"
                 :disabled="confirmUploadFiles.length === 0" @click="uploadFiles">Confirm These Files?</button>
         </div>
+    </div>
+    <div v-else class="w-full h-full grid place-content-center">
+        <h2 class="text-2xl font-semibold text-black">All documents have been submitted!
+        </h2>
     </div>
     <ClientOnly>
         <Teleport to="#modal">
@@ -131,7 +150,6 @@
 </template>
 
 <script lang="ts" setup>
-
 const { projectId, submittedDocuments } = defineProps(['projectId', 'submittedDocuments'])
 const pb = usePocketbase()
 const dropzoneRef = ref()
@@ -149,8 +167,20 @@ const requiredDocs = ref([
     { label: 'Cert of Insurance', value: 'insurance' },
     { label: 'Designation of Faculty in-Charge', value: 'faculty_designation' },
 ])
+const submittedAllDocs = ref(submittedDocuments.length === requiredDocs.value.length)
+const toast = useToast()
 
 onMounted(() => {
+    if (submittedDocuments.length === requiredDocs.value.length) {
+        toast.add({
+            id: 'notify_already_submitted',
+            title: 'Already Submitted All documents',
+            description: 'All required documents have been submitted. Please wait for approval.',
+            icon: 'i-ic-baseline-checklist',
+            color: 'blue',
+            timeout: 5000
+        })
+    }
     console.log(projectId)
     updateAvailableTypes()
 })
@@ -191,8 +221,7 @@ function updateAvailableTypes() {
 
 function isDocumentUploaded(docType: string): boolean {
     return [...confirmUploadFiles.value, ...initialFiles.value]
-        .some(f => f.documentType === docType) ||
-        submittedDocuments?.includes(docType);
+        .some(f => f.documentType === docType)
 }
 
 function onDrop(files: File[] | null, event: DragEvent): void {
@@ -260,10 +289,10 @@ function confirmUploadFunc() {
 
 function removeFile(index: number) {
     // Remove from initialFiles
-    initialFiles.value.splice(index, 1);
+    initialFiles.value = initialFiles.value.filter((_, i) => i !== index);
 
-    // Remove from confirmUploadFiles
-    confirmUploadFiles.value.splice(index, 1);
+    // Remove from confirmUploadFiles 
+    confirmUploadFiles.value = confirmUploadFiles.value.filter((_, i) => i !== index);
 
     // Close modal if no files left
     if (initialFiles.value.length === 0) {

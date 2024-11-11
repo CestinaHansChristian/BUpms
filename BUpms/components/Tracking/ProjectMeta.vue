@@ -1,8 +1,5 @@
 <script setup>
-const { organization } = defineProps({
-    organization: Object,
-    require: true
-})
+const { organization } = defineProps(['organization'])
 
 // return organization name
 const orgName = computed(() => {

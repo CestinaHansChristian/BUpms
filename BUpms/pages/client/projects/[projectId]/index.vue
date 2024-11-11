@@ -48,7 +48,8 @@ const documentStatus = ref({
                         </fieldset>
                     </div>
                 </div>
-                <TrackingProjectMeta :organization="projectData"></TrackingProjectMeta>
+                <TrackingProjectMeta :projectStage="projectStatus.stages" :organization="projectData">
+                </TrackingProjectMeta>
             </div>
         </div>
     </div>

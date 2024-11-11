@@ -46,6 +46,7 @@
         <slot />
     </div>
     <Footer></Footer>
+    <UNotifications />
 </template>
 <style scoped>
 ::-webkit-scrollbar {
@@ -67,7 +68,6 @@
 }
 </style>
 <script setup>
-
 const pb = usePocketbase();
 const alertIsClicked = ref(false);
 const userIsClicked = ref(false)
