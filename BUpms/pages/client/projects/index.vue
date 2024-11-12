@@ -1,11 +1,14 @@
 <script setup>
 
-const pb = usePocketbase()
-
-const projects = await pb.collection('Projects_tbl').getFullList({
+const { data: projects, status, refresh } = useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Projects_tbl').getFullList({
     sort: '-created',
     expand: 'User_tbl'
-})
+}))
+
+// const projects = await pb.collection('Projects_tbl').getFullList({
+//     sort: '-created',
+//     expand: 'User_tbl'
+// })
 
 definePageMeta({
     layout: 'landing',
@@ -24,9 +27,14 @@ definePageMeta({
                 Project List
             </div>
         </div>
-        <div class="project-list-wrapper space-y-4 overflow-y-scroll h-screen py-2 p-2 bg-slate-300 rounded-lg">
+        <div v-if="status === 'success'"
+            class="project-list-wrapper space-y-4 overflow-y-scroll h-screen py-2 p-2 bg-slate-300 rounded-lg">
             <!-- add project list here -->
             <ClientProjectList :project="projects" />
+        </div>
+        <div v-else
+            class="project-list-wrapper space-y-4 overflow-y-scroll h-screen flex justify-center items-center py-2 p-2 bg-slate-300 rounded-lg">
+            <h1>Loading...</h1>
         </div>
     </div>
 </template>

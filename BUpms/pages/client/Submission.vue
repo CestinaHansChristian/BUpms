@@ -1,13 +1,15 @@
 <template>
     <div class="px-4 md:grid md:align-middle">
-        <form @submit.prevent="submit_doc" class=" shadow-inner p-5 border-b-2 border-slate-300 shadow-slate-400 my-10 rounded-xl pb-5 mb:pb-0">
+        <form @submit.prevent="submit_doc"
+            class=" shadow-inner p-5 border-b-2 border-slate-300 shadow-slate-400 my-10 rounded-xl pb-5 mb:pb-0">
             <h1 class="text-3xl font-bold mb-6">Submit New Activity</h1>
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="space-y-4">
                     <div>
                         <label for="activityTitle" class="block text-sm font-medium text-gray-700 md:text-xl">Title of
                             Activity</label>
-                        <input v-model="clientActivityTitle" type="text" id="activityTitle" required class="mt-1 block w-full rounded-md border-gray-200 shadow-md border-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
+                        <input v-model="clientActivityTitle" type="text" id="activityTitle" required
+                            class="mt-1 block w-full rounded-md border-gray-200 shadow-md border-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
                         <p v-if="validationErrors.clientActivityTitle" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.clientActivityTitle[0] }}
                         </p>
@@ -16,7 +18,9 @@
                     <div>
                         <label for="description"
                             class="block text-sm font-medium text-gray-700 md:text-xl">Description</label>
-                        <textarea v-model="clientDescription" id="description" rows="4" required placeholder="Description" class="mt-1 block border-gray-200 shadow-md border-2 w-full rounded-md  focus:border-indigo-300 focus:ring placeholder:tracking-wider focus:ring-indigo-200 focus:ring-opacity-50 p-3 resize-none md:h-72"></textarea>
+                        <textarea v-model="clientDescription" id="description" rows="4" required
+                            placeholder="Description"
+                            class="mt-1 block border-gray-200 shadow-md border-2 w-full rounded-md  focus:border-indigo-300 focus:ring placeholder:tracking-wider focus:ring-indigo-200 focus:ring-opacity-50 p-3 resize-none md:h-72"></textarea>
                         <p v-if="validationErrors.clientDescription" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.clientDescription[0] }}
                         </p>
@@ -74,7 +78,8 @@
                 </div>
             </div>
             <div class="flex justify-end space-x-4 pt-7 md:pt-2">
-                <nuxt-link to="/client" class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancel</nuxt-link>
+                <nuxt-link to="/client"
+                    class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancel</nuxt-link>
                 <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Submit</button>
             </div>
         </form>
@@ -131,7 +136,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { z } from 'zod'
 
-const pb = usePocketbase()
+const { $pb } = useNuxtApp()
 const router = useRouter()
 
 const clientActivityTitle = ref('')
@@ -181,7 +186,7 @@ async function confirmSubmission() {
     isPosted.value = true
     loading.value = true
     const createdProject = {
-        "User": pb.authStore.model.id,
+        "User": $pb.authStore.model.id,
         "Title": clientActivityTitle.value,
         "When": whenInput.value,
         "Who": whoInput.value,
@@ -189,7 +194,7 @@ async function confirmSubmission() {
     }
     console.log(createdProject)
     try {
-        const newProject = await pb.collection('Projects_tbl').create(createdProject, {
+        const newProject = await $pb.collection('Projects_tbl').create(createdProject, {
             requestKey: 'createProject'
         })
         console.log(newProject)
@@ -197,15 +202,15 @@ async function confirmSubmission() {
             "Project_id": newProject.id,
             "stages": "stage1"
         };
-        const relStatus = await pb.collection('Status_tbl').create(data, {
+        const relStatus = await $pb.collection('Status_tbl').create(data, {
             requestKey: 'createStatus'
         })
         if (!relStatus) {
-            pb.cancelRequest('createProject')
-            pb.cancelRequest('createStatus')
-            await pb.collection('Projects_tbl').delete(newProject.id)
+            $pb.cancelRequest('createProject')
+            $pb.cancelRequest('createStatus')
+            await $pb.collection('Projects_tbl').delete(newProject.id)
         }
-        const relActivity = await pb.collection('Projects_tbl').update(newProject.id, {
+        const relActivity = await $pb.collection('Projects_tbl').update(newProject.id, {
             "Status": relStatus.id
         })
 

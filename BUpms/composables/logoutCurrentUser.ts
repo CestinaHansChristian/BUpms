@@ -1,6 +1,8 @@
 // logout user
-const pb = usePocketbase()
-export const logoutUser = () => {
-    pb.authStore.clear()
-    navigateTo('/')
+export const logoutUser = async () => {
+
+    const { $pb } = useNuxtApp()
+
+    $pb.authStore.clear()
+    return await navigateTo('/')
 }

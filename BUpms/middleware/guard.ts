@@ -1,6 +1,10 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
-  const pb = usePocketbase();
-  if (!pb.authStore.model) {
-    await navigateTo("/");
+
+  const { $pb } = useNuxtApp();
+
+  console.log("Model", $pb.authStore.model)
+
+  if ($pb.authStore.model === null) {
+    return await navigateTo("/");
   }
 });

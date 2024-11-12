@@ -9,7 +9,6 @@
     </div>
 </template>
 <script setup>
-const pb = usePocketbase()
 userLandingGreet()
 
 definePageMeta({
