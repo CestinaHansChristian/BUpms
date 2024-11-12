@@ -1,4 +1,8 @@
 <template>
+    <div class="w-fit px-4 py-2 font-bold text-lg text-black bg-white fixed top-0 left-1/2 rounded-b-xl shadow-md z-[100]"
+        v-if="isLoading">
+        Loading {{ progress.toFixed() }}%
+    </div>
     <div class="bg-slate-100">
         <div id="modal"></div>
         <nav class="h-20 p-3 shadow-md flex sticky top-0 bg-slate-100 z-50">
@@ -9,7 +13,7 @@
                         <div @click="show_user_option"
                             class="hidden name-container md:grid place-items-center text-sky-500 font-semibold text-sm md:text-2xl tracking-widest">
                             Welcome,
-                            {{ ifLoggedIn.username }}
+                            {{ $pb.authStore.model?.username }}
                         </div>
                         <div class="absolute top-3 right-0 md:relative md:top-0">
                             <div v-if="displayNotif" @click="show_alert_notify"
@@ -68,19 +72,19 @@
 }
 </style>
 <script setup>
-const pb = usePocketbase();
+const { $pb } = useNuxtApp()
 const alertIsClicked = ref(false);
 const userIsClicked = ref(false)
 
 // get current logged in user role
 const typeOfUser = reactive({
-    userRole: pb.authStore.model?.role
+    userRole: $pb.authStore.model?.role
 })
 
 // do not remove 
-const user = reactive({
-    username: pb.authStore.model
-})
+// const user = reactive({
+//     username: pb.authStore.model
+// })
 
 // hides if role is admin / officer
 const displayNotif = computed(() => {
@@ -96,10 +100,6 @@ function goToHome() {
 const show_user_option = () => {
     userIsClicked.value = !userIsClicked.value
 }
-// username display on top
-const ifLoggedIn = computed(() => {
-    return pb.authStore.model ? user.username : 'Not registered'
-})
 
 // display alert window
 const show_alert_notify = () => {
@@ -109,6 +109,13 @@ const show_alert_notify = () => {
 const logout = () => {
     logoutUser()
 };
+
+const { progress, isLoading, start, finish, clear } = useLoadingIndicator({
+    duration: 1000,
+    throttle: 200,
+    // This is how progress is calculated by default
+    estimatedProgress: (duration, elapsed) => (2 / Math.PI * 100) * Math.atan(elapsed / duration * 100 / 50)
+})
 
 defineExpose({
     alertIsClicked,

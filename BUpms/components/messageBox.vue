@@ -9,10 +9,10 @@
             <UIcon name="i-ic-baseline-refresh" /> Refresh
         </button>
         <div class="comment-content-wrapper mx-2 h-full">
-            <div v-if="status === 'success' && mounted"
+            <div v-if="status === 'success'"
                 class="display-message overflow-y-scroll h-40 md:h-72 bg-slate-300 rounded-md space-y-2 py-1">
                 <div v-for="message of messages">
-                    <div v-if="message.FromUser === pb.authStore.model.id"
+                    <div v-if="message.FromUser === $pb.authStore.model.id"
                         class="from-client-msg-wrapper justify-between gap-x-3 m-1 p-2 bg-slate-100 rounded-md space-y-2">
                         <p class="text-end">You</p>
                         <div class="top-message flex">
@@ -48,7 +48,7 @@
             </div>
             <div v-else
                 class="display-message overflow-y-scroll flex justify-center items-center h-40 md:h-72 bg-slate-300 rounded-md space-y-2 py-1">
-                <h1>Loading...</h1>
+                <h1 class="text-2xl font-bold">Loading...</h1>
             </div>
         </div>
         <div class="send-btn-control grid p-1 rounded-b-lg">
@@ -62,20 +62,19 @@
                 </button>
             </div>
         </div>
-
     </fieldset>
 </template>
 <script setup>
-const store = useMyAuthStoreStore()
 const toast = useToast()
-const pb = usePocketbase()
+
+const { $pb } = useNuxtApp()
+
 const route = useRoute()
-const mounted = ref(false)
 const message = ref("")
 const loading = ref(false)
 
 
-const { data: messages, status, refresh } = useAsyncData(() => pb.collection('Comments_tbl').getFullList({
+const { data: messages, status, refresh } = useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Comments_tbl').getFullList({
     expand: 'ProjectRel',
     filter: `ProjectRel="${route.params.projectId}"`,
     orderBy: 'created_at',
@@ -84,15 +83,16 @@ const { data: messages, status, refresh } = useAsyncData(() => pb.collection('Co
 
 const sendMessage = async () => {
 
+    console.log($pb.authStore.model.id)
     try {
         const data = {
-            "FromUser": pb.authStore.model.id,
+            "FromUser": $pb.authStore.model.id,
             "Message": message.value,
             "ProjectRel": route.params.projectId,
         };
 
         loading.value = true
-        await pb.collection('Comments_tbl').create(data)
+        await $pb.collection('Comments_tbl').create(data)
 
         toast.add({
             id: 'message_success',
@@ -120,22 +120,6 @@ const sendMessage = async () => {
     loading.value = false
 
 }
-
-// const messages = await pb.collection('Comments_tbl').getFullList({
-//     expand: 'ProjectRel',
-//     filter: `ProjectRel="${route.params.projectId}"`,
-//     orderBy: 'created_at',
-//     order: 'asc',
-// })
-
-
-onMounted(() => {
-    setTimeout(() => {
-        mounted.value = true
-        refresh()
-    }, 500)
-})
-
 
 </script>
 <style scoped>

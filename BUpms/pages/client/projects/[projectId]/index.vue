@@ -4,14 +4,20 @@ definePageMeta({
     layout: 'landing',
     middleware: 'guard'
 })
-const pb = usePocketbase()
 const route = useRoute()
 
-const projectStatus = await pb.collection('Status_tbl').getFirstListItem(`Project_id="${route.params.projectId}"`)
+const { data: projectStatus, status, refresh } = await useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Status_tbl').getFirstListItem(`Project_id="${route.params.projectId}"`))
 
-const projectData = await pb.collection('Projects_tbl').getOne(route.params.projectId, {
+// const projectStatus = await pb.collection('Status_tbl').getFirstListItem(`Project_id="${route.params.projectId}"`)
+
+const { data: projectData, status: projectDataStatus, refresh: projectDataRefresh } = await useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Projects_tbl').getOne(route.params.projectId, {
     expand: 'Documents_tbl_via_Project_rel'
-})
+}))
+
+// const projectData = await pb.collection('Projects_tbl').getOne(route.params.projectId, {
+//     expand: 'Documents_tbl_via_Project_rel'
+// })
+
 
 onMounted(async () => {
     console.log(projectData)

@@ -151,7 +151,9 @@
 
 <script lang="ts" setup>
 const { projectId, submittedDocuments } = defineProps(['projectId', 'submittedDocuments'])
-const pb = usePocketbase()
+
+const { $pb } = useNuxtApp()
+
 const dropzoneRef = ref()
 const isLoading = ref(false)
 const initialFiles = ref<{ file: File; documentType: string }[]>([])
@@ -255,7 +257,7 @@ async function uploadFiles() {
     isLoading.value = true
     try {
         for (let file of confirmUploadFiles.value) {
-            await pb.collection('Documents_tbl').create({
+            await $pb.collection('Documents_tbl').create({
                 "Project_rel": projectId,
                 "Doc_type": file.documentType,
                 "Document": file.file

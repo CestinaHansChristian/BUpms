@@ -4,7 +4,7 @@
       <div class="sidebar-container sm:w-1/2 grid h-full sm:h-screen">
         <LoginSideBarLogin />
       </div>
-      <div v-if="!isLoggedIn" class="login-form-container h-screen grid w-full">
+      <div v-if="!$pb.authStore.model" class="login-form-container h-screen grid w-full">
         <LoginForm />
       </div>
       <div v-else
@@ -27,21 +27,21 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
-const pb = usePocketbase()
+const { $pb } = useNuxtApp()
 const router = useRouter()
 const isLoggedIn = ref(false)
 
 onMounted(() => {
-  isLoggedIn.value = !!pb.authStore.model
+  isLoggedIn.value = !!$pb.authStore.model
 })
 
 const navigateToRole = () => {
-  const role = pb.authStore.model?.role || 'client'
+  const role = $pb.authStore.model?.role || 'client'
   router.push(role === 'student' ? '/client' : role === 'admin' ? '/admin' : `/${role}`)
 }
 
 const logout = () => {
-  pb.authStore.clear()
+  $pb.authStore.clear()
   isLoggedIn.value = false
 }
 
