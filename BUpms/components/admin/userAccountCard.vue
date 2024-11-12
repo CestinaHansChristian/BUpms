@@ -82,7 +82,7 @@
 <script setup>
 
     // variables
-    const pb = usePocketbase()
+    const {$pb} = useNuxtApp()
     const { data } = defineProps({
         userInfo: Array
     })
@@ -99,7 +99,7 @@
     async function deleteUser(id,username) {
         userDeletedID.value = username
         ifUserDeletedModal.value = !ifUserDeletedModal.value
-        await pb.collection('Users_tbl').delete(id)
+        await $pb.collection('Users_tbl').delete(id)
         location.reload()
         const deletedUserModal = setTimeout(() => {
             ifUserDeletedModal.value = !ifUserDeletedModal.value

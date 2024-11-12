@@ -150,7 +150,7 @@
     const email = ref('')
     const password = ref('')
     const role = ref('')
-    const pb = usePocketbase()
+    const { $pb } = useNuxtApp()
     const displayError = ref({})
     const isModalToggle = ref(false)
 	const modalError = ref(false)
@@ -179,7 +179,7 @@
 			if(checkIfuserExists() && checkifEmailValid()) {
 				try {
 					// create new user
-					await pb.collection('Users_tbl').create(validatedData)
+					await $pb.collection('Users_tbl').create(validatedData)
 					console.log('create new user account')
 					isModalToggle.value = !isModalToggle.value
 					username.value = ''
@@ -233,7 +233,7 @@
 
 	// check if user already exists
 	function checkIfuserExists() {
-		if(pb.collection('Users_tbl').getFirstListItem(`username = "${username.value}" || email = "${email.value}"`)) {
+		if($pb.collection('Users_tbl').getFirstListItem(`username = "${username.value}" || email = "${email.value}"`)) {
             return true
 		} else {
 			return false

@@ -82,7 +82,7 @@
 </template>
 <script setup>
     // variables 
-    const pb = usePocketbase()
+    const { $pb } = useNuxtApp()
     const route = useRoute()
     userLandingGreet()
     definePageMeta({
@@ -107,7 +107,7 @@
         // get url params
         userID.value = route.params.userID
         try {
-            userNamveValue.value = await pb.collection('Users_tbl').getOne(userID.value)
+            userNamveValue.value = await $pb.collection('Users_tbl').getOne(userID.value)
             displayUser.value = userNamveValue.value.username
             userRole.value = userNamveValue.value.role
         } catch (error) {
@@ -138,7 +138,7 @@
 			if(checkIfUserIDExist()) {
 				try {
 					// create new user
-					await pb.collection('Users_tbl').update(userID.value, validatedData)
+					await $pb.collection('Users_tbl').update(userID.value, validatedData)
 					console.log('Updated user account')
 					username.value = ''
 					password.value = ''
@@ -185,7 +185,7 @@
 
     // check if user already exists
 	function checkIfUserIDExist() {
-		if(pb.collection('Users_tbl').getFirstListItem(`id = "${userID.value}"`)) {
+		if($pb.collection('Users_tbl').getFirstListItem(`id = "${userID.value}"`)) {
             return true
 		} else {
 			return false

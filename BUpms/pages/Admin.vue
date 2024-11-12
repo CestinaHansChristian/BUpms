@@ -18,21 +18,23 @@
                     </nuxt-link>
                 </div>
             </nav>
-            <div class="users-wrapper overflow-y-scroll mx-2 h-screen p-2 bg-slate-200 space-y-4 roundedmd">
+            <div class="users-wrapper overflow-y-scroll mx-2 h-screen p-2 bg-slate-200 space-y-4 rounded-md text-slate-800">
                 <AdminUserAccountCard :userInfo=records></AdminUserAccountCard>
             </div>
         </div>
     </div>
 </template>
 <script setup>
+
 userLandingGreet()
 definePageMeta({
     layout: 'landing',
     middleware: ['guard', 'admin']
 });
 
+const { $pb } = useNuxtApp()
 // pocketbase data 
-const records = await pb.collection('Users_tbl').getFullList({
+const records = await $pb.collection('Users_tbl').getFullList({
 });
 
 </script>

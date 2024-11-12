@@ -117,7 +117,7 @@ const loginFunc = async () => {
     const auth = await $pb.collection('Users_tbl').authWithPassword(email, password)
     if (auth) {
       store.setUser($pb.authStore.model)
-      navigateTo($pb.authStore.model?.role === 'student' ? '/client' : $pb.authStore.model?.role === 'officer1' ? '/officer1/projects' : $pb.authStore.model?.role === 'admin' ? '/admin' : $pb.authStore.model?.role === 'officer2' ? '/officer2/projects' : $pb.authStore.model?.role === 'officer3' ? '/officer3/projects' : '/');
+      navigateTo($pb.authStore.model?.role === 'student' ? '/client' : $pb.authStore.model?.role === 'officer1' ? '/officer1/projects' : $pb.authStore.model?.role === 'admin' ? '/admin' : $pb.authStore.model?.role === 'officer2' ? '/officer2/projects' : '/');
     }
   } catch (e) {
     error.value = 'Account does not exist'

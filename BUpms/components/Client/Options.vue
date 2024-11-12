@@ -68,9 +68,12 @@
     </div>
 </template>
 <script setup>
-
+    const $pb = useNuxtApp()
 const logout = () => {
-    logoutUser()
+    
+    const { $pb } = useNuxtApp()
+    $pb.authStore.clear()
+    navigateTo('/')
 }
 
 </script>

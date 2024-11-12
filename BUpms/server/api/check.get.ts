@@ -1,7 +1,7 @@
-import { usePocketbase } from "~/composables/pocketbase"
+import { useNuxtApp } from "nuxt/app"
 
 export default defineEventHandler(async (event) => {
 
-  const pb = usePocketbase()
-  return pb.authStore.model
+  const { $pb } = useNuxtApp()
+  return $pb.authStore.model
 })

@@ -1,7 +1,7 @@
 <template>
     <div v-for="(item, index) in project_info" :key="index" >
         <ClientOnly>
-            <div v-if="item.User === pb.authStore.model?.id" class="project-quick-status grid gap-y-2 py-3 place-content-start lg:flex lg:place-content-between border-2 border-slate-300 rounded-md bg-slate-100 mx-3">
+            <div v-if="item.User === $pb.authStore.model?.id" class="project-quick-status grid gap-y-2 py-3 place-content-start lg:flex lg:place-content-between border-2 border-slate-300 rounded-md bg-slate-100 mx-3">
                 <div class="project-name grid px-2 text-slate-500 font-semibold md:text-lg capitalize">
                     <span class="text-sm text-slate-500">Title:</span>{{ item.Title }}
                 </div>
@@ -24,5 +24,5 @@
     defineProps({
         project_info: Array
     })
-    const pb = usePocketbase()
+    const {$pb} = useNuxtApp()
 </script>

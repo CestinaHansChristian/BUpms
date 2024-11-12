@@ -40,7 +40,7 @@
     </div>
 </template>
 <script setup>
-    const pb = usePocketbase()
+    const {$pb} = useNuxtApp()
     userLandingGreet()
     definePageMeta({
         layout: 'landing'
@@ -48,6 +48,6 @@
 
     let userProfile = ref([])
     onBeforeMount(() => {
-        userProfile.value = pb.authStore.model
+        userProfile.value = $pb.authStore.model
     })
 </script>

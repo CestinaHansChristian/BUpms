@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import type { AuthModel } from 'pocketbase'
 
-const pb = usePocketbase()
+// const pb = usePocketbase()
 
 export const useMyAuthStoreStore = defineStore('myAuthStoreStore', {
   state: () => ({
