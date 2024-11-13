@@ -32,7 +32,7 @@ const router = useRouter()
 const isLoggedIn = ref(false)
 
 onMounted(() => {
-  isLoggedIn.value = !!$pb.authStore.model
+  isLoggedIn.value = !$pb.authStore.model
 })
 
 const navigateToRole = () => {
@@ -42,7 +42,7 @@ const navigateToRole = () => {
 
 const logout = () => {
   $pb.authStore.clear()
-  isLoggedIn.value = false
+  isLoggedIn.value = !isLoggedIn.value
 }
 
 useHead({
