@@ -5,11 +5,13 @@
                 <div class="project-name grid px-2 text-slate-500 font-semibold md:text-lg capitalize">
                     <span class="text-sm text-slate-500">Title:</span>{{ item.Title }}
                 </div>
-                <div class="project-description grid px-2 text-sky-600 font-semibold md:text-lg">
-                    <span class="text-sm text-slate-500">Status</span>{{ item.isArchived ? 'Archived' : 'Active' }}
+                <div class="project-description grid text-sky-600 font-semibold md:text-lg">
+                    <span class="text-sm text-slate-500 lg:hidden">Status</span>
+                    {{ item.isArchived ? 'Archived' : 'Active' }}
                 </div>
-                <div class="project-description grid px-2 text-sm text-slate-500 font-semibold lg:text-xl">
-                    <span class="text-sm text-slate-500">Date Created:</span>{{  new Date(item.created).toLocaleDateString() }}
+                <div class="project-description grid text-sm text-slate-500 font-semibold lg:text-xl">
+                    <span class="text-sm text-slate-500 lg:hidden">Date Created:</span>
+                    {{  new Date(item.created).toLocaleDateString() }}
                 </div>
             </div>
             <div v-if="project_info.length === 0">
