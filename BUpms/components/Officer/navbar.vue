@@ -3,40 +3,28 @@
         <div class="btn-controller flex gap-x-2 md:gap-x-5">
             <div class="heading-wrapper text-xl text-sky-500 font-bold tracking-wider uppercase py-3 md:text-3xl">
                 <!-- officer 1 -->
-                <div v-if="pb.authStore.model?.role === 'officer1'" class="">
+                <div v-if="$pb.authStore.model?.role === 'officer1'" class="">
                     <nuxt-link to="/officer1/projects" class="text-lg md:text-2xl">
                         Projects
                     </nuxt-link>
                 </div>
                 <!-- officer 2 -->
-                <div v-if="pb.authStore.model?.role === 'officer2'" class="">
+                <div v-if="$pb.authStore.model?.role === 'officer2'" class="">
                     <nuxt-link to="/officer2/projects" class="text-lg md:text-2xl">
-                        Projects
-                    </nuxt-link>
-                </div>
-                <!-- officer 3 -->
-                <div v-if="pb.authStore.model?.role === 'officer3'" class="">
-                    <nuxt-link to="/officer3/projects" class="text-lg md:text-2xl">
                         Projects
                     </nuxt-link>
                 </div>
             </div>
             <div class="heading-wrapper text-xl text-sky-500 font-bold tracking-wider uppercase py-3 md:text-3xl">
                 <!-- officer 1 -->
-                <div v-if="pb.authStore.model?.role === 'officer1'" class="">
+                <div v-if="$pb.authStore.model?.role === 'officer1'" class="">
                     <nuxt-link to="/officer1/archive" class="text-lg md:text-2xl">
                         Archive
                     </nuxt-link>
                 </div>
                 <!-- officer 2 -->
-                <div v-if="pb.authStore.model?.role === 'officer2'" class="">
+                <div v-if="$pb.authStore.model?.role === 'officer2'" class="">
                     <nuxt-link to="/officer2/archive" class="text-lg md:text-2xl">
-                        Archive
-                    </nuxt-link>
-                </div>
-                <!-- officer 3 -->
-                <div v-if="pb.authStore.model?.role === 'officer3'" class="">
-                    <nuxt-link to="/officer3/archive" class="text-lg md:text-2xl">
                         Archive
                     </nuxt-link>
                 </div>
@@ -62,9 +50,10 @@
 </style>
 
 <script setup>
-    const pb = usePocketbase()
+    const { $pb } = useNuxtApp()
     // logout officer
     function logoutOfficer() {
-        logoutUser()
+        $pb.authStore.clear()
+        navigateTo('/')
     }
 </script>

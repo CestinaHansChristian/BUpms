@@ -72,13 +72,6 @@ async function rejectProject() {
                                     View
                                 </div>
                         </nuxt-link>
-                        <nuxt-link v-if="$pb.authStore.model?.role === 'officer'" :to="'/review/forms/' + project.id"
-                                class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 place-content-center px-3 text-white font-semibold w-full">
-                            <div class="btn-label-wrapper flex gap-x-3">
-                                <IconsMagnifyingGlass></IconsMagnifyingGlass>
-                                Review
-                            </div>
-                        </nuxt-link>
                         <button v-if="$pb.authStore.model?.role === 'student'" @click="archiveProject(project.id)"
                                 class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
                             <div class="btn-label-wrapper flex gap-x-3">
@@ -86,13 +79,6 @@ async function rejectProject() {
                                 Cancel
                             </div>
                         </button>
-                        <nuxt-link v-if="$pb.authStore.model?.role === 'officer'" :to="'/review/forms/' + project.id"
-                                class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
-                            <div class="btn-label-wrapper flex gap-x-3">
-                                <IconsArchieveBox></IconsArchieveBox>
-                                Reject
-                            </div>
-                        </nuxt-link>
                     </div>
                 </div>
             </div>
