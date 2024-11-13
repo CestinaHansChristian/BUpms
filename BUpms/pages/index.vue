@@ -45,9 +45,9 @@ const logout = () => {
   isLoggedIn.value = false
 }
 
-// definePageMeta({
-//   middleware: 'auth',
-// })
+useHead({
+  title: "BUpms"
+})
 </script>
 
 <style scoped>

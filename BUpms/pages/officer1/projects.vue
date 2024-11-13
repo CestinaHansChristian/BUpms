@@ -3,9 +3,18 @@
     definePageMeta({
         layout: 'landing'
     })
+
+    const { $pb } = useNuxtApp()
+
+    const {data: fetchProjects} = await useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Projects_tbl').getFullList({
+        sort: '-created',
+        expand: 'User_tbl'
+    }))
     function logout() {
         console.log('close')
     }
+
+    console.log(fetchProjects)
 </script>
 <template>
     <div class="mx-2 overflow-hidden">
@@ -13,20 +22,7 @@
         <div class="history-content-wrapper">
             <div class="project-list-wrapper space-y-4 h-screen overflow-y-scroll py-2 p-2 bg-slate-200 rounded-lg">
                 <!-- add project list here -->
-                <OfficerProjectList></OfficerProjectList>
-                <OfficerProjectList></OfficerProjectList>
-                <OfficerProjectList></OfficerProjectList>
-                <OfficerProjectList></OfficerProjectList>
-                <OfficerProjectList></OfficerProjectList>
-                <OfficerProjectList></OfficerProjectList>
-                <OfficerProjectList></OfficerProjectList>
-                <OfficerProjectList></OfficerProjectList>
-                <OfficerProjectList></OfficerProjectList>
-                <OfficerProjectList></OfficerProjectList>
-                <OfficerProjectList></OfficerProjectList>
-                <OfficerProjectList></OfficerProjectList>
-                <OfficerProjectList></OfficerProjectList>
-                <OfficerProjectList></OfficerProjectList>
+                <OfficerProjectList :project_info="fetchProjects"></OfficerProjectList>
             </div>
         </div>
         <slot></slot>
