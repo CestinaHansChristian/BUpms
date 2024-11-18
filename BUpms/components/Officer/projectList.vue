@@ -33,7 +33,7 @@
                 <ClientOnly>
                     <div class="project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 grid place-content-center px-3 text-white font-semibold w-full md:place-content-center">
                         <!-- officer 1 -->
-                        <nuxt-link v-if="$pb.authStore.model?.role === 'officer1'" :to="'/officer1/' + project.id" class="gap-x-5 flex p-2">
+                        <nuxt-link v-if="$pb.authStore.model?.role === 'officer1'" :to="'/officer1/project/' + project.id" class="gap-x-5 flex p-2">
                             <IconsMagnifyingGlass></IconsMagnifyingGlass>
                             Review
                         </nuxt-link>
