@@ -13,7 +13,7 @@ const isChecked = reactive({
 
 const isPending = reactive({
     active: true,
-    'bg-orange-400': true,
+    'bg-orange-400': true
 })
 
 const stageStatus = computed(() => ({
@@ -28,9 +28,9 @@ const isCleared = computed(() => projectStage === 'stage3')
 </script>
 <template>
     <div class="main-container py-8">
-        <div class="gap-x-2 md:gap-x-5 lg:gap-x-16 space-y-10 relative mx-5 grid place-content-center md:flex md:place-items-center font-medium text-slate-800">
+        <div class="gap-x-2 md:gap-x-5 border-2 border-black lg:gap-x-16 space-y-10 relative mx-5 grid place-content-center md:flex md:place-items-center font-medium text-slate-800">
             <div class="circle-stage-success-wrapper z-10 lg:space-y-2 md:pt-10 grid grid-cols-2 md:flex md:relative">
-                <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid -translate-x-5">
+                <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid ">
                     <div class="circle-inner h-12 w-12 md:h-24 md:w-24 bg-sky-400 rounded-full grid place-items-center">
                         <!-- <IconsDocumentStack></IconsDocumentStack> -->
                          <IconsCheckIcon></IconsCheckIcon>
@@ -44,7 +44,7 @@ const isCleared = computed(() => projectStage === 'stage3')
             </div>
             <!-- first status stage one -->
             <div class="circle-stage-one-wrapper z-10 md:space-y-3 grid grid-cols-2 md:grid-cols-none">
-                <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full place-content-center grid -translate-x-5">
+                <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full place-content-center grid ">
                     <div :class="stageStatus.stage2 ? isChecked : isPending"
                         class="circle-inner h-12 w-12 md:h-24 md:w-24 rounded-full grid place-items-center">
                         <div v-if="stageStatus.stage2" class="display-icon-check">
@@ -65,7 +65,7 @@ const isCleared = computed(() => projectStage === 'stage3')
             </div>
             <!-- second status stage two -->
             <div class="circle-stage-two-wrapper z-10 md:space-y-3 grid grid-cols-2 md:grid-cols-none">
-                <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full place-content-center grid -translate-x-5">
+                <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full place-content-center grid ">
                     <div :class="stageStatus.stage2 ? isChecked : isPending"
                         class="circle-inner h-12 w-12 md:h-24 md:w-24 rounded-full grid place-items-center">
                         <div v-if="stageStatus.stage2" class="display-icon-check">
@@ -88,9 +88,9 @@ const isCleared = computed(() => projectStage === 'stage3')
             </div>
             <!-- third status stage three -->
             <div class="circle-stage-three-wrapper z-10 md:space-y-3 grid grid-cols-2 md:grid-cols-none">
-                <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid -translate-x-5">
+                <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid ">
                     <div :class="stageStatus.stage3 ? isChecked : isPending"
-                        class="circle-inner h-12 w-12 md:h-24 md:w-24 rounded-full grid place-items-center">
+                        class="circle-inner h-12 w-12 md:h-24 md:w-24 rounded-full grid place-items-center ">
                         <div v-if="stageStatus.stage3" class="display-icon-check">
                             <IconsCheckIcon />
                         </div>
@@ -111,7 +111,7 @@ const isCleared = computed(() => projectStage === 'stage3')
             </div>
             <!-- Project Final Status -->
             <div class="circle-stage-approved-wrapper z-10 md:space-y-3 grid grid-cols-2 md:grid-cols-none">
-                <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid -translate-x-5">
+                <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid ">
                     <div :class="isCleared ? 'bg-green-400' : ''"
                         class="circle-inner h-12 w-12 md:h-24 md:w-24 rounded-full grid place-items-center">
                         <div v-if="isCleared" class="display-icon-check">
@@ -132,7 +132,7 @@ const isCleared = computed(() => projectStage === 'stage3')
                     Pending
                 </div>
             </div>
-            <div class="absolute left-1/3 -translate-x-1/4 -translate-y-9 bg-sky-500 h-full w-1 md:h-4 md:w-10/12 rounded-2xl md:translate-y-1/3 md:left-1/2 md:rounded-lg lg:w-8/12 xl:w-7/12"></div>
+            <div class="absolute left-1/3 -translate-x-1/2 -translate-y-10 bg-sky-500 h-full w-1 md:h-4 md:w-10/12 rounded-2xl md:translate-y-1/3 md:left-1/2 md:rounded-lg lg:w-8/12 xl:w-7/12"></div>
         </div>
     </div>
 </template>
