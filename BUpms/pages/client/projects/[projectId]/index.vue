@@ -39,10 +39,10 @@ const documentStatus = ref({
 <template>
     <div class="overflow-hidden lg:container lg:mx-auto">
         <div class="content pt-8 mx-1 relative">
-            <div class="project-icons relative grid grid-rows-2 lg:pt-5 rounded-lg lg:container lg:mx-auto">
+            <div class="project-icons h-screen lg:h-full lg:pt-5 rounded-lg lg:container lg:mx-auto">
                 <TrackingProjectStage :projectStage="projectStatus.stages"></TrackingProjectStage>
             </div>
-            <div class="project-description">
+            <div class="project-description md:pt-10">
                 <div v-if="projectStatus.stages === 'stage1'" class=" p-2 rounded-lg backdrop-blur-md">
                     <div class="flex justify-between ">
                         <fieldset class="flex flex-col w-full h-full border-2 border-slate-300 rounded-lg shadow-inner">
@@ -54,8 +54,10 @@ const documentStatus = ref({
                         </fieldset>
                     </div>
                 </div>
-                <TrackingProjectMeta :projectStage="projectStatus.stages" :organization="projectData">
-                </TrackingProjectMeta>
+                <div class="pages pt-14">
+                    <TrackingProjectMeta :projectStage="projectStatus.stages" :organization="projectData">
+                    </TrackingProjectMeta>
+                </div>
             </div>
         </div>
     </div>
