@@ -100,11 +100,11 @@
             </fieldset>
             <div class="wrapper-two grid gap-4 md:flex md:mx-5 mx-3">
                 <fieldset class="card border-2 rounded-lg shadow-inner shadow-slate-300">
-                    <legend class="text-center text-base font-semibold tracking-widest uppercase">
+                    <legend class="text-center text-base font-semibold tracking-widest uppercase md:text-xl">
                         Client Documents
                     </legend>
                     <div class="card-body mx-2 grid pt-2">
-                        <div class="overflow-wrapper h-40 md:h-96 bg-slate-200 overflow-y-scroll tracking-wider rounded-lg">
+                        <div class="overflow-wrapper h-screen md:max-h-[65vh] bg-slate-200 overflow-y-scroll tracking-wider rounded-lg">
                             <!-- component -->
                             <div v-for="(document, index) in fetchSingleProject.expand.Documents_tbl_via_Project_rel" :key="index" class="file-component document-info-wrapper grid grid-rows-2 rounded-md p-2">
                                 <div class="docu-filename rounded-t-xl ps-2 bg-slate-100 p-3 truncate break-words font-semibold">
@@ -153,22 +153,3 @@
         document.body.removeChild(linkURI)
     }
 </script>
-<style scoped>
-    ::-webkit-scrollbar {
-        width: 12px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background-color: #0369a1;
-        border-radius: 20px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background-color: #7dd3fc;
-        border-radius: 10px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: #0369a1; 
-    }
-</style>

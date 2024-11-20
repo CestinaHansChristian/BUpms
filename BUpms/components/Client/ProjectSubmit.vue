@@ -8,7 +8,7 @@
             <ul class="my-6 ml-3 md:ml-6 list-disc [&>li]:mt-2">
                 <li v-for="doc in requiredDocs" :key="doc.value"
                     class="flex items-center justify-between p-2 rounded hover:bg-slate-100">
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-x-5 md:grid">
                         <span class="font-medium">{{ doc.label }}</span>
                         <div class="flex gap-1">
                             <span v-if="submittedDocuments.includes(doc.value)"

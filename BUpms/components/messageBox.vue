@@ -1,16 +1,16 @@
 <template>
     <fieldset
         class="md:space-y-3 relative text-slate-700 comment-box-wrapper border-x-2 border-slate-300 rounded-md gap-y-2 w-full md:pb-1 shadow-inner shadow-gray-300">
-        <legend class="scroll-m-20 text-xl font-semibold tracking-tight text-center uppercase pt-16 md:pt-0 md:text-2xl">
+        <legend class="scroll-m-20 text-xl font-semibold tracking-widest text-center uppercase pt-16 md:pt-0 md:text-xl">
             Comment Box
         </legend>
-        <button class="w-fit h-fit px-2 flex justify-center items-center mx-2 bg-white border-2 rounded-full"
+        <button class="w-fit h-fit p-1 m-2 flex justify-center items-center mx-2 bg-white border-2 rounded-full"
             @click="refresh">
             <UIcon name="i-ic-baseline-refresh" /> Refresh
         </button>
-        <div class="comment-content-wrapper mx-2 h-full">
+        <div class="comment-content-wrapper mx-2">
             <div v-if="status === 'success'"
-                class="display-message overflow-y-scroll h-screen md:h-72 bg-slate-300 rounded-md space-y-4 py-1">
+                class="display-message overflow-y-scroll h-screen md:max-h-[50vh] bg-slate-300 rounded-md space-y-4 py-1">
                 <div v-for="message of messages">
                     <div v-if="message.FromUser === $pb.authStore.model.id"
                         class="from-client-msg-wrapper justify-between gap-x-3 m-1 p-2 bg-slate-100 rounded-md space-y-2">
@@ -51,7 +51,7 @@
                 <h1 class="text-2xl font-bold">Loading...</h1>
             </div>
         </div>
-        <div class="send-btn-control grid p-1 rounded-b-lg py-5">
+        <div class="send-btn-control grid py-5 rounded-b-lg">
             <div class="text-wrapper flex justify-between gap-x-2 relative md:mx-2">
                 <textarea v-model="message" name="" id=""
                     class="w-full p-3 h-14 tracking-widest border-2 border-slate-300 rounded-xl ps-3 bg-slate-100"
