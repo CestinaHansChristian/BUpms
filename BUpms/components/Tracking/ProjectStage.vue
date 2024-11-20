@@ -56,9 +56,13 @@ const isCleared = computed(() => projectStage === 'stage4')
         <div class="gap-x-2 md:gap-x-5 lg:gap-x-16 space-y-10 mx-5 relative place-content-center md:flex md:place-items-center font-medium text-slate-800">
             <div class="circle-stage-success-wrapper z-10 lg:space-y-2 md:pt-10 grid grid-cols-2 md:flex md:relative">
                 <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid ">
-                    <div class="circle-inner h-12 w-12 md:h-24 md:w-24 bg-sky-400 rounded-full grid place-items-center">
-                        <!-- <IconsDocumentStack></IconsDocumentStack> -->
-                         <IconsCheckIcon></IconsCheckIcon>
+                    <div :class="stageStatus.stage1 ? isChecked : isPending" class="circle-inner h-12 w-12 md:h-24 md:w-24  rounded-full grid place-items-center">
+                        <div v-if="stageStatus.stage1" class="display-icon-check">
+                            <IconsCheckIcon />
+                        </div>
+                        <div v-else class="display-status-icon-x">
+                            <IconsExIcon />
+                        </div>
                     </div>
                 </div>
                 <div class="absolute top-8 left-1/3 transform z-10 -translate-x-1/2 -translate-y-1/2 bg-sky-600 rounded-full h-4 w-4 md:hidden"></div>

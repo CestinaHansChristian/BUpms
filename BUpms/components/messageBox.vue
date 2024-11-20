@@ -10,7 +10,7 @@
         </button>
         <div class="comment-content-wrapper mx-2">
             <div v-if="status === 'success'"
-                class="display-message overflow-y-scroll h-screen md:max-h-[50vh] bg-slate-300 rounded-md space-y-4 py-1">
+                class="display-message overflow-y-scroll h-screen md:max-h-72 bg-slate-300 rounded-md space-y-4 py-1">
                 <div v-for="message of messages">
                     <div v-if="message.FromUser === $pb.authStore.model.id"
                         class="from-client-msg-wrapper justify-between gap-x-3 m-1 p-2 bg-slate-100 rounded-md space-y-2">
@@ -51,8 +51,8 @@
                 <h1 class="text-2xl font-bold">Loading...</h1>
             </div>
         </div>
-        <div class="send-btn-control grid py-5 rounded-b-lg">
-            <div class="text-wrapper flex justify-between gap-x-2 relative md:mx-2">
+        <div class="send-btn-control grid py-2 rounded-b-lg">
+            <div class="text-wrapper flex justify-between gap-x-2 relative mx-2">
                 <textarea v-model="message" name="" id=""
                     class="w-full p-3 h-14 tracking-widest border-2 border-slate-300 rounded-xl ps-3 bg-slate-100"
                     placeholder="Type a message here. . ."></textarea>

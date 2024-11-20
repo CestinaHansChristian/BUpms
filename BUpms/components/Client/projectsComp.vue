@@ -9,7 +9,8 @@
                     <span class="text-sm text-slate-500">Status</span>{{ item.isArchived ? 'Archived' : 'Active' }}
                 </div>
                 <div class="project-description grid px-2 text-sm text-slate-500 font-semibold lg:text-xl">
-                    <span class="text-sm text-slate-500">Date Created:</span>{{  new Date(item.created).toLocaleDateString() }}
+                    <span class="text-sm text-slate-500">Date Created:</span>
+                    <span class="text-base">{{  new Date(item.created).toLocaleDateString() }}</span>
                 </div>
             </div>
             <div v-if="project_info.length === 0">
