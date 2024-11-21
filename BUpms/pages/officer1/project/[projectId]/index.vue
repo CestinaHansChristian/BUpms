@@ -83,8 +83,8 @@
                                 </div>
                             </nuxt-link>
                            <div class="control-btn flex lg:gap-x-5 gap-x-2">
-                                <nuxt-link to="/officer1/project_name">
-                                    <div @click="approveProposal" class="approve-design-btn uppercase cursor-pointer bg-blue-400 hover:bg-sky-700 text-slate-50 p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 hover:text-white tracking-wider">
+                                <nuxt-link :to="fetchSingleProject.id + '/approved'">
+                                    <div @click="approveProposal(fetchSingleProject.id, fetchSingleProject.Status)" class="approve-design-btn uppercase cursor-pointer bg-blue-400 hover:bg-sky-700 text-slate-50 p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 hover:text-white tracking-wider">
                                         Approve
                                     </div>
                                 </nuxt-link>
@@ -146,8 +146,12 @@
 
     console.log(fetchSingleProject)
 
-    function approveProposal() {
-        console.log('Approved')
+    async function approveProposal(projectId,recordId) {
+        const data = {
+            Project_id: projectId,
+            stages: 'stage3'
+        }
+        await $pb.collection('Status_tbl').update(recordId,data)
     }
 
     function downloadFile(index,docUserid,docId) {

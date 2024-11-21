@@ -22,6 +22,7 @@ try {
     expand: 'Project_rel,Status_tbl'
     })
     const getStatusId = isDocumentUploaded.expand.Project_rel.Status
+    
     if(isDocumentUploaded.Document) {
         const statusUpdate = {
             "stages": "stage2"
@@ -39,7 +40,7 @@ try {
     console.log('no file uploaded')
 }
 
-console.log(projectStage)
+
 
 const stageStatus = computed(() => ({
     stage1: projectStage === 'stage1' || projectStage === 'stage2' || projectStage === 'stage3' || projectStage === 'stage4',
@@ -48,13 +49,15 @@ const stageStatus = computed(() => ({
     stage4: projectStage === 'stage4'
 }))
 
+console.log(stageStatus.value.stage3)
 const isCleared = computed(() => projectStage === 'stage4')
 
 </script>
 <template>
-    <div class="main-container py-8">
+    <div class="main-container py-8 text-black">
+        {{ stageStatus }}
         <div class="gap-x-2 md:gap-x-5 lg:gap-x-16 space-y-10 mx-5 relative place-content-center md:flex md:place-items-center font-medium text-slate-800">
-            <div class="circle-stage-success-wrapper z-10 lg:space-y-2 md:pt-10 grid grid-cols-2 md:flex md:relative">
+            <div class="circle-stage-success-wrapper z-10 lg:space-y-2 md:pt-10 grid grid-cols-2 md:relative md:grid-cols-none">
                 <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid ">
                     <div :class="stageStatus.stage1 ? isChecked : isPending" class="circle-inner h-12 w-12 md:h-24 md:w-24  rounded-full grid place-items-center">
                         <div v-if="stageStatus.stage1" class="display-icon-check">
@@ -69,7 +72,7 @@ const isCleared = computed(() => projectStage === 'stage4')
                 <div v-if="stageStatus.stage1" class="project-stage-description md:absolute md:translate-y-14 bottom-0 bg-slate-100 flex place-items-center md:ps-0 tracking-tighter md:tracking-wide text-sm md:font-semibold  md:text-center md:text-base">
                     Project Created
                 </div>
-                <div v-else class="no-created-project text-sm">
+                <div v-else class="no-created-project md:absolute md:translate-y-14 bottom-0 bg-slate-100 flex place-items-center md:ps-0 tracking-tighter md:tracking-wide text-sm md:font-semibold  md:text-center md:text-base">
                     Project Not Created
                 </div>
             </div>

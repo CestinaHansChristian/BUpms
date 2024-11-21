@@ -1,8 +1,8 @@
 <template>
-  <div class="image-icon-container bg-gradient-to-tl from-sky-500 to to-orange-300 from-10%">
-    <div class="bicol-unviversity-logo relative grid place-content-start p-1">
-      <div class="logo-wrapper bg-slate-200 rounded-full  w-20 h-20 md:w-32 md:h-32">
-        <img src="assets/BU_logo.png" alt="splash_image" class="object-contain p-2 bu-assets w-20 h-20 md:w-32 md:h-32">
+  <div class="image-icon-container bg-gradient-to-tl from-sky-500 to to-orange-300 from-10% md:pt-1">
+    <div class="bicol-unviversity-logo relative grid place-content-start p-1 md:h-28 lg:h-36">
+      <div class="logo-wrapper bg-slate-200 rounded-full  w-24 h-24 md:w-32 md:h-32 lg:h-36 lg:w-36 md:absolute -right-16 z-10">
+        <img src="assets/BU_logo.png" alt="splash_image" class="object-contain p-2 bu-assets w-24 h-24 md:w-32 md:h-32 lg:h-36 lg:w-36">
       </div>
     </div>
     <div class="image-assets sm:w-full ">
