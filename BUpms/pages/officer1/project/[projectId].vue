@@ -140,7 +140,7 @@
     const route = useRoute();
     const { $pb } = useNuxtApp();
 
-    const fetchSingleProject = await $pb.collection('Projects_tbl').getOne(route.params.projectIDOfficer, {
+    const fetchSingleProject = await $pb.collection('Projects_tbl').getOne(route.params.projectId, {
         expand: 'Documents_tbl_via_Project_rel'
     })
 

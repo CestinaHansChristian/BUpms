@@ -10,9 +10,9 @@
         <div class="img-container">
           <img src="assets/Splash-Art.png" alt="" class="object-content bu-assets h-full w-36 md:w-full">
         </div>
-        <div class="description-container text-white font-medium tracking-wider">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque dicta, numquam harum quis eos hic fuga
-          dignissimos eveniet quae placeat?
+        <div class="description-container text-white font-medium tracking-wider mx-6 md:mx-4">
+          Welcome to our platform for submitting project file documents to OSAS!
+          Simply upload your files, track their progress, and collaborate efforlessly with our user-friendly interface.
         </div>
       </div>
     </div>

@@ -14,7 +14,9 @@
                 <div v-for="message of messages">
                     <div v-if="message.FromUser === $pb.authStore.model.id"
                         class="from-client-msg-wrapper justify-between gap-x-3 m-1 p-2 bg-slate-100 rounded-md space-y-2">
-                        <p class="text-end">You</p>
+                        <div class="name-icon-wrapper flex justify-end font-bold">
+                            {{ message.expand.FromUser.role === 'officer1' ? 'Officer' :  `Student | ${message.expand.FromUser.username}` }}
+                        </div>
                         <div class="top-message flex">
                             <div class="text-msg w-full ps-2 grid place-items-center">
                                 {{ message.Message }}
@@ -26,11 +28,14 @@
                         </div>
                         <hr class="border-b-2 border-slate-200">
                         <div class="message-details-wrapper text-center text-xs tracking-widest">
-                            {{ message.created }}
+                            {{ new Date(message.created).toDateString() }}
+                            {{ new Date(message.created).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) }}
                         </div>
                     </div>
                     <div v-else class="from-client-msg-wrapper mx-1 p-2 bg-slate-100 rounded-md space-y-2">
-                        <p>Officer</p>
+                        <div class="name-icon-wrapper font-bold">
+                            {{ message.expand.FromUser.role === 'student' ? `Student | ${message.expand.FromUser.username}` : 'Officer'  }}
+                        </div>
                         <div class="top-message flex gap-x-5">
                             <div class="icon-wrapper grid place-content-center ps-2">
                                 <div class="icon bg-orange-300 h-10 w-10 rounded-full"></div>
@@ -41,7 +46,8 @@
                         </div>
                         <hr class="border-b-2 border-slate-200">
                         <div class="message-details-wrapper text-center text-xs tracking-widest">
-                            {{ message.created }}
+                            {{ new Date(message.created).toDateString() }}
+                            {{ new Date(message.created).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) }}
                         </div>
                     </div>
                 </div>
@@ -76,10 +82,13 @@ const loading = ref(false)
 
 const { data: messages, status, refresh } = useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Comments_tbl').getFullList({
     expand: 'ProjectRel',
+    expand: 'FromUser',
     filter: `ProjectRel="${route.params.projectId}"`,
     orderBy: 'created_at',
     order: 'asc',
 }))
+
+console.log(messages._value)
 
 const sendMessage = async () => {
 
