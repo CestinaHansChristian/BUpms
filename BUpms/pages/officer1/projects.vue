@@ -1,20 +1,20 @@
 <script setup>
-    userLandingGreet()
-    definePageMeta({
-        layout: 'landing'
-    })
+userLandingGreet()
+definePageMeta({
+    layout: 'landing'
+})
 
-    const { $pb } = useNuxtApp()
+const { $pb } = useNuxtApp()
 
-    const {data: fetchProjects} = await useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Projects_tbl').getFullList({
-        sort: '-created',
-        expand: 'User_tbl'
-    }))
-    function logout() {
-        console.log('close')
-    }
+const { data: fetchProjects } = await useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Projects_tbl').getFullList({
+    sort: '-created',
+    expand: 'User_tbl'
+}))
+function logout() {
+    console.log('close')
+}
 
-    console.log(fetchProjects)
+console.log(fetchProjects)
 </script>
 <template>
     <div class="mx-2 overflow-hidden">
@@ -29,21 +29,21 @@
     </div>
 </template>
 <style scoped>
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
+::-webkit-scrollbar {
+    width: 10px;
+}
 
-    ::-webkit-scrollbar-thumb {
-        background-color: #0369a1;
-        border-radius: 20px;
-    }
+::-webkit-scrollbar-thumb {
+    background-color: #0369a1;
+    border-radius: 20px;
+}
 
-    ::-webkit-scrollbar-track {
-        background-color: #7dd3fc;
-        border-radius: 10px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: #0369a1; 
-    }
+::-webkit-scrollbar-track {
+    background-color: #7dd3fc;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0369a1;
+}
 </style>
