@@ -190,7 +190,8 @@ async function confirmSubmission() {
         "Title": clientActivityTitle.value,
         "When": whenInput.value,
         "Who": whoInput.value,
-        "Contact_num": contactNumber.value
+        "Contact_num": contactNumber.value,
+        'Description': clientDescription.value
     }
     console.log(createdProject)
     try {

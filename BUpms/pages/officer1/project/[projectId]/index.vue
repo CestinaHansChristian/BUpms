@@ -51,6 +51,15 @@
                             {{ fetchedUserData.username }}
                         </div>
                     </div>
+                    <div class="contact-num-wrapper mx-2">
+                        <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
+                            Description:
+                        </div>
+                        <div
+                            class="project-name-wrapper p-2 border-2 rounded-xl overflow-y-scroll max-h-52 font-medium md:text-lg bg-white shadow-inner tracking-tight">
+                            {{ fetchSingleProject.Description }}
+                        </div>
+                    </div>
                     <div class="event-details-wrapper mx-2">
                         <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
                             Submitted Documents:
@@ -134,14 +143,14 @@
                     </div>
                 </div>
             </fieldset>
-            <div class="wrapper-two grid gap-4 md:flex md:mx-5 mx-3">
-                <fieldset class="card border-2 rounded-lg shadow-inner shadow-slate-300">
+            <div class="wrapper-two grid gap-4 md:flex md:mx-5 mx-3 md:h-96">
+                <fieldset class="card border-2 rounded-lg shadow-inner   shadow-slate-300">
                     <legend class="text-center text-base font-semibold tracking-widest uppercase md:text-xl">
                         Documents
                     </legend>
                     <div class="card-body mx-2 grid py-5">
                         <div
-                            class="overflow-wrapper h-screen md:max-h-96 bg-slate-200 overflow-y-scroll tracking-wider rounded-lg">
+                            class="overflow-wrapper md:h-80 md:pt-5 bg-slate-300 overflow-y-scroll tracking-wider rounded-lg">
                             <!-- component -->
                             <div v-if="fetchSingleProject.expand" class="">
                                 <div v-for="(document, index) in fetchSingleProject.expand.Documents_tbl_via_Project_rel"

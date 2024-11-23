@@ -19,34 +19,34 @@ const isPending = reactive({
 
 try {
     const isDocumentUploaded = await $pb.collection('Documents_tbl').getFirstListItem(`Project_rel="${projectRelId}"`, {
-        expand: 'Project_rel,Status_tbl'
+        expand: 'Project_rel',
     })
     const getStatusId = isDocumentUploaded.expand.Project_rel.Status
 
-    const getProjectStatusStage = await $pb.collection('Status_tbl').getFirstListItem('stages="stage3"')
+    const getProjectStatusStage = await $pb.collection('Status_tbl').getFirstListItem(`Project_id="${projectRelId}"`)
+    console.log(isDocumentUploaded)
+
     console.log(getProjectStatusStage)
 
-    if (getProjectStatusStage.stages === 'stage1') {
-        if (isDocumentUploaded.Document) {
-            const statusUpdate = {
-                "stages": "stage2"
-            }
-            await $pb.collection('Status_tbl').update(getStatusId, statusUpdate)
-        } else {
-            const statusUpdate = {
-                "stages": "stage1"
-            }
-            await $pb.collection('Status_tbl').update(getStatusId, statusUpdate)
+    if (getProjectStatusStage.stages === 'stage1' && isDocumentUploaded.Document) {
+        const statusUpdate = {
+            "stages": "stage2"
         }
+        console.log(statusUpdate)
+        console.log(getStatusId)
+        await $pb.collection('Status_tbl').update(getStatusId, statusUpdate)
+        console.log('updated')
+        
     } else if (getProjectStatusStage.stages === 'stage2') {
         const statusUpdate = {
             "stages": "stage3"
         }
-        await $pb.collection('Status_tbl').update(getStatusId, statusUpdate)
+        console.log('pending here')
+        // await $pb.collection('Status_tbl').update(getStatusId, statusUpdate)
     }
 
 } catch (error) {
-    console.log('no file uploaded')
+    console.log(error)
 }
 
 
@@ -193,7 +193,7 @@ const isCleared = computed(() => projectStage === 'stage4')
                 </div>
             </div>
             <div
-                class="absolute left-1/3 top-0 -translate-x-1/2 -translate-y-10 bg-sky-400 h-full w-1 md:h-4 md:w-10/12 md:top-1/4 rounded-2xl md:translate-y-1/3 md:left-1/2 md:rounded-lg lg:w-6/12">
+                class="absolute left-1/3 top-0 -translate-x-1/2 -translate-y-10 bg-sky-400 h-full w-1 md:h-4 md:w-10/12 md:top-1/4 rounded-2xl md:translate-y-1/3 md:left-1/2 md:rounded-lg lg:w-8/12 xl:w-7/12">
             </div>
         </div>
     </div>
