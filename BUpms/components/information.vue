@@ -59,7 +59,7 @@ const { organization } = defineProps({
                         Description:
                     </div>
                     <div
-                        class="project-name-wrapper p-2 border-2 rounded-xl overflow-y-scroll max-h-52 md:h-24 font-medium md:text-lg bg-white shadow-inner tracking-tight">
+                        class="project-name-wrapper p-3 border-2 rounded-xl overflow-y-scroll max-h-52 md:h-36 font-medium md:text-lg bg-white shadow-inner tracking-tight">
                         {{ organization.Description }}
                     </div>
                 </div>

@@ -114,7 +114,8 @@
                                     </svg>
                                     <span class="text-sm font-medium">{{ fileObj.file.name }}</span>
                                 </div>
-                                <select v-model="fileObj.documentType" class="w-full" @change="updateAvailableTypes">
+                                <select v-model="fileObj.documentType" class="w-full bg-slate-50"
+                                    @change="updateAvailableTypes">
                                     <option value="" disabled>Select document type</option>
                                     <option v-for="doc in getAllDocumentTypes(fileObj)" :key="doc?.value"
                                         :value="doc?.value">

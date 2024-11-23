@@ -1,26 +1,29 @@
 <template>
-    <fieldset class="md:space-y-3 relative text-slate-700 comment-box-wrappe border-x-2 border-slate-300 rounded-md gap-y-2 w-full md:pb-1 shadow-inner shadow-gray-300">
-        <legend class="scroll-m-20 text-xl font-semibold tracking-widest text-center uppercase pt-16 md:pt-0 md:text-xl">
+    <fieldset
+        class="md:space-y-3 relative text-slate-700 comment-box-wrapper border-2 border-slate-200 rounded-md gap-y-2 w-full md:pb-1">
+        <legend class="scroll-m-20 text-xl font-semibold tracking-widest text-center uppercase md:pt-0 md:text-xl">
             Comment Box
         </legend>
         <div class="heading-wrapper">
-            <button class="w-fit h-fit p-1 m-2 flex  items-center mx-2 bg-white border-2 rounded-full"
-            @click="refresh">
-            <UIcon name="i-ic-baseline-refresh" /> Refresh
-        </button>
+            <button class="w-fit h-fit p-1 m-2 flex  items-center mx-2 bg-white border-2 rounded-full" @click="refresh">
+                <UIcon name="i-ic-baseline-refresh" /> Refresh
+            </button>
         </div>
         <div class="comment-content-wrapper mx-2 md:space-y-1">
             <div v-if="status === 'success'"
-                class="display-message overflow-y-scroll md:h-56 bg-slate-300 rounded-md space-y-4 py-1">
+                class="display-message overflow-y-scroll h-screen md:h-72 bg-slate-300 rounded-md space-y-4 py-1">
                 <div v-for="message of messages">
                     <div v-if="message.FromUser === $pb.authStore.model.id"
                         class="from-client-msg-wrapper justify-between gap-x-3 m-1 p-2 bg-slate-100 rounded-md space-y-2">
                         <div class="name-icon-wrapper flex justify-end font-bold">
-                            {{ message.expand.FromUser.role === 'officer1' ? 'Officer' :  `Student | ${message.expand.FromUser.username}` }}
+                            {{ message.expand.FromUser.role === 'officer1' ? 'Officer' : `Student |
+                            ${message.expand.FromUser.username}` }}
                         </div>
-                        <div class="top-message flex">
-                            <div class="text-msg w-full ps-2 grid place-items-center">
-                                {{ message.Message }}
+                        <div class="top-message flex gap-x-3">
+                            <div class="text-msg w-full ps-2 flex justify-end">
+                                <div class="grid place-content-center bg-sky-300 px-3 rounded-xl">
+                                    {{ message.Message }}
+                                </div>
                             </div>
                             <div class="icon-wrapper grid place-content-center pe-2 p-2">
                                 <div class="icon bg-orange-300 h-10 w-10 rounded-full"></div>
@@ -30,25 +33,32 @@
                         <hr class="border-b-2 border-slate-200">
                         <div class="message-details-wrapper text-center text-xs tracking-widest">
                             {{ new Date(message.created).toDateString() }}
-                            {{ new Date(message.created).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) }}
+                            {{ new Date(message.created).toLocaleTimeString('en-US', {
+                                hour: 'numeric', minute:
+                                    'numeric', hour12: true
+                            }) }}
                         </div>
                     </div>
                     <div v-else class="from-client-msg-wrapper mx-1 p-2 bg-slate-100 rounded-md space-y-2">
                         <div class="name-icon-wrapper font-bold">
-                            {{ message.expand.FromUser.role === 'student' ? `Student | ${message.expand.FromUser.username}` : 'Officer'  }}
+                            {{ message.expand.FromUser.role === 'student' ? `Student |
+                            ${message.expand.FromUser.username}` : 'Officer' }}
                         </div>
                         <div class="top-message flex gap-x-5">
                             <div class="icon-wrapper grid place-content-center ps-2">
                                 <div class="icon bg-orange-300 h-10 w-10 rounded-full"></div>
                             </div>
-                            <div class="text-msg grid place-items-center">
+                            <div class="text-msg grid place-items-center bg-sky-300 p-3 px-4 rounded-xl">
                                 {{ message.Message }}
                             </div>
                         </div>
                         <hr class="border-b-2 border-slate-200">
                         <div class="message-details-wrapper text-center text-xs tracking-widest">
                             {{ new Date(message.created).toDateString() }}
-                            {{ new Date(message.created).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) }}
+                            {{ new Date(message.created).toLocaleTimeString('en-US', {
+                                hour: 'numeric', minute:
+                                    'numeric', hour12: true
+                            }) }}
                         </div>
                     </div>
                 </div>

@@ -40,7 +40,8 @@ const documentStatus = ref({
     <div class="overflow-hidden">
         <div class="content md:pt-10 mx-1 relative">
             <div class="project-icons lg:h-full lg:pt-5 rounded-lg lg:container lg:mx-auto">
-                <TrackingProjectStage :projectStage="projectStatus.stages" :projectRelId="projectStatus.Project_id"></TrackingProjectStage>
+                <TrackingProjectStage :projectStage="projectStatus.stages" :projectRelId="projectStatus.Project_id">
+                </TrackingProjectStage>
             </div>
             <div class="project-description md:pt-10">
                 <div v-if="projectStatus.stages === 'stage1'" class=" p-2 rounded-lg backdrop-blur-md md:pt-10">
@@ -55,7 +56,8 @@ const documentStatus = ref({
                     </div>
                 </div>
                 <div class="pages pt-14">
-                    <div class="project-details-wrapper lg:py-5 gap-y-4 lg:flex md:py-5 lg:gap-x-3 md:container md:mx-auto">
+                    <div
+                        class="project-details-wrapper lg:py-5 gap-y-4 lg:flex md:py-5 lg:gap-x-3 md:container md:mx-auto">
                         <Information :organization="projectData"></Information>
                         <MessageBox></MessageBox>
                     </div>

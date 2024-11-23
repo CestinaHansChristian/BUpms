@@ -1,17 +1,18 @@
 <template>
   <div class="bg-slate-200 relative grid place-items-center">
-    <div class="form-container px-2 space-y-3">
+    <div class="form-container px-2 space-y-3 text-slate-700">
       <div class="bu-logo-container grid place-items-center">
         <img src="assets/BU_title.png" alt="" class="object-contain w-60 min-w-40 bu-assets">
       </div>
       <form class="input-fields-container space-y-3">
         <div class="bu-email">
           <input autofocus required type="email" placeholder="EMAIL" v-model="_email"
-            class="border-2 rounded-md w-72 p-2 tracking-widest placeholder-shown:font-semibold">
+            class="border-2 rounded-md w-72 p-2 tracking-widest placeholder-shown:font-semibold bg-slate-50">
         </div>
         <div class="bu-password relative flex ">
           <input autofocus required :type="isClicked ? 'text' : 'password'" placeholder="PASSWORD"
-            class="w-72 tracking-widest border-2 rounded-md p-2 placeholder-shown:font-semibold" v-model="_password">
+            class="w-72 tracking-widest border-2 rounded-md p-2 placeholder-shown:font-semibold bg-slate-50"
+            v-model="_password">
           <span @click="eye_icon_enable" class="h-full py-1 absolute right-0 w-14 grid place-content-center">
             <IconsEyeEnable></IconsEyeEnable>
           </span>
@@ -25,7 +26,7 @@
             {{ error }}
           </p>
         </div>
-        <div class="bu-btn-container grid gap-2">
+        <div class="bu-btn-container grid gap-2 ">
           <button @click="loginFunc" type="submit" :disabled="isLoading"
             class="bg-sky-400 rounded-md disabled:bg-slate-300 p-2 w-full text-white text-base font-semibold tracking-widest hover:bg-sky-500">
             Sign in

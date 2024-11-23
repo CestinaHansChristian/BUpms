@@ -8,7 +8,7 @@ const { $pb } = useNuxtApp()
 
 const { data: fetchProjects } = await useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Projects_tbl').getFullList({
     sort: '-created',
-    expand: 'User_tbl'
+    expand: 'User_tbl,Status'
 }))
 function logout() {
     console.log('close')

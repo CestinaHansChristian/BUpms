@@ -56,7 +56,7 @@
                             Description:
                         </div>
                         <div
-                            class="project-name-wrapper p-2 border-2 rounded-xl overflow-y-scroll max-h-52 font-medium md:text-lg bg-white shadow-inner tracking-tight">
+                            class="project-name-wrapper p-2 border-2 rounded-xl overflow-y-scroll h-52 font-medium md:text-lg bg-white shadow-inner tracking-tight">
                             {{ fetchSingleProject.Description }}
                         </div>
                     </div>
@@ -132,7 +132,14 @@
                                         Approve
                                     </button>
                                 </nuxt-link>
-                                <nuxt-link to="/officer1/projects">
+                                <button v-if="isApproved.stages === 'stage3'" disabled
+                                    class="disabled:pointer-events-none">
+                                    <div
+                                        class="reject-design-btn bg-red-300 cursor-pointer hover:bg-red-700  uppercase p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 text-slate-50 tracking-wider">
+                                        Reject
+                                    </div>
+                                </button>
+                                <nuxt-link v-else to="/officer1/projects">
                                     <div
                                         class="reject-design-btn bg-red-400 cursor-pointer hover:bg-red-700  uppercase p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 text-slate-50 tracking-wider">
                                         Reject
@@ -143,14 +150,14 @@
                     </div>
                 </div>
             </fieldset>
-            <div class="wrapper-two grid gap-4 md:flex md:mx-5 mx-3 md:h-96">
-                <fieldset class="card border-2 rounded-lg shadow-inner   shadow-slate-300">
+            <div class="wrapper-two grid gap-4 md:flex md:mx-5 mx-3">
+                <fieldset class="card border-2 rounded-lg ">
                     <legend class="text-center text-base font-semibold tracking-widest uppercase md:text-xl">
                         Documents
                     </legend>
                     <div class="card-body mx-2 grid py-5">
                         <div
-                            class="overflow-wrapper md:h-80 md:pt-5 bg-slate-300 overflow-y-scroll tracking-wider rounded-lg">
+                            class="overflow-wrapper h-72 md:h-96 md:pt-5 bg-slate-300 overflow-y-scroll tracking-wider rounded-lg">
                             <!-- component -->
                             <div v-if="fetchSingleProject.expand" class="">
                                 <div v-for="(document, index) in fetchSingleProject.expand.Documents_tbl_via_Project_rel"

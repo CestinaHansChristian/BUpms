@@ -36,7 +36,7 @@ try {
         console.log(getStatusId)
         await $pb.collection('Status_tbl').update(getStatusId, statusUpdate)
         console.log('updated')
-        
+
     } else if (getProjectStatusStage.stages === 'stage2') {
         const statusUpdate = {
             "stages": "stage3"
@@ -193,7 +193,7 @@ const isCleared = computed(() => projectStage === 'stage4')
                 </div>
             </div>
             <div
-                class="absolute left-1/3 top-0 -translate-x-1/2 -translate-y-10 bg-sky-400 h-full w-1 md:h-4 md:w-10/12 md:top-1/4 rounded-2xl md:translate-y-1/3 md:left-1/2 md:rounded-lg lg:w-8/12 xl:w-7/12">
+                class="absolute left-1/3 top-0 -translate-x-1/2 -translate-y-10 bg-sky-400 h-full w-1 md:h-4 md:w-10/12 md:top-1/4 rounded-2xl md:translate-y-1/3 md:left-1/2 md:rounded-lg lg:w-8/12 xl:w-6/12">
             </div>
         </div>
     </div>
