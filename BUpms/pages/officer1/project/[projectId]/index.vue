@@ -139,12 +139,14 @@
                                         Reject
                                     </div>
                                 </button>
-                                <nuxt-link v-else to="/officer1/projects">
-                                    <div
-                                        class="reject-design-btn bg-red-400 cursor-pointer hover:bg-red-700  uppercase p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 text-slate-50 tracking-wider">
-                                        Reject
-                                    </div>
-                                </nuxt-link>
+                                <button v-else @click="rejectOfficerProject(fetchSingleProject)">
+                                    <nuxt-link to="/officer1/projects">
+                                        <div
+                                            class="reject-design-btn bg-red-400 cursor-pointer hover:bg-red-700  uppercase p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 text-slate-50 tracking-wider">
+                                            Reject
+                                        </div>
+                                    </nuxt-link>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -208,7 +210,19 @@ const isApproved = await $pb.collection('Status_tbl').getOne(fetchSingleProject.
 // fetch user details
 const fetchedUserData = await $pb.collection('Users_tbl').getOne(fetchSingleProject.User)
 
-console.log(fetchSingleProject)
+// reject button function
+async function rejectOfficerProject(projectId) {
+    const projectIdformatted = projectId.id
+    try {
+        const data = {
+            'isArchived': true
+        }
+        await $pb.collection('Projects_tbl').update(projectIdformatted, data)
+        console.log()
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 async function approveProposal(projectId, recordId) {
     const data = {

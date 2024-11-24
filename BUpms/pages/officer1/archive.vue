@@ -45,25 +45,29 @@
                 <legend class="text-center font-semibold tracking-widest md:text-lg text-sm uppercase px-3">
                     History
                 </legend>
-                <div class="archive-scrollbar m-1 h-screen overflow-y-scroll bg-slate-300 rounded-md">
-                    <!-- <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList>
-                    <OfficerArchiveList></OfficerArchiveList> -->
+                <div class="archive-scrollbar m-1 h-screen overflow-y-scroll bg-slate-200 rounded-md">
+                    <div v-for="(item, index) in archivedData" :key="index">
+                        <div v-if="item.isArchived"
+                            class="wrapper grid md:flex bg-slate-300 p-1 border-2 rounded-xl m-1 py-2 my-2">
+                            <div
+                                class="project-title text-blue-600 font-semibold uppercase text-base grid place-items-center md:flex md:w-full">
+                                <div class="label-project-title pe-3 font-bold text-gray-700 md:ps-5">
+                                    Title:
+                                </div>
+                                <div class="project-value-wrapper">
+                                    {{ item.Title }}
+                                </div>
+                            </div>
+                            <div class="date-created grid">
+                                <div class="date-label-project text-gray-800 font-semibold">
+                                    Date Created
+                                </div>
+                                <div class="date-value-wrapper text-xs md:text-sm text-sky-600 font-bold">
+                                    {{ new Date(item.created).toLocaleDateString() }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </fieldset>
         </div>
@@ -82,6 +86,13 @@ let canvasData;
 
 const { $pb } = useNuxtApp()
 
+// fetch from API 
+const archivedData = await $pb.collection('Projects_tbl').getFullList({
+    sort: '-created',
+})
+
+
+// get total values
 const pendingData = await $pb.collection('pending_project').getFullList({
 });
 
