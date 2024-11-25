@@ -67,3 +67,22 @@ const { organization } = defineProps({
         </div>
     </fieldset>
 </template>
+<style scoped>
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #0369a1;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #7dd3fc;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0369a1;
+}
+</style>

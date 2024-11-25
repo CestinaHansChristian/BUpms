@@ -88,7 +88,7 @@
     <!-- Modals -->
     <ClientOnly>
         <Teleport to="#modal">
-            <div v-if="showConfirmModal" class="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50">
+            <div v-if="showConfirmModal" class="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-md">
                 <div class="bg-white p-6 rounded-lg max-w-sm w-full">
                     <h2 class="text-xl font-bold mb-4">Confirm Submission</h2>
                     <p class="mb-4">Are you sure you want to submit this activity?</p>

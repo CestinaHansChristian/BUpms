@@ -152,6 +152,7 @@
 
 <script lang="ts" setup>
 const { projectId, submittedDocuments } = defineProps(['projectId', 'submittedDocuments'])
+const emit = defineEmits(['isSubmittedRefresh'])
 
 const { $pb } = useNuxtApp()
 
@@ -264,6 +265,7 @@ async function uploadFiles() {
                 "Document": file.file
             })
         }
+        emit('isSubmittedRefresh')
     } catch (error) {
         console.error(error)
     } finally {

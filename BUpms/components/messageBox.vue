@@ -146,4 +146,22 @@ const sendMessage = async () => {
 textarea {
     resize: none
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #0369a1;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #7dd3fc;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0369a1;
+}
 </style>

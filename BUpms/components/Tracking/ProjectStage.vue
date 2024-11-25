@@ -21,12 +21,10 @@ try {
     const isDocumentUploaded = await $pb.collection('Documents_tbl').getFirstListItem(`Project_rel="${projectRelId}"`, {
         expand: 'Project_rel',
     })
+    
     const getStatusId = isDocumentUploaded.expand.Project_rel.Status
 
     const getProjectStatusStage = await $pb.collection('Status_tbl').getFirstListItem(`Project_id="${projectRelId}"`)
-    console.log(isDocumentUploaded)
-
-    console.log(getProjectStatusStage)
 
     if (getProjectStatusStage.stages === 'stage1' && isDocumentUploaded.Document) {
         const statusUpdate = {
@@ -37,16 +35,13 @@ try {
         await $pb.collection('Status_tbl').update(getStatusId, statusUpdate)
         console.log('updated')
 
-    } else if (getProjectStatusStage.stages === 'stage2') {
-        const statusUpdate = {
-            "stages": "stage3"
-        }
-        console.log('pending here')
-        // await $pb.collection('Status_tbl').update(getStatusId, statusUpdate)
     }
 
 } catch (error) {
-    console.log(error)
+    const statusUpdate = {
+        "stages": "stage1"
+    }
+    console.log(statusUpdate)
 }
 
 

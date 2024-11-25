@@ -34,19 +34,17 @@ console.log(fetchProjects)
         <OfficerNavbar></OfficerNavbar>
         <div class="history-content-wrapper">
             <div class="project-list-wrapper space-y-4 h-screen overflow-y-scroll py-2 p-2 bg-slate-200 rounded-lg">
-                <!-- add project list here -->
-                <!-- <OfficerProjectList :project_info="fetchProjects"></OfficerProjectList> -->
                 <div v-for="(project, index) in fetchProjects" :key="index">
-                    <div v-if="!project.isArchived"
+                    <div v-if="project.isArchived === false && project.expand.Status.stages === 'stage2' || project.expand.Status.stages === 'stage1'"
                         class="project-container grid md:flex md:justify-between gap-x-2 md:place-content-center md:gap-x-5">
                         <div
                             class="left-flex-container grid md:justify-around md:flex shadow-md px-5 bg-slate-100 md:rounded-b-xl rounded-t-xl p-2 shadow-gray-500 gap-x-4 md:w-full">
                             <div
-                                class="project-name text-blue-700 font-semibold uppercase text-base grid md:place-items-center md:flex md:w-full md:gap-x-5">
-                                <div class=" font-bold text-gray-700">
+                                class="project-name text-blue-700 font-semibold uppercase text-base grid md:items-center md:ps-10 md:w-full md:gap-x-5 relative">
+                                <div class=" font-bold text-gray-700 md:absolute md:top-0 md:pt-5">
                                     Activity Title:
                                 </div>
-                                <div class="activity-value">
+                                <div class="activity-value md:pt-8">
                                     {{ project.Title }}
                                 </div>
                             </div>
@@ -59,11 +57,13 @@ console.log(fetchProjects)
                                 </div>
                                 <div class="status-wrapper text-xs md:text-base md:grid">
                                     <span class="text-gray-800 font-semibold">
-                                        Status:
+                                        Remarks:
                                     </span>
-                                    {{ project.expand.Status.stages === 'stage1' ? "Pending" :
-                                        project.expand.Status.stages === 'stage2' ? "In Progress " :
-                                            project.expand.Status.stages === 'stage3' ? "In Progress" : 'Completed' }}
+                                    <div :class="project.expand.Status.stages === 'stage1' ? 'text-red-400 text-xs' : project.expand.Status.stages === 'stage2' ? 'text-yellow-600 text-sm' : ''">
+                                        {{ project.expand.Status.stages === 'stage1' ? "Missing Documents" :
+                                        project.expand.Status.stages === 'stage2' ? "Pending" :
+                                            project.expand.Status.stages === 'stage3' ? "For Final Approval" : 'Completed' }}
+                                    </div>
                                 </div>
                             </div>
                         </div>

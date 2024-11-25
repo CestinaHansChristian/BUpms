@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div
             class="header-wrapper sticky top-0 text-white tracking-widest uppercase font-semibold text-2xl text-center bg-blue-300 p-3 rounded-t-xl">
-            Recent Projects
+            Logs
         </div>
         <div v-if="status === 'success'"
             class="project-list-container h-72 md:h-screen space-y-2 overflow-y-scroll py-1 bg-slate-200">
@@ -12,11 +12,16 @@
                     <div v-if="item.User === $pb.authStore.model?.id"
                         class="project-quick-status grid grid-cols-3 md:grid-cols-1 gap-y-2 py-3 place-content-start lg:grid-cols-3 border-2 border-slate-300 rounded-md bg-slate-100 mx-3">
                         <div class="project-name grid px-2 text-slate-500 font-semibold md:text-lg capitalize">
-                            <span class="text-sm text-slate-500">Title:</span>{{ item.Title }}
+                            <span class=" text-slate-500 md:text-base">Title:</span>
+                            <div class="wrapper md:text-sm">
+                                {{ item.Title }}
+                            </div>
                         </div>
-                        <div class="project-description grid px-2 text-sky-600 font-semibold md:text-lg">
-                            <span class="text-sm text-slate-500">Status</span>{{ item.isArchived ? 'Archived' : 'Active'
-                            }}
+                        <div class="project-description grid px-2 font-semibold md:text-lg">
+                            <span class="text-sm text-slate-500 md:text-base">Status:</span>
+                            <div class="" :class="item.isArchived ? 'text-red-500' : item.isCompleted ? 'text-green-600': 'text-blue-700'">
+                                {{ item.isArchived ? 'Canceled' : item.isCompleted ? 'Completed' : 'Active' }}
+                            </div>
                         </div>
                         <div class="project-description grid px-2 text-sm text-slate-500 font-semibold lg:text-xl">
                             <span class="text-sm text-slate-500">Date Created:</span>
@@ -72,15 +77,20 @@ const { data: projects, status, refresh } = useAsyncData(async (nuxtApp) => awai
 </script>
 <style scoped>
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #63a1e7;
-    border-radius: 3px;
+    background-color: #0369a1;
+    border-radius: 20px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #92c0d5;
+    background-color: #7dd3fc;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0369a1;
 }
 </style>
