@@ -24,16 +24,22 @@
                                     <div class="notification h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0">
                                     </div>
                                     <div v-if="alertIsClicked" class="notif_list fixed right-0 z-10 pt-2">
-                                        <div
-                                            class="list-container p-1 md:p-2 bg-slate-200 w-48 md:w-72 me-5 rounded-md shadow-md shadow-gray-400">
-                                            <div
-                                                class="notif-wrapper p-1 text-sm md:text-xl bg-slate-300 max-h-60 overflow-y-scroll space-y-2 rounded-md">
+                                        <div class="list-container p-1 md:p-2 bg-slate-200 w-48 md:w-72 me-5 rounded-md shadow-md shadow-gray-400">
+                                            <div class="notif-wrapper p-1 text-sm md:text-xl bg-slate-300 max-h-60 overflow-y-scroll space-y-2 rounded-md">
                                                 <!-- one notif sample -->
-                                                <NotifDisplay></NotifDisplay>
-                                                <NotifDisplay></NotifDisplay>
-                                                <NotifDisplay></NotifDisplay>
-                                                <NotifDisplay></NotifDisplay>
-                                                <NotifDisplay></NotifDisplay>
+                                                <div v-for="(item, index) in notificationMessage" :key="index" class="project-notif flex justify-around gap-x-5 p-1 border-2 rounded-md">
+                                                    <div class="icon-wrapper grid place-items-center">
+                                                        <div class="img-icon h-10 w-10 md:h-16 md:w-16 bg-orange-400 rounded-full grid place-content-center">
+                                                            <IconsCheckIcon></IconsCheckIcon>
+                                                        </div>
+                                                        <div class="passed-status font-semibold text-xs md:text-lg">
+                                                            Passed
+                                                        </div>
+                                                    </div>
+                                                    <div class="notif-infotracking-wider">
+                                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est, reiciendis.
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -84,10 +90,7 @@ const typeOfUser = reactive({
     userRole: $pb.authStore.model?.role
 })
 
-// do not remove 
-// const user = reactive({
-//     username: pb.authStore.model
-// })
+const notificationMessage = await $pb.collection('Notifications_tbl').getFullList()
 
 // hides if role is admin / officer
 const displayNotif = computed(() => {
