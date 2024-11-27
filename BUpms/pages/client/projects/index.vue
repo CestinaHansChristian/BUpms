@@ -6,9 +6,10 @@ const { data: projects, status, refresh } = useAsyncData(async (nuxtApp) => awai
     expand: 'User_tbl,Status'
 }))
 
+userLandingGreet()
 definePageMeta({
     layout: 'landing',
-    middleware: 'guard'
+    middleware: ['guard', 'client']
 })
 
 async function archiveProject(project_id) {
@@ -42,13 +43,14 @@ async function archiveProject(project_id) {
                 <!-- {{ project.Status }} -->
                 <div v-if="project.User === $pb.authStore.model?.id">
                     <!-- add !project.isCompleted to display completed -->
-                    <div v-if="!project.isArchived "
+                    <div v-if="!project.isArchived"
                         class="project-container grid md:flex md:justify-between gap-x-2 md:place-content-center md:gap-x-5">
                         <div
                             class="left-flex-container grid justify-between gap-y-2 md:flex shadow-md bg-slate-200 md:rounded-b-xl rounded-t-xl p-2 shadow-gray-500 gap-x-4 md:w-full">
                             <div
                                 class="project-name text-blue-700 font-semibold uppercase text-base grid md:items-center md:ps-10 md:w-full md:gap-x-5 relative">
-                                <div class="capitalize tracking-wider font-bold text-gray-700 md:absolute md:top-0 md:pt-5 md:text-xl">
+                                <div
+                                    class="capitalize tracking-wider font-bold text-gray-700 md:absolute md:top-0 md:pt-5 md:text-xl">
                                     Project Title:
                                 </div>
                                 <div class="font-semibold  md:pt-8">
@@ -66,27 +68,33 @@ async function archiveProject(project_id) {
                                     <span class="text-gray-800 font-semibold">
                                         Remarks:
                                     </span>
-                                    <div v-if="project.isCompleted && project.expand.Status.stages === 'stage4'" class="text-green-600 font-bold">
+                                    <div v-if="project.isCompleted && project.expand.Status.stages === 'stage4'"
+                                        class="text-green-600 font-bold">
                                         Completed
                                     </div>
-                                    <div v-else :class="project.expand.Status.stages === 'stage1' ? 'text-red-600 text-sm' : project.expand.Status.stages === 'stage2' ? 'text-orange-600 text-sm' : project.expand.Status.stages === 'stage3'? 'text-yellow-600 text-sm': 'text-green-600'">
-                                        {{project.expand.Status.stages === 'stage1'? 'Attachment Pending': project.expand.Status.stages === 'stage2'? 'Verifying Documents': project.expand.Status.stages === 'stage3'? 'Waiting for approval': 'Completed'}}
+                                    <div v-else
+                                        :class="project.expand.Status.stages === 'stage1' ? 'text-red-600 text-sm' : project.expand.Status.stages === 'stage2' ? 'text-orange-600 text-sm' : project.expand.Status.stages === 'stage3' ? 'text-yellow-600 text-sm' : 'text-green-600'">
+                                        {{ project.expand.Status.stages === 'stage1' ? 'Attachment Pending' :
+                                            project.expand.Status.stages === 'stage2' ? 'Verifying Documents' :
+                                        project.expand.Status.stages === 'stage3'? 'Waiting for approval': 'Completed'}}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- {{project}} -->
-                        <div class="flex-wrapper flex shadow-md shadow-gray-500 md:rounded-tl-xl md:rounded-t-xl w-full rounded-bl-xl rounded-br-xl md:w-2/5">
-                            <button v-if="project.isCompleted" :class="{'pointer-events-none': project.isCompleted}" class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer rounded-lg bg-green-500 hover:bg-lime-500 place-content-center px-3 text-white font-semibold w-full">
+                        <div
+                            class="flex-wrapper flex shadow-md shadow-gray-500 md:rounded-tl-xl md:rounded-t-xl w-full rounded-bl-xl rounded-br-xl md:w-2/5">
+                            <button v-if="project.isCompleted" :class="{ 'pointer-events-none': project.isCompleted }"
+                                class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer rounded-lg bg-green-500 hover:bg-lime-500 place-content-center px-3 text-white font-semibold w-full">
                                 <div class="btn-label-wrapper flex gap-x-3">
                                     <div>
                                         <IconsCheckIcon></IconsCheckIcon>
                                     </div>
                                 </div>
                             </button>
-                            <button v-else class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 place-content-center px-3 text-white font-semibold w-full">
-                                <nuxt-link
-                                    :to="'/client/projects/' + project.id">
+                            <button v-else
+                                class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 place-content-center px-3 text-white font-semibold w-full">
+                                <nuxt-link :to="'/client/projects/' + project.id">
                                     <div class="btn-label-wrapper flex gap-x-3">
                                         <IconsMagnifyingGlass></IconsMagnifyingGlass>
                                         <div>

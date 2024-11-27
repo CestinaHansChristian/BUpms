@@ -1,5 +1,6 @@
 <template>
-    <div v-if="!submittedAllDocs" class="w-full h-full grid md:flex p-1 gap-2 justify-center lg:flex-row">
+    <div v-if="!submittedAllDocs"
+        class="w-full h-full grid md:flex p-1 gap-2 justify-center lg:flex-row md:container md:mx-auto">
         <div class="border-2 border-slate-300 rounded-lg p-1 md:p-4 md:w-1/4">
             <h2
                 class="scroll-m-20 border-b text-lg pb-2 border-slate-400 md:text-3xl font-semibold tracking-tight transition-colors first:mt-0">
@@ -36,7 +37,7 @@
                 <input type="file" class="absolute top-0 left-0 min-w-full min-h-full opacity-0 z-10" multiple
                     @change="manualUpload" />
                 <div :class="[
-                    'flex justify-center items-center h-full rounded-lg border-dashed transition-all duration-200',
+                    'flex justify-center items-center h-full rounded-lg border-dashed transition-all duration-200 relative',
                     isOverDropZone ? 'border-4 border-blue-500 bg-blue-50' : 'border-2 border-slate-300'
                 ]">
                     <div v-if="confirmUploadFiles.length === 0" class="text-center p-4">
@@ -49,26 +50,28 @@
                         <p class="mt-1 text-xs text-gray-500">or click to select files</p>
                     </div>
                     <div v-else
-                        class="w-full p-4 grid gap-4 auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-y-auto max-h-[60vh]">
+                        class="w-full p-4 grid gap-4 auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-y-auto h-80 md:max-h-[60vh] md:absolute top-0">
                         <div v-for="(file, index) in confirmUploadFiles" :key="index"
-                            class="relative flex items-center p-4 space-x-4 z-20 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                            <div class="flex-shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                </svg>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate">
-                                    {{ file.file.name }}
-                                </p>
-                                <p class="text-xs text-gray-500">
-                                    {{ (file.file.size / 1024).toFixed(1) }} KB
-                                </p>
+                            class="relative grid items-center p-4 space-x-4 z-20 bg-white rounded-lg h-28 md:h-full md:w-full shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                            <div class="wrapper grid md:place-content-center md:space-y-3">
+                                <div class="flex-shrink-0 grid place-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-14 md:size-20 text-blue-500"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-gray-900 truncate">
+                                        {{ file.file.name }}
+                                    </p>
+                                    <p class="text-xs text-gray-500">
+                                        {{ (file.file.size / 1024).toFixed(1) }} KB
+                                    </p>
+                                </div>
                             </div>
                             <button @click="removeFile(index)"
-                                class="flex-shrink-0 p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100">
+                                class="flex-shrink-0 p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100 absolute top-0 right-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                     fill="currentColor">
                                     <path fill-rule="evenodd"
@@ -140,7 +143,7 @@
                             Confirm Upload
                         </button>
                         <button @click="confirmUpload = false"
-                            class="p-1 md:mt-4 md:px-4 md:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
+                            class="p-1 md:mt-4 md:px-4 md:py-2 bg-gray-400 text-white rounded-md hover:bg-blue-600 transition-colors">
                             Close
                         </button>
                     </div>
@@ -158,8 +161,8 @@ const { $pb } = useNuxtApp()
 
 const dropzoneRef = ref()
 const isLoading = ref(false)
-const initialFiles = ref<{ file: File; documentType: string }[]>([])
-const confirmUploadFiles = ref<{ file: File; documentType: string }[]>([])
+let initialFiles = ref<{ file: File; documentType: string }[]>([])
+let confirmUploadFiles = ref<{ file: File; documentType: string }[]>([])
 const requiredDocs = ref([
     { label: 'JURAT', value: 'jurat' },
     { label: 'Medical Certificate', value: 'medical' },
@@ -219,7 +222,6 @@ function updateAvailableTypes() {
         ...initialFiles.value.map(f => f.documentType),
         ...(submittedDocuments || []) // Add submitted documents directly
     ].filter(Boolean));
-
     availableDocumentTypes.value = requiredDocs.value.filter(doc => !uploadedTypes.has(doc.value));
 }
 
@@ -266,6 +268,8 @@ async function uploadFiles() {
             })
         }
         emit('isSubmittedRefresh')
+        initialFiles.value = []
+        confirmUploadFiles.value = []
     } catch (error) {
         console.error(error)
     } finally {
@@ -283,6 +287,7 @@ function confirmUploadFunc() {
         confirmUploadFiles.value = initialFiles.value.filter(f => f.documentType !== '')
         confirmUpload.value = false
         updateAvailableTypes() // Update available types after confirming upload
+        console.log(initialFiles.value)
         console.log(confirmUploadFiles.value)
     } else {
         confirmUpload.value = false
@@ -298,6 +303,8 @@ function removeFile(index: number) {
 
     // Remove from confirmUploadFiles 
     confirmUploadFiles.value = confirmUploadFiles.value.filter((_, i) => i !== index);
+
+    console.log(index)
 
     // Close modal if no files left
     if (initialFiles.value.length === 0) {

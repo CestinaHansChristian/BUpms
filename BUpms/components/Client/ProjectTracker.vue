@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div
             class="header-wrapper sticky top-0 text-white tracking-widest uppercase font-semibold text-2xl text-center bg-blue-300 p-3 rounded-t-xl">
-            Logs
+            History
         </div>
         <div v-if="status === 'success'"
             class="project-list-container h-72 md:h-screen space-y-2 overflow-y-scroll py-1 bg-slate-200">
@@ -19,7 +19,8 @@
                         </div>
                         <div class="project-description grid px-2 font-semibold md:text-lg">
                             <span class="text-sm text-slate-500 md:text-base">Status:</span>
-                            <div class="" :class="item.isArchived ? 'text-red-500' : item.isCompleted ? 'text-green-600': 'text-blue-700'">
+                            <div class=""
+                                :class="item.isArchived ? 'text-red-500' : item.isCompleted ? 'text-green-600' : 'text-blue-700'">
                                 {{ item.isArchived ? 'Canceled' : item.isCompleted ? 'Completed' : 'Active' }}
                             </div>
                         </div>

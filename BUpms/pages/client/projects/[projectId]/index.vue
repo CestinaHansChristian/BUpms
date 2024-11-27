@@ -1,20 +1,21 @@
 <script setup>
 // paste data here
+userLandingGreet()
 definePageMeta({
     layout: 'landing',
-    middleware: 'guard'
+    middleware: ['guard', 'client']
 })
 const route = useRoute()
 const { $pb } = useNuxtApp()
 
-const { data: projectStatus, status, refresh } = await useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Status_tbl').getFirstListItem(`Project_id="${route.params.projectId}"`))
+const { data: projectStatus, refresh } = await useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Status_tbl').getFirstListItem(`Project_id="${route.params.projectId}"`))
 
 // const projectStatus = await pb.collection('Status_tbl').getFirstListItem(`Project_id="${route.params.projectId}"`)
 
-const { data: projectData, status: projectDataStatus, refresh: projectDataRefresh } = await useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Projects_tbl').getOne(route.params.projectId, {
+const { data: projectData } = await useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Projects_tbl').getOne(route.params.projectId, {
     expand: 'Documents_tbl_via_Project_rel'
 }))
-
+// , status: projectDataStatus, refresh: projectDataRefresh
 
 // for client tracking only
 const isChecked = reactive({
@@ -33,7 +34,7 @@ try {
     const isDocumentUploaded = await $pb.collection('Documents_tbl').getFirstListItem(`Project_rel="${projectStatus.value.Project_id}"`, {
         expand: 'Project_rel',
     })
-    
+
     const getStatusId = isDocumentUploaded.expand.Project_rel.Status
 
     const getProjectStatusStage = await $pb.collection('Status_tbl').getFirstListItem(`Project_id="${projectStatus.value.Project_id}"`)
@@ -58,6 +59,15 @@ try {
     console.log(statusUpdate)
 }
 
+// bypass tracking for client HAHAHHA
+onMounted(() => {
+    const refreshTracking = setTimeout(() => {
+        refresh()
+
+        clearTimeout(refreshTracking)
+    }, 1000);
+})
+
 const stageStatus = computed(() => ({
     stage1: projectStatus.value.stages === 'stage1' || projectStatus.value.stages === 'stage2' || projectStatus.value.stages === 'stage3' || projectStatus.value.stages === 'stage4',
     stage2: projectStatus.value.stages === 'stage2' || projectStatus.value.stages === 'stage3' || projectStatus.value.stages === 'stage4',
@@ -67,10 +77,8 @@ const stageStatus = computed(() => ({
 
 console.log(stageStatus.value.stage3)
 const isCleared = computed(() => projectStatus.value.stages === 'stage4')
+function refreshTracking() {
 
-async function refreshTracking() {
-    refresh()
-    console.log('refreshed')
 }
 
 </script>
@@ -81,12 +89,12 @@ async function refreshTracking() {
                 <!-- <TrackingProjectStage :projectStage="projectStatus.stages" :projectRelId="projectStatus.Project_id">
                 </TrackingProjectStage> -->
                 <div class="main-container py-8 text-black">
-                    {{ stageStatus }}
                     <div
                         class="gap-x-2 md:gap-x-5 lg:gap-x-16 space-y-10 mx-5 relative place-content-center md:flex md:place-items-center font-medium text-slate-800">
                         <div
                             class="circle-stage-success-wrapper z-10 lg:space-y-2 md:pt-10 grid grid-cols-2 md:relative md:grid-cols-none">
-                            <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid ">
+                            <div
+                                class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid ">
                                 <div :class="stageStatus.stage1 ? isChecked : isPending"
                                     class="circle-inner h-12 w-12 md:h-24 md:w-24  rounded-full grid place-items-center">
                                     <div v-if="stageStatus.stage1" class="display-icon-check">
@@ -111,7 +119,8 @@ async function refreshTracking() {
                         </div>
                         <!-- first status stage one -->
                         <div class="circle-stage-one-wrapper z-10 md:space-y-3 grid grid-cols-2 md:grid-cols-none">
-                            <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full place-content-center grid ">
+                            <div
+                                class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full place-content-center grid ">
                                 <div :class="stageStatus.stage2 ? isChecked : isPending"
                                     class="circle-inner h-12 w-12 md:h-24 md:w-24 rounded-full grid place-items-center">
                                     <div v-if="stageStatus.stage2" class="display-icon-check">
@@ -136,7 +145,8 @@ async function refreshTracking() {
                         </div>
                         <!-- second status stage two -->
                         <div class="circle-stage-two-wrapper z-10 md:space-y-3 grid grid-cols-2 md:grid-cols-none">
-                            <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full place-content-center grid ">
+                            <div
+                                class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full place-content-center grid ">
                                 <div :class="stageStatus.stage3 ? isChecked : isPending"
                                     class="circle-inner h-12 w-12 md:h-24 md:w-24 rounded-full grid place-items-center">
                                     <div v-if="stageStatus.stage3" class="display-icon-check">
@@ -161,7 +171,8 @@ async function refreshTracking() {
                         </div>
                         <!-- third status stage three -->
                         <div class="circle-stage-three-wrapper z-10 md:space-y-3 grid grid-cols-2 md:grid-cols-none">
-                            <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid ">
+                            <div
+                                class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid ">
                                 <div :class="stageStatus.stage4 ? isChecked : isPending"
                                     class="circle-inner h-12 w-12 md:h-24 md:w-24 rounded-full grid place-items-center ">
                                     <div v-if="stageStatus.stage4" class="display-icon-check">
@@ -186,7 +197,8 @@ async function refreshTracking() {
                         </div>
                         <!-- Project Final Status -->
                         <div class="circle-stage-approved-wrapper z-10 md:space-y-3 grid grid-cols-2 md:grid-cols-none">
-                            <div class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid ">
+                            <div
+                                class="circle bg-sky-600 h-14 w-14 md:h-28 md:w-28 rounded-full  place-content-center grid ">
                                 <div :class="isCleared ? 'bg-green-400' : 'bg-orange-400'"
                                     class="circle-inner h-12 w-12 md:h-24 md:w-24 rounded-full grid place-items-center">
                                     <div v-if="isCleared" class="display-icon-check">
@@ -218,11 +230,13 @@ async function refreshTracking() {
             <div class="project-description md:pt-10">
                 <div v-if="projectStatus.stages === 'stage1'" class=" p-2 rounded-lg backdrop-blur-md md:pt-10">
                     <div class="flex justify-between ">
-                        <fieldset class="flex flex-col w-full h-full border-2 border-slate-300 rounded-lg shadow-inner">
-                            <legend class="text-xl font-semibold text-center uppercase text-slate-700">
+                        <fieldset
+                            class="flex-col w-full h-full border-2 border-slate-300 rounded-lg shadow-inner grid md:container md:mx-auto">
+                            <!-- <legend class="md:text-xl font-semibold text-center uppercase text-slate-700">
                                 Upload your document/s
-                            </legend>
-                            <ClientProjectSubmit @isSubmittedRefresh="refreshTracking()" :projectId="route.params.projectId"
+                            </legend> -->
+                            <ClientProjectSubmit @isSubmittedRefresh="refreshTracking()"
+                                :projectId="route.params.projectId"
                                 :submittedDocuments="(projectData.expand && projectData.expand.Documents_tbl_via_Project_rel) ? projectData.expand.Documents_tbl_via_Project_rel.map(doc => doc.Doc_type) : []" />
                         </fieldset>
                     </div>

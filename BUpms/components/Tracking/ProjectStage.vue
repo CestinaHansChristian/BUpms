@@ -21,7 +21,7 @@ try {
     const isDocumentUploaded = await $pb.collection('Documents_tbl').getFirstListItem(`Project_rel="${projectRelId}"`, {
         expand: 'Project_rel',
     })
-    
+
     const getStatusId = isDocumentUploaded.expand.Project_rel.Status
 
     const getProjectStatusStage = await $pb.collection('Status_tbl').getFirstListItem(`Project_id="${projectRelId}"`)
@@ -59,7 +59,6 @@ const isCleared = computed(() => projectStage === 'stage4')
 </script>
 <template>
     <div class="main-container py-8 text-black">
-        {{ stageStatus }}
         <div
             class="gap-x-2 md:gap-x-5 lg:gap-x-16 space-y-10 mx-5 relative place-content-center md:flex md:place-items-center font-medium text-slate-800">
             <div

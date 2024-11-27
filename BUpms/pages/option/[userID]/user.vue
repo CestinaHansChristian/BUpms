@@ -104,7 +104,8 @@ const { $pb } = useNuxtApp()
 const route = useRoute()
 userLandingGreet()
 definePageMeta({
-    layout: 'landing'
+    layout: 'landing',
+    middleware: ['admin', 'guard']
 })
 import * as zod from 'zod'
 

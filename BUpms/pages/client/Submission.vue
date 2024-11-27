@@ -88,7 +88,8 @@
     <!-- Modals -->
     <ClientOnly>
         <Teleport to="#modal">
-            <div v-if="showConfirmModal" class="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-md">
+            <div v-if="showConfirmModal"
+                class="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-md mx-4">
                 <div class="bg-white p-6 rounded-lg max-w-sm w-full">
                     <h2 class="text-xl font-bold mb-4">Confirm Submission</h2>
                     <p class="mb-4">Are you sure you want to submit this activity?</p>
@@ -103,11 +104,12 @@
         </Teleport>
 
         <Teleport to="#modal">
-            <div v-if="isPosted" class="fixed inset-0 bg-opacity-50 flex items-center justify-center">
+            <div v-if="isPosted"
+                class="fixed inset-0 bg-opacity-50 flex items-center justify-center mx-4 backdrop-blur-md">
                 <div class="bg-white p-6 rounded-lg max-w-sm w-full text-center">
                     <IconsDocument class="mx-auto mb-4" />
-                    <p class="mb-2">Your submission has been posted successfully.</p>
-                    <p class="text-sm text-gray-500">Redirecting to Tracking Page...</p>
+                    <p class="mb-2 font-bold">Your submission has been posted successfully.</p>
+                    <p class="text-sm text-gray-500 ">Redirecting to Tracking Page...</p>
                 </div>
             </div>
         </Teleport>
@@ -137,6 +139,12 @@ import { z } from 'zod'
 
 const { $pb } = useNuxtApp()
 const router = useRouter()
+
+userLandingGreet()
+definePageMeta({
+    layout: 'landing',
+    middleware: ['guard', 'client']
+})
 
 const clientActivityTitle = ref('')
 const clientDescription = ref('')
@@ -225,11 +233,6 @@ async function confirmSubmission() {
 
     // Redirect after a delay
 }
-
-definePageMeta({
-    layout: 'landing'
-})
-
 </script>
 
 <style scoped>

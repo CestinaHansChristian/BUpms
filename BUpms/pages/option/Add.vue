@@ -5,9 +5,9 @@
             <div v-if="isModalToggle"
                 class="h-screen backdrop-blur-md z-10 w-full fixed grid place-content-center border-2 border-black">
                 <div
-                    class=" card-container grid place-content-center bg-slate-200 shadow-md shadow-slate-400 border-2 border-slate-300 h-72 w-60 gap-y-5 rounded-lg md:h-80 md:w-96">
+                    class=" card-container grid place-content-center bg-slate-200 shadow-md shadow-slate-400 border-2 border-slate-300 h-72 w-60 gap-y-5 rounded-3xl md:h-80 md:w-96">
                     <div class="card-heading grid place-content-center">
-                        <div class="border-8 border-green-400 rounded-full p-3">
+                        <div class="border-8 border-green-600 rounded-full p-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="6"
                                 stroke="green" class="checkedicon h-20 w-20">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
@@ -15,11 +15,11 @@
                         </div>
                     </div>
                     <div class="information-wrapper text-center space-y-5 text-xs tracking-widest md:text-lg">
-                        <div class="card-description text-lg uppercase font-semibold">
+                        <div class="card-description text-lg uppercase font-semibold lg:text-2xl">
                             User added
                         </div>
-                        <div class="redirection-notice uppercase text-sm">
-                            redirecting to homepage
+                        <div class="redirection-notice text-sm lg:text-base">
+                            Redirecting to Homepage
                         </div>
                     </div>
                 </div>
@@ -29,9 +29,9 @@
         <teleport to='#modal'>
             <div v-if="modalError" class="h-screen backdrop-blur-md z-10 w-full fixed grid place-content-center">
                 <div
-                    class=" card-container grid place-content-center bg-slate-200 shadow-md shadow-slate-400 border-2 border-slate-300 h-72 w-60 gap-y-5 rounded-lg md:h-80 md:w-96">
+                    class=" card-container grid place-content-center bg-slate-200 shadow-md shadow-slate-400 border-2 border-slate-300 h-72 w-60 gap-y-5 rounded-3xl md:h-80 md:w-96">
                     <div class="card-heading grid place-content-center">
-                        <div class="border-8 border-red-400 rounded-full p-3">
+                        <div class="border-8 border-red-500 rounded-full p-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="6"
                                 stroke="white" class="h-20 w-20 border-red-500 errorDisplay">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -39,11 +39,11 @@
                         </div>
                     </div>
                     <div class="information-wrapper text-center space-y-5 text-xs tracking-widest md:text-lg">
-                        <div class="card-description text-lg uppercase font-semibold">
+                        <div class="card-description text-lg uppercase font-semibold lg:text-xl">
                             An error occured existing user conflict
                         </div>
-                        <div class="redirection-notice uppercase text-sm">
-                            try again
+                        <div class="redirection-notice text-sm lg:text-base">
+                            Try Again
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
         <teleport to='#modal'>
             <div v-if="isInvalidEmail" class="h-screen backdrop-blur-md z-10 w-full fixed grid place-content-center">
                 <div
-                    class=" card-container grid place-content-center bg-slate-200 shadow-md shadow-slate-400 border-2 border-slate-300 h-72 w-60 gap-y-5 rounded-lg md:h-80 md:w-96">
+                    class=" card-container grid place-content-center bg-slate-200 shadow-md shadow-slate-400 border-2 border-slate-300 h-72 w-60 gap-y-5 rounded-3xl md:h-80 md:w-96">
                     <div class="card-heading grid place-content-center">
                         <div class="border-8 border-red-400 rounded-full p-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="6"
@@ -63,12 +63,13 @@
                         </div>
                     </div>
                     <div class="information-wrapper text-center space-y-5 text-xs tracking-widest md:text-lg">
-                        <div class="card-description text-lg uppercase font-semibold text-red-500">
+                        <div class="card-description text-lg uppercase font-semibold lg:text-2xl">
                             Invalid email format
                         </div>
-                        <div class="redirection-notice text-sm space-x-2">
+                        <div class="redirection-notice text-sm space-x-2 lg:text-lg">
                             <span class="text-red-500">Please use</span>
-                            <span class="text-slate-800">@bicol-u.edu.ph</span>
+                            <span class="text-slate-800 font-bold">"@bicol-u.edu.ph"</span>
+                            <span class="text-red-500">format</span>
                         </div>
                     </div>
                 </div>
@@ -154,7 +155,8 @@
 </template>
 <script setup>
 definePageMeta({
-    layout: 'landing'
+    layout: 'landing',
+    middleware: ['guard', 'admin']
 })
 useHead({
     title: "Create User"
@@ -207,7 +209,7 @@ async function createUser() {
                     console.log(`user: ${username} created`)
                     isModalToggle.value = !isModalToggle.value
                     clearTimeout(userAddedPrev)
-                }, 2000);
+                }, 9000);
                 navigateTo('/admin')
             } catch (error) {
                 // if user already exists display error
@@ -272,7 +274,7 @@ function checkifEmailValid() {
 
 <style scoped>
 .checkedicon {
-    stroke: rgb(120, 218, 75);
+    stroke: rgb(84, 194, 33);
 }
 
 .errorDisplay {

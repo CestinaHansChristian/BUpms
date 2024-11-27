@@ -21,26 +21,42 @@
                                 <div v-if="displayNotif" @click="show_alert_notify"
                                     class="notification-container cursor-pointer relative ">
                                     <IconsNotification></IconsNotification>
-                                    <div v-if="orangeDot" class="notification h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0">
+                                    <div v-if="orangeDot"
+                                        class="notification h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0">
                                     </div>
-                                    <div v-else class="notification hidden h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0">
+                                    <div v-else
+                                        class="notification hidden h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0">
                                     </div>
                                     <div v-if="alertIsClicked" class="notif_list fixed right-0 z-10 pt-2">
-                                        <div class="list-container p-1 md:p-2 bg-slate-200 w-48 md:w-72 me-5 rounded-md shadow-md shadow-gray-400">
-                                            <div class="notif-wrapper p-1 text-sm md:text-xl bg-slate-300 max-h-60 overflow-y-scroll space-y-2 rounded-md">
+                                        <div
+                                            class="list-container p-1 md:p-2 bg-slate-200 w-48 md:w-72 me-5 rounded-md shadow-md shadow-gray-400">
+                                            <div
+                                                class="notif-wrapper p-1 text-sm md:text-xl bg-slate-300 max-h-60 overflow-y-scroll space-y-2 rounded-md">
                                                 <!-- one notif sample -->
                                                 <div v-if="notificationMessage.length > 0" class="if-with-notification">
-                                                    <div v-for="(item, index) in notificationMessage" :key="index" class="project-notif flex justify-around gap-x-5 p-1 border-2 rounded-md">
-                                                        <div class="icon-wrapper grid place-items-center">
-                                                            <div class="img-icon h-10 w-10 md:h-16 md:w-16 bg-green-400 rounded-full grid place-content-center">
-                                                                <IconsCheckIcon></IconsCheckIcon>
+                                                    <div v-for="(item, index) in notificationMessage" :key="index"
+                                                        class="project-notif flex gap-x-5 p-1 border-2 rounded-md relative xl:w-full xl:h-32">
+                                                        <div
+                                                            class="icon-wrapper h-full w-full grid place-content-center">
+                                                            <div
+                                                                class="img-icon h-12 w-12  bg-green-400 rounded-full grid place-content-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 24 24" stroke-width="6" stroke="white"
+                                                                    class="size-7">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        d="m4.5 12.75 6 6 9-13.5" />
+                                                                </svg>
                                                             </div>
-                                                            <div class="passed-status font-semibold text-xs md:text-lg">
+                                                            <div
+                                                                class="passed-status font-medium text-xs md:text-base xl:text-xl ps-1 md:ps-0">
                                                                 Passed
                                                             </div>
                                                         </div>
-                                                        <div class="notif-infotracking-wider tracking-widest text-base">
-                                                            {{ item.Short_desc }}    
+                                                        <div class="col-2 relative grid place-content-center">
+                                                            <div
+                                                                class="notif-infotracking-widertracking-wide text-sm md:text-base xl:text-xl">
+                                                                {{ item.Short_desc }}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -106,7 +122,7 @@ const notificationMessage = await $pb.collection('Notifications_tbl').getFullLis
 
 // get one notification only
 try {
-    orangeDot = await $pb.collection('Notifications_tbl').getFirstListItem(`ForUser="${$pb.authStore.model?.id}"`,{
+    orangeDot = await $pb.collection('Notifications_tbl').getFirstListItem(`ForUser="${$pb.authStore.model?.id}"`, {
     })
 } catch (error) {
     console.log(error)

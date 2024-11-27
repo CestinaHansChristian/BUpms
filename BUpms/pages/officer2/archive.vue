@@ -92,7 +92,7 @@
 import Chart from 'chart.js/auto'
 definePageMeta({
     layout: 'landing',
-    middleware: ['guard','officer2']
+    middleware: ['guard', 'officer2']
 })
 
 // canvas main component

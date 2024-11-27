@@ -13,7 +13,7 @@ userLandingGreet()
 
 definePageMeta({
     layout: 'landing',
-    middleware: ['guard']
+    middleware: ['guard', 'client']
 })
 </script>
 
