@@ -194,6 +194,7 @@
 // Admin composable documents
 definePageMeta({
     layout: 'landing',
+    middleware: ['guard','officer1']
 })
 
 const route = useRoute();

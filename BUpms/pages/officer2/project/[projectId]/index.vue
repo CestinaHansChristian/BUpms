@@ -101,7 +101,7 @@
                     </div>
                     <div class="btn-controller-wrapper pb-5">
                         <div class="approve-btn-wrapper flex justify-between mx-2 md:mx-5 gap-x-3">
-                            <nuxt-link to="/officer1/projects">
+                            <nuxt-link to="/officer2/projects">
                                 <div
                                     class="reject-design-btn bg-orange-400 cursor-pointer hover:bg-orange-600  uppercase p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 text-slate-50 tracking-wider">
                                     Go Back
@@ -110,7 +110,7 @@
                             <div class="control-btn flex lg:gap-x-5 gap-x-2">
                                 <nuxt-link v-if="isApproved.stages === 'stage3'"
                                     :to="fetchSingleProject.id + '/approved'">
-                                    <div @click="approveProposal(fetchSingleProject.id, fetchSingleProject.Status)"
+                                    <div @click="approveProposal(fetchSingleProject, fetchSingleProject.Status)"
                                         class="approve-design-btn uppercase cursor-pointer bg-blue-400 hover:bg-sky-700 text-slate-50 p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 hover:text-white tracking-wider">
                                         Approve
                                     </div>
@@ -169,6 +169,7 @@
 // Admin composable documents
 definePageMeta({
     layout: 'landing',
+    middleware: ['guard', 'officer2']
 })
 
 const route = useRoute();
@@ -200,26 +201,34 @@ async function rejectOfficerProject(projectId) {
 }
 
 async function approveProposal(projectId, recordId) {
+
+    const formattedProjectId = projectId.id
+    const formattedUserId = projectId.User
+
+    // for stages
     const data = {
-        Project_id: projectId,
+        Project_id: formattedProjectId,
         stages: 'stage4'
     }
 
+    // for project
     const data2 = {
-        id: projectId,
+        id: formattedProjectId,
         isCompleted : true
     }
 
     const notificationData = {
-        Project_id: projectId,
-        Short_desc: 'Project Approved'
+        ForUser: formattedUserId,
+        Short_desc: `Project ${projectId.Title} has been approved.`,
     }
 
+    console.log(projectId)
+    console.log(data, data2, notificationData)
     // recordIdis for status id
     // projectId is for project id
-    await $pb.collection('Status_tbl').update(recordId, data)
-    await $pb.collection('Projects_tbl').update(projectId, data2)
 
+    await $pb.collection('Status_tbl').update(recordId, data)
+    await $pb.collection('Projects_tbl').update(projectId.id, data2)
     await $pb.collection('Notifications_tbl').create(notificationData)
 }
 

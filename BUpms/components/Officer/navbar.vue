@@ -25,7 +25,7 @@
                 <!-- officer 2 -->
                 <div v-if="$pb.authStore.model?.role === 'officer2'" class="">
                     <nuxt-link to="/officer2/archive" class="text-lg md:text-2xl">
-                        Archive
+                        Reports
                     </nuxt-link>
                 </div>
             </div>

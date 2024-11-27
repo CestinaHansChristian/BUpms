@@ -1,7 +1,8 @@
 <script setup>
     // paste data here
     definePageMeta({
-        layout: 'landing'
+        layout: 'landing',
+        middleware: ['guard', 'officer2']
     })
 
     const route = useRoute()

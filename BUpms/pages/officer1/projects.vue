@@ -1,7 +1,8 @@
 <script setup>
 userLandingGreet()
 definePageMeta({
-    layout: 'landing'
+    layout: 'landing',
+    middleware: ['guard','officer1']
 })
 
 const { $pb } = useNuxtApp()

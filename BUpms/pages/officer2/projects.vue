@@ -1,7 +1,8 @@
 <script setup>
 userLandingGreet()
 definePageMeta({
-    layout: 'landing'
+    layout: 'landing',
+    middleware: ['guard','officer2']
 })
 
 const { $pb } = useNuxtApp()
@@ -98,6 +99,11 @@ console.log(fetchProjects)
                                     </button>
                                 </div>
                             </ClientOnly>
+                        </div>
+                    </div>
+                    <div v-else-if="project.expand.Status.stages === 'stage2' && project.expand.Status.stages === 'stage1' || index === 0" class="h-screen">
+                        <div class="wrapper-main grid place-content-center border-2 border-black h-full">
+                            There are no current projects
                         </div>
                     </div>
                 </div>

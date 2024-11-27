@@ -21,24 +21,31 @@
                                 <div v-if="displayNotif" @click="show_alert_notify"
                                     class="notification-container cursor-pointer relative ">
                                     <IconsNotification></IconsNotification>
-                                    <div class="notification h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0">
+                                    <div v-if="orangeDot" class="notification h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0">
+                                    </div>
+                                    <div v-else class="notification hidden h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0">
                                     </div>
                                     <div v-if="alertIsClicked" class="notif_list fixed right-0 z-10 pt-2">
                                         <div class="list-container p-1 md:p-2 bg-slate-200 w-48 md:w-72 me-5 rounded-md shadow-md shadow-gray-400">
                                             <div class="notif-wrapper p-1 text-sm md:text-xl bg-slate-300 max-h-60 overflow-y-scroll space-y-2 rounded-md">
                                                 <!-- one notif sample -->
-                                                <div v-for="(item, index) in notificationMessage" :key="index" class="project-notif flex justify-around gap-x-5 p-1 border-2 rounded-md">
-                                                    <div class="icon-wrapper grid place-items-center">
-                                                        <div class="img-icon h-10 w-10 md:h-16 md:w-16 bg-orange-400 rounded-full grid place-content-center">
-                                                            <IconsCheckIcon></IconsCheckIcon>
+                                                <div v-if="notificationMessage.length > 0" class="if-with-notification">
+                                                    <div v-for="(item, index) in notificationMessage" :key="index" class="project-notif flex justify-around gap-x-5 p-1 border-2 rounded-md">
+                                                        <div class="icon-wrapper grid place-items-center">
+                                                            <div class="img-icon h-10 w-10 md:h-16 md:w-16 bg-green-400 rounded-full grid place-content-center">
+                                                                <IconsCheckIcon></IconsCheckIcon>
+                                                            </div>
+                                                            <div class="passed-status font-semibold text-xs md:text-lg">
+                                                                Passed
+                                                            </div>
                                                         </div>
-                                                        <div class="passed-status font-semibold text-xs md:text-lg">
-                                                            Passed
+                                                        <div class="notif-infotracking-wider tracking-widest text-base">
+                                                            {{ item.Short_desc }}    
                                                         </div>
                                                     </div>
-                                                    <div class="notif-infotracking-wider">
-                                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est, reiciendis.
-                                                    </div>
+                                                </div>
+                                                <div v-else class="wrapper text-center text-slate-400 py-5">
+                                                    No Notification
                                                 </div>
                                             </div>
                                         </div>
@@ -84,13 +91,28 @@
 const { $pb } = useNuxtApp()
 const alertIsClicked = ref(false);
 const userIsClicked = ref(false)
+let orangeDot = ref('')
 
 // get current logged in user role
 const typeOfUser = reactive({
     userRole: $pb.authStore.model?.role
 })
 
-const notificationMessage = await $pb.collection('Notifications_tbl').getFullList()
+
+// get full notification
+const notificationMessage = await $pb.collection('Notifications_tbl').getFullList({
+    filter: `ForUser="${$pb.authStore.model?.id}"`,
+})
+
+// get one notification only
+try {
+    orangeDot = await $pb.collection('Notifications_tbl').getFirstListItem(`ForUser="${$pb.authStore.model?.id}"`,{
+    })
+} catch (error) {
+    console.log(error)
+}
+
+console.log(notificationMessage)
 
 // hides if role is admin / officer
 const displayNotif = computed(() => {

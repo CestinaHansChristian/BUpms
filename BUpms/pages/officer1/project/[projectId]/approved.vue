@@ -2,7 +2,8 @@
 
     // paste data here
     definePageMeta({
-        layout: 'landing'
+        layout: 'landing',
+        middleware: ['guard','officer1']
     })
 
     const route = useRoute()

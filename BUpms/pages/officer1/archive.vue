@@ -91,7 +91,8 @@
 <script setup>
 import Chart from 'chart.js/auto'
 definePageMeta({
-    layout: 'landing'
+    layout: 'landing',
+    middleware: ['guard','officer1']
 })
 
 // canvas main component
