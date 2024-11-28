@@ -169,7 +169,7 @@
                                         class="docu-filename rounded-t-xl ps-2 bg-slate-100 p-3 truncate break-words font-semibold">
                                         {{ document.Document }}
                                     </div>
-                                    <div @click="downloadFile(index, document.collectionId, document.id)"
+                                    <div @click="downloadFile(document.id)"
                                         class="docu-download-option w-full rounded-b-xl text-slate-50 p-2 text-center bg-sky-300 hover:text-white text-base tracking-widest px-1 hover:bg-sky-500 cursor-pointer">
                                         Download
                                     </div>
@@ -233,10 +233,13 @@ async function approveProposal(projectId, recordId) {
     await $pb.collection('Status_tbl').update(recordId, data)
 }
 
-function downloadFile(index, docUserid, docId) {
+async function downloadFile(docId) {
 
-    const mainURI = "https://bupms.forkbun.evansolanoy.studio/api/files/"
-    const fileURI = `${mainURI}${docUserid}/${docId}/${fetchSingleProject.expand.Documents_tbl_via_Project_rel[index].Document}`
+    const fileToken = await $pb.files.getToken()
+    const fileRecord = await $pb.collection('Documents_tbl').getOne(docId)
+    const fileURI = $pb.files.getUrl(fileRecord,fileRecord.Document,{
+        'token': fileToken
+    })
     const linkURI = document.createElement('a')
     linkURI.href = fileURI
     linkURI.setAttribute('target', '_blank')

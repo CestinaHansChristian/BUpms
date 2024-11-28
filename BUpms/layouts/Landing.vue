@@ -19,13 +19,10 @@
                             </div>
                             <div class="absolute top-3 right-0 md:relative md:top-0">
                                 <div v-if="displayNotif" @click="show_alert_notify"
-                                    class="notification-container cursor-pointer relative ">
+                                    class="notification-container cursor-pointer relative">
                                     <IconsNotification></IconsNotification>
-                                    <div v-if="orangeDot"
+                                    <div v-if="ifNotifisRead"
                                         class="notification h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0">
-                                    </div>
-                                    <div v-else
-                                        class="notification hidden h-3 w-3 bg-orange-500 rounded-full absolute top-0 right-0">
                                     </div>
                                     <div v-if="alertIsClicked" class="notif_list fixed right-0 z-10 pt-2">
                                         <div
@@ -33,13 +30,13 @@
                                             <div
                                                 class="notif-wrapper p-1 text-sm md:text-xl bg-slate-300 max-h-60 overflow-y-scroll space-y-2 rounded-md">
                                                 <!-- one notif sample -->
-                                                <div v-if="notificationMessage.length > 0" class="if-with-notification">
+                                                <div v-if="notificationMessage.length > 0" class="if-with-notification space-y-1 py-1">
                                                     <div v-for="(item, index) in notificationMessage" :key="index"
-                                                        class="project-notif flex gap-x-5 p-1 border-2 rounded-md relative xl:w-full xl:h-32">
+                                                        class="project-notif flex p-1 border-2 rounded-md relative xl:w-full xl:h-28 bg-sky-100">
                                                         <div
-                                                            class="icon-wrapper h-full w-full grid place-content-center">
+                                                            class="icon-wrapper h-full w-36 ps-2">
                                                             <div
-                                                                class="img-icon h-12 w-12  bg-green-400 rounded-full grid place-content-center">
+                                                                class="img-icon h-10 w-10 xl:h-16 xl:w-16 bg-green-400 rounded-full grid place-content-center">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                     viewBox="0 0 24 24" stroke-width="6" stroke="white"
                                                                     class="size-7">
@@ -52,9 +49,9 @@
                                                                 Passed
                                                             </div>
                                                         </div>
-                                                        <div class="col-2 relative grid place-content-center">
+                                                        <div class="col-2 relative xl:ps-4">
                                                             <div
-                                                                class="notif-infotracking-widertracking-wide text-sm md:text-base xl:text-xl">
+                                                                class="notif-infotracking-widertracking-wide text-xs md:text-base xl:text-xl">
                                                                 {{ item.Short_desc }}
                                                             </div>
                                                         </div>
@@ -104,10 +101,12 @@
 }
 </style>
 <script setup>
+
 const { $pb } = useNuxtApp()
 const alertIsClicked = ref(false);
 const userIsClicked = ref(false)
 let orangeDot = ref('')
+let ifNotifisRead = ref(false)
 
 // get current logged in user role
 const typeOfUser = reactive({
@@ -124,9 +123,11 @@ const notificationMessage = await $pb.collection('Notifications_tbl').getFullLis
 try {
     orangeDot = await $pb.collection('Notifications_tbl').getFirstListItem(`ForUser="${$pb.authStore.model?.id}"`, {
     })
+    ifNotifisRead.value = !ifNotifisRead.value
 } catch (error) {
     console.log(error)
 }
+console.log(orangeDot)
 
 console.log(notificationMessage)
 
@@ -148,6 +149,7 @@ const show_user_option = () => {
 // display alert window
 const show_alert_notify = () => {
     alertIsClicked.value = !alertIsClicked.value;
+    ifNotifisRead.value = false
 };
 
 const logout = () => {
