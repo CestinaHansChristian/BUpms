@@ -104,7 +104,7 @@ const { $pb } = useNuxtApp()
 
 // fetch from API 
 const archivedData = await $pb.collection('Projects_tbl').getFullList({
-    sort: '-created',
+    sort: '-updated',
 })
 
 // get total values pending projects

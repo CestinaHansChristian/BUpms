@@ -12,7 +12,7 @@
         <div class="img-container">
           <img src="assets/Splash-Art.png" alt="" class="object-content bu-assets h-full w-36 md:w-full">
         </div>
-        <div class="description-container text-white font-medium mx-2 lg:mx-8 md:text-sm lg:text-base xl:text-2xl  tracking-widest">
+        <div class="description-container text-white font-medium mx-2 lg:mx-8 md:text-sm lg:text-base  tracking-widest">
           Welcome to our platform for submitting project file documents to OSAS!
           Simply upload your files, track their progress, and collaborate efforlessly with our user-friendly interface.
         </div>

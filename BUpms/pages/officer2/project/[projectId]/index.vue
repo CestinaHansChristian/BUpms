@@ -188,13 +188,12 @@ const fetchedUserData = await $pb.collection('Users_tbl').getOne(fetchSingleProj
 
 // reject button function
 async function rejectOfficerProject(projectId) {
-    const projectIdformatted = projectId.id
     try {
         const data = {
             'isArchived': true
         }
-        await $pb.collection('Projects_tbl').update(projectIdformatted, data)
-        console.log()
+        await $pb.collection('Projects_tbl').update(projectId, data)
+        console.log(data)
     } catch (error) {
         console.log(error)
     }

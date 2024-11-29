@@ -1,18 +1,18 @@
 <template>
-    <div class="wrapper">
+    <div class="wrapper shadow-md shadow-gray-500 md:rounded-tl-xl md:rounded-t-xl w-full rounded-bl-xl rounded-br-xl">
         <div
-            class="header-wrapper sticky top-0 text-white tracking-widest uppercase font-semibold text-2xl text-center bg-blue-300 p-3 rounded-t-xl">
-            History
+            class="header-wrapper sticky top-0 text-sky-500 tracking-widest py-5 uppercase font-semibold text-2xl text-center bg-gray-200 p-3 rounded-t-xl">
+            Project Status
         </div>
         <div v-if="status === 'success'"
-            class="project-list-container h-72 md:h-screen space-y-2 overflow-y-scroll py-1 bg-slate-200">
+            class="project-list-container h-72 md:h-screen space-y-2 overflow-y-scroll py-1 bg-slate-100">
             <!-- <ClientProjectsComp :project_info="projects"></ClientProjectsComp> -->
             <div v-for="(item, index) in projects" :key="index">
                 <ClientOnly>
                     <div v-if="item.User === $pb.authStore.model?.id"
                         class="project-quick-status grid grid-cols-3 md:grid-cols-1 gap-y-2 py-3 place-content-start lg:grid-cols-3 border-2 border-slate-300 rounded-md bg-slate-100 mx-3">
                         <div class="project-name grid px-2 text-slate-500 font-semibold md:text-lg capitalize">
-                            <span class=" text-slate-500 md:text-base">Title:</span>
+                            <span class=" text-slate-500 md:text-base">Project:</span>
                             <div class="wrapper md:text-sm">
                                 {{ item.Title }}
                             </div>

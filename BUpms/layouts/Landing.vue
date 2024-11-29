@@ -117,6 +117,7 @@ const typeOfUser = reactive({
 // get full notification
 const notificationMessage = await $pb.collection('Notifications_tbl').getFullList({
     filter: `ForUser="${$pb.authStore.model?.id}"`,
+    sort: '-updated',
 })
 
 // get one notification only

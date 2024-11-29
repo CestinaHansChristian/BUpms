@@ -8,7 +8,7 @@ definePageMeta({
 const { $pb } = useNuxtApp()
 
 const { data: fetchProjects, status, refresh } = await useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Projects_tbl').getFullList({
-    sort: '-created',
+    sort: '+created',
     expand: 'User_tbl,Status'
 }))
 function logout() {
@@ -36,16 +36,17 @@ console.log(fetchProjects)
         <div class="history-content-wrapper">
             <div class="project-list-wrapper space-y-4 h-screen overflow-y-scroll py-2 p-2 bg-slate-200 rounded-lg">
                 <div v-for="(project, index) in fetchProjects" :key="index">
-                    <div v-if="project.isArchived === false && project.expand.Status.stages === 'stage2' || project.expand.Status.stages === 'stage1'"
+                    <div v-if="project.isArchived === false && project.expand.Status.stages === 'stage2'"
                         class="project-container grid md:flex md:justify-between gap-x-2 md:place-content-center md:gap-x-5">
                         <div
                             class="left-flex-container grid md:justify-around md:flex shadow-md px-5 bg-slate-100 md:rounded-b-xl rounded-t-xl p-2 shadow-gray-500 gap-x-4 md:w-full">
                             <div
-                                class="project-name text-blue-700 font-semibold uppercase text-base grid md:items-center md:ps-10 md:w-full md:gap-x-5 relative">
-                                <div class=" font-bold text-gray-700 md:absolute md:top-0 md:pt-5">
-                                    Activity Title:
+                                class="project-name text-blue-700 font-semibold uppercase md:flex text-base md:w-full md:gap-x-2">
+                                <div
+                                    class="uppercase tracking-wider font-bold text-gray-700 md:text-xl md:content-center md:w-28 lg:w-auto">
+                                    Project Name:
                                 </div>
-                                <div class="activity-value md:pt-8">
+                                <div class="font-semibold md:content-center">
                                     {{ project.Title }}
                                 </div>
                             </div>
@@ -76,33 +77,29 @@ console.log(fetchProjects)
                                     <!-- officer 1 -->
                                     <button>
                                         <nuxt-link v-if="$pb.authStore.model?.role === 'officer1'"
-                                            :to="'/officer1/project/' + project.id" class="gap-x-5 flex p-2">
-                                            <IconsMagnifyingGlass></IconsMagnifyingGlass>
-                                            Review
+                                            :to="'/officer1/project/' + project.id" class="gap-x-5 grid place-content-center">
+                                            <div class="wrapper flex justify-center">
+                                                <IconsMagnifyingGlass></IconsMagnifyingGlass>
+                                            </div>
+                                            <div class="wrapper">
+                                                Review
+                                            </div>
                                         </nuxt-link>
                                     </button>
-                                    <!-- officer 2 -->
-                                    <nuxt-link v-if="$pb.authStore.model?.role === 'officer2'" to="/officer2/forms"
-                                        class="gap-x-5 flex p-2">
-                                        <IconsMagnifyingGlass></IconsMagnifyingGlass>
-                                        Review
-                                    </nuxt-link>
                                 </div>
                                 <div
                                     class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
                                     <!-- officer 1 -->
                                     <button @click="officerRejectThisProject(project.id)"
                                         v-if="$pb.authStore.model?.role === 'officer1'"
-                                        class="gap-x-5 flex md:place-items-center p-2">
-                                        <IconsArchieveBox></IconsArchieveBox>
-                                        Reject
+                                        class="gap-x-5 md:place-content-center-center py-3 grid place-content-center">
+                                        <div class="wrapper flex justify-center">
+                                            <IconsArchieveBox></IconsArchieveBox>
+                                        </div>
+                                        <div class="wrapper">
+                                            Reject
+                                        </div>
                                     </button>
-                                    <!-- officer 2 -->
-                                    <div v-if="$pb.authStore.model?.role === 'officer2'"
-                                        class="gap-x-5 flex md:place-items-center p-2">
-                                        <IconsArchieveBox></IconsArchieveBox>
-                                        Reject
-                                    </div>
                                 </div>
                             </ClientOnly>
                         </div>

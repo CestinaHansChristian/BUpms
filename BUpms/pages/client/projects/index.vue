@@ -48,12 +48,12 @@ async function archiveProject(project_id) {
                         <div
                             class="left-flex-container grid justify-between gap-y-2 md:flex shadow-md bg-slate-200 md:rounded-b-xl rounded-t-xl p-2 shadow-gray-500 gap-x-4 md:w-full">
                             <div
-                                class="project-name text-blue-700 font-semibold uppercase text-base grid md:items-center md:ps-10 md:w-full md:gap-x-5 relative">
+                                class="project-name text-blue-700 font-semibold uppercase text-base md:flex md:gap-x-5 md:ps-5 relative">
                                 <div
-                                    class="capitalize tracking-wider font-bold text-gray-700 md:absolute md:top-0 md:pt-5 md:text-xl">
-                                    Project Title:
+                                    class="uppercase tracking-wider font-bold text-gray-700 md:text-xl md:content-center">
+                                    Project Name:
                                 </div>
-                                <div class="font-semibold  md:pt-8">
+                                <div class="font-semibold md:content-center">
                                     {{ project.Title }}
                                 </div>
                             </div>
@@ -86,17 +86,17 @@ async function archiveProject(project_id) {
                             class="flex-wrapper flex shadow-md shadow-gray-500 md:rounded-tl-xl md:rounded-t-xl w-full rounded-bl-xl rounded-br-xl md:w-2/5">
                             <button v-if="project.isCompleted" :class="{ 'pointer-events-none': project.isCompleted }"
                                 class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer rounded-lg bg-green-500 hover:bg-lime-500 place-content-center px-3 text-white font-semibold w-full">
-                                <div class="btn-label-wrapper flex gap-x-3">
-                                    <div>
-                                        <IconsCheckIcon></IconsCheckIcon>
-                                    </div>
+                                <div class="btn-label-wrapper gap-x-3 grid">
+                                    <span class="text-lg font-bold uppercase">Completed</span><span class="text-sm">Please bring the attached document hardcopy for OSAS verification</span>
                                 </div>
                             </button>
                             <button v-else
                                 class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 place-content-center px-3 text-white font-semibold w-full">
                                 <nuxt-link :to="'/client/projects/' + project.id">
-                                    <div class="btn-label-wrapper flex gap-x-3">
-                                        <IconsMagnifyingGlass></IconsMagnifyingGlass>
+                                    <div class="btn-label-wrapper grid place-content-center gap-x-3">
+                                        <div class="wrapper">
+                                            <IconsMagnifyingGlass></IconsMagnifyingGlass>
+                                        </div>
                                         <div>
                                             Review
                                         </div>
@@ -105,8 +105,10 @@ async function archiveProject(project_id) {
                             </button>
                             <button :class="{ 'hidden': project.isCompleted }" @click="archiveProject(project.id)"
                                 class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
-                                <div class="btn-label-wrapper flex gap-x-3">
-                                    <IconsArchieveBox></IconsArchieveBox>
+                                <div class="btn-label-wrapper grid gap-x-3">
+                                    <div class="wrapper">
+                                        <IconsArchieveBox></IconsArchieveBox>
+                                    </div>
                                     Cancel
                                 </div>
                             </button>
