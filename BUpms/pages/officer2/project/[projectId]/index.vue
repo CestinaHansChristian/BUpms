@@ -218,7 +218,7 @@ async function approveProposal(projectId, recordId) {
 
     const notificationData = {
         ForUser: formattedUserId,
-        Short_desc: `Project ${projectId.Title} has been approved.`,
+        Short_desc: `Project ${projectId.Title} has been approved. Check the Apprival page for more details.`
     }
 
     console.log(projectId)

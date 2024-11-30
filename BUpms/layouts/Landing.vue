@@ -32,28 +32,24 @@
                                                 <!-- one notif sample -->
                                                 <div v-if="notificationMessage.length > 0" class="if-with-notification space-y-1 py-1">
                                                     <div v-for="(item, index) in notificationMessage" :key="index"
-                                                        class="project-notif flex p-1 border-2 rounded-md relative xl:w-full xl:h-28 bg-sky-100">
+                                                        class="project-notif grid grid-cols-3 gap-x-5 p-1 border-2 rounded-md relative xl:w-full bg-sky-100">
                                                         <div
-                                                            class="icon-wrapper h-full w-36 ps-2">
+                                                            class="icon-wrapper h-full flex md:px-1 place-items-center relative ">
                                                             <div
-                                                                class="img-icon h-10 w-10 xl:h-16 xl:w-16 bg-green-400 rounded-full grid place-content-center">
+                                                                class="img-icon h-10 w-10 md:h-16 md:w-16 bg-green-400 rounded-full grid place-content-center">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                     viewBox="0 0 24 24" stroke-width="6" stroke="white"
-                                                                    class="size-7">
+                                                                    class="size-7 md:size-10">
                                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                                         d="m4.5 12.75 6 6 9-13.5" />
                                                                 </svg>
                                                             </div>
-                                                            <div
-                                                                class="passed-status font-medium text-xs md:text-base xl:text-xl ps-1 md:ps-0">
+                                                            <div class="information absolute bottom-0 font-semibold">
                                                                 Passed
                                                             </div>
                                                         </div>
-                                                        <div class="col-2 relative xl:ps-4">
-                                                            <div
-                                                                class="notif-infotracking-widertracking-wide text-xs md:text-base xl:text-xl">
-                                                                {{ item.Short_desc }}
-                                                            </div>
+                                                        <div class="col-span-2 relative h-full md:grid md:place-content-center tracking-wider text-xs md:text-base xl:text-base">
+                                                            {{ item.Short_desc }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -83,7 +79,7 @@
 </template>
 <style scoped>
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {

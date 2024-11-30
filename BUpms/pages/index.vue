@@ -9,7 +9,7 @@
       </div>
       <div v-else
         class="logged-in-container flex flex-col w-full items-center justify-center h-screen bg-gradient-to-r from-blue-500 to-purple-600">
-        <h1 class="text-4xl font-bold text-white mb-8">Welcome back!</h1>
+        <h1 class="md:text-4xl font-bold text-white mb-8">Welcome back!</h1>
         <button @click="navigateToRole"
           class="btn btn-primary mb-4 transform hover:scale-105 transition-transform duration-300 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg">
           <span class="mr-2">🚀</span>Launch Dashboard
@@ -37,12 +37,14 @@ onMounted(() => {
 
 const navigateToRole = () => {
   const role = $pb.authStore.model?.role || 'client'
-  router.push(role === 'student' ? '/client' : role === 'admin' ? '/admin' : `/${role}`)
+  router.push(role === 'student' ? '/client' : role === 'admin' ? '/admin' : role === 'officer1' ? '/officer1/projects' : role === 'officer2' ? '/officer2/projects' : '/')
+  console.log(role)
 }
 
 const logout = () => {
   $pb.authStore.clear()
   isLoggedIn.value = false
+  navigateTo('/')
 }
 
 useHead({
