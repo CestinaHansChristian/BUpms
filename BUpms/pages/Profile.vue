@@ -46,7 +46,8 @@
 const { $pb } = useNuxtApp()
 userLandingGreet()
 definePageMeta({
-    layout: 'landing'
+    layout: 'landing',
+    middleware: ['guard','client']
 })
 
 let userProfile = ref([])

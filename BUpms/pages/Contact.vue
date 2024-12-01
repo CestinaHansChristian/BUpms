@@ -135,6 +135,7 @@
 </template>
 <script setup>
     definePageMeta({
-        layout: 'landing'
+        layout: 'landing',
+        middleware: ['guard','client']
     })
 </script>
