@@ -38,7 +38,7 @@ onMounted(() => {
 const navigateToRole = () => {
   const role = $pb.authStore.model?.role || 'client'
   router.push(role === 'student' ? '/client' : role === 'admin' ? '/admin' : role === 'officer1' ? '/officer1/projects' : role === 'officer2' ? '/officer2/projects' : '/')
-  console.log(role)
+  // console.log(role)
 }
 
 const logout = () => {

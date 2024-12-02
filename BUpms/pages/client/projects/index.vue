@@ -17,10 +17,10 @@ async function archiveProject(project_id) {
         await $pb.collection('Projects_tbl').update(project_id, {
             isArchived: true
         })
-        console.log(project_id)
+        // console.log(project_id)
         refresh()
     } catch (error) {
-        console.log(error)
+        // console.log(error)
     }
 }
 </script>

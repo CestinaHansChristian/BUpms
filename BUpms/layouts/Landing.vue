@@ -122,11 +122,11 @@ try {
     })
     ifNotifisRead.value = !ifNotifisRead.value
 } catch (error) {
-    console.log(error)
+    // console.log(error)
 }
-console.log(orangeDot)
+// console.log(orangeDot)
 
-console.log(notificationMessage)
+// console.log(notificationMessage)
 
 // hides if role is admin / officer
 const displayNotif = computed(() => {

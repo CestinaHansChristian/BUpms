@@ -120,7 +120,7 @@ const totalData = await $pb.collection('total_projects').getFullList({
 const archivedProject = await $pb.collection('archived_projects').getFullList({
 });
 
-console.log(pendingData)
+// console.log(pendingData)
 
 
 // format data
@@ -132,7 +132,7 @@ const totalDataFormatted = totalData[0].total_projects
 // logic for subtracking data
 const finalPending = pendingDataFormatted - archivedProjectFormatted
 
-console.log(totalDataFormatted)
+// console.log(totalDataFormatted)
 // canvas configuration
 let canvasSettings = {
     type: "pie",
@@ -152,10 +152,10 @@ onBeforeUpdate(() => {
     if (canvasData) {
         canvasData.destroy()
         canvasData = new Chart('mychart', canvasSettings)
-        console.log('onbeforeupdate1')
+        // console.log('onbeforeupdate1')
     } else {
         canvasData = new Chart('mychart', canvasSettings)
-        console.log('onbeforeupdate2')
+        // console.log('onbeforeupdate2')
     }
 })
 
@@ -164,10 +164,10 @@ onBeforeMount(() => {
     if (canvasData) {
         canvasData.destroy()
         canvasData = new Chart('mychart', canvasSettings)
-        console.log('beforemount')
+        // console.log('beforemount')
     } else {
         canvasData = new Chart('mychart', canvasSettings)
-        console.log('beforemount2')
+        // console.log('beforemount2')
     }
 })
 
@@ -175,7 +175,7 @@ onBeforeUnmount(() => {
     if (canvasData) {
         canvasData.destroy()
 
-        console.log('beforemount')
+        // console.log('beforemount')
     } else {
         canvasData = new Chart('mychart', canvasSettings)
     }

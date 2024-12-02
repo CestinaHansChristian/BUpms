@@ -193,9 +193,9 @@ async function rejectOfficerProject(projectId) {
             'isArchived': true
         }
         await $pb.collection('Projects_tbl').update(projectId, data)
-        console.log(data)
+        // console.log(data)
     } catch (error) {
-        console.log(error)
+        // console.log(error)
     }
 }
 
@@ -218,11 +218,11 @@ async function approveProposal(projectId, recordId) {
 
     const notificationData = {
         ForUser: formattedUserId,
-        Short_desc: `Project ${projectId.Title} has been approved. Check the Apprival page for more details.`
+        Short_desc: `Project ${projectId.Title} has been approved. Check the Approval page for more details.`
     }
 
-    console.log(projectId)
-    console.log(data, data2, notificationData)
+    // console.log(projectId)
+    // console.log(data, data2, notificationData)
     // recordIdis for status id
     // projectId is for project id
 

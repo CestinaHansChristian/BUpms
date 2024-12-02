@@ -12,7 +12,7 @@ const { data: fetchProjects, status, refresh } = await useAsyncData(async (nuxtA
     expand: 'User_tbl,Status'
 }))
 function logout() {
-    console.log('close')
+    // console.log('close')
 }
 
 async function officerRejectThisProject(projectId) {
@@ -21,14 +21,14 @@ async function officerRejectThisProject(projectId) {
             'isArchived': true
         }
         await $pb.collection('Projects_tbl').update(projectId, data)
-        console.log('Archived')
+        // console.log('Archived')
         refresh()
     } catch (error) {
-        console.log(error)
+        // console.log(error)
     }
 }
 
-console.log(fetchProjects)
+// console.log(fetchProjects)
 </script>
 <template>
     <div class="mx-2 overflow-hidden">

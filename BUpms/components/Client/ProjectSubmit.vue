@@ -188,7 +188,7 @@ onMounted(() => {
             timeout: 5000
         })
     }
-    console.log(projectId)
+    // console.log(projectId)
     updateAvailableTypes()
 })
 
@@ -233,15 +233,15 @@ function isDocumentUploaded(docType: string): boolean {
 function onDrop(files: File[] | null, event: DragEvent): void {
     if (!files) return;
     confirmUpload.value = true
-    console.log(initialFiles.value)
+    // console.log(initialFiles.value)
     initialFiles.value = files.map(file => ({ file, documentType: '' }))
     availableDocumentTypes.value = requiredDocs.value // Reset available types on drop
     if (files[0].type.includes('pdf') || files[0].type.includes('jpeg')) {
-        console.log('Valid file type:', files[0].type);
+        // console.log('Valid file type:', files[0].type);
     } else {
-        console.log('Invalid file type:', files[0].type);
+        // console.log('Invalid file type:', files[0].type);
     }
-    console.log(files);
+    // console.log(files);
 }
 
 function manualUpload(e: Event) {
@@ -250,14 +250,14 @@ function manualUpload(e: Event) {
     if (files) {
         onDrop(Array.from(files), new DragEvent('drop'))
     } else {
-        console.log('null')
+        // console.log('null')
     }
 }
 
 async function uploadFiles() {
     // Upload files here
 
-    console.log(confirmUploadFiles.value.map(f => f.file));
+    // console.log(confirmUploadFiles.value.map(f => f.file));
     isLoading.value = true
     try {
         for (let file of confirmUploadFiles.value) {
@@ -271,7 +271,7 @@ async function uploadFiles() {
         initialFiles.value = []
         confirmUploadFiles.value = []
     } catch (error) {
-        console.error(error)
+        // console.error(error)
     } finally {
         isLoading.value = false
         confirmUpload.value = false
@@ -287,13 +287,13 @@ function confirmUploadFunc() {
         confirmUploadFiles.value = initialFiles.value.filter(f => f.documentType !== '')
         confirmUpload.value = false
         updateAvailableTypes() // Update available types after confirming upload
-        console.log(initialFiles.value)
-        console.log(confirmUploadFiles.value)
+        // console.log(initialFiles.value)
+        // console.log(confirmUploadFiles.value)
     } else {
         confirmUpload.value = false
         confirmUploadFiles.value = [...confirmUploadFiles.value, ...initialFiles.value.filter(f => f.documentType !== '')]
         updateAvailableTypes() // Update available types after confirming upload
-        console.log(confirmUploadFiles.value)
+        // console.log(confirmUploadFiles.value)
     }
 }
 
@@ -304,7 +304,7 @@ function removeFile(index: number) {
     // Remove from confirmUploadFiles 
     confirmUploadFiles.value = confirmUploadFiles.value.filter((_, i) => i !== index);
 
-    console.log(index)
+    // console.log(index)
 
     // Close modal if no files left
     if (initialFiles.value.length === 0) {

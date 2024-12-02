@@ -95,7 +95,7 @@ const display_modal = () => {
 };
 
 const handleEmailChange = (newValue: string) => {
-  console.log(`Email changed to ${newValue}`);
+  // console.log(`Email changed to ${newValue}`);
   // Perform any other actions here
 };
 
@@ -143,14 +143,14 @@ const googleLogin = async () => {
 
     // check if new account
     if (meta.isNew) {
-      console.log(meta)
+      // console.log(meta)
       const userName = meta.name
       const setLoggedInAcc = {
         // 'username': userName,
         'role': 'student'
       }
 
-      console.log(authData)
+      // console.log(authData)
       await $pb.collection('Users_tbl').update(authData.record.id, setLoggedInAcc)
       // by default can only be used on client 
       navigateTo('/client')

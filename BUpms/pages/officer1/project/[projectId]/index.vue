@@ -219,9 +219,9 @@ async function rejectOfficerProject(projectId) {
             'isArchived': true
         }
         await $pb.collection('Projects_tbl').update(projectIdformatted, data)
-        console.log()
+        // console.log()
     } catch (error) {
-        console.log(error)
+        // console.log(error)
     }
 }
 

@@ -152,24 +152,24 @@ async function updateUserInfo() {
             role: role.value
         })
 
-        console.log('pre creation')
+        // console.log('pre creation')
         // check if user already exists
         if (checkIfUserIDExist()) {
             try {
                 // create new user
                 await $pb.collection('Users_tbl').update(userID.value, validatedData)
-                console.log('Updated user account')
+                // console.log('Updated user account')
                 username.value = ''
                 password.value = ''
                 role.value = ''
                 const userAddedPrev = setTimeout(() => {
-                    console.log(`user: ${username} created`)
+                    // console.log(`user: ${username} created`)
                     clearTimeout(userAddedPrev)
                 }, 2000);
                 navigateTo('/admin')
             } catch (error) {
                 // if user already exists display error
-                console.log(error, 'user already exists')
+                // console.log(error, 'user already exists')
                 username.value = ''
                 password.value = ''
                 role.value = ''
@@ -179,7 +179,7 @@ async function updateUserInfo() {
                 }, 2000)
             }
         } else {
-            console.log('invalid email')
+            // console.log('invalid email')
             username.value = ''
             password.value = ''
             role.value = ''
@@ -190,7 +190,7 @@ async function updateUserInfo() {
     } catch (error) {
         if (error instanceof zod.ZodError) {
             displayError.value = error.flatten().fieldErrors
-            console.log('invalid fields')
+            // console.log('invalid fields')
             const errorPrev = setTimeout(() => {
                 displayError.value = ''
                 username.value = ''

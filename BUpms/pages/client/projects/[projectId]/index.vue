@@ -38,25 +38,25 @@ try {
     const getStatusId = isDocumentUploaded.expand.Project_rel.Status
 
     const getProjectStatusStage = await $pb.collection('Status_tbl').getFirstListItem(`Project_id="${projectStatus.value.Project_id}"`)
-    console.log(isDocumentUploaded)
+    // console.log(isDocumentUploaded)
 
-    console.log(getProjectStatusStage)
+    // console.log(getProjectStatusStage)
 
     if (getProjectStatusStage.stages === 'stage1' && isDocumentUploaded.Document) {
         const statusUpdate = {
             "stages": "stage2"
         }
-        console.log(statusUpdate)
-        console.log(getStatusId)
+        // console.log(statusUpdate)
+        // console.log(getStatusId)
         await $pb.collection('Status_tbl').update(getStatusId, statusUpdate)
-        console.log('updated')
+        // console.log('updated')
     }
 
 } catch (error) {
     const statusUpdate = {
         "stages": "stage1"
     }
-    console.log(statusUpdate)
+    // console.log(statusUpdate)
 }
 
 // bypass tracking for client HAHAHHA
@@ -75,7 +75,7 @@ const stageStatus = computed(() => ({
     stage4: projectStatus.value.stages === 'stage4'
 }))
 
-console.log(stageStatus.value.stage3)
+// console.log(stageStatus.value.stage3)
 const isCleared = computed(() => projectStatus.value.stages === 'stage4')
 function refreshTracking() {
 

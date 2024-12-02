@@ -4,7 +4,7 @@ const { projectStage, projectRelId } = defineProps(['projectStage', 'projectRelI
 const { $pb } = useNuxtApp()
 
 onMounted(() => {
-    console.log(projectStage)
+    // console.log(projectStage)
 })
 
 const isChecked = reactive({
@@ -30,10 +30,10 @@ try {
         const statusUpdate = {
             "stages": "stage2"
         }
-        console.log(statusUpdate)
-        console.log(getStatusId)
+        // console.log(statusUpdate)
+        // console.log(getStatusId)
         await $pb.collection('Status_tbl').update(getStatusId, statusUpdate)
-        console.log('updated')
+        // console.log('updated')
 
     }
 
@@ -41,7 +41,7 @@ try {
     const statusUpdate = {
         "stages": "stage1"
     }
-    console.log(statusUpdate)
+    // console.log(statusUpdate)
 }
 
 
@@ -53,7 +53,7 @@ const stageStatus = computed(() => ({
     stage4: projectStage === 'stage4'
 }))
 
-console.log(stageStatus.value.stage3)
+// console.log(stageStatus.value.stage3)
 const isCleared = computed(() => projectStage === 'stage4')
 
 </script>

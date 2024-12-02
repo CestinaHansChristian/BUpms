@@ -4,9 +4,9 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
   const model = $pb.authStore.model
   if(model) {
-    console.log('user logged in')
+    // console.log('user logged in')
   } else {
-    console.log('no user logged in')
+    // console.log('no user logged in')
     return navigateTo('/')
   }
 });

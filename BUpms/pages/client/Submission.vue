@@ -200,12 +200,12 @@ async function confirmSubmission() {
         "Contact_num": contactNumber.value,
         'Description': clientDescription.value
     }
-    console.log(createdProject)
+    // console.log(createdProject)
     try {
         const newProject = await $pb.collection('Projects_tbl').create(createdProject, {
             requestKey: 'createProject'
         })
-        console.log(newProject)
+        // console.log(newProject)
         const data = {
             "Project_id": newProject.id,
             "stages": "stage1"
@@ -228,7 +228,7 @@ async function confirmSubmission() {
             router.push('/client/projects')
         }, 3000)
     } catch (error) {
-        console.log(error)
+        // console.log(error)
     }
 
     // Redirect after a delay

@@ -99,11 +99,11 @@ const { data: messages, status, refresh } = useAsyncData(async (nuxtApp) => awai
     order: 'asc',
 }))
 
-console.log(messages._value)
+// console.log(messages._value)
 
 const sendMessage = async () => {
 
-    console.log($pb.authStore.model.id)
+    // console.log($pb.authStore.model.id)
     try {
         const data = {
             "FromUser": $pb.authStore.model.id,
@@ -127,7 +127,7 @@ const sendMessage = async () => {
 
         refresh()
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         toast.add({
             id: 'message_error',
             title: 'Error Sending Message',

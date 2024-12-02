@@ -199,14 +199,14 @@ async function createUser() {
             try {
                 // create new user
                 await $pb.collection('Users_tbl').create(validatedData)
-                console.log('create new user account')
+                // console.log('create new user account')
                 isModalToggle.value = !isModalToggle.value
                 username.value = ''
                 email.value = ''
                 password.value = ''
                 role.value = ''
                 const userAddedPrev = setTimeout(() => {
-                    console.log(`user: ${username} created`)
+                    // console.log(`user: ${username} created`)
                     isModalToggle.value = !isModalToggle.value
                     clearTimeout(userAddedPrev)
                 }, 9000);
@@ -214,7 +214,7 @@ async function createUser() {
             } catch (error) {
                 // if user already exists display error
                 modalError.value = !modalError.value
-                console.log(error, 'user already exists')
+                // console.log(error, 'user already exists')
                 username.value = ''
                 email.value = ''
                 password.value = ''
@@ -263,10 +263,10 @@ function checkIfuserExists() {
 function checkifEmailValid() {
     const regex = /\b@bicol-u\.edu\.ph\b/gi
     if (email.value.match(regex)) {
-        console.log('has bicol-u email')
+        // console.log('has bicol-u email')
         return true
     } else {
-        console.log('does not have bicol email')
+        // console.log('does not have bicol email')
         return false
     }
 }
