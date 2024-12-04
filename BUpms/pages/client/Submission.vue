@@ -105,7 +105,7 @@
 
         <Teleport to="#modal">
             <div v-if="isPosted"
-                class="fixed inset-0 bg-opacity-50 flex items-center justify-center mx-4 backdrop-blur-md">
+                class="fixed inset-0 bg-opacity-50 flex items-center justify-center mx-4 backdrop-blur-md z-10">
                 <div class="bg-white p-6 rounded-lg max-w-sm w-full text-center">
                     <IconsDocument class="mx-auto mb-4" />
                     <p class="mb-2 font-bold">Your submission has been posted successfully.</p>

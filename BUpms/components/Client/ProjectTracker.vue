@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper border-4 rounded-xl md:rounded-tl-xl md:rounded-t-xl w-full">
         <div
-            class="header-wrapper sticky top-0 text-sky-500 tracking-widest py-5 uppercase font-semibold text-2xl text-center bg-gray-200 p-3 rounded-t-xl">
+            class="header-wrapper sticky top-0 text-sky-500 tracking-widest py-5 uppercase font-semibold text-xl text-center bg-gray-200 p-3 rounded-t-xl">
             Project Status
         </div>
         <div v-if="status === 'success'"
@@ -12,21 +12,21 @@
                     <div v-if="item.User === $pb.authStore.model?.id"
                         class="project-quick-status grid grid-cols-3 md:grid-cols-1 gap-y-2 py-3 place-content-start lg:grid-cols-3 border-2 border-slate-300 rounded-md bg-slate-100 mx-3">
                         <div class="project-name grid px-2 text-slate-500 font-semibold md:text-lg capitalize">
-                            <span class=" text-slate-500 md:text-base">Project:</span>
-                            <div class="wrapper md:text-sm">
+                            <span class=" text-slate-800 md:text-base ">Project:</span>
+                            <div class="wrapper md:text-sm text-slate-500 w-full break-words">
                                 {{ item.Title }}
                             </div>
                         </div>
                         <div class="project-description grid px-2 font-semibold md:text-lg">
-                            <span class="text-sm text-slate-500 md:text-base">Status:</span>
+                            <span class="text-sm text-slate-800 md:text-base">Status:</span>
                             <div class=""
                                 :class="item.isArchived ? 'text-red-500' : item.isCompleted ? 'text-green-600' : 'text-blue-700'">
                                 {{ item.isArchived ? 'Canceled' : item.isCompleted ? 'Completed' : 'Active' }}
                             </div>
                         </div>
                         <div class="project-description grid px-2 text-sm text-slate-500 font-semibold lg:text-xl">
-                            <span class="text-sm text-slate-500">Date Created:</span>
-                            <span class="text-base">{{ new Date(item.created).toLocaleDateString() }}</span>
+                            <span class="text-sm text-slate-800">Date Created:</span>
+                            <span class="text-base text-slate-500 font-normal">{{ new Date(item.created).toLocaleDateString() }}</span>
                         </div>
                     </div>
                     <div v-if="projects.length === 0">
