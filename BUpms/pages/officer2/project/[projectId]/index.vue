@@ -2,7 +2,7 @@
     <div class="pb-5 text-slate-800">
         <div class="container mx-auto space-y-2 grid pt-5">
             <fieldset class="wrapper-one mx-3 md:mx-5 grid border-2 rounded-xl md:gap-y-4 space-y-4">
-                <legend class="card-heading p-1 rounded-t-xl ps-3 uppercase font-medium md:text-xl text-center">
+                <legend class="card-heading p-1 rounded-t-xl uppercase font-medium md:text-xl text-center">
                     Project Information
                 </legend>
                 <div class="project-content md:mx-3 space-y-3 md:space-y-4">
@@ -129,7 +129,7 @@
                 </div>
             </fieldset>
             <div class="wrapper-two grid gap-4 md:flex md:mx-5 mx-3">
-                <fieldset class="card rounded-lg border-black w-full ">
+                <fieldset class="card rounded-lg border-slate-200 w-full border-2">
                     <legend class="text-center text-base font-semibold tracking-widest uppercase md:text-xl">
                         Documents
                     </legend>
@@ -218,7 +218,7 @@ async function approveProposal(projectId, recordId) {
 
     const notificationData = {
         ForUser: formattedUserId,
-        Short_desc: `Project ${projectId.Title} has been approved. Check the Approval page for more details.`
+        Short_desc: projectId.Title
     }
 
     // console.log(projectId)

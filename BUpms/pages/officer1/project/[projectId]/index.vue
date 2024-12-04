@@ -2,7 +2,7 @@
     <div class="pb-5 text-slate-800">
         <div class="container mx-auto space-y-2 grid pt-5  place-content-center">
             <fieldset class="wrapper-one mx-3 md:mx-5 grid border-2 rounded-xl md:gap-y-4 space-y-4">
-                <legend class="card-heading p-1 rounded-t-xl ps-3 uppercase font-medium md:text-xl text-center">
+                <legend class="card-heading p-1 rounded-t-xl uppercase font-medium md:text-xl text-center">
                     Project Information
                 </legend>
                 <div class="project-content md:mx-3 space-y-3 md:space-y-4">

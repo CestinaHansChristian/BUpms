@@ -26,17 +26,17 @@
                                     </div>
                                     <div v-if="alertIsClicked" class="notif_list fixed right-0 z-10 pt-2">
                                         <div
-                                            class="list-container p-1 md:p-2 bg-slate-200 w-48 md:w-72 me-5 rounded-md shadow-md shadow-gray-400">
+                                            class="list-container p-1 md:p-2 bg-slate-200 w-52 md:w-64 lg:w-auto me-5 rounded-md shadow-md shadow-gray-400">
                                             <div
-                                                class="notif-wrapper p-1 text-sm md:text-xl bg-slate-300 max-h-60 overflow-y-scroll space-y-2 rounded-md">
+                                                class="notif-wrapper p-1 text-sm md:text-xl bg-slate-300 max-h-60 lg:w-56 overflow-y-scroll space-y-2 rounded-md">
                                                 <!-- one notif sample -->
                                                 <div v-if="notificationMessage.length > 0" class="if-with-notification space-y-1 py-1">
                                                     <div v-for="(item, index) in notificationMessage" :key="index"
-                                                        class="project-notif grid grid-cols-3 gap-x-5 p-1 border-2 rounded-md relative xl:w-full bg-sky-100">
+                                                        class="project-notif rounded-md relative xl:w-full bg-sky-100">
                                                         <div
-                                                            class="icon-wrapper h-full flex md:px-1 place-items-center relative ">
+                                                            class="icon-wrapper flex gap-x-3 p-2">
                                                             <div
-                                                                class="img-icon h-10 w-10 md:h-16 md:w-16 bg-green-400 rounded-full grid place-content-center">
+                                                                class="img-icon h-10 w-10 md:h-12 md:w-12 bg-green-400 rounded-full grid place-content-center">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                     viewBox="0 0 24 24" stroke-width="6" stroke="white"
                                                                     class="size-7 md:size-10">
@@ -44,12 +44,19 @@
                                                                         d="m4.5 12.75 6 6 9-13.5" />
                                                                 </svg>
                                                             </div>
-                                                            <div class="information absolute bottom-0 font-semibold">
+                                                            <div class="information place-content-center font-semibold text-xl uppercase text-green-500">
                                                                 Passed
                                                             </div>
                                                         </div>
-                                                        <div class="col-span-2 relative h-full md:grid md:place-content-center tracking-wider text-xs md:text-base xl:text-base">
-                                                            {{ item.Short_desc }}
+                                                        <div class="description-wrapper md:ps-9 p-2 relative text-slate-500 h-full md:grid md:place-content-center tracking-wider text-xs md:text-base xl:text-base">
+                                                            <span class="font-semibold uppercase text-slate-800">
+                                                                {{ item.Short_desc }} 
+                                                            </span>
+                                                            has been approved. Check the Approval Page for more information.
+                                                        </div>
+                                                        <hr>
+                                                        <div class="date-wrapper text-center text-slate-500 text-xs">
+                                                            {{new Date(item.created).toLocaleDateString()}}
                                                         </div>
                                                     </div>
                                                 </div>

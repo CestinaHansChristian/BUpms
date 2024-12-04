@@ -1,11 +1,11 @@
 <template>
-    <div class="wrapper shadow-md shadow-gray-500 md:rounded-tl-xl md:rounded-t-xl w-full rounded-bl-xl rounded-br-xl">
+    <div class="wrapper border-4 rounded-xl md:rounded-tl-xl md:rounded-t-xl w-full">
         <div
             class="header-wrapper sticky top-0 text-sky-500 tracking-widest py-5 uppercase font-semibold text-2xl text-center bg-gray-200 p-3 rounded-t-xl">
             Project Status
         </div>
         <div v-if="status === 'success'"
-            class="project-list-container h-72 md:h-screen space-y-2 overflow-y-scroll py-1 bg-slate-100">
+            class="project-list-container h-72 md:h-screen space-y-2 overflow-y-scroll py-1 bg-slate-100 rounded-md">
             <!-- <ClientProjectsComp :project_info="projects"></ClientProjectsComp> -->
             <div v-for="(item, index) in projects" :key="index">
                 <ClientOnly>
@@ -88,7 +88,7 @@ const { data: projects, status, refresh } = useAsyncData(async (nuxtApp) => awai
 
 ::-webkit-scrollbar-track {
     background-color: #7dd3fc;
-    border-radius: 10px;
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
