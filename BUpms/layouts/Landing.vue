@@ -48,7 +48,7 @@
                                                                 Passed
                                                             </div>
                                                         </div>
-                                                        <div class="description-wrapper md:ps-9 p-2 relative text-slate-500 h-full md:grid md:place-content-center tracking-wider text-xs md:text-base xl:text-base">
+                                                        <div class="description-wrapper md:ps-5 p-2 relative text-slate-500 h-full md:grid md:place-content-center tracking-wider text-xs md:text-base xl:text-base">
                                                             <span class="font-semibold uppercase text-slate-800">
                                                                 {{ item.Short_desc }} 
                                                             </span>
@@ -120,7 +120,7 @@ const typeOfUser = reactive({
 // get full notification
 const notificationMessage = await $pb.collection('Notifications_tbl').getFullList({
     filter: `ForUser="${$pb.authStore.model?.id}"`,
-    sort: '+updated',
+    sort: '-created',
 })
 
 // get one notification only
