@@ -4,7 +4,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   const model = $pb.authStore.model
 
   // console.log(from.path)
-  console.log(to.path)
+  // console.log(to.path)
   if (model?.role != 'officer2') {
     return await navigateTo('/')
   }
