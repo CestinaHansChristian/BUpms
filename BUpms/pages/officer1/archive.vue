@@ -57,28 +57,32 @@
                 <div class="archive-scrollbar m-1 h-screen overflow-y-scroll bg-slate-200 rounded-md">
                     <div v-for="(item, index) in archivedData" :key="index">
                         <div v-if="item.isArchived || item.isCompleted"
-                            class="wrapper grid md:flex bg-slate-300 p-1 border-2 rounded-xl m-1 py-2 my-2 justify-between">
+                            class="wrapper grid md:grid-cols-2 bg-slate-300 p-1 border-2 rounded-xl m-1 py-2 my-2 justify-between">
                             <div
-                                class="project-title text-blue-600 font-semibold uppercase text-base grid md:flex md:place-items-center">
+                                class="project-title text-blue-600 font-semibold uppercase text-base" >
                                 <div class="label-project-title pe-3 font-bold text-gray-700 md:ps-5">
                                     Title:
                                 </div>
-                                <div class="project-value-wrapper">
+                                <div class="project-value-wrapper break-words md:indent-5 indent-2">
                                     {{ item.Title }}
                                 </div>
                             </div>
-                            <div class="reason-for-archiving">
-                                <label class="font-semibold">Remarks:</label>
-                                <div :class="item.isArchived ? 'text-red-500' : 'text-green-500'" class="font-bold">
-                                    {{ item.isArchived ? 'Canceled' : 'Completed' }}
+                            <div class="wrapper md:justify-between md:flex">
+                                <div class="reason-for-archiving">
+                                    <label class="font-semibold">Remarks:</label>
+                                    <div :class="item.isArchived ? 'text-red-500' : 'text-green-500'" class="font-bold indent-2 md:indent-0">
+                                        {{ item.isArchived ? 'Canceled' : 'Completed' }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="date-created grid pe-3">
-                                <div class="date-label-project text-gray-800 font-semibold">
-                                    Date Created
-                                </div>
-                                <div class="date-value-wrapper text-xs md:text-sm text-sky-600 font-bold">
-                                    {{ new Date(item.created).toLocaleDateString() }}
+                                <div class="date-created grid pe-3">
+                                    <div class="date-label-project text-gray-800 font-semibold">
+                                        Date Created
+                                    </div>
+                                    <ClientOnly>
+                                        <div class="date-value-wrapper text-xs md:text-sm text-sky-600 font-bold indent-2 md:indent-0">
+                                            {{ new Date(item.created).toLocaleDateString() }}
+                                        </div>
+                                    </ClientOnly>
                                 </div>
                             </div>
                         </div>

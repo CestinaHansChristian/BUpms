@@ -10,23 +10,23 @@
             <div v-for="(item, index) in projects" :key="index">
                 <ClientOnly>
                     <div v-if="item.User === $pb.authStore.model?.id"
-                        class="project-quick-status grid grid-cols-3 md:grid-cols-1 gap-y-2 py-3 place-content-start lg:grid-cols-3 border-2 border-slate-300 rounded-md bg-slate-100 mx-3">
+                        class="project-quick-status grid md:grid-cols-1 gap-y-2 py-3 place-content-start lg:grid-cols-3 border-2 border-slate-300 rounded-md bg-slate-100 mx-3">
                         <div class="project-name grid px-2 text-slate-500 font-semibold md:text-lg capitalize">
                             <span class=" text-slate-800 md:text-base ">Project:</span>
-                            <div class="wrapper md:text-sm text-slate-500 w-full break-words">
+                            <div class="wrapper md:text-sm text-slate-500 w-full break-words indent-2 lg:indent-0">
                                 {{ item.Title }}
                             </div>
                         </div>
                         <div class="project-description grid px-2 font-semibold md:text-lg">
                             <span class="text-sm text-slate-800 md:text-base">Status:</span>
-                            <div class=""
+                            <div class="indent-2 lg:indent-0"
                                 :class="item.isArchived ? 'text-red-500' : item.isCompleted ? 'text-green-600' : 'text-blue-700'">
                                 {{ item.isArchived ? 'Canceled' : item.isCompleted ? 'Completed' : 'Active' }}
                             </div>
                         </div>
                         <div class="project-description grid px-2 text-sm text-slate-500 font-semibold lg:text-xl">
                             <span class="text-sm text-slate-800">Date Created:</span>
-                            <span class="text-base text-slate-500 font-normal">{{ new Date(item.created).toLocaleDateString() }}</span>
+                            <span class="text-base text-slate-500 font-normal indent-2 lg:indent-0">{{ new Date(item.created).toLocaleDateString() }}</span>
                         </div>
                     </div>
                     <div v-if="projects.length === 0">
