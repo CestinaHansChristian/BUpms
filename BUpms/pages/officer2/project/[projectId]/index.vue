@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <div class="document-details-wrapper mx-2">
-                        <div class="doctype-label ps-2 text-base text-slate-500 font-semibold capitalize md:text-xl">
+                        <div class="doctype-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
                             document type:
                         </div>
                         <div
@@ -140,13 +140,13 @@
                             <div v-if="fetchSingleProject.expand" class="">
                                 <div v-for="(document, index) in fetchSingleProject.expand.Documents_tbl_via_Project_rel"
                                     :key="index"
-                                    class="file-component document-info-wrapper grid grid-cols-2 rounded-md p-2">
+                                    class="file-component document-info-wrapper grid grid-rows-2 rounded-md p-2">
                                     <div
-                                        class="docu-filename rounded-s-md text-center ps-2 bg-slate-100 p-3 truncate break-words font-semibold">
+                                        class="docu-filename rounded-t-md text-center ps-2 bg-slate-100 p-3 truncate break-words font-semibold">
                                         {{ document.Document }}
                                     </div>
-                                    <div @click="downloadFile(index, document.collectionId, document.id)"
-                                        class="docu-download-option w-full rounded-e-md font-bold text-slate-700 grid place-items-center text-center bg-sky-300 hover:text-white text-base tracking-widest px-1 hover:bg-sky-500 cursor-pointer">
+                                    <div @click="downloadFile(document.id)"
+                                        class="docu-download-option rounded-b-md font-bold text-slate-700 grid place-items-center text-center bg-sky-300 hover:text-white text-base tracking-widest px-1 hover:bg-sky-500 cursor-pointer">
                                         Download
                                     </div>
                                 </div>
@@ -231,10 +231,13 @@ async function approveProposal(projectId, recordId) {
     await $pb.collection('Notifications_tbl').create(notificationData)
 }
 
-function downloadFile(index, docUserid, docId) {
+async function downloadFile(docId) {
 
-    const mainURI = "https://bupms.forkbun.evansolanoy.studio/api/files/"
-    const fileURI = `${mainURI}${docUserid}/${docId}/${fetchSingleProject.expand.Documents_tbl_via_Project_rel[index].Document}`
+    const fileToken = await $pb.files.getToken()
+    const fileRecord = await $pb.collection('Documents_tbl').getOne(docId)
+    const fileURI = $pb.files.getUrl(fileRecord,fileRecord.Document,{
+        'token': fileToken
+    })
     const linkURI = document.createElement('a')
     linkURI.href = fileURI
     linkURI.setAttribute('target', '_blank')
