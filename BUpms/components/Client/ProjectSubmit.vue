@@ -34,7 +34,7 @@
         </div>
         <div class="w-full min-h-full flex flex-col">
             <div ref="dropzoneRef" class="border-2 border-slate-300 rounded-lg relative flex-grow p-4 w-full h-full">
-                <input type="file" class="absolute top-0 left-0 min-w-full min-h-full opacity-0 z-10" multiple
+                <input type="file" class="absolute top-0 left-0 min-w-full min-h-full opacity-0 z-10" multiple accept="application/pdf,image/*"
                     @change="manualUpload" />
                 <div :class="[
                     'flex justify-center items-center h-full rounded-lg border-dashed transition-all duration-200 relative',
