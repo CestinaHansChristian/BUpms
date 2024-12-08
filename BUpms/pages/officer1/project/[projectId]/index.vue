@@ -1,6 +1,6 @@
 <template>
     <div class="pb-5 text-slate-800">
-        <div class="container mx-auto space-y-2 grid pt-5  place-content-center">
+        <div class="container mx-auto space-y-2 grid pt-5 max-w-screen-md">
             <fieldset class="wrapper-one mx-3 md:mx-5 grid border-2 rounded-xl md:gap-y-4 space-y-4">
                 <legend class="card-heading p-1 rounded-t-xl uppercase font-medium md:text-xl text-center">
                     Project Information
@@ -11,7 +11,7 @@
                             Title of Actvity:
                         </div>
                         <div
-                            class="project-name-wrapper p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
                             {{ fetchSingleProject.Title }}
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                             When
                         </div>
                         <div
-                            class="project-name-wrapper p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
                             {{ fetchSingleProject.When }}
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                             Who
                         </div>
                         <div
-                            class="project-name-wrapper p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
                             {{ fetchSingleProject.Who }}
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                             Contact number:
                         </div>
                         <div
-                            class="project-name-wrapper p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
                             {{ fetchSingleProject.Contact_num }}
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                             Created by:
                         </div>
                         <div
-                            class="project-name-wrapper p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
                             {{ fetchedUserData.username }}
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                             Description:
                         </div>
                         <div
-                            class="project-name-wrapper p-2 border-2 rounded-xl overflow-y-scroll h-52 font-medium md:text-lg bg-white shadow-inner tracking-tight">
+                            class="project-name-wrapper text-sm p-2 border-2 rounded-xl overflow-y-scroll h-52 font-medium md:text-base bg-white shadow-inner tracking-tight">
                             {{ fetchSingleProject.Description }}
                         </div>
                     </div>
@@ -153,8 +153,8 @@
                 </div>
             </fieldset>
             <div class="wrapper-two grid gap-4 md:flex md:mx-5 mx-3">
-                <fieldset class="card border-2 rounded-lg ">
-                    <legend class="text-center text-base font-semibold tracking-widest uppercase md:text-xl">
+                <fieldset class="card border-2 rounded-lg">
+                    <legend class="indent-3 lg:text-center text-base font-semibold tracking-widest uppercase md:text-xl">
                         Documents
                     </legend>
                     <div class="card-body mx-2 grid py-5">
@@ -170,7 +170,7 @@
                                         {{ document.Document }}
                                     </div>
                                     <div @click="downloadFile(document.id)"
-                                        class="docu-download-option w-full rounded-b-xl text-slate-50 p-2 text-center bg-sky-300 hover:text-white text-base tracking-widest px-1 hover:bg-sky-500 cursor-pointer">
+                                        class="docu-download-option w-full rounded-b-xl text-slate-700 p-2 font-bold text-center bg-sky-300 hover:text-white text-base tracking-widest px-1 hover:bg-sky-500 cursor-pointer">
                                         Download
                                     </div>
                                 </div>
@@ -250,7 +250,7 @@ async function downloadFile(docId) {
 </script>
 <style scoped>
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {

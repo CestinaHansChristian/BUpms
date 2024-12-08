@@ -243,7 +243,7 @@ function refreshTracking() {
                 </div>
                 <div class="pages pt-14">
                     <div
-                        class="project-details-wrapper lg:py-5 gap-y-4 lg:flex md:py-5 lg:gap-x-3 md:container md:mx-auto">
+                        class="project-details-wrapper space-y-5 lg:space-y-0 lg:py-5 lg:flex md:py-5 lg:gap-x-3 md:container md:mx-auto">
                         <Information :organization="projectData"></Information>
                         <MessageBox></MessageBox>
                     </div>

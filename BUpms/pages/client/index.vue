@@ -19,7 +19,7 @@ definePageMeta({
 
 <style scoped>
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {

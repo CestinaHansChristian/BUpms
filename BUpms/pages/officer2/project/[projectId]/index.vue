@@ -1,8 +1,8 @@
 <template>
     <div class="pb-5 text-slate-800">
-        <div class="container mx-auto space-y-2 grid pt-5">
+        <div class="container mx-auto max-w-screen-md pt-5">
             <fieldset class="wrapper-one mx-3 md:mx-5 grid border-2 rounded-xl md:gap-y-4 space-y-4">
-                <legend class="card-heading p-1 rounded-t-xl uppercase font-medium md:text-xl text-center">
+                <legend class="card-heading p-1 rounded-t-xl uppercase font-medium md:text-xl lg:text-center">
                     Project Information
                 </legend>
                 <div class="project-content md:mx-3 space-y-3 md:space-y-4">
@@ -11,7 +11,7 @@
                             Title of Actvity:
                         </div>
                         <div
-                            class="project-name-wrapper p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
                             {{ fetchSingleProject.Title }}
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                             When
                         </div>
                         <div
-                            class="project-name-wrapper p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
                             {{ fetchSingleProject.When }}
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                             Who
                         </div>
                         <div
-                            class="project-name-wrapper p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
                             {{ fetchSingleProject.Who }}
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                             Contact number:
                         </div>
                         <div
-                            class="project-name-wrapper p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
                             {{ fetchSingleProject.Contact_num }}
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                             Created by:
                         </div>
                         <div
-                            class="project-name-wrapper p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
                             {{ fetchedUserData.username }}
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                             Description:
                         </div>
                         <div
-                            class="project-name-wrapper p-2 border-2 rounded-xl overflow-y-scroll h-52 font-medium md:text-lg bg-white shadow-inner tracking-tight">
+                            class="project-name-wrapper text-sm p-2 border-2 rounded-xl overflow-y-scroll h-52 font-medium md:text-lg bg-white shadow-inner tracking-tight">
                             {{ fetchSingleProject.Description }}
                         </div>
                     </div>
@@ -130,7 +130,7 @@
             </fieldset>
             <div class="wrapper-two grid gap-4 md:flex md:mx-5 mx-3">
                 <fieldset class="card rounded-lg border-slate-200 w-full border-2">
-                    <legend class="text-center text-base font-semibold tracking-widest uppercase md:text-xl">
+                    <legend class="lg:text-center text-base font-semibold tracking-widest uppercase md:text-xl">
                         Documents
                     </legend>
                     <div class="card-body mx-2 grid py-5">

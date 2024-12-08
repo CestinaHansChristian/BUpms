@@ -9,8 +9,8 @@ const { organization } = defineProps({
     <fieldset
         class="md:space-y-3 relative text-slate-700 comment-box-wrapper grid border-2 border-slate-200 rounded-md gap-y-2 w-full md:pb-1">
         <legend
-            class=" text-xl font-semibold tracking-widest text-center uppercase md:pt-0 md:text-xl">
-            Information
+            class=" text-base md:text-xl indent-5 font-semibold tracking-widest uppercase md:pt-0 lg:text-center">
+            Project Details
         </legend>
         <div class="space-y-3 md:space-y-2 p-2 md:text-xl md:mx-3 mx-1">
             <div class="general-info-wrapper md:space-y-3 border-2 p-4 rounded-md bg-slate-200">
@@ -20,7 +20,7 @@ const { organization } = defineProps({
                             Title of Activity:
                         </div>
                         <div
-                            class="project-name-wrapper text-slate-500 p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
+                            class="project-name-wrapper text-sm text-slate-500 p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
                             {{ organization.Title }}
                         </div>
                     </div>
@@ -29,7 +29,7 @@ const { organization } = defineProps({
                             When:
                         </div>
                         <div
-                            class="project-name-wrapper text-slate-500 p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
+                            class="project-name-wrapper text-sm text-slate-500 p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
                             {{ organization.When }}
                         </div>
                     </div>
@@ -40,7 +40,7 @@ const { organization } = defineProps({
                             Who:
                         </div>
                         <div
-                            class="project-name-wrapper text-slate-500 p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
+                            class="project-name-wrapper text-sm text-slate-500 p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
                             {{ organization.Who }}
                         </div>
                     </div>
@@ -49,7 +49,7 @@ const { organization } = defineProps({
                             Contact number:
                         </div>
                         <div
-                            class="project-name-wrapper text-slate-500 p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
+                            class="project-name-wrapper text-sm text-slate-500 p-2 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
                             {{ organization.Contact_num }}
                         </div>
                     </div>
@@ -59,7 +59,7 @@ const { organization } = defineProps({
                         Description:
                     </div>
                     <div
-                        class="project-name-wrapper text-slate-500 p-3 border-2 rounded-xl overflow-y-scroll max-h-52 md:h-36 font-medium md:text-lg bg-white shadow-inner tracking-tight">
+                        class="project-name-wrapper text-sm text-slate-500 p-3 border-2 rounded-xl overflow-y-scroll max-h-52 md:h-36 font-medium md:text-lg bg-white shadow-inner tracking-tight">
                         {{ organization.Description }}
                     </div>
                 </div>
@@ -69,7 +69,7 @@ const { organization } = defineProps({
 </template>
 <style scoped>
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {

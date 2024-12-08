@@ -2,7 +2,7 @@
     <div class="actions-container md:gap-y-10 space-y-5 tracking-widest uppercase ">
         <div class="actions-first-col flex m-2 gap-x-5">
             <nuxt-link to="client/submission"
-                class="md:text-2xl py-2 text-center bg-white md:h-52 text-sky-600 font-semibold shadow-sm shadow-gray-400 rounded-xl h-full w-full grid place-items-center hover:bg-sky-200">
+                class="md:text-2xl py-2 text-center bg-slate-50 md:h-52 text-sky-600 font-semibold shadow-sm shadow-gray-400 rounded-xl h-full w-full grid place-items-center hover:bg-sky-200">
                 <div class="top-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="#0ea5e9" class=" md:h-32 md:w-32 h-20 w-full object-contain">
@@ -15,7 +15,7 @@
                 </div>
             </nuxt-link>
             <nuxt-link to="/client/projects"
-                class="md:text-2xl py-2 bg-white text-center md:h-52 text-sky-600 font-semibold shadow-sm shadow-gray-400 rounded-xl h-full w-full grid place-items-center hover:bg-sky-200">
+                class="md:text-2xl py-2 bg-slate-50 text-center md:h-52 text-sky-600 font-semibold shadow-sm shadow-gray-400 rounded-xl h-full w-full grid place-items-center hover:bg-sky-200">
                 <div class="top-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="#0ea5e9" class=" md:h-32 h-20 w-full object-contain">
@@ -32,7 +32,7 @@
         </div>
         <div class="actions-first-col flex m-2 gap-x-3 grid-cols-3 ">
             <nuxt-link to="/profile"
-                class="md:text-2xl bg-white hover:bg-sky-200 py-2 text-sm text-sky-600 font-semibold md:h-52 shadow-sm shadow-gray-400 rounded-xl h-full w-full grid place-items-center">
+                class="md:text-2xl bg-slate-50 hover:bg-sky-200 py-2 text-sm text-sky-600 font-semibold md:h-52 shadow-sm shadow-gray-400 rounded-xl h-full w-full grid place-items-center">
                 <div class="top-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="#0ea5e9" class="md:h-32 h-24 w-full object-contain">
@@ -43,7 +43,7 @@
                 Profile
             </nuxt-link>
             <nuxt-link to="../../contact"
-                class="md:text-2xl bg-white hover:bg-sky-200 md:h-52 py-2 text-sm text-sky-600 font-semibold shadow-sm shadow-gray-400 rounded-xl h-full w-full grid place-items-center">
+                class="md:text-2xl bg-slate-50 hover:bg-sky-200 md:h-52 py-2 text-sm text-sky-600 font-semibold shadow-sm shadow-gray-400 rounded-xl h-full w-full grid place-items-center">
                 <div class="top-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="#0ea5e9" class=" md:h-32 h-24 w-full object-contain">
@@ -54,7 +54,7 @@
                 Contacts
             </nuxt-link>
             <button @click="logout"
-                class="md:text-2xl bg-white py-2 hover:bg-sky-200 md:h-52 uppercase text-sky-600 font-semibold shadow-sm shadow-gray-400 rounded-xl h-full w-full grid place-items-center">
+                class="md:text-2xl bg-slate-50 py-2 hover:bg-sky-200 md:h-52 uppercase text-sky-600 font-semibold shadow-sm shadow-gray-400 rounded-xl h-full w-full grid place-items-center">
                 <div class="top-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="#0ea5e9" class=" md:h-32 h-24 w-full object-contain">

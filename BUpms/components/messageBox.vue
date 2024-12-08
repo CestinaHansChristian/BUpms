@@ -1,7 +1,7 @@
 <template>
     <fieldset
         class="md:space-y-3 relative text-slate-700 comment-box-wrapper border-2 border-slate-200 rounded-md gap-y-2 w-full md:pb-1">
-        <legend class="scroll-m-20 text-xl font-semibold tracking-widest text-center uppercase md:pt-0 md:text-xl">
+        <legend class="text-base md:text-xl indent-5 md:indent-0 font-semibold tracking-widest uppercase md:pt-0 lg:text-center">
             Comment Box
         </legend>
         <div class="heading-wrapper">
@@ -9,7 +9,7 @@
                 <UIcon name="i-ic-baseline-refresh" /> Refresh
             </button>
         </div>
-        <div class="comment-content-wrapper mx-2 md:space-y-1">
+        <div class="comment-content-wrapper mx-2 md:space-y-">
             <div v-if="status === 'success'"
                 class="display-message overflow-y-scroll h-screen md:h-72 bg-slate-300 rounded-md space-y-4 py-1">
                 <div v-for="message of messages">

@@ -15,12 +15,12 @@
 
 </script>
 <template>
-    <div class="overflow-hidden lg:container lg:mx-auto">
-        <div class="content pt-8 mx-1">
-            <div class="project-icons relative py-16 lg:pt-5 rounded-lg lg:container lg:mx-auto">
+    <div class="overflow-hidden container mx-auto">
+        <div class="content md:pt-8 mx-1">
+            <div class="project-icons relative md:py-16 lg:pt-5 rounded-lg lg:container lg:mx-auto">
                 <TrackingProjectStage :projectStage="projectStatus.stages" :projectRelId="projectStatus.Project_id"></TrackingProjectStage>
             </div>
-            <div class="project-description">
+            <div class="project-description max-w-screen-lg container mx-auto">
                 <information :organization="projectData"></information>
             </div>
         </div>

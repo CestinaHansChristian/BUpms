@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper border-4 rounded-xl md:rounded-tl-xl md:rounded-t-xl w-full">
+    <div class="wrapper border-4 rounded-2xl w-full">
         <div
             class="header-wrapper sticky top-0 text-sky-500 tracking-widest py-5 uppercase font-semibold text-xl text-center bg-gray-200 p-3 rounded-t-xl">
             Project Status
@@ -10,7 +10,7 @@
             <div v-for="(item, index) in projects" :key="index">
                 <ClientOnly>
                     <div v-if="item.User === $pb.authStore.model?.id"
-                        class="project-quick-status grid grid-cols-3 md:grid-cols-1 gap-y-2 py-3 place-content-start lg:grid-cols-3 border-2 border-slate-300 rounded-md bg-slate-100 mx-3">
+                        class="project-quick-status grid grid-cols-3 md:grid-cols-1 gap-y-2 py-3 place-content-start lg:grid-cols-3 border-2 border-slate-300 rounded-md bg-slate-200 mx-3">
                         <div class="project-name grid px-2 text-slate-500 font-semibold md:text-lg capitalize">
                             <span class=" text-slate-800 md:text-base ">Project:</span>
                             <div class="wrapper md:text-sm text-slate-500 w-full break-words ">
@@ -78,7 +78,7 @@ const { data: projects, status, refresh } = useAsyncData(async (nuxtApp) => awai
 </script>
 <style scoped>
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {

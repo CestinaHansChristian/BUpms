@@ -112,7 +112,7 @@ async function officerRejectThisProject(projectId) {
 </template>
 <style scoped>
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {

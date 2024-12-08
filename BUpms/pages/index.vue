@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper md:flex">
     <div class="sm:flex sm:w-screen grid w-full">
-      <div class="sidebar-container sm:w-1/2 grid h-full sm:h-screen">
+      <div class="sidebar-container hidden md:w-1/2 md:grid h-full sm:h-screen">
         <LoginSideBarLogin />
       </div>
       <div v-if="!$pb.authStore.model" class="login-form-container h-screen grid w-full">

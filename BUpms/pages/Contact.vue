@@ -5,7 +5,7 @@
             <div class="card-osas grid m-4 gap-y-5 py-5 md:py-0 xl:py-3 lg:py-5">
                 <div class="bu-img-container grid place-content-center md:flex md:justify-between gap-y-5">
                     <div class="img-wrapper grid place-content-center">
-                        <img src="assets/bu-logo-with-name.png" alt="" class="object-contain md:h-14">
+                        <img src="assets/bu-logo-with-name.png" alt="" class="object-contain md:h-14 hidden md:block">
                     </div>
                     <div class="img-wrapper grid place-content-center">
                         <img src="assets/BU-osas-logo.jpg" alt="" class="object-contain md:h-20 h-20">
