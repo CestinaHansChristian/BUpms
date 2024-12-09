@@ -109,7 +109,7 @@ function refreshTracking() {
                                 class="absolute top-8 left-1/3 transform z-10 -translate-x-1/2 -translate-y-1/2 bg-sky-600 rounded-full h-4 w-4 md:hidden">
                             </div>
                             <div v-if="stageStatus.stage1"
-                                class="project-stage-description md:absolute md:translate-y-14 bottom-0 bg-slate-100 flex place-items-center md:ps-0 tracking-tighter md:tracking-wide text-sm md:font-semibold  md:text-center md:text-base">
+                                class="project-stage-description md:absolute md:translate-y-8 bottom-0 bg-slate-100 flex place-items-center md:ps-0 tracking-tighter md:tracking-wide text-sm md:font-semibold  md:text-center md:w-32 md:text-base">
                                 Project Created
                             </div>
                             <div v-else
@@ -191,7 +191,7 @@ function refreshTracking() {
                                 Officer Approved
                             </div>
                             <div v-else
-                                class="project-stage-description flex place-items-center md:ps-4 tracking-tighter md:tracking-wide text-sm md:font-semibold  md:text-center md:text-base md:absolute md:translate-y-14 md:-bottom-7 md:w-20">
+                                class="project-stage-description flex place-items-center tracking-tighter md:tracking-wide text-sm md:font-semibold md:text-center md:text-base md:absolute md:translate-y-8 lg:translate-y-2 md:w-32 lg:w-40 md:-translate-x-2 md:-bottom-7">
                                 Approval on Queue
                             </div>
                         </div>
@@ -217,7 +217,7 @@ function refreshTracking() {
                                 Project Approved
                             </div>
                             <div v-else
-                                class="project-stage-description flex place-items-center md:ps-4 tracking-tighter md:tracking-wide text-sm md:font-semibold  md:text-center md:text-base md:absolute md:translate-y-14 md:-bottom-7 md:w-20">
+                                class="project-stage-description flex place-items-center tracking-tighter md:tracking-wide text-sm md:font-semibold md:text-center md:text-base md:absolute md:translate-y-2  md:w-32 lg:w-40 lg:-translate-x-2 md:-bottom-7">
                                 Status on Queue
                             </div>
                         </div>

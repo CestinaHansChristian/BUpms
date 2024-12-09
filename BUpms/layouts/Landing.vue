@@ -26,38 +26,42 @@
                                     </div>
                                     <div v-if="alertIsClicked" class="notif_list fixed right-0 z-10 pt-2">
                                         <div
-                                            class="list-container p-1 md:p-2 bg-slate-200 w-52 md:w-64 lg:w-auto me-5 rounded-md shadow-md shadow-gray-400">
+                                            class="list-container p-1 md:p-2 bg-slate-200 w-56 md:w-72 lg:w-80 me-5 rounded-md shadow-md shadow-gray-400">
                                             <div
-                                                class="notif-wrapper p-1 text-sm md:text-xl bg-slate-300 max-h-60 lg:w-56 overflow-y-scroll space-y-2 rounded-md">
+                                                class="notif-wrapper p-1 text-sm md:text-xl bg-slate-300 max-h-60 lg:w-full overflow-y-scroll space-y-2 rounded-md">
                                                 <!-- one notif sample -->
                                                 <div v-if="notificationMessage.length > 0" class="if-with-notification space-y-1 py-1">
                                                     <div v-for="(item, index) in notificationMessage" :key="index"
-                                                        class="project-notif rounded-md relative xl:w-full bg-sky-100">
+                                                        class="project-notif rounded-md grid grid-cols-3 gap-x-3 relative xl:w-full bg-sky-100 pe-2">
                                                         <div
-                                                            class="icon-wrapper flex gap-x-3 p-2">
-                                                            <div
-                                                                class="img-icon h-10 w-10 md:h-12 md:w-12 bg-green-400 rounded-full grid place-content-center">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                    viewBox="0 0 24 24" stroke-width="6" stroke="white"
-                                                                    class="size-7 md:size-10">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                        d="m4.5 12.75 6 6 9-13.5" />
-                                                                </svg>
-                                                            </div>
-                                                            <div class="information place-content-center font-semibold text-xl uppercase text-green-500">
-                                                                Passed
+                                                            class="icon-wrapper gap-y-3 p-2 grid place-content-center">
+                                                            <div class="wrapper space-y-2">
+                                                                <div
+                                                                    class="img-icon h-10 w-10 md:h-14 md:w-14 bg-green-400 rounded-full grid place-content-center">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                        viewBox="0 0 24 24" stroke-width="6" stroke="white"
+                                                                        class="size-7 md:size-10">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                                            d="m4.5 12.75 6 6 9-13.5" />
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="information place-content-center font-semibold text-sm lg:text-base uppercase text-green-500">
+                                                                    Passed
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="description-wrapper md:ps-5 p-2 relative text-slate-500 h-full md:grid md:place-content-center tracking-wider text-xs md:text-base xl:text-base">
+                                                        <div class="description-wrapper col-span-2 pt-2 relative text-slate-500 h-full md:grid md:place-content-center tracking-wider text-xs md:text-base xl:text-base">
                                                             <span class="font-semibold uppercase text-slate-800">
                                                                 {{ item.Short_desc }} 
                                                             </span>
-                                                            has been approved. Check the Approval Page for more information.
+                                                            <span class="text-xs md:text-sm">
+                                                                has been approved. Check the <i class="font-semibold">Approval Page</i> for more information.
+                                                            </span>
+                                                            <div class="date-wrapper pt-3 text-slate-500 text-xs text-center">
+                                                                {{new Date(item.created).toLocaleDateString()}}
+                                                            </div>
                                                         </div>
-                                                        <hr>
-                                                        <div class="date-wrapper text-center text-slate-500 text-xs">
-                                                            {{new Date(item.created).toLocaleDateString()}}
-                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                                 <div v-else class="wrapper text-center text-slate-400 py-5">

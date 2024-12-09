@@ -157,7 +157,7 @@ const isCleared = computed(() => projectStage === 'stage4')
                     Officer Approved
                 </div>
                 <div v-else
-                    class="project-stage-description flex place-items-center md:ps-4 tracking-tighter md:tracking-wide text-sm md:font-semibold  md:text-center md:text-base md:absolute md:translate-y-14 md:-bottom-7 md:w-20">
+                    class="project-stage-description flex place-items-center tracking-tighter md:tracking-wide text-sm md:font-semibold md:text-center md:text-base md:absolute md:translate-y-8 lg:translate-y-2 md:w-32 lg:w-40 md:-translate-x-2 md:-bottom-7">
                     Approval on Queue
                 </div>
             </div>
@@ -182,7 +182,7 @@ const isCleared = computed(() => projectStage === 'stage4')
                     Project Approved
                 </div>
                 <div v-else
-                    class="project-stage-description flex place-items-center md:ps-4 tracking-tighter md:tracking-wide text-sm md:font-semibold  md:text-center md:text-base md:absolute md:translate-y-14 md:-bottom-7 md:w-20">
+                    class="project-stage-description flex place-items-center tracking-tighter md:tracking-wide text-sm md:font-semibold md:text-center md:text-base md:absolute md:translate-y-2  md:w-32 lg:w-40 lg:-translate-x-2 md:-bottom-7">
                     Status on Queue
                 </div>
             </div>
