@@ -61,8 +61,13 @@
                         </div>
                     </div>
                     <div class="event-details-wrapper mx-2">
-                        <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
-                            Submitted Documents:
+                        <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl flex justify-between md:pb-2">
+                            <label for="">
+                                Submitted Documents:
+                            </label>
+                            <button @click="deleteAttachedFile(fetchSingleProject)" class="reject-design-btn text-sm bg-rose-400 px-3 cursor-pointer hover:bg-red-700  uppercase rounded-md font-semibold md:text-lg text-slate-50 tracking-wider">
+                                Remove Docs
+                            </button>
                         </div>
                         <div
                             class="Doc-label-of-submitted p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
@@ -222,6 +227,31 @@ async function rejectOfficerProject(projectId) {
         // console.log()
     } catch (error) {
         // console.log(error)
+    }
+}
+
+async function deleteAttachedFile(fetchedSingleData) {
+    try {
+        const projectIdformatted = fetchedSingleData.id
+        const statusIdFormatted = fetchedSingleData.Status
+        if(fetchedSingleData.expand.Documents_tbl_via_Project_rel) {
+            // console.log(fetchedSingleData)
+            // console.log(fetchSingleProject.expand.Documents_tbl_via_Project_rel.length > 0) 
+            for(let i = 0; i < fetchedSingleData.expand.Documents_tbl_via_Project_rel.length; i++) {
+                let formattedDocId = fetchedSingleData.expand.Documents_tbl_via_Project_rel[i].id
+                await $pb.collection('Documents_tbl').delete(formattedDocId)
+            }
+            const data = {
+            'Project_id' : projectIdformatted,
+            'stages' : 'stage1'
+            }
+            await $pb.collection('Status_tbl').update(statusIdFormatted, data)
+            navigateTo('/officer1/projects')
+        } else {
+            // console.log('Does not exist')
+        }
+    } catch (error) {
+        console.log(error)
     }
 }
 

@@ -28,8 +28,6 @@ const isPending = reactive({
     'bg-orange-400': true
 })
 
-console.log(projectStatus)
-
 try {
     const isDocumentUploaded = await $pb.collection('Documents_tbl').getFirstListItem(`Project_rel="${projectStatus.value.Project_id}"`, {
         expand: 'Project_rel',
