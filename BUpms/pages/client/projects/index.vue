@@ -123,7 +123,7 @@ async function archiveProject(project_id) {
         </div>
     </div>
 </template>
-<style scoped>
+<style>
 ::-webkit-scrollbar {
     width: 5px;
 }

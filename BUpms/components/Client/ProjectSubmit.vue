@@ -50,7 +50,7 @@
                         <p class="mt-1 text-xs text-gray-500">or click to select files</p>
                     </div>
                     <div v-else
-                        class="w-full p-4 grid gap-4 auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-y-auto h-80 md:max-h-[60vh] md:absolute top-0">
+                        class="w-full p-4 grid gap-4 auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-y-auto h-80 md:h-full md:absolute top-0">
                         <div v-for="(file, index) in confirmUploadFiles" :key="index"
                             class="relative grid items-center p-4 space-x-4 z-20 bg-white rounded-lg h-28 md:h-full md:w-full shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
                             <div class="wrapper grid md:place-content-center md:space-y-3">
