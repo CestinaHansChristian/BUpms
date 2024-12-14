@@ -108,14 +108,14 @@
                                 </div>
                             </nuxt-link>
                             <div class="control-btn flex lg:gap-x-5 gap-x-2">
-                                <nuxt-link v-if="isApproved.stages === 'stage3'"
+                                <nuxt-link @click="approveProposal(fetchSingleProject, fetchSingleProject.Status)"
                                     :to="fetchSingleProject.id + '/approved'">
-                                    <div @click="approveProposal(fetchSingleProject, fetchSingleProject.Status)"
+                                    <div 
                                         class="approve-design-btn uppercase cursor-pointer bg-blue-400 hover:bg-sky-700 text-slate-50 p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 hover:text-white tracking-wider">
                                         Approve
                                     </div>
                                 </nuxt-link>
-                                <button v-if="isApproved.stages === 'stage3'" @click="rejectOfficerProject(fetchSingleProject.id)">
+                                <button @click="rejectOfficerProject(fetchSingleProject.id)">
                                     <nuxt-link to="/officer2/projects">
                                         <div
                                             class="reject-design-btn bg-red-500 cursor-pointer hover:bg-red-700  uppercase p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 text-slate-50 tracking-wider">

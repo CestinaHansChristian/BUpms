@@ -55,7 +55,7 @@ async function officerRejectThisProject(projectId) {
                                     <span class="text-gray-800 font-semibold">
                                         Date Created:
                                     </span>
-                                    {{ new Date(project.created).toLocaleDateString() }}
+                                    {{ new Date(project.created).toLocaleString() }}
                                 </div>
                                 <div class="status-wrapper text-xs md:text-base md:grid">
                                     <span class="text-gray-800 font-semibold">

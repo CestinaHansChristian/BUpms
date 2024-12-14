@@ -116,9 +116,9 @@
                                 </div>
                             </nuxt-link>
                             <div class="control-btn flex lg:gap-x-5 gap-x-2">
-                                <nuxt-link v-if="isApproved.stages === 'stage2'"
+                                <nuxt-link  @click="approveProposal(fetchSingleProject.id, fetchSingleProject.Status)" v-if="isApproved.stages === 'stage2'"
                                     :to="fetchSingleProject.id + '/approved'">
-                                    <div @click="approveProposal(fetchSingleProject.id, fetchSingleProject.Status)"
+                                    <div
                                         class="approve-design-btn uppercase cursor-pointer bg-blue-400 hover:bg-sky-700 text-slate-50 p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 hover:text-white tracking-wider">
                                         Approve
                                     </div>

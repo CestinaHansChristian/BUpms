@@ -58,7 +58,7 @@
                                                                 has been approved. Check the <i class="font-semibold">Approval Page</i> for more information.
                                                             </span>
                                                             <div class="date-wrapper pt-3 text-slate-500 text-xs text-center">
-                                                                {{new Date(item.created).toLocaleDateString()}}
+                                                                {{new Date(item.created).toLocaleString()}}
                                                             </div>
                                                         </div>
                                                         

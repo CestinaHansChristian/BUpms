@@ -75,14 +75,26 @@
                                     </div>
                                 </div>
                                 <div class="date-created grid pe-3">
-                                    <div class="date-label-project text-gray-800 font-semibold">
-                                        Date Created
-                                    </div>
-                                    <ClientOnly>
-                                        <div class="date-value-wrapper text-xs md:text-sm text-sky-600 font-bold indent-2 md:indent-0">
-                                            {{ new Date(item.created).toLocaleDateString() }}
+                                    <div class="wrapper">
+                                        <div class="date-label-project text-gray-800 font-semibold">
+                                            Created:
                                         </div>
-                                    </ClientOnly>
+                                        <ClientOnly>
+                                            <div class="date-value-wrapper text-xs md:text-sm text-sky-600 font-bold indent-2 md:indent-0">
+                                                {{ new Date(item.created).toLocaleString() }}
+                                            </div>
+                                        </ClientOnly>
+                                    </div>
+                                    <div class="wrapper">
+                                        <div class="date-label-project text-gray-800 font-semibold">
+                                            Updated:
+                                        </div>
+                                        <ClientOnly>
+                                            <div class="date-value-wrapper text-xs md:text-sm text-sky-600 font-bold indent-2 md:indent-0">
+                                                {{ new Date(item.updated).toLocaleString() }}
+                                            </div>
+                                        </ClientOnly>
+                                    </div>
                                 </div>
                             </div>
                         </div>

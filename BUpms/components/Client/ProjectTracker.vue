@@ -26,7 +26,7 @@
                         </div>
                         <div class="project-description grid px-2 text-slate-500 font-semibold lg:text-xl">
                             <span class="text-base text-slate-800">Created:</span>
-                            <span class="text-sm text-slate-500 font-normal ">{{ new Date(item.created).toLocaleDateString() }}</span>
+                            <span class="text-sm text-slate-500 font-normal ">{{ new Date(item.created).toLocaleString() }}</span>
                         </div>
                     </div>
                     <div v-if="projects.length === 0">

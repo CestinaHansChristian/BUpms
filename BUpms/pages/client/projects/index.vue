@@ -62,7 +62,7 @@ async function archiveProject(project_id) {
                                     <span class="text-gray-800 font-semibold">
                                         Date Created:
                                     </span>
-                                    {{ new Date(project.created).toLocaleDateString() }}
+                                    {{ new Date(project.created).toLocaleString() }}
                                 </div>
                                 <div class="status-wrapper text-xs md:text-base grid">
                                     <span class="text-gray-800 font-semibold">
@@ -88,6 +88,12 @@ async function archiveProject(project_id) {
                                 class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer rounded-lg bg-green-500 hover:bg-lime-500 place-content-center px-3 text-white font-semibold w-full">
                                 <div class="btn-label-wrapper gap-x-3 grid">
                                     <span class="text-lg font-bold uppercase">Completed</span><span class="text-sm">Please bring the attached document hardcopy for OSAS verification</span>
+                                </div>
+                                <div class="last-updated-at-wrapper text-xs text-slate-100 lg:flex lg:place-content-center lg:pt-3">
+                                    <div class="label-wrapper">Updated At:</div>
+                                    <div class="updated-wrapper-date">
+                                        {{ new Date(project.updated).toLocaleString() }}
+                                    </div>
                                 </div>
                             </button>
                             <button v-else
