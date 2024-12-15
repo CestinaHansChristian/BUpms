@@ -96,19 +96,14 @@ async function archiveProject(project_id) {
                                     </div>
                                 </div>
                             </button>
-                            <button v-else
-                                class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 place-content-center px-3 text-white font-semibold w-full">
-                                <nuxt-link :to="'/client/projects/' + project.id">
-                                    <div class="btn-label-wrapper grid place-content-center gap-x-3">
-                                        <div class="wrapper flex justify-center">
-                                            <IconsMagnifyingGlass></IconsMagnifyingGlass>
-                                        </div>
-                                        <div>
-                                            Review
-                                        </div>
-                                    </div>
-                                </nuxt-link>
-                            </button>
+                            <nuxt-link :to="'/client/projects/' + project.id" v-else class="gap-x-5 grid p-1 project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 place-content-center px-3 text-white font-semibold w-full">
+                                <div class="wrapper flex justify-center">
+                                    <IconsMagnifyingGlass></IconsMagnifyingGlass>
+                                </div>
+                                <div>
+                                    Review
+                                </div>
+                            </nuxt-link>
                             <button :class="{ 'hidden': project.isCompleted }" @click="archiveProject(project.id)"
                                 class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
                                 <div class="btn-label-wrapper grid place-content-center gap-x-3">

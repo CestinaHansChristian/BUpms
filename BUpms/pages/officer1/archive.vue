@@ -146,7 +146,7 @@ const completedDataFormatted = completedData[0].completed_project
 const totalDataFormatted = totalData[0].total_projects
 
 // logic for subtracking data
-const finalPending = pendingDataFormatted - archivedProjectFormatted
+const finalPending = (pendingDataFormatted - archivedProjectFormatted) - completedDataFormatted
 
 // console.log(totalDataFormatted)
 // canvas configuration
