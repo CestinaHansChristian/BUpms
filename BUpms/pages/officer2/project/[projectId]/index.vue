@@ -116,12 +116,9 @@
                                     </div>
                                 </nuxt-link>
                                 <button @click="rejectOfficerProject(fetchSingleProject.id)">
-                                    <nuxt-link to="/officer2/projects">
-                                        <div
-                                            class="reject-design-btn bg-red-500 cursor-pointer hover:bg-red-700  uppercase p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 text-slate-50 tracking-wider">
-                                            Reject
-                                        </div>
-                                    </nuxt-link>
+                                    <div class="reject-design-btn bg-red-500 cursor-pointer hover:bg-red-700  uppercase p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 text-slate-50 tracking-wider">
+                                        Reject
+                                    </div>
                                 </button>
                             </div>
                         </div>
@@ -193,6 +190,7 @@ async function rejectOfficerProject(projectId) {
             'isArchived': true
         }
         await $pb.collection('Projects_tbl').update(projectId, data)
+        navigateTo('/officer2/projects')
         // console.log(data)
     } catch (error) {
         // console.log(error)

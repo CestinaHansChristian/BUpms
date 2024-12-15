@@ -72,23 +72,22 @@ async function officerRejectThisProject(projectId) {
                         <div
                             class="flex-wrapper flex shadow-md shadow-gray-500 md:rounded-tl-xl md:rounded-t-xl w-full rounded-bl-xl rounded-br-xl md:w-2/5">
                             <ClientOnly>
-                                <div
+                                <nuxt-link :to="'/officer2/project/' + project.id"
                                     class="project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 grid place-content-center px-3 text-white font-semibold w-full md:place-content-center">
-                                    <nuxt-link v-if="$pb.authStore.model?.role === 'officer2'"
-                                        :to="'/officer2/project/' + project.id" class="gap-x-5 grid place-content-center">
-                                        <div class="wrapper flex justify-center">
-                                            <IconsMagnifyingGlass></IconsMagnifyingGlass>
-                                        </div>
-                                        <div class="wrapper">
-                                            Review
-                                        </div>
-                                    </nuxt-link>
-                                </div>
+                                    <!-- officer 2 -->
+                                    <div class="gap-x-5 grid place-content-center">
+                                            <div class="wrapper flex justify-center">
+                                                <IconsMagnifyingGlass></IconsMagnifyingGlass>
+                                            </div>
+                                            <div class="wrapper">
+                                                Review
+                                            </div>
+                                    </div>
+                                </nuxt-link>
                                 <div
-                                    class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
+                                    @click="officerRejectThisProject(project.id)" class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
                                     <!-- officer 1 -->
-                                    <button @click="officerRejectThisProject(project.id)"
-                                        v-if="$pb.authStore.model?.role === 'officer2'"
+                                    <button
                                         class="gap-x-5 md:place-content-center-center py-3 grid place-content-center">
                                         <div class="wrapper flex justify-center">
                                             <IconsArchieveBox></IconsArchieveBox>
