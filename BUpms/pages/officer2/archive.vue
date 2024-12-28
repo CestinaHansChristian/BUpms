@@ -54,23 +54,120 @@
                 <legend class="text-center font-semibold tracking-widest md:text-lg text-sm uppercase px-3">
                     History
                 </legend>
+                <div class="wrapper grid sm:flex text-sm md:text-base sm:justify-around">
+                    <div class="filter-label ps-2 md:ps-0 md:gap-x-2">
+                        <label for="" class="font-semibold">Filter by:</label>
+                        <select v-model="filter" name="" id="" class="bg-slate-50 italic">
+                            <option value="">None</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Canceled">Canceled</option>
+                        </select>
+                    </div>
+                    <div class="sort-note italic text-sm text-center">
+                        History is sorted by the latest to the oldest date
+                    </div>
+                </div>
                 <div class="archive-scrollbar m-1 h-screen overflow-y-scroll bg-slate-200 rounded-md">
                     <div v-for="(item, index) in archivedData" :key="index">
-                        <div v-if="item.isArchived || item.isCompleted"
+                        <div v-if=" filter === '' && (item.isArchived || item.isCompleted)"
                             class="wrapper grid md:grid-cols-2 bg-slate-300 p-1 border-2 rounded-xl m-1 py-2 my-2 justify-between">
                             <div
-                                class="project-title text-blue-600 font-semibold uppercase text-base" >
-                                <div class="label-project-title pe-3 font-bold text-gray-700 md:ps-5">
+                                class="project-title text-blue-600 font-semibold uppercase text-base md:grid" >
+                                <div class="label-project-title pe-3 font-semibold text-gray-700 md:ps-5 md:text-lg">
                                     Title:
                                 </div>
-                                <div class="project-value-wrapper break-words md:indent-5 indent-2">
+                                <div class="project-value-wrapper break-words md:indent-5 indent-2 md:text-base">
                                     {{ item.Title }}
                                 </div>
                             </div>
                             <div class="wrapper md:justify-between md:flex">
-                                <div class="reason-for-archiving">
-                                    <label class="font-semibold">Remarks:</label>
-                                    <div :class="item.isArchived ? 'text-red-500' : 'text-green-500'" class="font-bold indent-2 md:indent-0">
+                                <div class="reason-for-archiving md:grid">
+                                    <label class="font-semibold md:text-lg">Remarks:</label>
+                                    <div :class="item.isArchived ? 'text-red-500' : 'text-green-500'" class="font-bold indent-2 md:indent-0 md:text-lg">
+                                        {{ item.isArchived ? 'Canceled' : 'Completed' }}
+                                    </div>
+                                </div>
+                                <div class="date-created grid pe-3">
+                                    <div class="wrapper">
+                                        <div class="date-label-project text-gray-800 font-semibold">
+                                            Created:
+                                        </div>
+                                        <ClientOnly>
+                                            <div class="date-value-wrapper text-xs md:text-sm text-sky-600 font-bold indent-2 md:indent-0">
+                                                {{ new Date(item.created).toLocaleString() }}
+                                            </div>
+                                        </ClientOnly>
+                                    </div>
+                                    <div class="wrapper">
+                                        <div class="date-label-project text-gray-800 font-semibold">
+                                            Updated:
+                                        </div>
+                                        <ClientOnly>
+                                            <div class="date-value-wrapper text-xs md:text-sm text-sky-600 font-bold indent-2 md:indent-0">
+                                                {{ new Date(item.updated).toLocaleString() }}
+                                            </div>
+                                        </ClientOnly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else-if="filter === 'Completed' && item.isCompleted"
+                            class="wrapper grid md:grid-cols-2 bg-slate-300 p-1 border-2 rounded-xl m-1 py-2 my-2 justify-between">
+                            <div
+                                class="project-title text-blue-600 font-semibold uppercase text-base md:grid" >
+                                <div class="label-project-title pe-3 font-semibold text-gray-700 md:ps-5 md:text-lg">
+                                    Title:
+                                </div>
+                                <div class="project-value-wrapper break-words md:indent-5 indent-2 md:text-base">
+                                    {{ item.Title }}
+                                </div>
+                            </div>
+                            <div class="wrapper md:justify-between md:flex">
+                                <div class="reason-for-archiving md:grid">
+                                    <label class="font-semibold md:text-lg">Remarks:</label>
+                                    <div :class="item.isArchived ? 'text-red-500' : 'text-green-500'" class="font-bold indent-2 md:indent-0 md:text-lg">
+                                        {{ item.isArchived ? 'Canceled' : 'Completed' }}
+                                    </div>
+                                </div>
+                                <div class="date-created grid pe-3">
+                                    <div class="wrapper">
+                                        <div class="date-label-project text-gray-800 font-semibold">
+                                            Created:
+                                        </div>
+                                        <ClientOnly>
+                                            <div class="date-value-wrapper text-xs md:text-sm text-sky-600 font-bold indent-2 md:indent-0">
+                                                {{ new Date(item.created).toLocaleString() }}
+                                            </div>
+                                        </ClientOnly>
+                                    </div>
+                                    <div class="wrapper">
+                                        <div class="date-label-project text-gray-800 font-semibold">
+                                            Updated:
+                                        </div>
+                                        <ClientOnly>
+                                            <div class="date-value-wrapper text-xs md:text-sm text-sky-600 font-bold indent-2 md:indent-0">
+                                                {{ new Date(item.updated).toLocaleString() }}
+                                            </div>
+                                        </ClientOnly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else-if="filter === 'Canceled' && item.isArchived"
+                            class="wrapper grid md:grid-cols-2 bg-slate-300 p-1 border-2 rounded-xl m-1 py-2 my-2 justify-between">
+                            <div
+                                class="project-title text-blue-600 font-semibold uppercase text-base md:grid" >
+                                <div class="label-project-title pe-3 font-semibold text-gray-700 md:ps-5 md:text-lg">
+                                    Title:
+                                </div>
+                                <div class="project-value-wrapper break-words md:indent-5 indent-2 md:text-base">
+                                    {{ item.Title }}
+                                </div>
+                            </div>
+                            <div class="wrapper md:justify-between md:flex">
+                                <div class="reason-for-archiving md:grid">
+                                    <label class="font-semibold md:text-lg">Remarks:</label>
+                                    <div :class="item.isArchived ? 'text-red-500' : 'text-green-500'" class="font-bold indent-2 md:indent-0 md:text-lg">
                                         {{ item.isArchived ? 'Canceled' : 'Completed' }}
                                     </div>
                                 </div>
@@ -110,6 +207,9 @@ definePageMeta({
     layout: 'landing',
     middleware: ['guard', 'officer2']
 })
+
+// filter component
+const filter = ref('')
 
 // canvas main component
 let canvasData;
