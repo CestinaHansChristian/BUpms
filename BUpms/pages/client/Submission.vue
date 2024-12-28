@@ -1,5 +1,5 @@
 <template>
-    <div class="px-4 md:grid md:align-middle">
+    <div class="px-4 md:grid md:align-middle xl:h-screen">
         <form @submit.prevent="submit_doc"
             class=" shadow-inner p-5 border-b-2 border-slate-300 shadow-slate-400 my-10 rounded-xl pb-5 mb:pb-0">
             <h1 class="text-3xl font-bold mb-6">Submit New Activity</h1>
@@ -9,7 +9,7 @@
                         <label for="activityTitle" class="block text-sm font-medium text-gray-700 md:text-xl">Title of
                             Activity</label>
                         <input v-model="clientActivityTitle" type="text" id="activityTitle" required
-                            class="mt-1 block w-full rounded-md bg-slate-50 border-gray-200 shadow-md border-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
+                            class="mt-1 block w-full rounded-md bg-black text-slate-300 invert capitalize shadow-md border-2 border-slate-800 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
                         <p v-if="validationErrors.clientActivityTitle" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.clientActivityTitle[0] }}
                         </p>
@@ -20,7 +20,7 @@
                             class="block text-sm font-medium text-gray-700 md:text-xl">Description</label>
                         <textarea v-model="clientDescription" id="description" rows="4" required
                             placeholder="Description"
-                            class="mt-1 block bg-slate-50 border-gray-200 shadow-md border-2 w-full rounded-md  focus:border-indigo-300 focus:ring placeholder:tracking-wider focus:ring-indigo-200 focus:ring-opacity-50 p-3 resize-none md:h-72"></textarea>
+                            class="mt-1 block invert bg-black text-slate-300 border-slate-800 shadow-md border-2 w-full rounded-md  focus:border-indigo-300 focus:ring placeholder:tracking-wider focus:ring-indigo-200 focus:ring-opacity-50 p-3 resize-none md:h-72"></textarea>
                         <p v-if="validationErrors.clientDescription" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.clientDescription[0] }}
                         </p>
@@ -29,7 +29,7 @@
                     <div>
                         <label for="whoInput" class="block text-sm font-medium text-gray-700 md:text-xl">Who</label>
                         <input v-model="whoInput" type="text" id="whoInput" required
-                            class="mt-1 block bg-slate-50 w-full rounded-md border-gray-200 shadow-md border-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
+                            class="mt-1 block invert bg-black text-slate-300 w-full rounded-md border-slate-800 shadow-md border-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
                         <p v-if="validationErrors.whoInput" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.whoInput[0] }}
                         </p>
@@ -37,8 +37,10 @@
 
                     <div>
                         <label for="whenInput" class="block text-sm font-medium text-gray-700 md:text-xl">When</label>
-                        <input v-model="whenInput" type="date" id="whenInput" required
-                            class="mt-1 block bg-slate-50 w-full rounded-md border-gray-200 shadow-md border-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
+                        <div class="wrapper relative">
+                            <input v-model="whenInput" type="date" id="whenInput" required
+                                class="mt-1 block bg-black invert w-full text-slate-300 rounded-md shadow-md border-2 border-slate-800 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
+                        </div>
                         <p v-if="validationErrors.whenInput" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.whenInput[0] }}
                         </p>
@@ -50,16 +52,25 @@
                             class="block text-sm font-medium text-gray-700 md:text-xl">Event
                             Classification</label>
                         <select v-model="eventClassification" id="eventClassification" required
-                            class="mt-1 block w-full rounded-md bg-slate-50 border-gray-200 shadow-md border-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
-                            <option value="">Select an Item</option>
-                            <option value="Convention, Seminar, etc.">Convention, Seminar, etc.</option>
-                            <option value="Volunteer Work">Volunteer Work</option>
-                            <option value="Advocacy Project Campaigns">Advocacy Project Campaigns</option>
-                            <option value="Sports Activities">Sports Activities</option>
-                            <option value="Interschool Competitions / Tournaments">Interschool Competitions /
+                            class="mt-1 block bg-black w-full rounded-md text-slate-300 invert border-slate-800 shadow-md border-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
+                            <option value="" class="bg-slate-50 text-slate-800">Select an Item</option>
+                            <option value="Convention, Seminar, etc." class="bg-slate-50 text-slate-800">Convention,
+                                Seminar, etc.
+                            </option>
+                            <option value="Volunteer Work" class="bg-slate-50 text-slate-800">Volunteer Work</option>
+                            <option value="Advocacy Project Campaigns" class="bg-slate-50 text-slate-800">Advocacy
+                                Project Campaigns
+                            </option>
+                            <option value="Sports Activities" class="bg-slate-50 text-slate-800">Sports Activities
+                            </option>
+                            <option value="Interschool Competitions / Tournaments" class="bg-slate-50 text-slate-800">
+                                Interschool
+                                Competitions /
                                 Tournaments</option>
-                            <option value="Culture & Arts Competitions">Culture & Arts Competitions</option>
-                            <option value="Others">Others</option>
+                            <option value="Culture & Arts Competitions" class="bg-slate-50 text-slate-800">Culture &
+                                Arts Competitions
+                            </option>
+                            <option value="Others" class="bg-slate-50 text-slate-800">Others</option>
                         </select>
                         <p v-if="validationErrors.eventClassification" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.eventClassification[0] }}
@@ -70,7 +81,7 @@
                         <label for="contactNumber" class="block text-sm font-medium text-gray-700 md:text-xl">Contact
                             Number</label>
                         <input v-model="contactNumber" type="text" id="contactNumber" required
-                            class="mt-1 block w-full bg-slate-50 rounded-md border-gray-200 shadow-md border-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
+                            class="mt-1 block w-full bg-black text-slate-300 rounded-md invert border-slate-800 shadow-md border-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
                         <p v-if="validationErrors.contactNumber" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.contactNumber[0] }}
                         </p>
