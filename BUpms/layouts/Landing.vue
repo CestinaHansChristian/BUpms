@@ -89,6 +89,9 @@
     <UNotifications />
 </template>
 <style scoped>
+
+.wrapper-main {
+    font-family: "Roboto Condensed";}
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -108,7 +111,7 @@
 }
 </style>
 <script setup>
-
+setUserfonts()
 const { $pb } = useNuxtApp()
 const alertIsClicked = ref(false);
 const userIsClicked = ref(false)

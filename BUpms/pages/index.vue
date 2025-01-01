@@ -24,6 +24,7 @@
 </template>
 
 <script setup>
+setUserfonts()
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -55,5 +56,9 @@ useHead({
 <style scoped>
 .bu-assets {
   pointer-events: none;
+}
+
+.wrapper {
+  font-family: "Roboto Condensed";
 }
 </style>

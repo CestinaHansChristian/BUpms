@@ -1,5 +1,5 @@
 <template>
-    <div class="w-fit px-4 py-2 font-bold text-lg text-black bg-white fixed top-0 left-1/2 rounded-b-xl shadow-md z-[100]"
+    <div class="wrapper-main w-fit px-4 py-2 font-bold text-lg text-black bg-white fixed top-0 left-1/2 rounded-b-xl shadow-md z-[100]"
         v-if="isLoading">
         Loading {{ progress.toFixed() }}%
     </div>
@@ -11,7 +11,7 @@
     <UNotifications />
 </template>
 <script setup>
-
+setUserfonts()
 const { progress, isLoading, start, finish, clear } = useLoadingIndicator({
     duration: 1000,
     throttle: 200,
@@ -20,3 +20,9 @@ const { progress, isLoading, start, finish, clear } = useLoadingIndicator({
 })
 
 </script>
+
+<style>
+    .wrapper-main {
+        font-family: "Roboto Condensed";
+    }
+</style>

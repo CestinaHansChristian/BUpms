@@ -64,7 +64,7 @@
                         </select>
                     </div>
                     <div class="sort-note italic text-sm text-center">
-                        History is sorted by the latest to the oldest date
+                        History is sorted from latest to oldest date
                     </div>
                 </div>
                 <div class="archive-scrollbar m-1 h-screen overflow-y-scroll bg-slate-200 rounded-md">
