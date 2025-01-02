@@ -1,7 +1,8 @@
 <template>
     <fieldset
         class="md:space-y-3 relative text-slate-700 comment-box-wrapper border-2 border-slate-200 rounded-md gap-y-2 w-full md:pb-1">
-        <legend class="text-base md:text-xl indent-5 md:indent-0 font-semibold tracking-widest uppercase md:pt-0 lg:text-center">
+        <legend
+            class="text-base md:text-xl indent-5 md:indent-0 font-semibold tracking-widest uppercase md:pt-0 lg:text-center">
             Comment Box
         </legend>
         <div class="heading-wrapper">
@@ -68,15 +69,15 @@
                 <h1 class="text-2xl font-bold">Loading...</h1>
             </div>
             <div class="send-btn-control grid py-2 rounded-b-lg">
-                <div class="text-wrapper flex justify-between gap-x-2 relative">
+                <form class="text-wrapper flex justify-between gap-x-2 relative">
                     <textarea v-model="message" name="" id=""
-                        class="w-full p-3 h-14 tracking-widest border-2 border-slate-300 rounded-xl ps-3 bg-slate-100"
+                        class="w-full p-3 max-h-14 tracking-widest border-2 border-slate-300 rounded-xl ps-3 bg-slate-100 overflow-hidden"
                         placeholder="Type a message here. . ."></textarea>
                     <button @click="sendMessage" :disabled="loading || message.length === 0"
-                        class="cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-300 disabled:pointer-events-none submit-btn absolute right-0 border-slate-300 h-full grid place-items-center border-s-2 px-2 p-1 rounded-e-xl text-blue-500 hover:bg-sky-400 hover:text-white">
+                        class="cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-300 z-30 disabled:pointer-events-none submit-btn absolute right-0 border-slate-300 h-full grid place-items-center border-s-2 px-2 p-1 rounded-e-xl text-blue-500 hover:bg-sky-400 hover:text-white">
                         <IconsAirplane></IconsAirplane>
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     </fieldset>

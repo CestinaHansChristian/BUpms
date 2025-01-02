@@ -76,7 +76,8 @@ async function archiveProject(project_id) {
                                         :class="project.expand.Status.stages === 'stage1' ? 'text-red-600 text-sm' : project.expand.Status.stages === 'stage2' ? 'text-orange-600 text-sm' : project.expand.Status.stages === 'stage3' ? 'text-yellow-600 text-sm' : 'text-green-600'">
                                         {{ project.expand.Status.stages === 'stage1' ? 'Attachment Pending' :
                                             project.expand.Status.stages === 'stage2' ? 'Verifying Documents' :
-                                        project.expand.Status.stages === 'stage3'? 'Waiting for approval': 'Completed'}}
+                                                project.expand.Status.stages === 'stage3' ? 'Waiting for approval' : 'Completed'
+                                        }}
                                     </div>
                                 </div>
                             </div>
@@ -87,16 +88,20 @@ async function archiveProject(project_id) {
                             <button v-if="project.isCompleted" :class="{ 'pointer-events-none': project.isCompleted }"
                                 class="gap-x-5 grid p-3 project-view-wrapper cursor-pointer rounded-lg bg-green-500 hover:bg-lime-500 place-content-center px-3 text-white font-semibold w-full">
                                 <div class="btn-label-wrapper gap-x-3 grid">
-                                    <span class="text-lg font-bold uppercase">Completed</span><span class="text-sm">Please bring the attached document hardcopy for OSAS verification</span>
+                                    <span class="text-lg font-bold uppercase">Completed</span><span
+                                        class="text-sm">Please bring the attached document hardcopy for OSAS
+                                        verification</span>
                                 </div>
-                                <div class="last-updated-at-wrapper text-xs text-slate-100 lg:flex lg:place-content-center lg:pt-3">
+                                <div
+                                    class="last-updated-at-wrapper text-xs text-slate-100 lg:flex lg:place-content-center lg:pt-3">
                                     <div class="label-wrapper">Updated At:</div>
                                     <div class="updated-wrapper-date">
                                         {{ new Date(project.updated).toLocaleString() }}
                                     </div>
                                 </div>
                             </button>
-                            <nuxt-link :to="'/client/projects/' + project.id" v-else class="gap-x-5 grid p-1 project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 place-content-center px-3 text-white font-semibold w-full">
+                            <nuxt-link :to="'/client/projects/' + project.id" v-else
+                                class="gap-x-5 grid p-1 project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 place-content-center px-3 text-white font-semibold w-full">
                                 <div class="wrapper flex justify-center">
                                     <IconsMagnifyingGlass></IconsMagnifyingGlass>
                                 </div>

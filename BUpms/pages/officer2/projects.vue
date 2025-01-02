@@ -52,10 +52,18 @@ async function officerRejectThisProject(projectId) {
                             </div>
                             <div class="meta-info-wrapper grid md:w-2/12 md:mx-2 text-sky-600 font-bold ">
                                 <div class="date-wrapper text-xs md:text-base">
-                                    <span class="text-gray-800 font-semibold">
-                                        Date Created:
-                                    </span>
-                                    {{ new Date(project.created).toLocaleString() }}
+                                    <div class="creation-date-wrapper">
+                                        <span class="text-gray-800 font-semibold">
+                                            Date Created:
+                                        </span>
+                                        {{ new Date(project.created).toLocaleString() }}
+                                    </div>
+                                    <div class="updated-date-wrapper">
+                                        <span class="text-gray-800 font-semibold">
+                                            Last Updated:
+                                        </span>
+                                        {{ new Date(project.updated).toLocaleString() }}
+                                    </div>
                                 </div>
                                 <div class="status-wrapper text-xs md:text-base md:grid">
                                     <span class="text-gray-800 font-semibold">
@@ -76,16 +84,16 @@ async function officerRejectThisProject(projectId) {
                                     class="project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 grid place-content-center px-3 text-white font-semibold w-full md:place-content-center">
                                     <!-- officer 2 -->
                                     <div class="gap-x-5 grid place-content-center">
-                                            <div class="wrapper flex justify-center">
-                                                <IconsMagnifyingGlass></IconsMagnifyingGlass>
-                                            </div>
-                                            <div class="wrapper">
-                                                Review
-                                            </div>
+                                        <div class="wrapper flex justify-center">
+                                            <IconsMagnifyingGlass></IconsMagnifyingGlass>
+                                        </div>
+                                        <div class="wrapper">
+                                            Review
+                                        </div>
                                     </div>
                                 </nuxt-link>
-                                <div
-                                    @click="officerRejectThisProject(project.id)" class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
+                                <div @click="officerRejectThisProject(project.id)"
+                                    class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
                                     <!-- officer 1 -->
                                     <button
                                         class="gap-x-5 md:place-content-center-center py-3 grid place-content-center">

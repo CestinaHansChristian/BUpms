@@ -2,7 +2,7 @@
     <div class="pb-5 text-slate-800">
         <div class="container mx-auto max-w-screen-md pt-5">
             <fieldset class="wrapper-one mx-3 md:mx-5 grid border-2 rounded-xl md:gap-y-4 space-y-4">
-                <legend class="card-heading p-1 rounded-t-xl uppercase font-medium md:text-xl lg:text-center">
+                <legend class="card-heading p-1 rounded-t-xl uppercase font-medium md:text-xl text-center">
                     Project Information
                 </legend>
                 <div class="project-content md:mx-3 space-y-3 md:space-y-4">
@@ -110,13 +110,14 @@
                             <div class="control-btn flex lg:gap-x-5 gap-x-2">
                                 <nuxt-link @click="approveProposal(fetchSingleProject, fetchSingleProject.Status)"
                                     :to="fetchSingleProject.id + '/approved'">
-                                    <div 
+                                    <div
                                         class="approve-design-btn uppercase cursor-pointer bg-blue-400 hover:bg-sky-700 text-slate-50 p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 hover:text-white tracking-wider">
                                         Approve
                                     </div>
                                 </nuxt-link>
                                 <button @click="rejectOfficerProject(fetchSingleProject.id)">
-                                    <div class="reject-design-btn bg-red-500 cursor-pointer hover:bg-red-700  uppercase p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 text-slate-50 tracking-wider">
+                                    <div
+                                        class="reject-design-btn bg-red-500 cursor-pointer hover:bg-red-700  uppercase p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 text-slate-50 tracking-wider">
                                         Reject
                                     </div>
                                 </button>
@@ -127,7 +128,7 @@
             </fieldset>
             <div class="wrapper-two grid gap-4 md:flex md:mx-5 mx-3">
                 <fieldset class="card rounded-lg border-slate-200 w-full border-2">
-                    <legend class="lg:text-center text-base font-semibold tracking-widest uppercase md:text-xl">
+                    <legend class="text-center text-base font-semibold tracking-widest uppercase md:text-xl">
                         Documents
                     </legend>
                     <div class="card-body mx-2 grid py-5">
@@ -211,7 +212,7 @@ async function approveProposal(projectId, recordId) {
     // for project
     const data2 = {
         id: formattedProjectId,
-        isCompleted : true
+        isCompleted: true
     }
 
     const notificationData = {
@@ -233,7 +234,7 @@ async function downloadFile(docId) {
 
     const fileToken = await $pb.files.getToken()
     const fileRecord = await $pb.collection('Documents_tbl').getOne(docId)
-    const fileURI = $pb.files.getUrl(fileRecord,fileRecord.Document,{
+    const fileURI = $pb.files.getUrl(fileRecord, fileRecord.Document, {
         'token': fileToken
     })
     const linkURI = document.createElement('a')

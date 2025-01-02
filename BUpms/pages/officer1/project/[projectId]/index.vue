@@ -1,6 +1,6 @@
 <template>
     <div class="pb-5 text-slate-800">
-        <div class="container mx-auto space-y-2 grid pt-5 max-w-screen-md">
+        <div class="container mx-auto space-y-2 grid pt-5 max-w-screen-lg">
             <fieldset class="wrapper-one mx-3 md:mx-5 grid border-2 rounded-xl md:gap-y-4 space-y-4">
                 <legend class="card-heading p-1 rounded-t-xl uppercase font-medium md:text-xl text-center">
                     Project Information
@@ -61,11 +61,13 @@
                         </div>
                     </div>
                     <div class="event-details-wrapper mx-2">
-                        <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl flex justify-between md:pb-2">
+                        <div
+                            class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl flex justify-between md:pb-2">
                             <label for="">
                                 Submitted Documents:
                             </label>
-                            <button @click="deleteAttachedFile(fetchSingleProject)" class="reject-design-btn text-sm bg-rose-400 px-3 cursor-pointer hover:bg-red-700  uppercase rounded-md font-semibold md:text-lg text-slate-50 tracking-wider">
+                            <button @click="deleteAttachedFile(fetchSingleProject)"
+                                class="reject-design-btn text-sm bg-rose-400 px-3 cursor-pointer hover:bg-red-700  uppercase rounded-md font-semibold md:text-lg text-slate-50 tracking-wider">
                                 Remove Docs
                             </button>
                         </div>
@@ -116,8 +118,8 @@
                                 </div>
                             </nuxt-link>
                             <div class="control-btn flex lg:gap-x-5 gap-x-2">
-                                <nuxt-link  @click="approveProposal(fetchSingleProject.id, fetchSingleProject.Status)" v-if="isApproved.stages === 'stage2'"
-                                    :to="fetchSingleProject.id + '/approved'">
+                                <nuxt-link @click="approveProposal(fetchSingleProject.id, fetchSingleProject.Status)"
+                                    v-if="isApproved.stages === 'stage2'" :to="fetchSingleProject.id + '/approved'">
                                     <div
                                         class="approve-design-btn uppercase cursor-pointer bg-blue-400 hover:bg-sky-700 text-slate-50 p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 hover:text-white tracking-wider">
                                         Approve
@@ -144,7 +146,7 @@
                                         Reject
                                     </div>
                                 </button>
-                                <button v-else @click="rejectOfficerProject(fetchSingleProject)" >
+                                <button v-else @click="rejectOfficerProject(fetchSingleProject)">
                                     <div
                                         class="reject-design-btn bg-red-400 cursor-pointer hover:bg-red-700  uppercase p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 text-slate-50 tracking-wider">
                                         Reject
@@ -157,7 +159,8 @@
             </fieldset>
             <div class="wrapper-two grid gap-4 md:flex md:mx-5 mx-3">
                 <fieldset class="card border-2 rounded-lg">
-                    <legend class="indent-3 lg:text-center text-base font-semibold tracking-widest uppercase md:text-xl">
+                    <legend
+                        class="indent-3 lg:text-center text-base font-semibold tracking-widest uppercase md:text-xl">
                         Documents
                     </legend>
                     <div class="card-body mx-2 grid py-5">
@@ -197,7 +200,7 @@
 // Admin composable documents
 definePageMeta({
     layout: 'landing',
-    middleware: ['guard','officer1']
+    middleware: ['guard', 'officer1']
 })
 
 const route = useRoute();
@@ -233,16 +236,16 @@ async function deleteAttachedFile(fetchedSingleData) {
     try {
         const projectIdformatted = fetchedSingleData.id
         const statusIdFormatted = fetchedSingleData.Status
-        if(fetchedSingleData.expand.Documents_tbl_via_Project_rel) {
+        if (fetchedSingleData.expand.Documents_tbl_via_Project_rel) {
             // console.log(fetchedSingleData)
             // console.log(fetchSingleProject.expand.Documents_tbl_via_Project_rel.length > 0) 
-            for(let i = 0; i < fetchedSingleData.expand.Documents_tbl_via_Project_rel.length; i++) {
+            for (let i = 0; i < fetchedSingleData.expand.Documents_tbl_via_Project_rel.length; i++) {
                 let formattedDocId = fetchedSingleData.expand.Documents_tbl_via_Project_rel[i].id
                 await $pb.collection('Documents_tbl').delete(formattedDocId)
             }
             const data = {
-            'Project_id' : projectIdformatted,
-            'stages' : 'stage1'
+                'Project_id': projectIdformatted,
+                'stages': 'stage1'
             }
             await $pb.collection('Status_tbl').update(statusIdFormatted, data)
             navigateTo('/officer1/projects')
@@ -266,7 +269,7 @@ async function downloadFile(docId) {
 
     const fileToken = await $pb.files.getToken()
     const fileRecord = await $pb.collection('Documents_tbl').getOne(docId)
-    const fileURI = $pb.files.getUrl(fileRecord,fileRecord.Document,{
+    const fileURI = $pb.files.getUrl(fileRecord, fileRecord.Document, {
         'token': fileToken
     })
     const linkURI = document.createElement('a')

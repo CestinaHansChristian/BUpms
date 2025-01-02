@@ -81,7 +81,7 @@ function refreshTracking() {
 
 </script>
 <template>
-    <div class="overflow-hidden">
+    <div class="overflow-hidden ">
         <div class="content md:pt-10 mx-1 relative ">
             <div class="project-icons lg:h-full lg:pt-5 rounded-lg lg:container lg:mx-auto">
                 <!-- <TrackingProjectStage :projectStage="projectStatus.stages" :projectRelId="projectStatus.Project_id">

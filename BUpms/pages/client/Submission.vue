@@ -1,5 +1,5 @@
 <template>
-    <div class="px-4 md:grid md:align-middle">
+    <div class="px-4 md:grid md:align-middle xl:h-screen">
         <form @submit.prevent="submit_doc"
             class=" shadow-inner p-5 border-b-2 border-slate-300 shadow-slate-400 my-10 rounded-xl pb-5 mb:pb-0">
             <h1 class="text-3xl font-bold mb-6">Submit New Activity</h1>
