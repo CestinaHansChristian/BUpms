@@ -26,7 +26,8 @@
                         </div>
                         <div class="project-description grid px-2 text-slate-500 font-semibold lg:text-xl">
                             <span class="text-base text-slate-800">Created:</span>
-                            <span class="text-sm text-slate-500 font-normal ">{{ new Date(item.created).toLocaleString() }}</span>
+                            <span class="text-sm text-slate-500 font-normal ">{{ new Date(item.created).toLocaleString()
+                                }}</span>
                         </div>
                     </div>
                     <div v-if="projects.length === 0">
@@ -68,7 +69,8 @@
 
 const { data: projects, status, refresh } = useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Projects_tbl').getFullList({
     sort: '-created',
-    expand: 'Users_tbl,Status_tbl'
+    expand: 'User,Status_tbl',
+    filter: `User="${nuxtApp.$pb.authStore.model?.id}"`
 }))
 
 // const projects = await pb.collection('Projects_tbl').getFullList({

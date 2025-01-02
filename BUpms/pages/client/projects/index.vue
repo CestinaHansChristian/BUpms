@@ -3,7 +3,8 @@
 const { $pb } = useNuxtApp()
 const { data: projects, status, refresh } = useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Projects_tbl').getFullList({
     sort: '-created',
-    expand: 'User_tbl,Status'
+    expand: 'User_tbl,Status',
+    filter: `User="${$pb.authStore.model?.id}"`
 }))
 
 userLandingGreet()
