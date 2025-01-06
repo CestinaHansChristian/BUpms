@@ -6,13 +6,18 @@
             Comment Box
         </legend>
         <div class="heading-wrapper">
-            <button class="w-fit h-fit p-1 m-2 flex  items-center mx-2 bg-white border-2 rounded-full" @click="refresh">
-                <UIcon name="i-ic-baseline-refresh" /> Refresh
-            </button>
+            <div class="flex items-center gap-2">
+                <!-- <button class="w-fit h-fit p-1 m-2 flex items-center mx-2 bg-white border-2 rounded-full"
+                    @click="refresh">
+                    <UIcon name="i-ic-baseline-refresh" /> Refresh
+                </button> -->
+                <div class="w-24 bg-slate-200 h-1 rounded-full overflow-hidden md:ml-2 md:my-4">
+                    <div class="bg-sky-500 h-full transition-all duration-100" :style="{ width: `${progress}%` }"></div>
+                </div>
+            </div>
         </div>
-        <div class="comment-content-wrapper mx-2 md:space-y-">
-            <div v-if="status === 'success'"
-                class="display-message overflow-y-scroll h-screen md:h-72 bg-slate-300 rounded-md space-y-4 py-1">
+        <div class="comment-content-wrapper mx-2 md:space-y-2">
+            <div class="display-message overflow-y-scroll h-screen md:h-72 bg-slate-300 rounded-md space-y-4 py-1">
                 <div v-for="message of messages">
                     <div v-if="message.FromUser === $pb.authStore.model.id"
                         class="from-client-msg-wrapper justify-between gap-x-3 m-1 p-2 bg-slate-100 rounded-md space-y-2">
@@ -64,10 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div v-else
-                class="display-message overflow-y-scroll flex justify-center items-center h-40 md:h-72 bg-slate-300 rounded-md space-y-2 py-1">
-                <h1 class="text-2xl font-bold">Loading...</h1>
-            </div>
+
             <div class="send-btn-control grid py-2 rounded-b-lg">
                 <form class="text-wrapper flex justify-between gap-x-2 relative">
                     <textarea v-model="message" name="" id=""
@@ -91,6 +93,7 @@ const route = useRoute()
 const message = ref("")
 const loading = ref(false)
 
+const progress = ref(100)
 
 const { data: messages, status, refresh } = useAsyncData(async (nuxtApp) => await nuxtApp.$pb.collection('Comments_tbl').getFullList({
     expand: 'ProjectRel',
@@ -100,7 +103,27 @@ const { data: messages, status, refresh } = useAsyncData(async (nuxtApp) => awai
     order: 'asc',
 }))
 
-// console.log(messages._value)
+onMounted(() => {
+    const REFRESH_INTERVAL = 3000
+    const STEP_TIME = 100 // Update progress every 100ms
+
+    const interval = setInterval(async () => {
+        await refresh()
+        progress.value = 100
+    }, REFRESH_INTERVAL)
+
+    // Progress bar countdown
+    const progressInterval = setInterval(() => {
+        if (progress.value > 0) {
+            progress.value -= (STEP_TIME / REFRESH_INTERVAL) * 100
+        }
+    }, STEP_TIME)
+
+    return () => {
+        clearInterval(interval)
+        clearInterval(progressInterval)
+    }
+})
 
 const sendMessage = async () => {
 
