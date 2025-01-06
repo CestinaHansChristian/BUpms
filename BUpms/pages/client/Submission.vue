@@ -1,5 +1,5 @@
 <template>
-    <div class="px-4 md:grid md:align-middle xl:h-screen">
+    <div class="px-4 md:grid md:align-middle">
         <form @submit.prevent="submit_doc"
             class=" shadow-inner p-5 border-b-2 border-slate-300 shadow-slate-400 my-10 rounded-xl pb-5 mb:pb-0">
             <h1 class="text-3xl font-bold mb-6">Submit New Activity</h1>
@@ -80,7 +80,8 @@
                     <div>
                         <label for="contactNumber" class="block text-sm font-medium text-gray-700 md:text-xl">Contact
                             Number</label>
-                        <input v-model="contactNumber" type="text" id="contactNumber" required
+                        <input v-model="contactNumber" type="text" inputmode="numeric" pattern="[0-9]*"
+                            id="contactNumber" required
                             class="mt-1 block w-full bg-black text-slate-300 rounded-md invert border-slate-800 shadow-md border-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
                         <p v-if="validationErrors.contactNumber" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.contactNumber[0] }}
@@ -120,13 +121,13 @@
                 <div class="bg-white p-6 rounded-lg max-w-sm w-full text-center">
                     <IconsDocument class="mx-auto mb-4" />
                     <p class="mb-2 font-bold">Your submission has been posted successfully.</p>
-                    <p class="text-sm text-gray-500 ">Redirecting to Tracking Page...</p>
+                    <p class="text-sm text-gray-500 ">Redirecting to Tracking Page after 3 seconds...</p>
                 </div>
             </div>
         </Teleport>
 
         <Teleport to="#modal">
-            <div v-if="missingFields" class="fixed inset-0 bg-opacity-50 flex items-center justify-center">
+            <div v-if="missingFields" class="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50">
                 <div class="bg-white p-6 rounded-lg max-w-sm w-full text-center">
                     <IconsWarningIcon class="mx-auto mb-4" />
                     <p class="mb-4">Please correct the following errors:</p>
@@ -174,7 +175,13 @@ const submissionSchema = z.object({
     eventClassification: z.string().min(1, "Event classification is required"),
     whoInput: z.string().min(1, "Who is required"),
     whenInput: z.string().min(1, "When is required"),
-    contactNumber: z.coerce.string({ message: "Not a valid number" }).min(10, "Contact number is required").max(11, "Contact number is required")
+    contactNumber: z.coerce.number({
+        required_error: "Contact number is required",
+        invalid_type_error: "Contact number must be a number"
+    })
+        .int("Contact number must be an integer")
+        .min(1000000000, "Contact number must be at least 10 digits")
+        .max(99999999999, "Contact number must not exceed 11 digits")
 })
 
 const validationErrors = ref({})
