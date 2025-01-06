@@ -34,8 +34,8 @@
         </div>
         <div class="w-full min-h-full flex flex-col">
             <div ref="dropzoneRef" class="border-2 border-slate-300 rounded-lg relative flex-grow p-4 w-full h-full">
-                <input type="file" class="absolute top-0 left-0 min-w-full min-h-full opacity-0 z-10" multiple accept="application/pdf,image/*"
-                    @change="manualUpload" />
+                <input type="file" class="absolute top-0 left-0 min-w-full min-h-full opacity-0 z-10" multiple
+                    accept="application/pdf,image/*" @change="manualUpload" />
                 <div :class="[
                     'flex justify-center items-center h-full rounded-lg border-dashed transition-all duration-200 relative',
                     isOverDropZone ? 'border-4 border-blue-500 bg-blue-50' : 'border-2 border-slate-300'
@@ -249,6 +249,8 @@ function manualUpload(e: Event) {
     let files = input.files
     if (files) {
         onDrop(Array.from(files), new DragEvent('drop'))
+        // Reset the input value to allow re-uploading the same file
+        input.value = ''
     } else {
         // console.log('null')
     }
@@ -304,14 +306,15 @@ function removeFile(index: number) {
     // Remove from confirmUploadFiles 
     confirmUploadFiles.value = confirmUploadFiles.value.filter((_, i) => i !== index);
 
-    // console.log(index)
-
-    // Close modal if no files left
-    if (initialFiles.value.length === 0) {
+    // Reset state completely if no files left
+    if (initialFiles.value.length === 0 && confirmUploadFiles.value.length === 0) {
         confirmUpload.value = false;
+        // Reset available document types
+        availableDocumentTypes.value = requiredDocs.value;
+    } else {
+        // Update available types if some files remain
+        updateAvailableTypes();
     }
-
-    updateAvailableTypes();
 }
 
 </script>
