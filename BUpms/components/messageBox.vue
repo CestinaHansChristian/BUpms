@@ -6,18 +6,14 @@
             Comment Box
         </legend>
         <div class="heading-wrapper">
-            <div class="flex items-center gap-2">
-                <!-- <button class="w-fit h-fit p-1 m-2 flex items-center mx-2 bg-white border-2 rounded-full"
-                    @click="refresh">
-                    <UIcon name="i-ic-baseline-refresh" /> Refresh
-                </button> -->
-                <div class="w-24 bg-slate-200 h-1 rounded-full overflow-hidden md:ml-2 md:my-4">
+            <div class="flex items-center my-3 ps-2 md:my-0">
+                <div class="w-10 bg-slate-200 h-1 rounded-full overflow-hidden md:ml-2 md:my-4">
                     <div class="bg-sky-500 h-full transition-all duration-100" :style="{ width: `${progress}%` }"></div>
                 </div>
             </div>
         </div>
         <div class="comment-content-wrapper mx-2 md:space-y-2">
-            <div class="display-message overflow-y-scroll h-screen md:h-72 bg-slate-300 rounded-md space-y-4 py-1">
+            <div class="display-message overflow-y-scroll h-64 md:h-80 bg-slate-300 rounded-md space-y-4 py-1">
                 <div v-for="message of messages">
                     <div v-if="message.FromUser === $pb.authStore.model.id"
                         class="from-client-msg-wrapper justify-between gap-x-3 m-1 p-2 bg-slate-100 rounded-md space-y-2">

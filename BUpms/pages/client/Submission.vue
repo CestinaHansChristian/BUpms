@@ -1,5 +1,5 @@
 <template>
-    <div class="px-4 md:grid md:align-middle">
+    <div class="px-4 md:grid md:align-middle md:place-content-center lg:h-screen">
         <form @submit.prevent="submit_doc"
             class=" shadow-inner p-5 border-b-2 border-slate-300 shadow-slate-400 my-10 rounded-xl pb-5 mb:pb-0">
             <h1 class="text-3xl font-bold mb-6">Submit New Activity</h1>
@@ -9,7 +9,7 @@
                         <label for="activityTitle" class="block text-sm font-medium text-gray-700 md:text-xl">Title of
                             Activity</label>
                         <input v-model="clientActivityTitle" type="text" id="activityTitle" required
-                            class="mt-1 block w-full rounded-md bg-black text-slate-300 invert capitalize shadow-md border-2 border-slate-800 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
+                            class="mt-1 block w-full rounded-md bg-black text-slate-300 invert shadow-md border-2 border-slate-800 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
                         <p v-if="validationErrors.clientActivityTitle" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.clientActivityTitle[0] }}
                         </p>
@@ -17,17 +17,17 @@
 
                     <div>
                         <label for="description"
-                            class="block text-sm font-medium text-gray-700 md:text-xl">Description</label>
-                        <textarea v-model="clientDescription" id="description" rows="4" required
+                            class="block text-sm font-medium text-gray-700 md:text-xl">Short Description</label>
+                        <textarea v-model="clientDescription" id="description" rows="2" required
                             placeholder="Description"
-                            class="mt-1 block invert bg-black text-slate-300 border-slate-800 shadow-md border-2 w-full rounded-md  focus:border-indigo-300 focus:ring placeholder:tracking-wider focus:ring-indigo-200 focus:ring-opacity-50 p-3 resize-none md:h-72"></textarea>
+                            class="mt-1 block invert bg-black text-slate-300 border-slate-800 shadow-md border-2 w-full rounded-md  focus:border-indigo-300 focus:ring placeholder:tracking-wider focus:ring-indigo-200 focus:ring-opacity-50 p-3 resize-none md:h-32"></textarea>
                         <p v-if="validationErrors.clientDescription" class="text-red-500 text-sm mt-1">
                             {{ validationErrors.clientDescription[0] }}
                         </p>
                     </div>
 
                     <div>
-                        <label for="whoInput" class="block text-sm font-medium text-gray-700 md:text-xl">Who</label>
+                        <label for="whoInput" class="block text-sm font-medium text-gray-700 md:text-xl">Involved People</label>
                         <input v-model="whoInput" type="text" id="whoInput" required
                             class="mt-1 block invert bg-black text-slate-300 w-full rounded-md border-slate-800 shadow-md border-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
                         <p v-if="validationErrors.whoInput" class="text-red-500 text-sm mt-1">
@@ -77,6 +77,10 @@
                         </p>
                     </div>
 
+                    <div class="others-text-option md:text-sm">
+                        <label for="othersInput" class="block text-sm font-medium text-gray-700 md:text-base">If others, please specify:</label>
+                        <input type="text" class="mt-1 block w-full bg-slate-100 text-black font-semibold border-b-2 border-b-slate-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3" v-model="othersInput" style="border-top: none; border-left: none; border-right: none;">
+                    </div>
                     <div>
                         <label for="contactNumber" class="block text-sm font-medium text-gray-700 md:text-xl">Contact
                             Number</label>
@@ -168,6 +172,7 @@ const showConfirmModal = ref(false)
 const isPosted = ref(false)
 const missingFields = ref(false)
 const loading = ref(false)
+const othersInput = ref('')
 
 const submissionSchema = z.object({
     clientActivityTitle: z.string().min(1, "Title is required"),
@@ -180,8 +185,9 @@ const submissionSchema = z.object({
         invalid_type_error: "Contact number must be a number"
     })
         .int("Contact number must be an integer")
-        .min(1000000000, "Contact number must be at least 10 digits")
-        .max(99999999999, "Contact number must not exceed 11 digits")
+        .min(900000000, "Contact number must be at least 10 digits")
+        .max(99999999999, "Contact number must not exceed 11 digits"),
+    othersInput: z.string().optional()
 })
 
 const validationErrors = ref({})
@@ -194,7 +200,8 @@ function submit_doc() {
             eventClassification: eventClassification.value,
             whoInput: whoInput.value,
             whenInput: whenInput.value,
-            contactNumber: contactNumber.value
+            contactNumber: contactNumber.value,
+            othersInput: othersInput.value
         })
         validationErrors.value = {}
         showConfirmModal.value = true
@@ -216,7 +223,9 @@ async function confirmSubmission() {
         "When": whenInput.value,
         "Who": whoInput.value,
         "Contact_num": contactNumber.value,
-        'Description': clientDescription.value
+        "Event_Classification": eventClassification.value,
+        'Description': clientDescription.value,
+        'Others': othersInput.value
     }
     // console.log(createdProject)
     try {
