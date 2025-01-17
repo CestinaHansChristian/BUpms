@@ -6,106 +6,141 @@
                     Project Information
                 </legend>
                 <div class="project-content md:mx-3 space-y-3 md:space-y-4">
-                    <div class="project-name-wrapper mx-2 md:space-y-2">
-                        <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
-                            Title of Actvity:
+                    <div class="md:grid md:grid-cols-2">
+                        <div class="project-name-wrapper mx-2">
+                            <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
+                                Title of Actvity:
+                            </div>
+                            <div
+                                class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
+                                {{ fetchSingleProject.Title }}
+                            </div>
                         </div>
-                        <div
-                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
-                            {{ fetchSingleProject.Title }}
-                        </div>
-                    </div>
-                    <div class="when-wrapper mx-2">
-                        <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
-                            When
-                        </div>
-                        <div
-                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
-                            {{ fetchSingleProject.When }}
-                        </div>
-                    </div>
-                    <div class="who-wrapper mx-2">
-                        <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
-                            Who
-                        </div>
-                        <div
-                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
-                            {{ fetchSingleProject.Who }}
+                        <div class="when-wrapper mx-2">
+                            <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
+                                When
+                            </div>
+                            <div
+                                class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
+                                {{ fetchSingleProject.When }}
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-num-wrapper mx-2">
-                        <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
-                            Contact number:
+                    <div class="md:grid md:grid-cols-2">
+                        <div class="who-wrapper mx-2">
+                            <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
+                                Who
+                            </div>
+                            <div
+                                class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
+                                {{ fetchSingleProject.Who }}
+                            </div>
                         </div>
-                        <div
-                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
-                            {{ fetchSingleProject.Contact_num }}
-                        </div>
-                    </div>
-                    <div class="contact-num-wrapper mx-2">
-                        <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
-                            Created by:
-                        </div>
-                        <div
-                            class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
-                            {{ fetchedUserData.username }}
-                        </div>
-                    </div>
-                    <div class="contact-num-wrapper mx-2">
-                        <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
-                            Description:
-                        </div>
-                        <div
-                            class="project-name-wrapper text-sm p-2 border-2 rounded-xl overflow-y-scroll h-52 font-medium md:text-base bg-white shadow-inner tracking-tight">
-                            {{ fetchSingleProject.Description }}
+                        <div class="contact-num-wrapper mx-2">
+                            <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
+                                Contact number:
+                            </div>
+                            <div
+                                class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
+                                {{ fetchSingleProject.Contact_num }}
+                            </div>
                         </div>
                     </div>
-                    <div class="event-details-wrapper mx-2">
-                        <div
-                            class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl flex justify-between md:pb-2">
-                            <label for="">
-                                Submitted Documents:
-                            </label>
-                            <button @click="deleteAttachedFile(fetchSingleProject)"
-                                class="reject-design-btn text-sm bg-rose-400 px-3 cursor-pointer hover:bg-red-700  uppercase rounded-md font-semibold md:text-lg text-slate-50 tracking-wider">
-                                Remove Docs
-                            </button>
+                    <div class="md:grid md:grid-cols-2">
+                        <div class="contact-num-wrapper mx-2">
+                            <div class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl">
+                                Created by:
+                            </div>
+                            <div
+                                class="project-name-wrapper text-sm p-3 border-2 rounded-xl font-medium md:text-base bg-white shadow-inner tracking-widest">
+                                {{ fetchedUserData.username }}
+                            </div>
                         </div>
-                        <div
-                            class="Doc-label-of-submitted p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
-                            <div v-if="fetchSingleProject.expand" class="if-user-submit-document">
-                                <div v-for="(eventType, index) in fetchSingleProject.expand.Documents_tbl_via_Project_rel"
-                                    :key="index" class="for-doctype-wrapper">
-                                    <div class="event-type-content flex gap-x-5 align-middle">
-                                        <div class="list-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="4" stroke="green" class="size-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="m4.5 12.75 6 6 9-13.5" />
-                                            </svg>
+                        <div class="document-details-wrapper mx-2">
+                            <div
+                                class="doctype-label ps-2 text-base text-slate-500 font-semibold capitalize md:text-xl">
+                                document type:
+                            </div>
+                            <div
+                                class="doctype-name-wrapper p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                                <div class="doctype-wrapper">
+                                    {{ fetchSingleProject.expand ? 'pdf/jpg' : 'Missing' }}
+                                    <!-- <div v-for="(doctype, index) in fetchSingleProject.expand.Documents_tbl_via_Project_rel" :key="index" class="">
+                                        {{ doctype.Document.split('.').pop() ? 'pdf/jpg': false  }}
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:grid md:grid-cols-2">
+                        <div class="contact-num-wrapper mx-2">
+                            <div
+                                class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl md:py-1">
+                                Description:
+                            </div>
+                            <div
+                                class="project-name-wrapper text-sm p-2 border-2 rounded-xl overflow-y-auto h-24 font-medium md:text-base bg-white shadow-inner tracking-tight">
+                                {{ fetchSingleProject.Description }}
+                            </div>
+                        </div>
+                        <div class="event-details-wrapper mx-2">
+                            <div
+                                class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl flex justify-between md:pb-2">
+                                <label for="">
+                                    Submitted Documents:
+                                </label>
+                            </div>
+                            <div
+                                class="Doc-label-of-submitted p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                                <div v-if="fetchSingleProject.expand" class="if-user-submit-document">
+                                    <div v-for="(eventType, index) in fetchSingleProject.expand.Documents_tbl_via_Project_rel"
+                                        :key="index" class="for-doctype-wrapper flex justify-between md:space-y-1">
+                                        <div class="event-type-content flex gap-x-5 align-middle">
+                                            <div class="list-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="4" stroke="green" class="size-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="m4.5 12.75 6 6 9-13.5" />
+                                                </svg>
+                                            </div>
+                                            <div class="list-type">
+                                                {{ eventType.Doc_type }}
+                                            </div>
                                         </div>
-                                        <div class="list-type">
-                                            {{ eventType.Doc_type }}
+                                        <div class="remove-specific-file-wrapper">
+                                            <button @click="deleteAttachedFile(fetchSingleProject, index)"
+                                                class="reject-design-btn text-sm bg-rose-400 px-3 cursor-pointer hover:bg
+                                            -red-700  uppercase rounded-md font-semibold md:text-lg text-slate-50 tracking-wider">
+                                                Remove
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div v-else class="else-user-didnot-submit">
-                                No Attachment
+                                <div v-else class="else-user-didnot-submit">
+                                    No Attachment
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="document-details-wrapper mx-2">
-                        <div class="doctype-label ps-2 text-base text-slate-500 font-semibold capitalize md:text-xl">
-                            document type:
+                    <div class="md:grid md:grid-cols-2">
+                        <div class="contact-num-wrapper mx-2">
+                            <div
+                                class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl md:py-1">
+                                Event Classification:
+                            </div>
+                            <div
+                                class="project-name-wrapper text-sm p-3 border-2 rounded-xl overflow-y-auto font-medium md:text-base bg-white shadow-inner tracking-tight">
+                                {{ fetchSingleProject.Event_Classification }}
+                            </div>
                         </div>
-                        <div
-                            class="doctype-name-wrapper p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
-                            <div class="doctype-wrapper">
-                                {{ fetchSingleProject.expand ? 'pdf/jpg' : 'Missing' }}
-                                <!-- <div v-for="(doctype, index) in fetchSingleProject.expand.Documents_tbl_via_Project_rel" :key="index" class="">
-                                    {{ doctype.Document.split('.').pop() ? 'pdf/jpg': false  }}
-                                </div> -->
+                        <div v-if="fetchSingleProject.Others" class="contact-num-wrapper mx-2">
+                            <div
+                                class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl md:py-1">
+                                Others remarks:
+                            </div>
+                            <div
+                                class="project-name-wrapper text-sm p-3 border-2 rounded-xl overflow-y-auto font-medium md:text-base bg-white shadow-inner tracking-tight">
+                                {{ fetchSingleProject.Others }}
                             </div>
                         </div>
                     </div>
@@ -157,27 +192,38 @@
                     </div>
                 </div>
             </fieldset>
-            <div class="wrapper-two grid gap-4 md:flex md:mx-5 mx-3">
-                <fieldset class="card border-2 rounded-lg">
+            <div class="wrapper-two grid gap-4 md:grid-cols-2 md:mx-5 mx-3">
+                <fieldset class="card border-2 rounded-lg md:w-">
                     <legend
                         class="indent-3 lg:text-center text-base font-semibold tracking-widest uppercase md:text-xl">
-                        Documents
+                        Attached Documents
                     </legend>
-                    <div class="card-body mx-2 grid py-5">
-                        <div
-                            class="overflow-wrapper h-72 md:h-96 md:pt-5 bg-slate-300 overflow-y-scroll tracking-wider rounded-lg">
+                    <div class="card-body mx-2 grid py-5 ">
+                        <div class="overflow-wrapper h-72 md:h-full tracking-wider">
                             <!-- component -->
-                            <div v-if="fetchSingleProject.expand" class="">
+                            <div v-if="fetchSingleProject.expand" class="overflow-y-auto md:h-96">
                                 <div v-for="(document, index) in fetchSingleProject.expand.Documents_tbl_via_Project_rel"
-                                    :key="index"
-                                    class="file-component document-info-wrapper grid grid-rows-2 rounded-md p-2">
-                                    <div
-                                        class="docu-filename rounded-t-xl ps-2 bg-slate-100 p-3 truncate break-words font-semibold">
-                                        {{ document.Document }}
-                                    </div>
-                                    <div @click="downloadFile(document.id)"
-                                        class="docu-download-option w-full rounded-b-xl text-slate-700 p-2 font-bold text-center bg-sky-300 hover:text-white text-base tracking-widest px-1 hover:bg-sky-500 cursor-pointer">
-                                        Download
+                                    :key="index" class="file-component document-info-wrapper grid rounded-md p-2">
+                                    <div class="document-card-wrapper grid grid-cols-3 md:p-2z bg-slate-200 rounded-xl">
+                                        <div class="grid-wrapper-1 flex items-center col-span-2">
+                                            <div
+                                                class="document-file-name-wrapper font-semibold mx-2 w-36 break-words md:w-40 lg:w-60">
+                                                {{ document.Document }}
+                                            </div>
+                                        </div>
+                                        <div class="grid-wrapper-2 grid place-content-center cursor-pointer bg-sky-300 py-2 rounded-xl group hover:bg-sky-400"
+                                            @click="downloadFile(document.id)">
+                                            <svg class="h-10 w-10  md:h-10 md:w-10 dark:text-white dowload_option group-hover:fill-white"
+                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor" viewBox="0 0 24 24">
+                                                <path fill-rule="evenodd"
+                                                    d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z"
+                                                    clip-rule="evenodd" />
+                                                <path fill-rule="evenodd"
+                                                    d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -232,20 +278,19 @@ async function rejectOfficerProject(projectId) {
     }
 }
 
-async function deleteAttachedFile(fetchedSingleData) {
+async function deleteAttachedFile(fetchedSingleData, index) {
     try {
         const projectIdformatted = fetchedSingleData.id
         const statusIdFormatted = fetchedSingleData.Status
         if (fetchedSingleData.expand.Documents_tbl_via_Project_rel) {
-            // console.log(fetchedSingleData)
-            // console.log(fetchSingleProject.expand.Documents_tbl_via_Project_rel.length > 0) 
-            for (let i = 0; i < fetchedSingleData.expand.Documents_tbl_via_Project_rel.length; i++) {
-                let formattedDocId = fetchedSingleData.expand.Documents_tbl_via_Project_rel[i].id
-                await $pb.collection('Documents_tbl').delete(formattedDocId)
-            }
+            // for (let i = 0; i < fetchedSingleData.expand.Documents_tbl_via_Project_rel.length; i++) {
+            let formattedDocId = fetchedSingleData.expand.Documents_tbl_via_Project_rel[index].id
+
+            // }
+            await $pb.collection('Documents_tbl').delete(formattedDocId)
             const data = {
                 'Project_id': projectIdformatted,
-                'stages': 'stage1'
+                'stages': 'returned'
             }
             await $pb.collection('Status_tbl').update(statusIdFormatted, data)
             navigateTo('/officer1/projects')
@@ -255,6 +300,8 @@ async function deleteAttachedFile(fetchedSingleData) {
     } catch (error) {
         console.log(error)
     }
+    console.log(fetchedSingleData)
+    console.log(index)
 }
 
 async function approveProposal(projectId, recordId) {
@@ -297,5 +344,9 @@ async function downloadFile(docId) {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #0369a1;
+}
+
+.dowload_option {
+    color: rgb(46, 105, 194)
 }
 </style>

@@ -7,14 +7,13 @@ const { organization } = defineProps({
 
 <template>
     <fieldset
-        class="md:space-y-3 relative text-slate-700 comment-box-wrapper grid border-2 border-slate-200 rounded-md gap-y-2 w-full md:pb-1">
-        <legend
-            class=" text-base md:text-xl indent-5 font-semibold tracking-widest uppercase md:pt-0 lg:text-center">
+        class="md:space-y-3 relative text-slate-700 comment-box-wrapper grid border-2 border-slate-200 rounded-md gap-y-2 w-full md:pb-1 md:gap-y-0">
+        <legend class=" text-base md:text-xl indent-5 font-semibold tracking-widest uppercase md:pt-0 lg:text-center">
             Project Details
         </legend>
-        <div class="space-y-3 md:space-y-2 p-2 md:text-xl md:mx-3 mx-1">
+        <div class="space-y-3 md:space-y-2 p-2 md:text-xl md:mx-3 mx-1 lg:mx-0 lg:space-y-0">
             <div class="general-info-wrapper md:space-y-3 border-2 p-4 rounded-md bg-slate-200">
-                <div class="first-row md:grid md:grid-cols-2">
+                <div class="first-row md:grid md:grid-cols-2 lg:grid-cols-none">
                     <div class="project-name-wrapper mx-2 md:space-y-2">
                         <div class="project-label ps-2 text-base text-slate-700 font-semibold uppercase md:text-xl">
                             Title of Activity:
@@ -54,13 +53,13 @@ const { organization } = defineProps({
                         </div>
                     </div>
                 </div>
-                <div class="grid md:grid-cols-2">
+                <div class="grid xl:grid-cols-2">
                     <div class="contact-num-wrapper mx-2 space-y-2">
                         <div class="project-label ps-2 text-base text-slate-700 font-semibold uppercase md:text-xl">
                             Description:
                         </div>
                         <div
-                            class="project-name-wrapper text-sm text-slate-500 p-3 border-2 rounded-xl overflow-y-scroll max-h-52 md:h-36 font-medium md:text-lg bg-white shadow-inner tracking-tight">
+                            class="project-name-wrapper text-sm text-slate-500 p-3 border-2 rounded-xl overflow-y-auto max-h-52 md:h-36 font-medium md:text-lg bg-white shadow-inner tracking-tight">
                             {{ organization.Description }}
                         </div>
                     </div>
@@ -69,7 +68,8 @@ const { organization } = defineProps({
                             <div class="project-label ps-2 text-base text-slate-700 font-semibold uppercase md:text-xl">
                                 Event Classification:
                             </div>
-                            <div id="eventInformation" class="text-sm text-slate-500 p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
+                            <div id="eventInformation"
+                                class="text-sm text-slate-500 p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
                                 {{ organization.Event_Classification }}
                             </div>
                         </div>
@@ -77,7 +77,8 @@ const { organization } = defineProps({
                             <div class="project-label ps-2 text-base text-slate-700 font-semibold uppercase md:text-sm">
                                 Others:
                             </div>
-                            <div class="text-sm text-slate-500 p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
+                            <div
+                                class="text-sm text-slate-500 p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
                                 {{ organization.Others }}
                             </div>
                         </div>

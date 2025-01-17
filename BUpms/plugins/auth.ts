@@ -2,7 +2,7 @@
 import PocketBase from 'pocketbase';
 
 export default defineNuxtPlugin(async () => {
-    const pb = new PocketBase('https://bupms.personal.evansolanoy.studio');
+    const pb = new PocketBase('https://bupms.pockethost.io');
 
     const cookie = useCookie('pb_auth', {
         path: '/',

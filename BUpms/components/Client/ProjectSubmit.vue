@@ -269,17 +269,27 @@ async function uploadFiles() {
                 "Document": file.file
             })
         }
-        emit('isSubmittedRefresh')
+        const updateStatusData = {
+            stages: 'stage2'
+        }
+
+        const statusDataId = await $pb.collection('Projects_tbl').getOne(projectId, {
+            expand: 'Status'
+        })
+
+        const formattedStatusId = statusDataId.expand.Status.id
+        await $pb.collection('Status_tbl').update(formattedStatusId, updateStatusData)
+        // emit('isSubmittedRefresh')
+        location.reload()
         initialFiles.value = []
         confirmUploadFiles.value = []
     } catch (error) {
-        // console.error(error)
+        console.error(error)
     } finally {
         isLoading.value = false
         confirmUpload.value = false
         initialFiles.value = []
         confirmUploadFiles.value = []
-        location.reload()
         updateAvailableTypes()
     }
 }

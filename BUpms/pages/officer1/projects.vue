@@ -31,7 +31,7 @@ async function officerRejectThisProject(projectId) {
 // console.log(fetchProjects)
 </script>
 <template>
-    <div class="mx-2 overflow-hidden">
+    <div class="mx-2 overflow-hidden md:mx-56">
         <OfficerNavbar></OfficerNavbar>
         <div class="history-content-wrapper">
             <div class="project-list-wrapper space-y-4 h-screen overflow-y-scroll py-2 p-2 bg-slate-200 rounded-lg">
@@ -43,10 +43,10 @@ async function officerRejectThisProject(projectId) {
                             <div
                                 class="project-name text-blue-700 font-semibold uppercase md:flex text-base md:w-full md:gap-x-2">
                                 <div
-                                    class="uppercase tracking-wider font-bold text-gray-700 md:text-xl md:content-center md:w-28 lg:w-auto">
+                                    class="uppercase tracking-wider font-bold text-gray-700 md:text-2xl md:content-center md:w-28 lg:w-auto">
                                     Project Name:
                                 </div>
-                                <div class="font-semibold md:content-center">
+                                <div class="font-semibold md:content-center md:text-2xl">
                                     {{ project.Title }}
                                 </div>
                             </div>
@@ -90,20 +90,19 @@ async function officerRejectThisProject(projectId) {
                                             <IconsMagnifyingGlass></IconsMagnifyingGlass>
                                         </div>
                                         <div class="wrapper">
-                                            Review
+                                            View
                                         </div>
                                     </div>
                                 </nuxt-link>
                                 <div
                                     class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
-                                    <!-- officer 1 -->
                                     <button @click="officerRejectThisProject(project.id)"
                                         class="gap-x-5 md:place-content-center-center py-3 grid place-content-center">
                                         <div class="wrapper flex justify-center">
                                             <IconsArchieveBox></IconsArchieveBox>
                                         </div>
                                         <div class="wrapper">
-                                            Reject
+                                            Close
                                         </div>
                                     </button>
                                 </div>

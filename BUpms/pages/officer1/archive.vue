@@ -1,56 +1,60 @@
 <template>
-    <div class="mx-2">
+    <div class="mx-2 xl:mx-56">
         <OfficerNavbar></OfficerNavbar>
-        <div class="space-y-5">
-            <div class="archive-summary-wrapper  grid md:grid-cols-2 md:place-content-center border-2 rounded-lg">
+        <div class="md:grid md:grid-cols-2 gap-2">
+            <div class="archive-summary-wrapper border-2 rounded-lg">
                 <div class="canvas-wrapper w-full md:h-96 grid place-content-center border-2 bg-slate-200">
                     <canvas id="mychart" class="h-full md:h-96"></canvas>
                 </div>
-                <div class="flex w-full md:h-96">
-                    <div
-                        class="generated-report-wrapper py-5 h-full w-full grid place-content-center md:place-content-stretch md:px-5 border-2">
-                        <div class="card grid font-semibold gap-y-5 text-blue-500 tracking-wide">
-                            <div
-                                class="pending-project-wrapper md:text-xl text-orange-500 flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-lg">
-                                <div class="card-heading capitalize tracking-widest">
-                                    On-review:
+                <div class="">
+                    <div class=" generated-report-wrapper py-5 h-full w-full
+                        md:place-content-stretch md:px-5">
+                        <div class="card grid font-semibold text-blue-500 tracking-wide gap-y-3">
+                            <div class="grid grid-rows-2 gap-y-3">
+                                <div
+                                    class="pending-project-wrapper md:text-xl text-orange-500 flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-xl">
+                                    <div class="card-heading capitalize tracking-widest lg:text-3xl">
+                                        On-review:
+                                    </div>
+                                    <div class="card-value lg:text-3xl">
+                                        {{ finalPending }}
+                                    </div>
                                 </div>
-                                <div class="card-value">
-                                    {{ finalPending }}
-                                </div>
-                            </div>
-                            <div
-                                class="completed-project-wrapper md:text-xl flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-lg">
-                                <div class="card-heading capitalize tracking-widest">
-                                    Completed:
-                                </div>
-                                <div class="card-value ">
-                                    {{ completedDataFormatted }}
-                                </div>
-                            </div>
-                            <div
-                                class="archived-project-wrapper md:text-xl text-amber-700 flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-lg">
-                                <div class="card-heading capitalize tracking-widest">
-                                    Canceled:
-                                </div>
-                                <div class="card-value">
-                                    {{ archivedProjectFormatted }}
+                                <div
+                                    class="completed-project-wrapper md:text-xl flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-xl">
+                                    <div class="card-heading capitalize tracking-widest lg:text-3xl">
+                                        Completed:
+                                    </div>
+                                    <div class="card-value  lg:text-3xl">
+                                        {{ completedDataFormatted }}
+                                    </div>
                                 </div>
                             </div>
-                            <div
-                                class="total-projects-wrapper md:text-xl flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-lg">
-                                <div class="card-heading capitalize tracking-widest">
-                                    total:
+                            <div class="grid grid-rows-2 gap-y-3">
+                                <div
+                                    class="archived-project-wrapper md:text-xl text-amber-700 flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-xl">
+                                    <div class="card-heading capitalize tracking-widest lg:text-3xl">
+                                        Canceled:
+                                    </div>
+                                    <div class="card-value lg:text-3xl">
+                                        {{ archivedProjectFormatted }}
+                                    </div>
                                 </div>
-                                <div class="card-value">
-                                    {{ totalDataFormatted }}
+                                <div
+                                    class="total-projects-wrapper md:text-xl flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-xl">
+                                    <div class="card-heading capitalize tracking-widest lg:text-3xl">
+                                        total:
+                                    </div>
+                                    <div class="card-value lg:text-3xl">
+                                        {{ totalDataFormatted }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <fieldset class="border-2 border-slate-300 rounded-lg">
+            <div class="border-2 border-slate-300 rounded-lg">
                 <legend class="text-center font-semibold tracking-widest md:text-lg text-sm uppercase px-3">
                     History
                 </legend>
@@ -67,7 +71,7 @@
                         History is sorted from latest to oldest date
                     </div>
                 </div>
-                <div class="archive-scrollbar m-1 h-screen overflow-y-scroll bg-slate-200 rounded-md">
+                <div class="archive-scrollbar m-1 overflow-y-auto bg-slate-200 rounded-md h-52 md:h-screen lg:h-screen">
                     <div v-for="(item, index) in archivedData" :key="index">
                         <div v-if="filter === '' && (item.isArchived || item.isCompleted)"
                             class="wrapper grid md:grid-cols-2 bg-slate-300 p-1 border-2 rounded-xl m-1 py-2 my-2 justify-between">
@@ -203,7 +207,7 @@
                         </div>
                     </div>
                 </div>
-            </fieldset>
+            </div>
         </div>
     </div>
 </template>

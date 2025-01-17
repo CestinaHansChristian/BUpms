@@ -16,8 +16,8 @@
                     </div>
 
                     <div>
-                        <label for="description"
-                            class="block text-sm font-medium text-gray-700 md:text-xl">Short Description</label>
+                        <label for="description" class="block text-sm font-medium text-gray-700 md:text-xl">Short
+                            Description</label>
                         <textarea v-model="clientDescription" id="description" rows="2" required
                             placeholder="Description"
                             class="mt-1 block invert bg-black text-slate-300 border-slate-800 shadow-md border-2 w-full rounded-md  focus:border-indigo-300 focus:ring placeholder:tracking-wider focus:ring-indigo-200 focus:ring-opacity-50 p-3 resize-none md:h-32"></textarea>
@@ -27,7 +27,8 @@
                     </div>
 
                     <div>
-                        <label for="whoInput" class="block text-sm font-medium text-gray-700 md:text-xl">Involved People</label>
+                        <label for="whoInput" class="block text-sm font-medium text-gray-700 md:text-xl">Involved
+                            People</label>
                         <input v-model="whoInput" type="text" id="whoInput" required
                             class="mt-1 block invert bg-black text-slate-300 w-full rounded-md border-slate-800 shadow-md border-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
                         <p v-if="validationErrors.whoInput" class="text-red-500 text-sm mt-1">
@@ -78,8 +79,11 @@
                     </div>
 
                     <div class="others-text-option md:text-sm">
-                        <label for="othersInput" class="block text-sm font-medium text-gray-700 md:text-base">If others, please specify:</label>
-                        <input type="text" class="mt-1 block w-full bg-slate-100 text-black font-semibold border-b-2 border-b-slate-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3" v-model="othersInput" style="border-top: none; border-left: none; border-right: none;">
+                        <label for="othersInput" class="block text-sm font-medium text-gray-700 md:text-base">If others,
+                            please specify:</label>
+                        <input type="text"
+                            class="mt-1 block w-full bg-slate-100 text-black font-semibold border-b-2 border-b-slate-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3"
+                            v-model="othersInput" style="border-top: none; border-left: none; border-right: none;">
                     </div>
                     <div>
                         <label for="contactNumber" class="block text-sm font-medium text-gray-700 md:text-xl">Contact
@@ -176,7 +180,7 @@ const othersInput = ref('')
 
 const submissionSchema = z.object({
     clientActivityTitle: z.string().min(1, "Title is required"),
-    clientDescription: z.string().min(1, "Description is required"),
+    clientDescription: z.string().min(1, "Description is required").max(100, "Description must not exceed 100 characters"),
     eventClassification: z.string().min(1, "Event classification is required"),
     whoInput: z.string().min(1, "Who is required"),
     whenInput: z.string().min(1, "When is required"),
