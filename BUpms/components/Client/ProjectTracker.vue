@@ -5,7 +5,7 @@
             Project Status
         </div>
         <div v-if="status === 'success'"
-            class="project-list-container h-72 md:h-screen space-y-2 overflow-y-scroll py-1 bg-slate-100 rounded-md">
+            class="project-list-container h-72 md:h-[500px] space-y-2 overflow-y-scroll py-1 bg-slate-100 rounded-md">
             <!-- <ClientProjectsComp :project_info="projects"></ClientProjectsComp> -->
             <div v-for="(item, index) in projects" :key="index">
                 <ClientOnly>

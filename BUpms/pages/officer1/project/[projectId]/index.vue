@@ -94,7 +94,8 @@
                                 class="Doc-label-of-submitted p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
                                 <div v-if="fetchSingleProject.expand" class="if-user-submit-document">
                                     <div v-for="(eventType, index) in fetchSingleProject.expand.Documents_tbl_via_Project_rel"
-                                        :key="index" class="for-doctype-wrapper flex justify-between md:space-y-1">
+                                        :key="index"
+                                        class="for-doctype-wrapper flex justify-between md:space-y-1 relative">
                                         <div class="event-type-content flex gap-x-5 align-middle">
                                             <div class="list-icon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -107,10 +108,10 @@
                                                 {{ eventType.Doc_type }}
                                             </div>
                                         </div>
-                                        <div class="remove-specific-file-wrapper">
+                                        <div class="remove-specific-file-wrapper absolute right-0 -top-2">
                                             <button @click="deleteAttachedFile(fetchSingleProject, index)"
-                                                class="reject-design-btn text-sm bg-rose-400 px-3 cursor-pointer hover:bg
-                                            -red-700  uppercase rounded-md font-semibold md:text-lg text-slate-50 tracking-wider">
+                                                class="reject-design-btn text-sm bg-rose-400 px-3 p-1 cursor-pointer hover:bg
+                                            -red-700  uppercase rounded-md font-semibold md:text-lg text-slate-50 tracking-wider hover:">
                                                 Remove
                                             </button>
                                         </div>
@@ -211,7 +212,7 @@
                                                 {{ document.Document }}
                                             </div>
                                         </div>
-                                        <div class="grid-wrapper-2 grid place-content-center cursor-pointer bg-sky-300 py-2 rounded-xl group hover:bg-sky-400"
+                                        <div class="grid-wrapper-2 grid place-content-center cursor-pointer bg-sky-300 py-2 rounded-e-xl group hover:bg-sky-400"
                                             @click="downloadFile(document.id)">
                                             <svg class="h-10 w-10  md:h-10 md:w-10 dark:text-white dowload_option group-hover:fill-white"
                                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
