@@ -32,11 +32,11 @@ async function officerRejectThisProject(projectId) {
 </script>
 <template>
     <div class="mx-2 lg:mx-32">
-        <div class="mx-3 lg:mx-5 -mb-40 lg:-mb-0">
+        <div class="mx-3 lg:mx-5 lg:-mb-0">
             <OfficerNavbar></OfficerNavbar>
             <div class="history-content-wrapper">
                 <div
-                    class="project-list-wrapper space-y-2 overflow-y-scroll lg:h-screen py-2 p-2 bg-slate-200 rounded-lg">
+                    class="project-list-wrapper space-y-2 overflow-y-scroll py-2 h-screen p-2 bg-slate-200 rounded-lg xl:h-[760px]">
                     <div v-for="(project, index) in fetchProjects" :key="index">
                         <div v-if="project.isArchived === false && project.expand.Status.stages === 'stage2'"
                             class="project-container grid md:flex md:justify-between gap-x-2 md:place-content-center md:gap-x-5">

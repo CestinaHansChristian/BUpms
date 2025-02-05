@@ -1,73 +1,80 @@
 <template>
-    <div class="mx-2">
+    <div class="mx-2 xl:mx-56 lg:grid lg:place-content-center xl:pb-24 xl:pt-10">
         <OfficerNavbar></OfficerNavbar>
-        <div class="space-y-5">
-            <div class="archive-summary-wrapper  grid md:grid-cols-2 md:place-content-center border-2 rounded-lg">
+        <div class="grid lg:grid-cols-2  gap-2">
+            <div class="archive-summary-wrapper border-2 rounded-lg">
                 <div class="canvas-wrapper w-full md:h-96 grid place-content-center border-2 bg-slate-200">
                     <canvas id="mychart" class="h-full md:h-96"></canvas>
                 </div>
-                <div class="flex w-full md:h-96">
-                    <div
-                        class="generated-report-wrapper py-5 h-full w-full grid place-content-center md:place-content-stretch md:px-5 border-2">
-                        <div class="card grid font-semibold gap-y-5 text-blue-500 tracking-wide">
-                            <div
-                                class="pending-project-wrapper md:text-xl text-orange-500 flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-lg">
-                                <div class="card-heading capitalize tracking-widest">
-                                    On-review:
+                <div class="">
+                    <div class=" generated-report-wrapper py-5 h-full w-full
+                        md:place-content-stretch md:px-5">
+                        <div class="card grid font-semibold text-blue-500 tracking-wide gap-y-3">
+                            <div class="grid grid-cols-2 gap-y-3 gap-x-3">
+                                <div
+                                    class="pending-project-wrapper md:text-xl text-orange-500  flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-xl lg:grid">
+                                    <div class="card-heading capitalize tracking-widest lg:text-xl">
+                                        On-review:
+                                    </div>
+                                    <div class="card-value lg:text-3xl text-center">
+                                        {{ finalPending }}
+                                    </div>
                                 </div>
-                                <div class="card-value">
-                                    {{ finalPending }}
-                                </div>
-                            </div>
-                            <div
-                                class="completed-project-wrapper md:text-xl flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-lg">
-                                <div class="card-heading capitalize tracking-widest">
-                                    Completed:
-                                </div>
-                                <div class="card-value ">
-                                    {{ completedDataFormatted }}
-                                </div>
-                            </div>
-                            <div
-                                class="archived-project-wrapper md:text-xl text-amber-700 flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-lg">
-                                <div class="card-heading capitalize tracking-widest">
-                                    Canceled:
-                                </div>
-                                <div class="card-value">
-                                    {{ archivedProjectFormatted }}
+                                <div
+                                    class="completed-project-wrapper md:text-xl flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-xl lg:grid">
+                                    <div class="card-heading capitalize tracking-widest lg:text-xl">
+                                        Completed:
+                                    </div>
+                                    <div class="card-value  lg:text-3xl text-center">
+                                        {{ completedDataFormatted }}
+                                    </div>
                                 </div>
                             </div>
-                            <div
-                                class="total-projects-wrapper md:text-xl flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-lg">
-                                <div class="card-heading capitalize tracking-widest">
-                                    total:
+                            <div class="grid grid-cols-2 gap-y-3 lg lg:gap-x-3">
+                                <div
+                                    class="archived-project-wrapper md:text-xl text-amber-700 flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-xl lg:grid">
+                                    <div class="card-heading capitalize tracking-widest lg:text-xl">
+                                        Canceled:
+                                    </div>
+                                    <div class="card-value lg:text-3xl text-center">
+                                        {{ archivedProjectFormatted }}
+                                    </div>
                                 </div>
-                                <div class="card-value">
-                                    {{ totalDataFormatted }}
+                                <div
+                                    class="total-projects-wrapper md:text-xl flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-xl lg:grid">
+                                    <div class="card-heading capitalize tracking-widest lg:text-xl">
+                                        total:
+                                    </div>
+                                    <div class="card-value lg:text-3xl text-center">
+                                        {{ totalDataFormatted }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <fieldset class="border-2 border-slate-300 rounded-lg">
-                <legend class="text-center font-semibold tracking-widest md:text-lg text-sm uppercase px-3">
-                    History
-                </legend>
-                <div class="wrapper grid sm:flex text-sm md:text-base sm:justify-around">
-                    <div class="filter-label ps-2 md:ps-0 md:gap-x-2 xl:text-xl">
-                        <label for="" class="font-semibold">Filter by:</label>
-                        <select v-model="filter" name="" id="" class="bg-slate-50 italic">
-                            <option value="">None</option>
-                            <option value="Completed">Completed</option>
-                            <option value="Canceled">Canceled</option>
-                        </select>
-                    </div>
-                    <div class="sort-note italic py-3 text-sm text-center md:py-0 lg:text-base">
-                        History is sorted from latest to oldest date
+            <div class="border-2 border-slate-300 rounded-lg">
+                <div class="navbar-wrapper lg:py-3">
+                    <legend
+                        class="text-center font-semibold tracking-widest md:text-lg text-sm uppercase px-3 lg:text-2xl">
+                        History
+                    </legend>
+                    <div class="wrapper grid sm:flex text-sm md:text-base sm:justify-around lg:py-3">
+                        <div class="filter-label ps-2 md:ps-0 md:gap-x-2 xl:text-xl lg:space-x-4">
+                            <label for="" class="font-semibold">Filter by:</label>
+                            <select v-model="filter" name="" id="" class="bg-slate-50 italic">
+                                <option value="">None</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Canceled">Canceled</option>
+                            </select>
+                        </div>
+                        <div class="sort-note italic py-3 text-sm text-center md:py-0 lg:text-base">
+                            History is sorted from latest to oldest date
+                        </div>
                     </div>
                 </div>
-                <div class="archive-scrollbar m-1 h-screen overflow-y-scroll bg-slate-200 rounded-md">
+                <div class="archive-scrollbar m-1 bg-slate-200 h-56 rounded-md overflow-y-scroll lg:h-[535px]">
                     <div v-for="(item, index) in archivedData" :key="index">
                         <div v-if="filter === '' && (item.isArchived || item.isCompleted)"
                             class="wrapper grid md:grid-cols-2 bg-slate-300 p-1 border-2 rounded-xl m-1 py-2 my-2 justify-between">
@@ -203,7 +210,7 @@
                         </div>
                     </div>
                 </div>
-            </fieldset>
+            </div>
         </div>
     </div>
 </template>
@@ -211,7 +218,7 @@
 import Chart from 'chart.js/auto'
 definePageMeta({
     layout: 'landing',
-    middleware: ['guard', 'officer2']
+    middleware: ['guard', 'officer1']
 })
 
 // filter component

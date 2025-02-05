@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-2 xl:mx-56">
+    <div class="mx-2 xl:mx-56 lg:grid lg:place-content-center xl:pb-24 xl:pt-10">
         <OfficerNavbar></OfficerNavbar>
         <div class="grid lg:grid-cols-2  gap-2">
             <div class="archive-summary-wrapper border-2 rounded-lg">
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="archive-scrollbar m-1 bg-slate-200 rounded-md overflow-y-scroll lg:h-[535px]">
+                <div class="archive-scrollbar m-1 bg-slate-200 h-56 rounded-md overflow-y-scroll lg:h-[535px]">
                     <div v-for="(item, index) in archivedData" :key="index">
                         <div v-if="filter === '' && (item.isArchived || item.isCompleted)"
                             class="wrapper grid md:grid-cols-2 bg-slate-300 p-1 border-2 rounded-xl m-1 py-2 my-2 justify-between">
