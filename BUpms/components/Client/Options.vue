@@ -1,5 +1,5 @@
 <template>
-    <div class="actions-container md:gap-y-10 space-y-5 tracking-widest uppercase ">
+    <div class="actions-container md:gap-y-10 space-y-5 tracking-widest uppercase">
         <div class="actions-first-col flex m-2 gap-x-5">
             <nuxt-link to="client/submission"
                 class="md:text-2xl py-2 text-center bg-slate-50 md:h-52 text-sky-600 font-semibold shadow-sm shadow-gray-400 rounded-xl h-full w-full grid place-items-center hover:bg-sky-200">
@@ -68,9 +68,9 @@
     </div>
 </template>
 <script setup>
-    const $pb = useNuxtApp()
+const $pb = useNuxtApp()
 const logout = () => {
-    
+
     const { $pb } = useNuxtApp()
     $pb.authStore.clear()
     navigateTo('/')

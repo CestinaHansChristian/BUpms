@@ -82,7 +82,7 @@
                         <label for="othersInput" class="block text-sm font-medium text-gray-700 md:text-base">If others,
                             please specify:</label>
                         <input type="text"
-                            class="mt-1 block w-full bg-slate-100 text-black font-semibold border-b-2 border-b-slate-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3"
+                            class="mt-1 block w-full bg-slate-100 text-black font-semibold border-b-2 border-b-slate-700 focus:outline-none focus:ring-0 focus:ring-indigo-200 focus:ring-opacity-50 p-3"
                             v-model="othersInput" style="border-top: none; border-left: none; border-right: none;">
                     </div>
                     <div>

@@ -1,6 +1,6 @@
 <template>
     <fieldset
-        class="md:space-y-3 relative text-slate-700 comment-box-wrapper border-2 border-slate-200 rounded-md gap-y-2 w-full md:pb-1">
+        class="md:space-y-3 relative text-slate-700 comment-box-wrapper border-2 border-slate-200 rounded-md gap-y-2 w-full md:pb-1 xl:h-full">
         <legend
             class="text-base md:text-xl indent-5 md:indent-0 font-semibold tracking-widest uppercase md:pt-0 lg:text-center">
             Comment Box
@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="comment-content-wrapper mx-2 md:space-y-2">
-            <div class="display-message overflow-y-scroll h-64 xl:h-96 bg-slate-300 rounded-md space-y-4 py-1">
+            <div class="display-message overflow-y-scroll h-64 xl:h-72 bg-slate-300 rounded-md space-y-4 py-1">
                 <div v-for="message of messages">
                     <div v-if="message.FromUser === $pb.authStore.model.id"
                         class="from-client-msg-wrapper justify-between gap-x-3 m-1 p-2 bg-slate-100 rounded-md space-y-2">

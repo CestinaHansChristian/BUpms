@@ -96,7 +96,7 @@
                                     <div v-for="(eventType, index) in fetchSingleProject.expand.Documents_tbl_via_Project_rel"
                                         :key="index"
                                         class="for-doctype-wrapper flex justify-between md:space-y-1 relative">
-                                        <div class="event-type-content flex gap-x-5 align-middle">
+                                        <div class="event-type-content flex gap-x-5 align-middle-y-2">
                                             <div class="list-icon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                     stroke-width="4" stroke="green" class="size-6">
@@ -108,10 +108,10 @@
                                                 {{ eventType.Doc_type }}
                                             </div>
                                         </div>
-                                        <div class="remove-specific-file-wrapper absolute right-0 -top-2">
+                                        <div class="remove-specific-file-wrapper grid">
                                             <button @click="deleteAttachedFile(fetchSingleProject, index)"
-                                                class="reject-design-btn text-sm bg-rose-400 px-3 p-1 cursor-pointer hover:bg
-                                            -red-700  uppercase rounded-md font-semibold md:text-lg text-slate-50 tracking-wider hover:">
+                                                class="reject-design-btn text-sm bg-rose-400 px-3 cursor-pointer hover:bg
+                                            -red-700  uppercase rounded-md font-semibold md:text-lg text-slate-50 tracking-wider">
                                                 Remove
                                             </button>
                                         </div>

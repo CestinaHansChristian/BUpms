@@ -7,13 +7,13 @@ const { organization } = defineProps({
 
 <template>
     <fieldset
-        class="md:space-y-3 relative text-slate-700 comment-box-wrapper grid border-2 border-slate-200 rounded-md gap-y-2 w-full md:pb-1 md:gap-y-0">
+        class="md:space-y-3 relative text-slate-700 comment-box-wrapper grid border-2 border-slate-200 rounded-md gap-y-2 w-full h-full md:pb-1 md:gap-y-0">
         <legend class=" text-base md:text-xl indent-5 font-semibold tracking-widest uppercase md:pt-0 lg:text-center">
             Project Details
         </legend>
         <div class="space-y-3 md:space-y-2 p-2 md:text-xl md:mx-3 mx-1 lg:mx-0 lg:space-y-0">
             <div class="general-info-wrapper md:space-y-3 border-2 p-4 rounded-md bg-slate-200">
-                <div class="first-row md:grid md:grid-cols-2 lg:grid-cols-none">
+                <div class="first-row md:grid md:grid-cols-2">
                     <div class="project-name-wrapper mx-2 md:space-y-2">
                         <div class="project-label ps-2 text-base text-slate-700 font-semibold uppercase md:text-xl">
                             Title of Activity:

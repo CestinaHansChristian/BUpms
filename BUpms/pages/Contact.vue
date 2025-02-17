@@ -1,7 +1,6 @@
 <template>
     <div class="grid place-content-center">
-        <div
-            class="md:grid bg-white m-3 rounded-lg shadow-sm shadow-gray-500 relative xl:gap-y-2 xl:max-w-screen-2xl xl:h-screen">
+        <div class="md:grid bg-white m-3 rounded-lg shadow-sm shadow-gray-500 relative xl:gap-y-2 xl:max-w-screen-2xl">
             <!-- <GoBackButtonClient></GoBackButtonClient> -->
             <div class="card-osas grid m-4 gap-y-5 py-5 md:py-0 xl:py-3 lg:py-5">
                 <div class="bu-img-container grid place-content-center md:flex md:justify-between gap-y-5">
