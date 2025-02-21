@@ -131,7 +131,8 @@
                             </div>
                             <div
                                 class="project-name-wrapper text-sm p-3 border-2 rounded-xl overflow-y-auto font-medium md:text-base bg-white shadow-inner tracking-tight">
-                                {{ fetchSingleProject.Event_Classification }}
+                                {{ fetchSingleProject.Event_Classification === "Convention or Seminar" ? option1 :
+                                fetchSingleProject.Event_Classification }}
                             </div>
                         </div>
                         <div v-if="fetchSingleProject.Others" class="contact-num-wrapper mx-2">
@@ -244,6 +245,10 @@
     </div>
 </template>
 <script setup>
+
+// quick fix
+const option1 = ref('Convention, Seminar, etc.')
+
 // Admin composable documents
 definePageMeta({
     layout: 'landing',

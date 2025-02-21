@@ -7,12 +7,13 @@
           class="object-contain p-2 bu-assets w-24 h-24 md:w-28 md:h-28 lg:h-36 lg:w-36 xl:h-40 xl:w-40">
       </div>
     </div>
-    <div class="image-assets sm:w-full ">
+    <div class="image-assets sm:w-full">
       <div class="splash-art-container m-4 space-y-6 grid place-items-center lg:gap-y-5 xl:gap-y-16">
         <div class="img-container">
           <img src="assets/Splash-Art.png" alt="" class="object-content bu-assets h-full w-36 md:w-full xl:h-60">
         </div>
-        <div class="description-container text-white font-medium mx-2 lg:mx-8 md:text-sm lg:text-base tracking-widest">
+        <div
+          class="description-container text-white font-medium mx-2 lg:mx-8 md:text-sm lg:text-base tracking-widest xl:font-semibold xl:text-xl">
           Welcome to our platform for submitting project file documents to OSAS!
           Simply upload your files, track their progress, and collaborate efforlessly with our user-friendly interface.
         </div>
@@ -32,3 +33,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+img {
+  pointer-events: none;
+}
+</style>

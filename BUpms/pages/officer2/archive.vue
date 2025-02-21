@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-2 xl:mx-56 lg:grid lg:place-content-center xl:pb-24 xl:pt-10">
+    <div class="mx-2 xl:mx-56 lg:grid lg:place-content-center">
         <OfficerNavbar></OfficerNavbar>
         <div class="grid lg:grid-cols-2  gap-2">
             <div class="archive-summary-wrapper border-2 rounded-lg">
@@ -218,7 +218,7 @@
 import Chart from 'chart.js/auto'
 definePageMeta({
     layout: 'landing',
-    middleware: ['guard', 'officer1']
+    middleware: ['guard', 'officer2']
 })
 
 // filter component

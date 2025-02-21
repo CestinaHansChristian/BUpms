@@ -34,9 +34,9 @@ async function officerRejectThisProject(projectId) {
     <div class=" lg:mx-32">
         <div class="mx-3 lg:mx-5 lg:-mb-0">
             <OfficerNavbar></OfficerNavbar>
-            <div class="history-content-wrapper xl:h-[600px]">
+            <div class="history-content-wrapper xl:h-[650px]">
                 <div
-                    class="project-list-wrapper space-y-2 overflow-y-scroll py-2 h-screen p-2 bg-slate-200 rounded-lg xl:h-[560px]">
+                    class="project-list-wrapper space-y-2 overflow-y-scroll py-2 h-screen p-2 bg-slate-200 rounded-lg xl:h-[640px]">
                     <div v-for="(project, index) in fetchProjects" :key="index">
                         <div v-if="project.isArchived === false && project.expand.Status.stages === 'stage2'"
                             class="project-container grid md:flex md:justify-between gap-x-2 md:place-content-center md:gap-x-5">
@@ -53,7 +53,7 @@ async function officerRejectThisProject(projectId) {
                                     </div>
                                 </div>
                                 <div class="meta-info-wrapper grid xl:w-2/12 xl:mx-2 text-sky-600 font-bold">
-                                    <div class="date-wrapper text-xs">
+                                    <div class="date-wrapper text-xs lg:text-sm">
                                         <div class="creation-date-wrapper">
                                             <span class="text-gray-800 font-semibold">
                                                 Date Created:
@@ -67,7 +67,7 @@ async function officerRejectThisProject(projectId) {
                                             {{ new Date(project.updated).toLocaleString() }}
                                         </div>
                                     </div>
-                                    <div class="status-wrapper text-xs md:grid">
+                                    <div class="status-wrapper text-xs lg:text-sm md:grid">
                                         <span class="text-gray-800 font-semibold">
                                             Remarks:
                                         </span>

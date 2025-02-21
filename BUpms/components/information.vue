@@ -3,6 +3,8 @@ const { organization } = defineProps({
     organization: Object,
     require: true
 })
+
+const option1 = ref('Convention, Seminar, etc.')
 </script>
 
 <template>
@@ -70,7 +72,8 @@ const { organization } = defineProps({
                             </div>
                             <div id="eventInformation"
                                 class="text-sm text-slate-500 p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-tight">
-                                {{ organization.Event_Classification }}
+                                {{ organization.Event_Classification === "Convention or Seminar" ? option1 :
+                                    organization.Event_Classification }}
                             </div>
                         </div>
                         <div v-if="organization.Others" class="others_file_information">

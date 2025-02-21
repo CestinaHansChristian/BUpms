@@ -21,7 +21,7 @@ const { data: projectData, status: projectDataStatus, refresh: projectDataRefres
                 <TrackingProjectStage :projectStage="projectStatus.stages" :projectRelId="projectStatus.Project_id">
                 </TrackingProjectStage>
             </div>
-            <div class="project-description max-w-screen-lg container mx-auto xl:py-4">
+            <div class="project-description max-w-screen-md container mx-auto xl:py-4">
                 <information :organization="projectData"></information>
             </div>
         </div>

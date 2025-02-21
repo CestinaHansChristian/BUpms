@@ -1,5 +1,5 @@
 <template>
-    <div class="px-4 md:grid md:align-middle md:place-content-center lg:h-screen">
+    <div class="px-4 md:grid md:align-middle md:place-content-center xl:h-[720px]">
         <form @submit.prevent="submit_doc"
             class=" shadow-inner p-5 border-b-2 border-slate-300 shadow-slate-400 my-10 rounded-xl pb-5 mb:pb-0">
             <h1 class="text-3xl font-bold mb-6">Submit New Activity</h1>
@@ -55,7 +55,7 @@
                         <select v-model="eventClassification" id="eventClassification" required
                             class="mt-1 block bg-black w-full rounded-md text-slate-300 invert border-slate-800 shadow-md border-2 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-3">
                             <option value="" class="bg-slate-50 text-slate-800">Select an Item</option>
-                            <option value="Convention, Seminar, etc." class="bg-slate-50 text-slate-800">Convention,
+                            <option value="Convention or Seminar" class="bg-slate-50 text-slate-800">Convention,
                                 Seminar, etc.
                             </option>
                             <option value="Volunteer Work" class="bg-slate-50 text-slate-800">Volunteer Work</option>

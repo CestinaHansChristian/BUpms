@@ -1,11 +1,11 @@
 <template>
-    <div class="wrapper border-4 rounded-2xl w-full">
+    <div class="wrapper border-4 rounded-2xl w-full h-full">
         <div
             class="header-wrapper sticky top-0 text-sky-500 tracking-widest py-5 uppercase font-semibold text-xl text-center bg-gray-200 p-3 rounded-t-xl">
             Project Status
         </div>
         <div v-if="status === 'success'"
-            class="project-list-container h-72 md:h-[500px] space-y-2 overflow-y-scroll py-1 bg-slate-100 rounded-md">
+            class="project-list-container h-72 md:h-[570px] space-y-2 overflow-y-scroll py-1 bg-slate-100 rounded-md">
             <!-- <ClientProjectsComp :project_info="projects"></ClientProjectsComp> -->
             <div v-for="(item, index) in projects" :key="index">
                 <ClientOnly>
@@ -27,7 +27,7 @@
                         <div class="project-description grid px-2 text-slate-500 font-semibold lg:text-xl">
                             <span class="text-base text-slate-800">Created:</span>
                             <span class="text-sm text-slate-500 font-normal ">{{ new Date(item.created).toLocaleString()
-                                }}</span>
+                            }}</span>
                         </div>
                     </div>
                     <div v-if="projects.length === 0">

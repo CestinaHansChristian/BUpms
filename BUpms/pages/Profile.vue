@@ -1,6 +1,6 @@
 <template>
     <div class="bg-slate-200">
-        <div class="h-screen grid md:place-items-center ">
+        <div class="h-screen grid md:place-items-center xl:h-[720px]">
             <div
                 class="first-row-col shadow-inner shadow-slate-400 rounded-xl space-y-3 p-5 md:mx-5 lg:mx-0 border-2 m-5 grid">
                 <header

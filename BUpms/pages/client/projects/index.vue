@@ -27,8 +27,8 @@ async function archiveProject(project_id) {
 </script>
 <template>
     <div class="grid place-content-center overflow-y-hidden">
-        <div class="mx-3 lg:max-w-screen-xl lg:mx-5 -mb-28">
-            <div class="wrapper h-screen ">
+        <div class="mx-3 lg:max-w-screen-xl lg:mx-5">
+            <div class="wrapper h-screen xl:h-[720px]">
                 <div class="heading-wrapper grid grid-cols-2 md:grid-cols-6">
                     <div
                         class="return-btn-wrapper btn-wrapper text-xl text-red-400 font-bold tracking-wider uppercase py-3 md:col-span-3">
@@ -42,7 +42,7 @@ async function archiveProject(project_id) {
                     </div>
                 </div>
                 <div v-if="status === 'success'"
-                    class="project-list-wrapper overflow-y-scroll h-3/4 py-2 p-2 bg-slate-300 rounded-lg xl:h-4/5 grid">
+                    class="project-list-wrapper overflow-y-scroll h-3/4 py-2 p-2 bg-slate-300 rounded-lg xl:h-[655px] grid">
                     <!-- add project list here -->
                     <div class="contents-wrapper space-y-4">
                         <div v-for="(project, index) in projects" :key="index" class="">
