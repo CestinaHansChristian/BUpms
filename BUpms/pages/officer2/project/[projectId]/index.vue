@@ -123,7 +123,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="md:grid md:grid-cols-2 border-2 border-black">
+                    <div class="md:grid md:grid-cols-2">
                         <div class="contact-num-wrapper mx-2">
                             <div
                                 class="project-label ps-2 text-base text-slate-500 font-semibold uppercase md:text-xl md:py-1">

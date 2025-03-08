@@ -42,7 +42,7 @@ async function archiveProject(project_id) {
                     </div>
                 </div>
                 <div v-if="status === 'success'"
-                    class="project-list-wrapper overflow-y-scroll h-3/4 py-2 p-2 bg-slate-300 rounded-lg xl:h-[655px] grid">
+                    class="project-list-wrapper overflow-y-scroll h-5/6 py-2 p-2 bg-slate-300 rounded-lg xl:h-[655px] grid">
                     <!-- add project list here -->
                     <div class="contents-wrapper space-y-4">
                         <div v-for="(project, index) in projects" :key="index" class="">

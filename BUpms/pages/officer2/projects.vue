@@ -32,7 +32,7 @@ async function officerRejectThisProject(projectId) {
 </script>
 <template>
     <div class="mx-2 lg:mx-32">
-        <div class="mx-3 lg:mx-5 lg:-mb-0">
+        <div class="mx-0.5 lg:mx-5 lg:-mb-0">
             <OfficerNavbar></OfficerNavbar>
             <div class="history-content-wrapper">
                 <div
@@ -86,7 +86,7 @@ async function officerRejectThisProject(projectId) {
                                 class="flex-wrapper flex shadow-md shadow-gray-500 md:rounded-tl-xl md:rounded-t-xl w-full rounded-bl-xl rounded-br-xl md:w-2/5">
                                 <ClientOnly>
                                     <nuxt-link :to="'/officer2/project/' + project.id"
-                                        class="project-view-wrapper cursor-pointer md:rounded-tl-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 grid place-content-center px-3 text-white font-semibold w-full md:place-content-center">
+                                        class="project-view-wrapper cursor-pointer md:rounded-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 grid place-content-center p-3 text-white font-semibold w-full md:place-content-center">
                                         <!-- officer 1 -->
                                         <div class="gap-x-5 grid place-content-center">
                                             <div class="wrapper flex justify-center">
@@ -97,7 +97,7 @@ async function officerRejectThisProject(projectId) {
                                             </div>
                                         </div>
                                     </nuxt-link>
-                                    <div
+                                    <!-- <div
                                         class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
                                         <button @click="officerRejectThisProject(project.id)"
                                             class="gap-x-5 md:place-content-center-center py-3 grid place-content-center">
@@ -108,7 +108,7 @@ async function officerRejectThisProject(projectId) {
                                                 Close
                                             </div>
                                         </button>
-                                    </div>
+                                    </div> -->
                                 </ClientOnly>
                             </div>
                         </div>

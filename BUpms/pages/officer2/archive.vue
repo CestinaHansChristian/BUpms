@@ -9,7 +9,7 @@
                 <div class="">
                     <div class=" generated-report-wrapper py-5 h-full w-full
                         md:place-content-stretch md:px-5">
-                        <div class="card grid font-semibold text-blue-500 tracking-wide gap-y-3">
+                        <div class="card grid px-1 font-semibold text-blue-500 tracking-wide gap-y-3">
                             <div class="grid grid-cols-2 gap-y-3 gap-x-3">
                                 <div
                                     class="pending-project-wrapper md:text-xl text-orange-500  flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-xl lg:grid">
@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-y-3 lg lg:gap-x-3">
+                            <div class="grid grid-cols-2 gap-y-3 gap-x-3">
                                 <div
                                     class="archived-project-wrapper md:text-xl text-amber-700 flex md:pt-6 place-content-center gap-5 bg-slate-200 w-full p-2 rounded-xl lg:grid">
                                     <div class="card-heading capitalize tracking-widest lg:text-xl">

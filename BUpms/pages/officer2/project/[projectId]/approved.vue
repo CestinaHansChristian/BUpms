@@ -14,7 +14,7 @@ const { data: projectData, status: projectDataStatus, refresh: projectDataRefres
 
 </script>
 <template>
-    <div class="overflow-hidden container mx-auto h-screen">
+    <div class="overflow-hidden container mx-auto">
         <div class="content md:pt-8 mx-1">
             <div class="project-icons relative md:py-16 lg:pt-5 rounded-lg lg:container lg:mx-auto">
                 <TrackingProjectStage :projectStage="projectStatus.stages" :projectRelId="projectStatus.Project_id">
