@@ -28,7 +28,7 @@ async function archiveProject(project_id) {
 <template>
     <div class="grid place-content-center overflow-y-hidden">
         <div class="mx-3 lg:max-w-screen-xl lg:mx-5">
-            <div class="wrapper h-screen xl:h-[720px]">
+            <div class="wrapper h-screen">
                 <div class="heading-wrapper grid grid-cols-2 md:grid-cols-6">
                     <div
                         class="return-btn-wrapper btn-wrapper text-xl text-red-400 font-bold tracking-wider uppercase py-3 md:col-span-3">

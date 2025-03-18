@@ -1,5 +1,5 @@
 <template>
-    <div class="md:flex grid m-1 md:pt-3 md:gap-x-4 md:mx-1">
+    <div class="md:flex  m-1 md:pt-3 md:gap-x-4 md:mx-1 md:h-screen">
         <div class="actions-col w-full">
             <ClientOptions></ClientOptions>
         </div>

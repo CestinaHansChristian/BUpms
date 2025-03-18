@@ -263,7 +263,7 @@ const isCleared = computed(() => projectStatus.value.stages === 'stage4')
                         </fieldset>
                     </div>
                 </div>
-                <div class="pages pt-14">
+                <div class="pages pt-14 md:mx-4">
                     <div
                         class="project-details-wrapper space-y-5 lg:space-y-0 lg:py-5 lg:flex md:py-5 lg:gap-x-3 md:container md:mx-auto">
                         <Information :organization="projectData"></Information>
@@ -271,8 +271,9 @@ const isCleared = computed(() => projectStatus.value.stages === 'stage4')
                             <div class="heading-document-list md:text-xl font-semibold uppercase text-center">
                                 Your Uploaded Files:
                             </div>
-                            <div class="overflow-y-auto h-52 md:h-96 md:w-96">
-                                <div v-for=" (document, index) in projectData.expand.Documents_tbl_via_Project_rel"
+                            <div class="overflow-y-auto h-52 md:h-96 w-full lg:w-96 md:scrollbar-thin md:scrollbar-track-rounded-full md:scrollbar-thumb-rounded-full md:scrollbar-thumb-bg-slate-400 md:scrollbar-track-slate-100">
+                                <div class="overflow-wrapper overflow-y-scroll h-full">
+                                    <div v-for=" (document, index) in projectData.expand.Documents_tbl_via_Project_rel"
                                     :key="index" class="file-component document-info-wrapper grid rounded-md p-2">
                                     <div class="document-card-wrapper grid grid-cols-3 md:p-2z bg-slate-200 rounded-xl">
                                         <div class="grid-wrapper-1 flex items-center col-span-2">
@@ -295,6 +296,7 @@ const isCleared = computed(() => projectStatus.value.stages === 'stage4')
                                             </svg>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
