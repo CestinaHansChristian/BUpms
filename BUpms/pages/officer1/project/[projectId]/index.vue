@@ -95,7 +95,7 @@
                                 <div v-if="fetchSingleProject.expand" class="if-user-submit-document">
                                     <div v-for="(eventType, index) in fetchSingleProject.expand.Documents_tbl_via_Project_rel"
                                         :key="index"
-                                        class="for-doctype-wrapper flex justify-between md:space-y-1 relative">
+                                        class="for-doctype-wrapper flex justify-between space-y-1 relative ">
                                         <div class="event-type-content flex gap-x-5 align-middle-y-2">
                                             <div class="list-icon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -201,7 +201,7 @@
                         Attached Documents
                     </legend>
                     <div class="card-body mx-2 grid py-5 ">
-                        <div class="overflow-wrapper h-72 md:h-full tracking-wider">
+                        <div class="overflow-wrapper h-72 md:h-full tracking-wider overflow-y-scroll">
                             <!-- component -->
                             <div v-if="fetchSingleProject.expand" class="overflow-y-auto md:h-96">
                                 <div v-for="(document, index) in fetchSingleProject.expand.Documents_tbl_via_Project_rel"

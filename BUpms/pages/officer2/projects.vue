@@ -34,22 +34,24 @@ async function officerRejectThisProject(projectId) {
     <div class="mx-2 lg:mx-32">
         <div class="mx-0.5 lg:mx-5 lg:-mb-0">
             <OfficerNavbar></OfficerNavbar>
-            <div class="history-content-wrapper">
+            <div class="history-content-wrapper h-screen md:h-[500px] lg:h-[640px] xl:h-screen">
                 <div
-                    class="project-list-wrapper space-y-2 overflow-y-scroll py-2 h-screen p-2 bg-slate-200 rounded-lg lg:h-[660px]">
+                    class="project-list-wrapper space-y-2 overflow-y-scroll py-2 h-5/6 lg:h-[600px] xl:h-5/6 p-2 bg-slate-200 rounded-lg">
                     <div v-for="(project, index) in fetchProjects" :key="index">
                         <div v-if="project.isArchived === false && project.expand.Status.stages === 'stage3'"
                             class="project-container grid md:flex md:justify-between gap-x-2 md:place-content-center md:gap-x-5">
                             <div
                                 class="left-flex-container grid xl:justify-around xl:flex shadow-md px-2 bg-slate-100 md:rounded-b-xl rounded-t-xl p-2 shadow-gray-500 gap-x-4 md:w-full md:space-y-3">
                                 <div
-                                    class="project-name text-blue-700 font-semibold uppercase md:flex text-base md:w-full md:gap-x-2">
-                                    <div
-                                        class="uppercase tracking-wider font-bold text-gray-700 md:text-2xl md:content-center lg:w-auto">
-                                        Project Name:
-                                    </div>
-                                    <div class="font-semibold md:content-center md:text-2xl">
-                                        {{ project.Title }}
+                                    class="project-name text-blue-700 font-semibold uppercase lg:flex lg:items-center md:text-base md:w-full md:gap-x-2">
+                                    <div class="wrapper grid content-center xl:gap-y-5">
+                                        <div
+                                            class="uppercase tracking-wider font-bold text-gray-700 md:text-2xl md:content-center lg:w-auto">
+                                            Project Name:
+                                        </div>
+                                        <div class="font-semibold md:content-center md:text-2xl">
+                                            {{ project.Title }}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="meta-info-wrapper grid xl:w-2/12 xl:mx-2 text-sky-600 font-bold">

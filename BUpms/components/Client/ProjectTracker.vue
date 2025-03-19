@@ -1,16 +1,16 @@
 <template>
-    <div class="wrapper border-4 rounded-2xl w-full h-fit md:h-96 xl:h-[600px]">
+    <div class="wrapper border-4 rounded-2xl w-full h-fit md:h-[530px] lg:h-[600px]">
         <div
             class="header-wrapper sticky top-0 text-sky-500 tracking-widest py-5 uppercase font-semibold text-xl text-center bg-gray-200 p-3 rounded-t-xl">
             Project Status
         </div>
         <div v-if="status === 'success'"
-            class="project-list-container h-72 md:h-[450px] lg:h-[600px] space-y-2 overflow-y-scroll py-1 bg-slate-100 rounded-md">
+            class="project-list-container h-72 md:h-[450px] lg:h-[500px] space-y-2 overflow-y-scroll py-1 bg-slate-100 rounded-md">
             <!-- <ClientProjectsComp :project_info="projects"></ClientProjectsComp> -->
-            <div v-for="(item, index) in projects" :key="index">
+            <div v-for="(item, index) in projects" :key="index" class="py-1">
                 <ClientOnly>
                     <div v-if="item.User === $pb.authStore.model?.id"
-                        class="project-quick-status grid grid-cols-3 md:grid-cols-1 gap-y-2 py-3 place-content-start lg:grid-cols-3 border-2 border-slate-300 rounded-md bg-slate-200 mx-3">
+                        class="project-quick-status grid grid-cols-3 md:grid-cols-1 gap-y-2 py-2 place-content-start lg:grid-cols-3 border-2 border-slate-300 rounded-md bg-slate-200 mx-3">
                         <div class="project-name grid px-2 text-slate-500 font-semibold md:text-lg capitalize">
                             <span class=" text-slate-800 md:text-base ">Project:</span>
                             <div class="wrapper md:text-sm text-slate-500 w-full break-words ">

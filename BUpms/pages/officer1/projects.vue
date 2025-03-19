@@ -34,7 +34,7 @@ async function officerRejectThisProject(projectId) {
     <div class=" lg:mx-32">
         <div class="mx-3 lg:mx-5 lg:-mb-0 xl:h-screen">
             <OfficerNavbar></OfficerNavbar>
-            <div class="history-content-wrapper lg:h-[650px] border-2 border-black">
+            <div class="history-content-wrapper lg:h-[650px]">
                 <div
                     class="project-list-wrapper space-y-2 overflow-y-scroll py-2 h-screen p-2 bg-slate-200 rounded-lg xl:h-[640px]">
                     <div v-for="(project, index) in fetchProjects" :key="index">
