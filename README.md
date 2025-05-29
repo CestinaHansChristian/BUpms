@@ -1,2 +1,2 @@
-**Stable build
+**Stable build**
 
