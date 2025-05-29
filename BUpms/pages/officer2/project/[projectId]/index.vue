@@ -1,6 +1,6 @@
 <template>
-    <div class="pb-5 text-slate-800">
-        <div class="container mx-auto pt-5 lg:grid lg:grid-cols-2">
+    <div class="pb-5 text-slate-800 grid place-content-center">
+        <div class="grid pt-5 lg:grid lg:grid-cols-2 lg:max-w-7xl">
             <fieldset class="wrapper-one mx-3 md:mx-5 grid border-2 rounded-xl md:gap-y-4 space-y-4">
                 <legend class="card-heading p-1 rounded-t-xl uppercase font-medium md:text-xl text-center">
                     Project Information
@@ -91,8 +91,8 @@
                                 </label>
                             </div>
                             <div
-                                class="Doc-label-of-submitted p-3 border-2 rounded-xl font-medium md:text-lg bg-white shadow-inner tracking-widest">
-                                <div v-if="fetchSingleProject.expand" class="if-user-submit-document">
+                                class="Doc-label-of-submitted p-3 border-2 rounded-xl overflow-y-scroll font-medium md:text-lg bg-white shadow-inner tracking-widest">
+                                <div v-if="fetchSingleProject.expand" class="if-user-submit-document h-20 -m-1">
                                     <div v-for="(eventType, index) in fetchSingleProject.expand.Documents_tbl_via_Project_rel"
                                         :key="index"
                                         class="for-doctype-wrapper flex justify-between md:space-y-1 relative">

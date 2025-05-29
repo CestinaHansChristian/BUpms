@@ -34,9 +34,8 @@ async function officerRejectThisProject(projectId) {
     <div class="mx-2 lg:mx-32">
         <div class="mx-0.5 lg:mx-5 lg:-mb-0">
             <OfficerNavbar></OfficerNavbar>
-            <div class="history-content-wrapper h-screen md:h-[500px] lg:h-[640px] xl:h-screen">
-                <div
-                    class="project-list-wrapper space-y-2 overflow-y-scroll py-2 h-5/6 lg:h-[600px] xl:h-5/6 p-2 bg-slate-200 rounded-lg">
+            <div class="history-content-wrapper h-screen lg:h-screen xl:my-3">
+                <div class="project-list-wrapper space-y-2 overflow-y-scroll py-2 h-screen p-2 bg-slate-200 rounded-lg">
                     <div v-for="(project, index) in fetchProjects" :key="index">
                         <div v-if="project.isArchived === false && project.expand.Status.stages === 'stage3'"
                             class="project-container grid md:flex md:justify-between gap-x-2 md:place-content-center md:gap-x-5">
@@ -49,7 +48,7 @@ async function officerRejectThisProject(projectId) {
                                             class="uppercase tracking-wider font-bold text-gray-700 md:text-2xl md:content-center lg:w-auto">
                                             Project Name:
                                         </div>
-                                        <div class="font-semibold md:content-center md:text-2xl">
+                                        <div class="font-semibold md:content-center md:text-2xl xl:indent-5">
                                             {{ project.Title }}
                                         </div>
                                     </div>
@@ -85,7 +84,7 @@ async function officerRejectThisProject(projectId) {
                                 </div>
                             </div>
                             <div
-                                class="flex-wrapper flex shadow-md shadow-gray-500 md:rounded-tl-xl md:rounded-t-xl w-full rounded-bl-xl rounded-br-xl md:w-2/5">
+                                class="flex-wrapper flex shadow-md shadow-gray-500 md:rounded-tl-xl md:rounded-t-xl w-full rounded-bl-xl rounded-br-xl md:w-64">
                                 <ClientOnly>
                                     <nuxt-link :to="'/officer2/project/' + project.id"
                                         class="project-view-wrapper cursor-pointer md:rounded-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 grid place-content-center p-3 text-white font-semibold w-full md:place-content-center">
