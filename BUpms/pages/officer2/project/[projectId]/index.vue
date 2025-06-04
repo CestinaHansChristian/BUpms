@@ -154,15 +154,7 @@
                                 </div>
                             </nuxt-link>
                             <div class="control-btn flex lg:gap-x-5 gap-x-2">
-                                <nuxt-link @click="approveProposal(fetchSingleProject.id, fetchSingleProject.Status)"
-                                    v-if="isApproved.stages === 'stage2'" :to="fetchSingleProject.id + '/approved'">
-                                    <div
-                                        class="approve-design-btn uppercase cursor-pointer bg-blue-400 hover:bg-sky-700 text-slate-50 p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 hover:text-white tracking-wider">
-                                        Approve
-                                    </div>
-                                </nuxt-link>
-                                <nuxt-link v-else-if="isApproved.stages === 'stage3'"
-                                    :to="fetchSingleProject.id + '/approved'">
+                                <nuxt-link @click="approveProposal()" :to="fetchSingleProject.id + '/approved'">
                                     <div
                                         class="approve-design-btn uppercase cursor-pointer bg-blue-400 hover:bg-sky-700 text-slate-50 p-1 md:px-2 rounded-md font-semibold text-lg md:text-2xl md:p-4 hover:text-white tracking-wider">
                                         Approve
@@ -234,7 +226,7 @@ const fetchSingleProject = await $pb.collection('Projects_tbl').getOne(route.par
 })
 
 // fetch project status for button option
-const isApproved = await $pb.collection('Status_tbl').getOne(fetchSingleProject.Status)
+const projectStatus = await $pb.collection('Status_tbl').getOne(fetchSingleProject.Status)
 
 // fetch user details
 const fetchedUserData = await $pb.collection('Users_tbl').getOne(fetchSingleProject.User)
@@ -253,35 +245,36 @@ async function rejectOfficerProject(projectId) {
     }
 }
 
-async function approveProposal(projectId, recordId) {
+async function approveProposal() {
 
-    const formattedProjectId = projectId.id
-    const formattedUserId = projectId.User
+    // const formattedStatusId = projectStatus.Project_id
+    const formattedUserId = fetchedUserData.id
 
     // for stages
     const data = {
-        Project_id: formattedProjectId,
+        // Project_id: projectStatus.id,
         stages: 'stage4'
     }
 
     // for project
     const data2 = {
-        id: formattedProjectId,
+        // id: projectStatus.Project_id,
         isCompleted: true
     }
 
+    // notification
     const notificationData = {
         ForUser: formattedUserId,
-        Short_desc: projectId.Title
+        Short_desc: fetchSingleProject.Title
     }
 
     // console.log(projectId)
-    // console.log(data, data2, notificationData)
+    console.log(data, data2, notificationData)
     // recordIdis for status id
     // projectId is for project id
 
-    await $pb.collection('Status_tbl').update(recordId, data)
-    await $pb.collection('Projects_tbl').update(projectId.id, data2)
+    await $pb.collection('Status_tbl').update(projectStatus.id, data)
+    await $pb.collection('Projects_tbl').update(projectStatus.Project_id, data2)
     await $pb.collection('Notifications_tbl').create(notificationData)
 }
 

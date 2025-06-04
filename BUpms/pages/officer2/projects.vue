@@ -85,32 +85,18 @@ async function officerRejectThisProject(projectId) {
                             </div>
                             <div
                                 class="flex-wrapper flex shadow-md shadow-gray-500 md:rounded-tl-xl md:rounded-t-xl w-full rounded-bl-xl rounded-br-xl md:w-64">
-                                <ClientOnly>
-                                    <nuxt-link :to="'/officer2/project/' + project.id"
-                                        class="project-view-wrapper cursor-pointer md:rounded-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 grid place-content-center p-3 text-white font-semibold w-full md:place-content-center">
-                                        <!-- officer 1 -->
-                                        <div class="gap-x-5 grid place-content-center">
-                                            <div class="wrapper flex justify-center">
-                                                <IconsMagnifyingGlass></IconsMagnifyingGlass>
-                                            </div>
-                                            <div class="wrapper">
-                                                View
-                                            </div>
+                                <nuxt-link :to="'/officer2/project/' + project.id"
+                                    class="project-view-wrapper cursor-pointer md:rounded-xl rounded-bl-md bg-sky-500 hover:bg-sky-600 grid place-content-center p-3 text-white font-semibold w-full md:place-content-center">
+                                    <!-- officer 1 -->
+                                    <div class="gap-x-5 grid place-content-center">
+                                        <div class="wrapper flex justify-center">
+                                            <IconsMagnifyingGlass></IconsMagnifyingGlass>
                                         </div>
-                                    </nuxt-link>
-                                    <!-- <div
-                                        class="project-remove-wrapper cursor-pointer md:rounded-tr-xl rounded-br-xl hover:bg-red-600 bg-red-500 grid place-content-center px-2 text-white font-semibold w-full md:place-content-center">
-                                        <button @click="officerRejectThisProject(project.id)"
-                                            class="gap-x-5 md:place-content-center-center py-3 grid place-content-center">
-                                            <div class="wrapper flex justify-center">
-                                                <IconsArchieveBox></IconsArchieveBox>
-                                            </div>
-                                            <div class="wrapper">
-                                                Close
-                                            </div>
-                                        </button>
-                                    </div> -->
-                                </ClientOnly>
+                                        <div class="wrapper">
+                                            View
+                                        </div>
+                                    </div>
+                                </nuxt-link>
                             </div>
                         </div>
                     </div>
