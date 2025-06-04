@@ -1,0 +1,626 @@
+[
+  {
+    "id": "5jnyvhswtpd90ad",
+    "name": "Users_tbl",
+    "type": "auth",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "ugwrgkzp",
+        "name": "profile",
+        "type": "file",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "mimeTypes": [
+            "image/png",
+            "image/jpeg"
+          ],
+          "thumbs": [],
+          "maxSelect": 1,
+          "maxSize": 5242880,
+          "protected": false
+        }
+      },
+      {
+        "system": false,
+        "id": "cv5nefbs",
+        "name": "role",
+        "type": "select",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "maxSelect": 1,
+          "values": [
+            "admin",
+            "student",
+            "officer1",
+            "officer2",
+            "officer3"
+          ]
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "",
+    "viewRule": "@request.auth.role = 'admin' || @request.auth.id != \"\"",
+    "createRule": "@request.context = 'oauth2' || @request.auth.id != \"\"",
+    "updateRule": "@request.context = 'oauth2' || @request.auth.id != \"\"",
+    "deleteRule": "@request.auth.role = 'admin'",
+    "options": {
+      "allowEmailAuth": true,
+      "allowOAuth2Auth": true,
+      "allowUsernameAuth": true,
+      "exceptEmailDomains": null,
+      "manageRule": "@request.auth.role = 'admin'",
+      "minPasswordLength": 8,
+      "onlyEmailDomains": [
+        "bicol-u.edu.ph"
+      ],
+      "onlyVerified": false,
+      "requireEmail": false
+    }
+  },
+  {
+    "id": "2whoswu044lnqfw",
+    "name": "Comments_tbl",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "jvafh8xi",
+        "name": "FromUser",
+        "type": "relation",
+        "required": true,
+        "presentable": true,
+        "unique": false,
+        "options": {
+          "collectionId": "5jnyvhswtpd90ad",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": null
+        }
+      },
+      {
+        "system": false,
+        "id": "eemkefba",
+        "name": "Message",
+        "type": "text",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "ci00pq1w",
+        "name": "ToUser",
+        "type": "relation",
+        "required": false,
+        "presentable": true,
+        "unique": false,
+        "options": {
+          "collectionId": "5jnyvhswtpd90ad",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": null
+        }
+      },
+      {
+        "system": false,
+        "id": "p0lgmg3w",
+        "name": "ProjectRel",
+        "type": "relation",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "collectionId": "a3k2kj1v5zmc6r2",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": null
+        }
+      }
+    ],
+    "indexes": [
+      "CREATE INDEX `idx_FKodggV` ON `Comments_tbl` (`ProjectRel`)",
+      "CREATE INDEX `idx_vh8kGtM` ON `Comments_tbl` (`FromUser`)",
+      "CREATE INDEX `idx_YA6ky7m` ON `Comments_tbl` (`ToUser`)"
+    ],
+    "listRule": "@request.auth.id != \"\"",
+    "viewRule": "@request.auth.id != \"\"",
+    "createRule": "@request.auth.id != \"\" && (@request.auth.role ~ \"student\" || @request.auth.role ~ \"officer\")",
+    "updateRule": null,
+    "deleteRule": null,
+    "options": {}
+  },
+  {
+    "id": "ooykw3kv0y39aj4",
+    "name": "Documents_tbl",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "btblyixt",
+        "name": "Document",
+        "type": "file",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "mimeTypes": [
+            "application/pdf",
+            "image/png",
+            "image/jpeg"
+          ],
+          "thumbs": [],
+          "maxSelect": 1,
+          "maxSize": 5242880,
+          "protected": true
+        }
+      },
+      {
+        "system": false,
+        "id": "7hjt7ryz",
+        "name": "Is_verified",
+        "type": "bool",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {}
+      },
+      {
+        "system": false,
+        "id": "0oae45ln",
+        "name": "Project_rel",
+        "type": "relation",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "collectionId": "a3k2kj1v5zmc6r2",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": null
+        }
+      },
+      {
+        "system": false,
+        "id": "zlk8krqc",
+        "name": "Doc_type",
+        "type": "select",
+        "required": true,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "maxSelect": 1,
+          "values": [
+            "jurat",
+            "medical",
+            "travel",
+            "insurance",
+            "endorsement",
+            "deans_permit",
+            "president_letter",
+            "travel_order",
+            "risk_management",
+            "faculty_designation"
+          ]
+        }
+      }
+    ],
+    "indexes": [
+      "CREATE UNIQUE INDEX `idx_JzkyyHt` ON `Documents_tbl` (\n  `Doc_type`,\n  `Project_rel`\n)"
+    ],
+    "listRule": "@request.auth.id != \"\" && @request.auth.role = 'officer1' || @request.auth.role = 'officer2' || @request.auth.role = 'student'",
+    "viewRule": "@request.auth.id != \"\" && @request.auth.role = 'officer1' || @request.auth.role = 'officer2' || @request.auth.role = 'student'",
+    "createRule": "@request.auth.role = 'student'",
+    "updateRule": "",
+    "deleteRule": "@request.auth.role = 'officer1'",
+    "options": {}
+  },
+  {
+    "id": "r8e5gwtq2n9hjtn",
+    "name": "Notifications_tbl",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "whehl5sn",
+        "name": "Short_desc",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "cgonjm9g",
+        "name": "ForUser",
+        "type": "relation",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "collectionId": "5jnyvhswtpd90ad",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": null
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": "",
+    "updateRule": "",
+    "deleteRule": "",
+    "options": {}
+  },
+  {
+    "id": "a3k2kj1v5zmc6r2",
+    "name": "Projects_tbl",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "vgcapclm",
+        "name": "User",
+        "type": "relation",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "collectionId": "5jnyvhswtpd90ad",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": null
+        }
+      },
+      {
+        "system": false,
+        "id": "ykmuj6ce",
+        "name": "Title",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "spg2a00s",
+        "name": "Status",
+        "type": "relation",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "collectionId": "bd0k23qkhicp3tc",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": null
+        }
+      },
+      {
+        "system": false,
+        "id": "j7egledv",
+        "name": "When",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "yiifzhyq",
+        "name": "Who",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "zfrqvnjt",
+        "name": "Contact_num",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "d3tqqaf2",
+        "name": "isArchived",
+        "type": "bool",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {}
+      },
+      {
+        "system": false,
+        "id": "x2gg3kvz",
+        "name": "isCompleted",
+        "type": "bool",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {}
+      },
+      {
+        "system": false,
+        "id": "jxncrbp5",
+        "name": "Description",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "tg2wz4d7",
+        "name": "Others",
+        "type": "text",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "system": false,
+        "id": "vnbq6yuq",
+        "name": "Event_Classification",
+        "type": "select",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "maxSelect": 1,
+          "values": [
+            "Convention or Seminar",
+            "Volunteer Work",
+            "Advocacy Project Campaigns",
+            "Sports Activities",
+            "Interschool Competitions / Tournaments",
+            "Culture & Arts Competitions",
+            "Others"
+          ]
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": "",
+    "updateRule": "",
+    "deleteRule": "",
+    "options": {}
+  },
+  {
+    "id": "bd0k23qkhicp3tc",
+    "name": "Status_tbl",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "n5xj04sj",
+        "name": "Project_id",
+        "type": "relation",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "collectionId": "a3k2kj1v5zmc6r2",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": null
+        }
+      },
+      {
+        "system": false,
+        "id": "br6mfnbd",
+        "name": "stages",
+        "type": "select",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "maxSelect": 1,
+          "values": [
+            "stage1",
+            "stage2",
+            "stage3",
+            "stage4",
+            "returned"
+          ]
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": "",
+    "updateRule": "",
+    "deleteRule": "",
+    "options": {}
+  },
+  {
+    "id": "ixo0dsy2n8h9k6f",
+    "name": "archived_projects",
+    "type": "view",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "wn4inhxo",
+        "name": "archived_project",
+        "type": "number",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "noDecimal": false
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "options": {
+      "query": "SELECT Projects_tbl.id, COUNT(`Projects_tbl`.`isArchived`) as archived_project from `Projects_tbl` where `Projects_tbl`.`isArchived` = TRUE"
+    }
+  },
+  {
+    "id": "4finfo8tz5zi03x",
+    "name": "completed_project",
+    "type": "view",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "aubxtwe8",
+        "name": "completed_project",
+        "type": "number",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "noDecimal": false
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "options": {
+      "query": "SELECT Projects_tbl.id, COUNT(`Projects_tbl`.`isCompleted`) as completed_project  from `Projects_tbl` where `Projects_tbl`.`isCompleted` = TRUE"
+    }
+  },
+  {
+    "id": "74xn4gn94fcgwbp",
+    "name": "pending_project",
+    "type": "view",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "zwvhq61u",
+        "name": "pending_project",
+        "type": "number",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "noDecimal": false
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "options": {
+      "query": "SELECT Projects_tbl.id, COUNT(`Projects_tbl`.`id`) as pending_project from `Projects_tbl`"
+    }
+  },
+  {
+    "id": "ywzejhljyk01f5i",
+    "name": "total_projects",
+    "type": "view",
+    "system": false,
+    "schema": [
+      {
+        "system": false,
+        "id": "llarj22o",
+        "name": "total_projects",
+        "type": "number",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "noDecimal": false
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "options": {
+      "query": "SELECT `Projects_tbl`.id, COUNT(`Projects_tbl`.id) as total_projects from `Projects_tbl`"
+    }
+  }
+]
